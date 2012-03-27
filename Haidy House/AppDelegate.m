@@ -8,9 +8,9 @@
 
 #import "AppDelegate.h"
 
-#import "FirstViewController.h"
+#import "WebViewController.h"
 
-#import "SecondViewController.h"
+#import "SIPViewController.h"
 
 @implementation AppDelegate
 
@@ -23,14 +23,29 @@
     // Override point for customization after application launch.
     UIViewController *viewController1, *viewController2;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController_iPhone" bundle:nil];
-        viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController_iPhone" bundle:nil];
+        viewController1 = [[WebViewController alloc] initWithNibName:@"WebViewController_iPhone" bundle:nil];
+        viewController2 = [[SIPViewController alloc] initWithNibName:@"SIPViewController_iPhone" bundle:nil];
     } else {
-        viewController1 = [[FirstViewController alloc] initWithNibName:@"FirstViewController_iPad" bundle:nil];
-        viewController2 = [[SecondViewController alloc] initWithNibName:@"SecondViewController_iPad" bundle:nil];
+        viewController1 = [[WebViewController alloc] initWithNibName:@"WebViewController_iPad" bundle:nil];
+        viewController2 = [[SIPViewController alloc] initWithNibName:@"SIPViewController_iPad" bundle:nil];
     }
     self.tabBarController = [[UITabBarController alloc] init];
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1, viewController2, nil];
+
+    UIImage *homeImage = [UIImage imageNamed:@"Home.png"];
+    UIImage *phoneImage = [UIImage imageNamed:@"Phone.png"];
+    
+    // ikonek pro jednotlivé tabbary
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        [[[self.tabBarController.viewControllers objectAtIndex:0] tabBarItem] setImage:homeImage];  
+        [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem] setImage:phoneImage];
+        
+    } else {
+        [[[self.tabBarController.viewControllers objectAtIndex:0] tabBarItem] setImage:homeImage];  
+        [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem] setImage:phoneImage];
+        
+    }
+    
     self.window.rootViewController = self.tabBarController;
     [self.window makeKeyAndVisible];
     return YES;
