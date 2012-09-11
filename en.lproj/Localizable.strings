@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  Haidy House
+
+  Created by Jan Koranda on 3/27/12.
+  Copyright (c) 2012 __Haidy a.s.__. All rights reserved.
+*/
+
+"Server URL" = "Server URL";
+"Bad URL" = "Bad URL adress, pleach check settings";
+"Button Close" = "Close";
+"House" = "House";
+"House Map" = "House Map";
+"SIP" = "SIP";
+"Button Home" = "Home";
+"Button Remotely" = "Remotely";
+"Button Cancel" = "Cancel";
+"PopupView Section 0" = "Basic items";
+"PopupView Section 1" = "Floors map";
+"PopopVIew Section 0 Row 0" ="Basic";
+"PopopVIew Section 0 Row 1" ="Audio";
+"Control" = "Control";
+"Rooms" = "Rooms";

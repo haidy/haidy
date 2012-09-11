@@ -1,0 +1,596 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9145611015EE58BB00EF9FB7 /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145610D15EE58BB00EF9FB7 /* icon57x57.png */; };
+		9145611115EE58BB00EF9FB7 /* icon72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145610E15EE58BB00EF9FB7 /* icon72x72.png */; };
+		9145611215EE58BB00EF9FB7 /* icon114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145610F15EE58BB00EF9FB7 /* icon114x114.png */; };
+		9145611A15EE5A7500EF9FB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9145611915EE5A7500EF9FB7 /* main.m */; };
+		9145611D15EE5AB300EF9FB7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9145611C15EE5AB300EF9FB7 /* AppDelegate.m */; };
+		9145612115EE5ABD00EF9FB7 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9145611F15EE5ABD00EF9FB7 /* DetailViewController.m */; };
+		9145612215EE5ABD00EF9FB7 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9145612015EE5ABD00EF9FB7 /* DetailViewController.xib */; };
+		9145612A15EE5ACA00EF9FB7 /* NavigationRoomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9145612415EE5ACA00EF9FB7 /* NavigationRoomViewController.m */; };
+		9145612B15EE5ACA00EF9FB7 /* PopupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9145612615EE5ACA00EF9FB7 /* PopupViewController.m */; };
+		9145612C15EE5ACA00EF9FB7 /* PopupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9145612715EE5ACA00EF9FB7 /* PopupViewController.xib */; };
+		9145612D15EE5ACA00EF9FB7 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9145612915EE5ACA00EF9FB7 /* WebViewController.m */; };
+		9145613215EE5B4700EF9FB7 /* ExNavigationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9145612F15EE5B4700EF9FB7 /* ExNavigationData.m */; };
+		9145613315EE5B4700EF9FB7 /* ExUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9145613115EE5B4700EF9FB7 /* ExUtils.m */; };
+		9145613515EE5B7400EF9FB7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9145613415EE5B7400EF9FB7 /* Settings.bundle */; };
+		9145613715EE5BF800EF9FB7 /* Home.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145613615EE5BF800EF9FB7 /* Home.png */; };
+		9145613915EE5C0200EF9FB7 /* Phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145613815EE5C0200EF9FB7 /* Phone.png */; };
+		9145614615EE5C7A00EF9FB7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9145614415EE5C7A00EF9FB7 /* Localizable.strings */; };
+		9145614C15EE5CA100EF9FB7 /* WebViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9145614815EE5CA100EF9FB7 /* WebViewController_iPad.xib */; };
+		9145614D15EE5CA100EF9FB7 /* WebViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9145614A15EE5CA100EF9FB7 /* WebViewController_iPhone.xib */; };
+		9145614F15EE5CC200EF9FB7 /* BlankPage.html in Resources */ = {isa = PBXBuildFile; fileRef = 9145614E15EE5CC200EF9FB7 /* BlankPage.html */; };
+		9145615215EE5D0C00EF9FB7 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615015EE5D0C00EF9FB7 /* Default-Landscape~ipad.png */; };
+		9145615315EE5D0C00EF9FB7 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615115EE5D0C00EF9FB7 /* Default-Portrait~ipad.png */; };
+		9145615715EE5D1500EF9FB7 /* ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615415EE5D1500EF9FB7 /* ipad.png */; };
+		9145615815EE5D1500EF9FB7 /* iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615515EE5D1500EF9FB7 /* iphone.png */; };
+		9145615915EE5D1500EF9FB7 /* iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615615EE5D1500EF9FB7 /* iphone@2x.png */; };
+		9145615C15EE5D7A00EF9FB7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615A15EE5D7A00EF9FB7 /* Default.png */; };
+		9145615D15EE5D7A00EF9FB7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615B15EE5D7A00EF9FB7 /* Default@2x.png */; };
+		91D700EB1521D9700013AAAD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D700EA1521D9700013AAAD /* UIKit.framework */; };
+		91D700ED1521D9700013AAAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D700EC1521D9700013AAAD /* Foundation.framework */; };
+		91D700EF1521D9700013AAAD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D700EE1521D9700013AAAD /* CoreGraphics.framework */; };
+		91D7011D1521D9710013AAAD /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D7011C1521D9710013AAAD /* SenTestingKit.framework */; };
+		91D7011E1521D9710013AAAD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D700EA1521D9700013AAAD /* UIKit.framework */; };
+		91D7011F1521D9710013AAAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D700EC1521D9700013AAAD /* Foundation.framework */; };
+		91D701271521D9710013AAAD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91D701251521D9710013AAAD /* InfoPlist.strings */; };
+		91D7012A1521D9710013AAAD /* Haidy_HouseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D701291521D9710013AAAD /* Haidy_HouseTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		91D701201521D9710013AAAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91D700DD1521D9700013AAAD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91D700E51521D9700013AAAD;
+			remoteInfo = "Haidy House";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9145610D15EE58BB00EF9FB7 /* icon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57x57.png; sourceTree = SOURCE_ROOT; };
+		9145610E15EE58BB00EF9FB7 /* icon72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72x72.png; sourceTree = SOURCE_ROOT; };
+		9145610F15EE58BB00EF9FB7 /* icon114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114x114.png; sourceTree = SOURCE_ROOT; };
+		9145611915EE5A7500EF9FB7 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
+		9145611B15EE5AB300EF9FB7 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		9145611C15EE5AB300EF9FB7 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		9145611E15EE5ABD00EF9FB7 /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = SOURCE_ROOT; };
+		9145611F15EE5ABD00EF9FB7 /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = SOURCE_ROOT; };
+		9145612015EE5ABD00EF9FB7 /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = SOURCE_ROOT; };
+		9145612315EE5ACA00EF9FB7 /* NavigationRoomViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationRoomViewController.h; sourceTree = SOURCE_ROOT; };
+		9145612415EE5ACA00EF9FB7 /* NavigationRoomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationRoomViewController.m; sourceTree = SOURCE_ROOT; };
+		9145612515EE5ACA00EF9FB7 /* PopupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopupViewController.h; sourceTree = SOURCE_ROOT; };
+		9145612615EE5ACA00EF9FB7 /* PopupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopupViewController.m; sourceTree = SOURCE_ROOT; };
+		9145612715EE5ACA00EF9FB7 /* PopupViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopupViewController.xib; sourceTree = SOURCE_ROOT; };
+		9145612815EE5ACA00EF9FB7 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = SOURCE_ROOT; };
+		9145612915EE5ACA00EF9FB7 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = SOURCE_ROOT; };
+		9145612E15EE5B4700EF9FB7 /* ExNavigationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExNavigationData.h; sourceTree = SOURCE_ROOT; };
+		9145612F15EE5B4700EF9FB7 /* ExNavigationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExNavigationData.m; sourceTree = SOURCE_ROOT; };
+		9145613015EE5B4700EF9FB7 /* ExUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExUtils.h; sourceTree = SOURCE_ROOT; };
+		9145613115EE5B4700EF9FB7 /* ExUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExUtils.m; sourceTree = SOURCE_ROOT; };
+		9145613415EE5B7400EF9FB7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
+		9145613615EE5BF800EF9FB7 /* Home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Home.png; sourceTree = SOURCE_ROOT; };
+		9145613815EE5C0200EF9FB7 /* Phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Phone.png; sourceTree = SOURCE_ROOT; };
+		9145614515EE5C7A00EF9FB7 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		9145614715EE5C9000EF9FB7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
+		9145614915EE5CA100EF9FB7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/WebViewController_iPad.xib; sourceTree = SOURCE_ROOT; };
+		9145614B15EE5CA100EF9FB7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/WebViewController_iPhone.xib; sourceTree = SOURCE_ROOT; };
+		9145614E15EE5CC200EF9FB7 /* BlankPage.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BlankPage.html; sourceTree = SOURCE_ROOT; };
+		9145615015EE5D0C00EF9FB7 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = SOURCE_ROOT; };
+		9145615115EE5D0C00EF9FB7 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~ipad.png"; sourceTree = SOURCE_ROOT; };
+		9145615415EE5D1500EF9FB7 /* ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ipad.png; sourceTree = SOURCE_ROOT; };
+		9145615515EE5D1500EF9FB7 /* iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iphone.png; sourceTree = SOURCE_ROOT; };
+		9145615615EE5D1500EF9FB7 /* iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone@2x.png"; sourceTree = SOURCE_ROOT; };
+		9145615A15EE5D7A00EF9FB7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
+		9145615B15EE5D7A00EF9FB7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		91D700E61521D9700013AAAD /* Haidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Haidy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		91D700EA1521D9700013AAAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		91D700EC1521D9700013AAAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		91D700EE1521D9700013AAAD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		91D700F21521D9700013AAAD /* Haidy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Haidy-Info.plist"; sourceTree = "<group>"; };
+		91D700F81521D9700013AAAD /* Haidy-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Haidy-Prefix.pch"; sourceTree = "<group>"; };
+		91D7011B1521D9710013AAAD /* Haidy HouseTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Haidy HouseTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		91D7011C1521D9710013AAAD /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		91D701241521D9710013AAAD /* Haidy HouseTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Haidy HouseTests-Info.plist"; sourceTree = "<group>"; };
+		91D701261521D9710013AAAD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		91D701281521D9710013AAAD /* Haidy_HouseTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Haidy_HouseTests.h; sourceTree = "<group>"; };
+		91D701291521D9710013AAAD /* Haidy_HouseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Haidy_HouseTests.m; sourceTree = "<group>"; };
+		91D7015215225DD50013AAAD /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = "/Users/jankoranda/Documents/Projekty/Haidy House/Haidy HouseTests/cs.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		91D700E31521D9700013AAAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91D700EB1521D9700013AAAD /* UIKit.framework in Frameworks */,
+				91D700ED1521D9700013AAAD /* Foundation.framework in Frameworks */,
+				91D700EF1521D9700013AAAD /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D701171521D9710013AAAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91D7011D1521D9710013AAAD /* SenTestingKit.framework in Frameworks */,
+				91D7011E1521D9710013AAAD /* UIKit.framework in Frameworks */,
+				91D7011F1521D9710013AAAD /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		911D53D115E7999400E8C4FB /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				9145614E15EE5CC200EF9FB7 /* BlankPage.html */,
+				9145612E15EE5B4700EF9FB7 /* ExNavigationData.h */,
+				9145612F15EE5B4700EF9FB7 /* ExNavigationData.m */,
+				9145613015EE5B4700EF9FB7 /* ExUtils.h */,
+				9145613115EE5B4700EF9FB7 /* ExUtils.m */,
+			);
+			name = Utils;
+			path = "Haidy House";
+			sourceTree = "<group>";
+		};
+		91D700DB1521D9700013AAAD = {
+			isa = PBXGroup;
+			children = (
+				91D700F01521D9700013AAAD /* Haidy */,
+				91D700F11521D9700013AAAD /* Supporting Files */,
+				911D53D115E7999400E8C4FB /* Utils */,
+				91D7013F1521E14E0013AAAD /* Icons */,
+				91D701221521D9710013AAAD /* Haidy HouseTests */,
+				91D700E91521D9700013AAAD /* Frameworks */,
+				91D700E71521D9700013AAAD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		91D700E71521D9700013AAAD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				91D700E61521D9700013AAAD /* Haidy.app */,
+				91D7011B1521D9710013AAAD /* Haidy HouseTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		91D700E91521D9700013AAAD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				91D700EA1521D9700013AAAD /* UIKit.framework */,
+				91D700EC1521D9700013AAAD /* Foundation.framework */,
+				91D700EE1521D9700013AAAD /* CoreGraphics.framework */,
+				91D7011C1521D9710013AAAD /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		91D700F01521D9700013AAAD /* Haidy */ = {
+			isa = PBXGroup;
+			children = (
+				9145611B15EE5AB300EF9FB7 /* AppDelegate.h */,
+				9145611C15EE5AB300EF9FB7 /* AppDelegate.m */,
+				9145612815EE5ACA00EF9FB7 /* WebViewController.h */,
+				9145612915EE5ACA00EF9FB7 /* WebViewController.m */,
+				9145614815EE5CA100EF9FB7 /* WebViewController_iPad.xib */,
+				9145614A15EE5CA100EF9FB7 /* WebViewController_iPhone.xib */,
+				9145611E15EE5ABD00EF9FB7 /* DetailViewController.h */,
+				9145611F15EE5ABD00EF9FB7 /* DetailViewController.m */,
+				9145612015EE5ABD00EF9FB7 /* DetailViewController.xib */,
+				9145612515EE5ACA00EF9FB7 /* PopupViewController.h */,
+				9145612615EE5ACA00EF9FB7 /* PopupViewController.m */,
+				9145612715EE5ACA00EF9FB7 /* PopupViewController.xib */,
+				9145612315EE5ACA00EF9FB7 /* NavigationRoomViewController.h */,
+				9145612415EE5ACA00EF9FB7 /* NavigationRoomViewController.m */,
+			);
+			name = Haidy;
+			path = "Haidy House";
+			sourceTree = "<group>";
+		};
+		91D700F11521D9700013AAAD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9145614415EE5C7A00EF9FB7 /* Localizable.strings */,
+				9145613415EE5B7400EF9FB7 /* Settings.bundle */,
+				9145611915EE5A7500EF9FB7 /* main.m */,
+				91D700F21521D9700013AAAD /* Haidy-Info.plist */,
+				91D700F81521D9700013AAAD /* Haidy-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = "Haidy House";
+			sourceTree = "<group>";
+		};
+		91D701221521D9710013AAAD /* Haidy HouseTests */ = {
+			isa = PBXGroup;
+			children = (
+				91D701281521D9710013AAAD /* Haidy_HouseTests.h */,
+				91D701291521D9710013AAAD /* Haidy_HouseTests.m */,
+				91D701231521D9710013AAAD /* Supporting Files */,
+			);
+			path = "Haidy HouseTests";
+			sourceTree = "<group>";
+		};
+		91D701231521D9710013AAAD /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				91D701241521D9710013AAAD /* Haidy HouseTests-Info.plist */,
+				91D701251521D9710013AAAD /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		91D7013F1521E14E0013AAAD /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				9145615A15EE5D7A00EF9FB7 /* Default.png */,
+				9145615B15EE5D7A00EF9FB7 /* Default@2x.png */,
+				9145615415EE5D1500EF9FB7 /* ipad.png */,
+				9145615515EE5D1500EF9FB7 /* iphone.png */,
+				9145615615EE5D1500EF9FB7 /* iphone@2x.png */,
+				9145615015EE5D0C00EF9FB7 /* Default-Landscape~ipad.png */,
+				9145615115EE5D0C00EF9FB7 /* Default-Portrait~ipad.png */,
+				9145613815EE5C0200EF9FB7 /* Phone.png */,
+				9145613615EE5BF800EF9FB7 /* Home.png */,
+				9145610D15EE58BB00EF9FB7 /* icon57x57.png */,
+				9145610E15EE58BB00EF9FB7 /* icon72x72.png */,
+				9145610F15EE58BB00EF9FB7 /* icon114x114.png */,
+			);
+			name = Icons;
+			path = "Haidy House";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		91D700E51521D9700013AAAD /* Haidy House */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91D7012D1521D9710013AAAD /* Build configuration list for PBXNativeTarget "Haidy House" */;
+			buildPhases = (
+				91D700E21521D9700013AAAD /* Sources */,
+				91D700E31521D9700013AAAD /* Frameworks */,
+				91D700E41521D9700013AAAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Haidy House";
+			productName = "Haidy House";
+			productReference = 91D700E61521D9700013AAAD /* Haidy.app */;
+			productType = "com.apple.product-type.application";
+		};
+		91D7011A1521D9710013AAAD /* Haidy HouseTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91D701301521D9710013AAAD /* Build configuration list for PBXNativeTarget "Haidy HouseTests" */;
+			buildPhases = (
+				91D701161521D9710013AAAD /* Sources */,
+				91D701171521D9710013AAAD /* Frameworks */,
+				91D701181521D9710013AAAD /* Resources */,
+				91D701191521D9710013AAAD /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				91D701211521D9710013AAAD /* PBXTargetDependency */,
+			);
+			name = "Haidy HouseTests";
+			productName = "Haidy HouseTests";
+			productReference = 91D7011B1521D9710013AAAD /* Haidy HouseTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		91D700DD1521D9700013AAAD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = 91D700E01521D9700013AAAD /* Build configuration list for PBXProject "Haidy-House" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				"cs-CZ",
+				cs,
+			);
+			mainGroup = 91D700DB1521D9700013AAAD;
+			productRefGroup = 91D700E71521D9700013AAAD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				91D700E51521D9700013AAAD /* Haidy House */,
+				91D7011A1521D9710013AAAD /* Haidy HouseTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		91D700E41521D9700013AAAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9145611015EE58BB00EF9FB7 /* icon57x57.png in Resources */,
+				9145611115EE58BB00EF9FB7 /* icon72x72.png in Resources */,
+				9145611215EE58BB00EF9FB7 /* icon114x114.png in Resources */,
+				9145612215EE5ABD00EF9FB7 /* DetailViewController.xib in Resources */,
+				9145612C15EE5ACA00EF9FB7 /* PopupViewController.xib in Resources */,
+				9145613515EE5B7400EF9FB7 /* Settings.bundle in Resources */,
+				9145613715EE5BF800EF9FB7 /* Home.png in Resources */,
+				9145613915EE5C0200EF9FB7 /* Phone.png in Resources */,
+				9145614615EE5C7A00EF9FB7 /* Localizable.strings in Resources */,
+				9145614C15EE5CA100EF9FB7 /* WebViewController_iPad.xib in Resources */,
+				9145614D15EE5CA100EF9FB7 /* WebViewController_iPhone.xib in Resources */,
+				9145614F15EE5CC200EF9FB7 /* BlankPage.html in Resources */,
+				9145615215EE5D0C00EF9FB7 /* Default-Landscape~ipad.png in Resources */,
+				9145615315EE5D0C00EF9FB7 /* Default-Portrait~ipad.png in Resources */,
+				9145615715EE5D1500EF9FB7 /* ipad.png in Resources */,
+				9145615815EE5D1500EF9FB7 /* iphone.png in Resources */,
+				9145615915EE5D1500EF9FB7 /* iphone@2x.png in Resources */,
+				9145615C15EE5D7A00EF9FB7 /* Default.png in Resources */,
+				9145615D15EE5D7A00EF9FB7 /* Default@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D701181521D9710013AAAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91D701271521D9710013AAAD /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		91D701191521D9710013AAAD /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		91D700E21521D9700013AAAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9145611A15EE5A7500EF9FB7 /* main.m in Sources */,
+				9145611D15EE5AB300EF9FB7 /* AppDelegate.m in Sources */,
+				9145612115EE5ABD00EF9FB7 /* DetailViewController.m in Sources */,
+				9145612A15EE5ACA00EF9FB7 /* NavigationRoomViewController.m in Sources */,
+				9145612B15EE5ACA00EF9FB7 /* PopupViewController.m in Sources */,
+				9145612D15EE5ACA00EF9FB7 /* WebViewController.m in Sources */,
+				9145613215EE5B4700EF9FB7 /* ExNavigationData.m in Sources */,
+				9145613315EE5B4700EF9FB7 /* ExUtils.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91D701161521D9710013AAAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91D7012A1521D9710013AAAD /* Haidy_HouseTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		91D701211521D9710013AAAD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 91D700E51521D9700013AAAD /* Haidy House */;
+			targetProxy = 91D701201521D9710013AAAD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9145614415EE5C7A00EF9FB7 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9145614515EE5C7A00EF9FB7 /* cs */,
+				9145614715EE5C9000EF9FB7 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		9145614815EE5CA100EF9FB7 /* WebViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9145614915EE5CA100EF9FB7 /* en */,
+			);
+			name = WebViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		9145614A15EE5CA100EF9FB7 /* WebViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9145614B15EE5CA100EF9FB7 /* en */,
+			);
+			name = WebViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+		91D701251521D9710013AAAD /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91D701261521D9710013AAAD /* en */,
+				91D7015215225DD50013AAAD /* cs */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		91D7012B1521D9710013AAAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv6,
+				);
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		91D7012C1521D9710013AAAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv6,
+				);
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+			};
+			name = Release;
+		};
+		91D7012E1521D9710013AAAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Haidy-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				INFOPLIST_FILE = "Haidy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = Haidy;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		91D7012F1521D9710013AAAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=*]" = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Haidy-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				INFOPLIST_FILE = "Haidy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = Haidy;
+				"PROVISIONING_PROFILE[sdk=*]" = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		91D701311521D9710013AAAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Haidy House.app/Haidy House";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Haidy House/Haidy House-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				INFOPLIST_FILE = "Haidy HouseTests/Haidy HouseTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		91D701321521D9710013AAAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Haidy House.app/Haidy House";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Haidy House/Haidy House-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				INFOPLIST_FILE = "Haidy HouseTests/Haidy HouseTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		91D700E01521D9700013AAAD /* Build configuration list for PBXProject "Haidy-House" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91D7012B1521D9710013AAAD /* Debug */,
+				91D7012C1521D9710013AAAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91D7012D1521D9710013AAAD /* Build configuration list for PBXNativeTarget "Haidy House" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91D7012E1521D9710013AAAD /* Debug */,
+				91D7012F1521D9710013AAAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91D701301521D9710013AAAD /* Build configuration list for PBXNativeTarget "Haidy HouseTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91D701311521D9710013AAAD /* Debug */,
+				91D701321521D9710013AAAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 91D700DD1521D9700013AAAD /* Project object */;
+}
