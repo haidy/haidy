@@ -236,9 +236,12 @@
     
     [navigationRoomController setNavigationArray:mControlClass.childs];
     
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){         
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
         CGRect mCellRect = [self.tableView rectForRowAtIndexPath:indexPath];
         CGRect mPopoverRect = CGRectMake(mCellRect.origin.x, mCellRect.origin.y, mCellRect.size.width, 10);
+        
+        CGSize size = CGSizeMake(320, [mControlClass.childs count]*44);
+        [self.popoverController setPopoverContentSize:size];
         [self.popoverController presentPopoverFromRect:mPopoverRect inView:self.view.superview permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
     }
     else{
