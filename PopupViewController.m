@@ -90,6 +90,8 @@
 - (void)loadJSONData{
     dispatch_async(kBgQueue, ^{
         NSError* error = nil;
+        //test
+        
         //jednodušší varianta, ale nejde ji parametrizovat
         //NSData* data = [NSData dataWithContentsOfURL:
                         //[NSURL URLWithString:@"http://sharpdev.asp2.cz/haidy/JSONDataExample.aspx"] options:NSDataReadingMappedIfSafe error:&error];
