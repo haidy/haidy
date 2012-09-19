@@ -23,8 +23,6 @@
 @property (strong, nonatomic) IBOutlet UIWebView *fWebView;
 @property (strong, nonatomic) IBOutlet UINavigationItem *navigationItem;
 @property (nonatomic, assign) id <DetailViewControllerDelegate> delegate;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *fActivityView;
-@property (strong, nonatomic) IBOutlet UIView *fActivityControlView;
 
 
 - (void) loadPage:(NSURLRequest*)urlRequest;

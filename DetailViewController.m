@@ -8,14 +8,17 @@
 
 #import "DetailViewController.h"
 #import "ExUtils.h"
+#import "WaitingViewController.h"
 
 @interface DetailViewController ()
-
+{
+    WaitingViewController* fWaitingViewController;
+}
 @end
 
 @implementation DetailViewController
 
-@synthesize fWebView, delegate, navigationItem, fActivityView, fActivityControlView;
+@synthesize fWebView, delegate, navigationItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +32,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    ///Inicializace waiting dialogu
+    fWaitingViewController = [WaitingViewController createWithParentView:self.view];
+    
     //potlačení scrolování, nechceme na tomto detailu vidět efekt scrolování.
     //detail stránky by měl být plovoucí, aby se vešel vždy
     [fWebView.scrollView setScrollEnabled:NO];
@@ -79,9 +86,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webViewLocal
 {
-    [fActivityView setHidden:YES];
-    [fActivityView stopAnimating];
-    [fActivityControlView setHidden:YES];
+    [fWaitingViewController stopWaiting];
 
     
     NSString *isMobileScroll = [webViewLocal stringByEvaluatingJavaScriptFromString:@"isMobileScroll();"];
@@ -104,10 +109,7 @@
         return NO;
     }
 
-    [fActivityControlView setHidden:NO];
-    [fActivityView setHidden:NO];
-    [fActivityView startAnimating];
-
+    [fWaitingViewController startWaiting];
     
     return YES;
 }

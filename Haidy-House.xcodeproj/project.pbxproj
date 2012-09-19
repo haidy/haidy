@@ -42,6 +42,8 @@
 		91D7011F1521D9710013AAAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D700EC1521D9700013AAAD /* Foundation.framework */; };
 		91D701271521D9710013AAAD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91D701251521D9710013AAAD /* InfoPlist.strings */; };
 		91D7012A1521D9710013AAAD /* Haidy_HouseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D701291521D9710013AAAD /* Haidy_HouseTests.m */; };
+		91EEA20316099D8D001339EF /* WaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EEA20116099D8D001339EF /* WaitingViewController.m */; };
+		91EEA20416099D8D001339EF /* WaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91EEA20216099D8D001339EF /* WaitingViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,9 @@
 		91D701281521D9710013AAAD /* Haidy_HouseTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Haidy_HouseTests.h; sourceTree = "<group>"; };
 		91D701291521D9710013AAAD /* Haidy_HouseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Haidy_HouseTests.m; sourceTree = "<group>"; };
 		91D7015215225DD50013AAAD /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = "/Users/jankoranda/Documents/Projekty/Haidy House/Haidy HouseTests/cs.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
+		91EEA20016099D8D001339EF /* WaitingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingViewController.h; sourceTree = SOURCE_ROOT; };
+		91EEA20116099D8D001339EF /* WaitingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingViewController.m; sourceTree = SOURCE_ROOT; };
+		91EEA20216099D8D001339EF /* WaitingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitingViewController.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +142,9 @@
 				9145612F15EE5B4700EF9FB7 /* ExNavigationData.m */,
 				9145613015EE5B4700EF9FB7 /* ExUtils.h */,
 				9145613115EE5B4700EF9FB7 /* ExUtils.m */,
+				91EEA20016099D8D001339EF /* WaitingViewController.h */,
+				91EEA20116099D8D001339EF /* WaitingViewController.m */,
+				91EEA20216099D8D001339EF /* WaitingViewController.xib */,
 			);
 			name = Utils;
 			path = "Haidy House";
@@ -340,6 +348,7 @@
 				9145615915EE5D1500EF9FB7 /* iphone@2x.png in Resources */,
 				9145615C15EE5D7A00EF9FB7 /* Default.png in Resources */,
 				9145615D15EE5D7A00EF9FB7 /* Default@2x.png in Resources */,
+				91EEA20416099D8D001339EF /* WaitingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +391,7 @@
 				9145612D15EE5ACA00EF9FB7 /* WebViewController.m in Sources */,
 				9145613215EE5B4700EF9FB7 /* ExNavigationData.m in Sources */,
 				9145613315EE5B4700EF9FB7 /* ExUtils.m in Sources */,
+				91EEA20316099D8D001339EF /* WaitingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

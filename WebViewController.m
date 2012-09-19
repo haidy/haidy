@@ -10,14 +10,18 @@
 #import "DetailViewController.h"
 #import "PopupViewController.h"
 #import "ExUtils.h"
+#import "WaitingViewController.h"
 
 @interface WebViewController()
+{
+    WaitingViewController* fWaitingViewController;
+}
 - (void)configureView:(BOOL)reload;    
 @end
 
 @implementation WebViewController
 
-@synthesize fWebView, fActivityView, fActivityControlView, fImageView;
+@synthesize fWebView, fImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,14 +48,14 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    /// Inicializace detailů stránek
     fDetailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
     fDetailViewController.delegate = self;
     [fDetailViewController loadView];
     [fDetailViewController viewDidLoad];
     [fDetailViewController setModalPresentationStyle: UIModalTransitionStyleCoverVertical];
     
-    
-
+    /// Inicializace ovládání - popupu
     fPopupViewController = [[PopupViewController alloc] initWithNibName:@"PopupViewController" bundle:nil];
     fPopupViewController.delegate = self;
     
@@ -65,8 +69,11 @@
         fIsPopupVisible = false;
     }
     
-    fWebView.delegate = self;
+    ///Inicializace waiting dialogu
+    fWaitingViewController = [WaitingViewController createWithParentView:self.view];
     
+    /// Nastavení webview a načtení první stránky
+    fWebView.delegate = self;
     //nakonec načteme prázdnou stránku
     [fWebView loadRequest:[NSURLRequest requestWithURL:[ExUtils blankPage]]];
 }
@@ -268,18 +275,14 @@
         return NO;
     }
     
-    [fActivityControlView setHidden:NO];
-    [fActivityView setHidden:NO];
-    [fActivityView startAnimating];
+    [fWaitingViewController startWaiting];
     
     return YES;
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webViewLocal
 {
-    [fActivityView setHidden:YES];
-    [fActivityView stopAnimating];
-    [fActivityControlView setHidden:YES];
+    [fWaitingViewController stopWaiting];
     
     //nejprve ze stránky odebereme defaultní navigaci
     NSString *jsCommand = [NSString stringWithFormat:@"removeNavFloors();"];

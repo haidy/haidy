@@ -3,7 +3,7 @@
 //  Haidy House
 //
 //  Created by Jan Koranda on 3/27/12.
-//  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012 __Haidy a.s.__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -19,8 +19,6 @@
 }
 
 @property (strong, nonatomic) IBOutlet UIWebView *fWebView;
-@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *fActivityView;
-@property (strong, nonatomic) IBOutlet UIView *fActivityControlView;
 @property (strong, nonatomic) IBOutlet UIImageView *fImageView;
 
 - (IBAction) handleSwipeRight:(UISwipeGestureRecognizer*)sender;
