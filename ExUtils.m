@@ -87,4 +87,69 @@ static NSNumber* fInHome = nil;
    return  [NSURL fileURLWithPath:mBlankPagePath];
 }
 
+///aRequest - Request, který bude modifikován
+///result - YES má se provést request, NO nemá se provést request a zavolá se znovu načtení s aktuální modifikací
++(BOOL)setRequiredRequestParams:(NSURLRequest *)aRequest{
+    //oblezlička proto, abych mohl aplikačně přidávat parametry do všech requestů
+    if ([aRequest.URL.absoluteString rangeOfString:@"animations"].location == NSNotFound)
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *appendUrl = [NSString stringWithFormat: @"textures=%@&animations=%@",[defaults stringForKey:@"Textures"], [defaults stringForKey:@"Animations"]];
+        NSLog(@"Append parametrs to URL: %@", appendUrl);
+        
+        NSMutableString *existingUrl = [[NSMutableString alloc] initWithString:aRequest.URL.absoluteString];
+        
+        if ([existingUrl rangeOfString:@"?"].location == NSNotFound)
+            [existingUrl appendFormat:@"?%@", appendUrl];
+        else
+            [existingUrl appendFormat:@"&%@", appendUrl];
+        
+        [(NSMutableURLRequest*)aRequest setURL:[aRequest.URL initWithString:existingUrl]];
+        return NO;
+    }
+
+    return YES;
+}
+
+///Nastaví povinné cookies
+///aRequest - zdroj pro URL k jakému se má cookie vlastně nastavit
++ (void)setRequiredCookies:(NSURLRequest*)aRequest{
+    NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
+    [cookieProperties setObject:@"CulturePreference" forKey:NSHTTPCookieName];
+    
+    NSLog(@"Locale information %@", [[NSLocale currentLocale] localeIdentifier]);
+    
+    NSString *mUICulture = [[[[NSLocale currentLocale] localeIdentifier] componentsSeparatedByString:@"_"] objectAtIndex:0];
+    NSString *mCulture = [[[NSLocale currentLocale] localeIdentifier] stringByReplacingOccurrencesOfString:@"_" withString:@"-"];
+    
+    NSString *mCulturePreferenceValue = [NSString stringWithFormat:@"%@|%@", mUICulture, mCulture ];
+    
+    [cookieProperties setObject:mCulturePreferenceValue forKey:NSHTTPCookieValue];
+    
+    [cookieProperties setObject:[self domainFromUrl:aRequest.URL.absoluteString] forKey:NSHTTPCookieDomain];
+    [cookieProperties setObject:[self domainFromUrl:aRequest.URL.absoluteString] forKey:NSHTTPCookieOriginURL];
+    
+    [cookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
+    [cookieProperties setObject:@"0" forKey:NSHTTPCookieVersion];
+    
+    // set expiration to one month from now or any NSDate of your choosing
+    // this makes the cookie sessionless and it will persist across web sessions and app launches
+    /// if you want the cookie to be destroyed when your app exits, don't set this
+    [cookieProperties setObject:[[NSDate date] dateByAddingTimeInterval:2629743] forKey:NSHTTPCookieExpires];
+    
+    NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieProperties];
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+}
+
++(NSString*)domainFromUrl:(NSString*)url
+{
+    NSArray *first = [url componentsSeparatedByString:@"/"];
+    for (NSString *part in first) {
+        if ([part rangeOfString:@"."].location != NSNotFound){
+            return part;
+        }
+    }
+    return nil;
+}
+
 @end

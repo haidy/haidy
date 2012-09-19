@@ -134,7 +134,7 @@
     if (fWebView.request != nil && reload == NO)
         return;
     
-    NSString *mPageToLoad = @"http://sharpdev.asp2.cz/haidy/VybavenaMistnostAkce2.aspx";
+    NSString *mPageToLoad = @"http://sharpdev.asp2.cz/haidy/RequestParams.aspx";
     
     //NSString *mPageToLoad = @"default.aspx";
     
@@ -241,37 +241,29 @@
     NSLog(NSLocalizedString(@"Button Remotely", @""));
 }
 
-- (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
+- (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType
 {
     //jako první otestujeme, zda nejde o touch událost
-    if ( [[[request URL] absoluteString] hasPrefix:@"touch:"] ) {
+    if ( [[[aRequest URL] absoluteString] hasPrefix:@"touch:"] ) {
         //.. parse arguments
         [self hidePopupView];
         return NO;
     }
     
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
-        [self showDetailView:request];
+        [self showDetailView:aRequest];
         return NO;
     }
     
-    //oblezlička proto, abych mohl aplikačně přidávat parametry do všech requestů
-    if ([request.URL.absoluteString rangeOfString:@"animations"].location == NSNotFound)
-    {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSString *appendUrl = [NSString stringWithFormat: @"textures=%@&animations=%@",[defaults stringForKey:@"Textures"], [defaults stringForKey:@"Animations"]];
-        NSLog(@"Append parametrs to URL: %@", appendUrl);
-        
-        NSMutableString *existingUrl = [[NSMutableString alloc] initWithString:request.URL.absoluteString];
+    //do všech requestů potřebujeme přidat povinné cokies
+    [ExUtils setRequiredCookies:aRequest];
     
-        if ([existingUrl rangeOfString:@"?"].location == NSNotFound)
-            [existingUrl appendFormat:@"?%@", appendUrl];
-        else
-            [existingUrl appendFormat:@"&%@", appendUrl];
-        
-        [(NSMutableURLRequest*)request setURL:[request.URL initWithString:existingUrl]];
-        
-        [webView loadRequest:request];
+    //do všech requestů potřebujeme přidat povinné parametry
+    //pokud dotaz parametry neobsahuje, je modifikován a je potřeba zavolat nový request
+    BOOL mLoadCurrentRequest = [ExUtils setRequiredRequestParams:aRequest];
+    if (mLoadCurrentRequest == NO)
+    {
+        [webView loadRequest:aRequest];
         return NO;
     }
     

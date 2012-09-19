@@ -100,14 +100,17 @@
     [navigationItem setTitle:mTitle];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType{
     
     //jako první otestujeme, zda nejde o požadavek události na zavření detailu
-    if ( [[[request URL] absoluteString] hasPrefix:@"close:"] ) {
+    if ( [[[aRequest URL] absoluteString] hasPrefix:@"close:"] ) {
         //.. parse arguments
         [self backButtonClicked:webView];
         return NO;
     }
+    
+    //do všech requestů potřebujeme přidat povinné cokies
+    [ExUtils setRequiredCookies:aRequest];
 
     [fWaitingViewController startWaiting];
     
