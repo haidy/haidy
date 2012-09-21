@@ -117,9 +117,14 @@ static NSNumber* fInHome = nil;
     NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
     [cookieProperties setObject:@"CulturePreference" forKey:NSHTTPCookieName];
     
-    NSLog(@"Locale information %@", [[NSLocale currentLocale] localeIdentifier]);
     
-    NSString *mUICulture = [[[[NSLocale currentLocale] localeIdentifier] componentsSeparatedByString:@"_"] objectAtIndex:0];
+    
+    //Vezmeme z aplikace seznam podporovaných jazyků, ten porovnáme s preferovanými jazyky v systému a to nám vratí pole preferovaných jazyků. Pokud bude mít uživatel vybraný jazyk, který naše aplikace nepodporuje, tak metoda vrátí defaultní jazyk vývojového prostředí. 
+    NSArray *mApplicationPreferedLanguages = [NSBundle preferredLocalizationsFromArray:[[NSBundle mainBundle] preferredLocalizations]];
+    
+    NSLog(@"Count prefered language %d, Prefered language: %@", mApplicationPreferedLanguages.count, [mApplicationPreferedLanguages objectAtIndex:0]);
+    
+    NSString *mUICulture = [mApplicationPreferedLanguages objectAtIndex:0];
     NSString *mCulture = [[[NSLocale currentLocale] localeIdentifier] stringByReplacingOccurrencesOfString:@"_" withString:@"-"];
     
     NSString *mCulturePreferenceValue = [NSString stringWithFormat:@"%@|%@", mUICulture, mCulture ];
