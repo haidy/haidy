@@ -31,6 +31,16 @@
 			<false/>
 		</dict>
 		<dict>
+			<key>Title</key>
+			<string>SIP</string>
+			<key>Type</key>
+			<string>PSChildPaneSpecifier</string>
+			<key>File</key>
+			<string>RootSIP</string>
+			<key>Identifier</key>
+			<string>SIP</string>
+		</dict>
+		<dict>
 			<key>Type</key>
 			<string>PSGroupSpecifier</string>
 			<key>Title</key>

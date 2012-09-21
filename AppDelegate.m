@@ -7,8 +7,9 @@
 //
 
 #import "AppDelegate.h"
-
 #import "WebViewController.h"
+
+#import "LinphoneManager.h"
 
 @implementation AppDelegate
 
@@ -179,5 +180,30 @@
         BOOL mSavedData = [defs synchronize];
         NSLog (@"Uložena data registrace: %@", mSavedData == YES ? @"true" : @"false");
     }
+
+#pragma mark - Implementation SIP methods
+-(void) startSIPApplication {
+    /* explicitely instanciate LinphoneManager */
+    LinphoneManager* lm = [[LinphoneManager alloc] init];
+    assert(lm == [LinphoneManager instance]);
+    
+    [self setupUI];
+    
+	[[LinphoneManager instance]	startLibLinphone];
+    
+	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
+    
+    [self setupGSMInteraction];
+}
+
+-(void) setupGSMInteraction {
+	callCenter = [[CTCallCenter alloc] init];
+    callCenter.callEventHandler = ^(CTCall* call) {
+        // post on main thread
+        [self performSelectorOnMainThread:@selector(handleGSMCallInteration:)
+                               withObject:callCenter
+                            waitUntilDone:YES];
+    };
+}
 
 @end
