@@ -70,7 +70,6 @@
 		91EEA222160C3540001339EF /* libortp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AB21606FA8300F17FBD /* libortp.a */; };
 		91EEA223160C3540001339EF /* libosip2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AB31606FA8300F17FBD /* libosip2.a */; };
 		91EEA224160C3540001339EF /* libosipparser2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AB41606FA8300F17FBD /* libosipparser2.a */; };
-		91EEA225160C3540001339EF /* libSKP_SILK_SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AB51606FA8300F17FBD /* libSKP_SILK_SDK.a */; };
 		91EEA226160C3540001339EF /* libspeex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AB61606FA8300F17FBD /* libspeex.a */; };
 		91EEA227160C3540001339EF /* libspeexdsp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AB71606FA8300F17FBD /* libspeexdsp.a */; };
 		91EEA228160C3540001339EF /* libsrtp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AB81606FA8300F17FBD /* libsrtp.a */; };
@@ -86,6 +85,7 @@
 		91EEA248160C46E1001339EF /* libmsilbc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91EEA243160C46E1001339EF /* libmsilbc.a */; };
 		91EEA249160C46E1001339EF /* libmssilk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91EEA244160C46E1001339EF /* libmssilk.a */; };
 		91EEA24A160C46E1001339EF /* libmsx264.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91EEA245160C46E1001339EF /* libmsx264.a */; };
+		91EEA25D160CA562001339EF /* libSKP_SILK_SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AB51606FA8300F17FBD /* libSKP_SILK_SDK.a */; };
 		91F1D2641608725900810DB5 /* FastAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D2441608725900810DB5 /* FastAddressBook.m */; };
 		91F1D2651608725900810DB5 /* LinphoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D2461608725900810DB5 /* LinphoneManager.m */; };
 		91F1D2661608725900810DB5 /* UIBluetoothButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D24A1608725900810DB5 /* UIBluetoothButton.m */; };
@@ -250,6 +250,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91EEA25D160CA562001339EF /* libSKP_SILK_SDK.a in Frameworks */,
 				91EEA246160C46E1001339EF /* libmsamr.a in Frameworks */,
 				91EEA247160C46E1001339EF /* libmsbcg729.a in Frameworks */,
 				91EEA248160C46E1001339EF /* libmsilbc.a in Frameworks */,
@@ -269,7 +270,6 @@
 				91EEA222160C3540001339EF /* libortp.a in Frameworks */,
 				91EEA223160C3540001339EF /* libosip2.a in Frameworks */,
 				91EEA224160C3540001339EF /* libosipparser2.a in Frameworks */,
-				91EEA225160C3540001339EF /* libSKP_SILK_SDK.a in Frameworks */,
 				91EEA226160C3540001339EF /* libspeex.a in Frameworks */,
 				91EEA227160C3540001339EF /* libspeexdsp.a in Frameworks */,
 				91EEA228160C3540001339EF /* libsrtp.a in Frameworks */,
@@ -758,10 +758,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -774,7 +771,7 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -788,16 +785,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				ARCHS = (
-					armv7,
-					armv6,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -817,6 +811,7 @@
 					"$(ARCHS_STANDARD_32_BIT)",
 					armv6,
 				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Haidy-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -826,7 +821,16 @@
 					HAVE_SILK,
 				);
 				GCC_THUMB_SUPPORT = NO;
-				HEADER_SEARCH_PATHS = "Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin/**";
+				HEADER_SEARCH_PATHS = (
+					"Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin",
+					"Users/jankoranda/svn/linphone-iphone/submodules/linphone/coreapi",
+					"Users/jankoranda/svn/linphone-iphone/submodules/linphone/mediastreamer2/include",
+					"Users/jankoranda/svn/linphone-iphone/submodules/externals/gsm/",
+					"Users/jankoranda/svn/linphone-iphone/submodules/linphone/oRTP/include",
+					"Users/jankoranda/svn/linphone-iphone/submodules/externals/osip/include",
+					"Users/jankoranda/svn/linphone-iphone/submodules/externals/speex/include",
+					"Users/jankoranda/svn/linphone-iphone/submodules/externals/exosip/include",
+				);
 				INFOPLIST_FILE = "Haidy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
@@ -834,7 +838,6 @@
 					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib",
 					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib/mediastreamer/plugins",
 					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
-					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib/mediastreamer/plugins\"",
 				);
 				PRODUCT_NAME = Haidy;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
@@ -852,6 +855,8 @@
 					armv6,
 				);
 				"CODE_SIGN_IDENTITY[sdk=*]" = "";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Haidy-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -861,15 +866,23 @@
 					HAVE_SILK,
 				);
 				GCC_THUMB_SUPPORT = NO;
-				HEADER_SEARCH_PATHS = "Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin/**";
+				HEADER_SEARCH_PATHS = (
+					"Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin",
+					"Users/jankoranda/svn/linphone-iphone/submodules/linphone/coreapi",
+					"Users/jankoranda/svn/linphone-iphone/submodules/linphone/mediastreamer2/include",
+					"Users/jankoranda/svn/linphone-iphone/submodules/externals/gsm/",
+					"Users/jankoranda/svn/linphone-iphone/submodules/linphone/oRTP/include",
+					"Users/jankoranda/svn/linphone-iphone/submodules/externals/osip/include",
+					"Users/jankoranda/svn/linphone-iphone/submodules/externals/speex/include",
+					"Users/jankoranda/svn/linphone-iphone/submodules/externals/exosip/include",
+				);
 				INFOPLIST_FILE = "Haidy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(BUILT_PRODUCTS_DIR)",
-					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"/**",
-					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib/mediastreamer/plugins\"/**",
+					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib/",
+					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib/mediastreamer/plugins",
 					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
-					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib/mediastreamer/plugins\"",
 				);
 				PRODUCT_NAME = Haidy;
 				"PROVISIONING_PROFILE[sdk=*]" = "";
@@ -888,7 +901,7 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Haidy House/Haidy House-Prefix.pch";
+				GCC_PREFIX_HEADER = "Haidy House-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "Haidy HouseTests/Haidy HouseTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -906,7 +919,7 @@
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Haidy House/Haidy House-Prefix.pch";
+				GCC_PREFIX_HEADER = "Haidy House-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "Haidy HouseTests/Haidy HouseTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";

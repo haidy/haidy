@@ -47,6 +47,7 @@
     return lNormalizedNumber;
 }
 
+void sync_address_book (ABAddressBookRef addressBook, CFDictionaryRef info, void *context);
 void sync_address_book (ABAddressBookRef addressBook, CFDictionaryRef info, void *context) {
     NSMutableDictionary* lAddressBookMap = (__bridge NSMutableDictionary*)context;
     @synchronized (lAddressBookMap) {

@@ -487,6 +487,7 @@ static void showNetworkFlags(SCNetworkReachabilityFlags flags){
 		ms_message("kSCNetworkReachabilityFlagsIsWWAN");
 }
 
+void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReachabilityFlags flags, void* nilCtx);
 void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReachabilityFlags flags, void* nilCtx){
 	showNetworkFlags(flags);
 	LinphoneManager* lLinphoneMgr = [LinphoneManager instance];
