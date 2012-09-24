@@ -66,7 +66,7 @@ int __aeabi_idiv(int a, int b) {
      viewController1 = [[WebViewController alloc] initWithNibName:@"WebViewController_iPhone" bundle:nil];
      viewController2 = [[SIPViewController alloc] initWithNibName:@"SIPViewController_iPhone" bundle:nil];
      viewController3 = [[WebViewControllerMap alloc] initWithNibName:@"WebViewControllerMap_iPhone" bundle:nil];
-     } else {
+     } else {x
      viewController1 = [[WebViewController alloc] initWithNibName:@"WebViewController_iPad" bundle:nil];
      viewController2 = [[SIPViewController alloc] initWithNibName:@"SIPViewController_iPad" bundle:nil];
      viewController3 = [[WebViewControllerMap alloc] initWithNibName:@"WebViewControllerMap_iPad" bundle:nil];
@@ -148,6 +148,45 @@ int __aeabi_idiv(int a, int b) {
     /*
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
+    
+    if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]
+		&& [UIApplication sharedApplication].applicationState ==  UIApplicationStateBackground
+        && [[NSUserDefaults standardUserDefaults] boolForKey:@"disable_autoboot_preference"]) {
+		// autoboot disabled, doing nothing
+        return;
+    } else if ([LinphoneManager instance] == nil) {
+        [self startSIPApplication];
+    }
+    
+	[[LinphoneManager instance] becomeActive];
+    
+    if (callCenter == nil) {
+        callCenter = [[CTCallCenter alloc] init];
+        callCenter.callEventHandler = ^(CTCall* call) {
+            // post on main thread
+            [self performSelectorOnMainThread:@selector(handleGSMCallInteration:)
+                                   withObject:callCenter
+                                waitUntilDone:YES];
+        };
+    }
+    // check call state at startup
+    [self handleGSMCallInteration:callCenter];
+    
+    LinphoneCore* lc = [LinphoneManager getLc];
+    LinphoneCall* call = linphone_core_get_current_call(lc);
+    if (call == NULL)
+        return;
+    
+    LinphoneManager* instance = [LinphoneManager instance];
+    if (call == instance->currentCallContextBeforeGoingBackground.call) {
+        const LinphoneCallParams* params = linphone_call_get_current_params(call);
+        if (linphone_call_params_video_enabled(params)) {
+            linphone_call_enable_camera(
+                                        call,
+                                        instance->currentCallContextBeforeGoingBackground.cameraIsEnabled);
+        }
+        instance->currentCallContextBeforeGoingBackground.call = 0;
+    }
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -279,6 +318,25 @@ int __aeabi_idiv(int a, int b) {
                                withObject:mRefCallCenter
                             waitUntilDone:YES];
     };
+}
+
+-(void) handleGSMCallInteration: (id) cCenter {
+    CTCallCenter* ct = (CTCallCenter*) cCenter;
+    
+    int callCount = [ct.currentCalls count];
+    if (!callCount) {
+        NSLog(@"No GSM call -> enabling SIP calls");
+        linphone_core_set_max_calls([LinphoneManager getLc], 3);
+    } else {
+        NSLog(@"%d GSM call(s) -> disabling SIP calls", callCount);
+        /* pause current call, if any */
+        LinphoneCall* call = linphone_core_get_current_call([LinphoneManager getLc]);
+        if (call) {
+            NSLog(@"Pausing SIP call");
+            linphone_core_pause_call([LinphoneManager getLc], call);
+        }
+        linphone_core_set_max_calls([LinphoneManager getLc], 0);
+    }
 }
 
 @end
