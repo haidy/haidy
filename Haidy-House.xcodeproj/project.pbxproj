@@ -526,16 +526,16 @@
 		91D7012F1521D9710013AAAD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Jan Koranda (FMMMVU74AP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jan Koranda (FMMMVU74AP)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Positro a.s.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Positro a.s.";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Haidy-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "Haidy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				PRODUCT_NAME = Haidy;
-				PROVISIONING_PROFILE = "2ADA436E-13AC-4AF4-B682-D39F904770A6";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "FD931956-C60B-4CB6-91F7-5DA24015182E";
+				PROVISIONING_PROFILE = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
