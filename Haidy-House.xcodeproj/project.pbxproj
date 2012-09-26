@@ -811,6 +811,8 @@
 					"$(ARCHS_STANDARD_32_BIT)",
 					armv6,
 				);
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jan Koranda (FMMMVU74AP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jan Koranda (FMMMVU74AP)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Haidy-Prefix.pch";
@@ -841,8 +843,11 @@
 					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
 				);
 				PRODUCT_NAME = Haidy;
+				PROVISIONING_PROFILE = "E89B5132-6D98-4F56-9BCC-DE149E24778F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC064810-D687-45DD-8596-9D07C4358150";
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				USER_HEADER_SEARCH_PATHS = "/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin/**";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -855,7 +860,8 @@
 					"$(ARCHS_STANDARD_32_BIT)",
 					armv6,
 				);
-				"CODE_SIGN_IDENTITY[sdk=*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Positro a.s.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Positro a.s.";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -887,9 +893,11 @@
 					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
 				);
 				PRODUCT_NAME = Haidy;
-				"PROVISIONING_PROFILE[sdk=*]" = "";
+				PROVISIONING_PROFILE = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				USER_HEADER_SEARCH_PATHS = "/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin/**";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
