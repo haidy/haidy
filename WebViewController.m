@@ -134,9 +134,9 @@
     if (fWebView.request != nil && reload == NO)
         return;
     
-    NSString *mPageToLoad = @"http://sharpdev.asp2.cz/haidy/RequestParams.aspx";
+    //NSString *mPageToLoad = @"http://sharpdev.asp2.cz/haidy/RequestParams.aspx";
     
-    //NSString *mPageToLoad = @"default.aspx";
+    NSString *mPageToLoad = @"default.aspx";
     
     
     //Vytvoříme URL, které přijde tak jako tak, eventuelně půjde o prázdnou stránku.
@@ -250,10 +250,14 @@
         return NO;
     }
     
-    if (navigationType == UIWebViewNavigationTypeLinkClicked) {
+    if (navigationType == UIWebViewNavigationTypeLinkClicked && fLoadedErrorPage == NO) {
         [self showDetailView:aRequest];
         return NO;
     }
+    
+    //pokud je načtená Error stránka, tak nyní request projde, a my jen zrušíme příznak
+    if (fLoadedErrorPage == YES)
+        fLoadedErrorPage = NO;
     
     //do všech requestů potřebujeme přidat povinné cokies
     [ExUtils setRequiredCookies:aRequest];
@@ -274,8 +278,6 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webViewLocal
 {
-    [fWaitingViewController stopWaiting];
-    
     //nejprve ze stránky odebereme defaultní navigaci
     NSString *jsCommand = [NSString stringWithFormat:@"removeNavFloors();"];
     [webViewLocal stringByEvaluatingJavaScriptFromString:jsCommand];
@@ -284,7 +286,14 @@
     //je potřeba, abychom mohli eventuelně schovat popupview
     jsCommand = [NSString stringWithFormat:@"document.addEventListener('touchstart', function(event) { window.location.replace('touch://www.haidy.cz'); }, false);"];
     [webViewLocal stringByEvaluatingJavaScriptFromString:jsCommand];
+    
+    NSString *mTitle = [webViewLocal stringByEvaluatingJavaScriptFromString:@"getTitle()"];
+    if ([mTitle rangeOfString:@"Error" options:NSCaseInsensitiveSearch].location == NSNotFound )
+        fLoadedErrorPage = NO;
+    else
+        fLoadedErrorPage = YES;
 
+    [fWaitingViewController stopWaiting];
 }
      
 #pragma mark - UIAllertViewDelegate
@@ -321,9 +330,13 @@
 }
 
 #pragma mark - Implement SubViewControllerDelegate
--(void) detailViewControllerDidFinish:(id)controller
+-(void) detailViewControllerDidFinish:(id)controller andError:(BOOL)mError
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if (mError == YES)
+        [self configureView:YES];
+    //else není potřeba, je pro všechny případy stejné viz první řádek
 }
 
 #pragma mark - Implement PopupViewControllerDelegate

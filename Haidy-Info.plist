@@ -65,6 +65,7 @@
 	<key>Valid Architectures</key>
 	<array>
 		<string>armv6</string>
+		<string>armv7s</string>
 		<string>armv7</string>
 	</array>
 </dict>

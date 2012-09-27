@@ -71,7 +71,7 @@
 -(void) backButtonClicked:(id)sender
 {
     [fWebView loadRequest:[NSURLRequest requestWithURL:[ExUtils blankPage]]];
-    [delegate detailViewControllerDidFinish:self];
+    [delegate detailViewControllerDidFinish:self andError:NO];
 }
 
 #pragma mark - WebViewDelegate
@@ -85,10 +85,7 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webViewLocal
-{
-    [fWaitingViewController stopWaiting];
-
-    
+{    
     NSString *isMobileScroll = [webViewLocal stringByEvaluatingJavaScriptFromString:@"isMobileScroll();"];
     NSLog(@"Mobile Scroll: %@", isMobileScroll);
     if ([isMobileScroll isEqualToString:@"true"])
@@ -96,13 +93,30 @@
     else
         [self.fWebView.scrollView setScrollEnabled:NO];
     
-    NSString *mTitle = [webViewLocal stringByEvaluatingJavaScriptFromString:@"getTitle();"];
+    NSString *mTitle = [webViewLocal stringByEvaluatingJavaScriptFromString:@"getTitle()"];
     [navigationItem setTitle:mTitle];
+    if ([mTitle rangeOfString:@"Error" options:NSCaseInsensitiveSearch].location == NSNotFound )
+        fLoadedErrorPage = NO;
+    else
+        fLoadedErrorPage = YES;
+    
+    [fWaitingViewController stopWaiting];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType{
     
-    //jako první otestujeme, zda nejde o požadavek události na zavření detailu
+    //pokud je načtená Error stránka, tak request neotevřeme a pošleme info hlavnímu detailu
+    if (fLoadedErrorPage == YES)
+    {
+        fLoadedErrorPage = NO;
+        [fWebView loadRequest:[NSURLRequest requestWithURL:[ExUtils blankPage]]];
+        [delegate detailViewControllerDidFinish:self andError:YES];
+        return NO;
+    }
+    //else není potřeba, vše je v pořádku
+    
+    
+    //otestujeme, zda nejde o požadavek události na zavření detailu
     if ( [[[aRequest URL] absoluteString] hasPrefix:@"close:"] ) {
         //.. parse arguments
         [self backButtonClicked:webView];

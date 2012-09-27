@@ -16,6 +16,7 @@
     PopupViewController *fPopupViewController;
     UIView *fPopupView;
     BOOL fIsPopupVisible;
+    @private BOOL fLoadedErrorPage;
 }
 
 @property (strong, nonatomic) IBOutlet UIWebView *fWebView;

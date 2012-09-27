@@ -11,14 +11,13 @@
 @protocol DetailViewControllerDelegate
 
 @required
-- (void)detailViewControllerDidFinish:(id)controller;
-
+- (void)detailViewControllerDidFinish:(id)controller andError:(BOOL)mError;
 @end
 
 
 @interface DetailViewController : UIViewController
 {
-    
+@private BOOL fLoadedErrorPage;
 }
 @property (strong, nonatomic) IBOutlet UIWebView *fWebView;
 @property (strong, nonatomic) IBOutlet UINavigationItem *navigationItem;
