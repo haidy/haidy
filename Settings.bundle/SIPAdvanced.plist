@@ -58,24 +58,23 @@
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-                        <false/>
-                        <key>Key</key>
-                        <string>wifi_only_preference</string>
-                        <key>Title</key>
-                        <string>Wifi only</string>
-                        <key>Type</key>
-                        <string>PSToggleSwitchSpecifier</string>
+			<false/>
+			<key>Key</key>
+			<string>wifi_only_preference</string>
+			<key>Title</key>
+			<string>Wifi only</string>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 		<dict>
 			<key>DefaultValue</key>
-			<string>udp</string>
+			<string>tcp</string>
 			<key>Key</key>
 			<string>transport_preference</string>
 			<key>Title</key>
 			<string>Transport</string>
 			<key>Titles</key>
 			<array>
-				<string>udp</string>
 				<string>tcp</string>
 				<string>tls</string>
 			</array>
@@ -83,7 +82,6 @@
 			<string>PSMultiValueSpecifier</string>
 			<key>Values</key>
 			<array>
-				<string>udp</string>
 				<string>tcp</string>
 				<string>tls</string>
 			</array>
