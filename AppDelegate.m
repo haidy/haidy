@@ -54,9 +54,7 @@ int __aeabi_idiv(int a, int b) {
     UINavigationController *mNavigatonController = [[UINavigationController alloc] initWithRootViewController:mRootViewController];
     self.window.rootViewController = mNavigatonController;
     [self.window makeKeyAndVisible];
-    
-
-    
+        
     return YES;
     
     
@@ -291,10 +289,6 @@ int __aeabi_idiv(int a, int b) {
     NSLog (@"Uložena data registrace: %@", mSavedData == YES ? @"true" : @"false");
 }
 
--(void)setupUI{
-    
-}
-
 
 #pragma mark - Implementation SIP methods
 -(void) startSIPApplication {
@@ -307,6 +301,11 @@ int __aeabi_idiv(int a, int b) {
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
     
     [self setupGSMInteraction];
+    
+    //[[LinphoneManager instance] setCallDelegate:myPhoneViewController];
+    
+    [UIDevice currentDevice].batteryMonitoringEnabled = YES;
+
 }
 
 -(void) setupGSMInteraction {

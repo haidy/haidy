@@ -34,6 +34,21 @@
 		9145615915EE5D1500EF9FB7 /* iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615615EE5D1500EF9FB7 /* iphone@2x.png */; };
 		9145615C15EE5D7A00EF9FB7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615A15EE5D7A00EF9FB7 /* Default.png */; };
 		9145615D15EE5D7A00EF9FB7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615B15EE5D7A00EF9FB7 /* Default@2x.png */; };
+		91B25D72161AC21E005777CF /* FastAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D52161AC21E005777CF /* FastAddressBook.m */; };
+		91B25D73161AC21E005777CF /* LinphoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D54161AC21E005777CF /* LinphoneManager.m */; };
+		91B25D74161AC21E005777CF /* UIBluetoothButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D58161AC21E005777CF /* UIBluetoothButton.m */; };
+		91B25D75161AC21E005777CF /* UICallButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D5A161AC21E005777CF /* UICallButton.m */; };
+		91B25D76161AC21E005777CF /* UICamSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D5C161AC21E005777CF /* UICamSwitch.m */; };
+		91B25D77161AC21E005777CF /* UIDigitButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D5E161AC21E005777CF /* UIDigitButton.m */; };
+		91B25D78161AC21E005777CF /* UIDuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D60161AC21E005777CF /* UIDuration.m */; };
+		91B25D79161AC21E005777CF /* UIEraseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D62161AC21E005777CF /* UIEraseButton.m */; };
+		91B25D7A161AC21E005777CF /* UIHangUpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D64161AC21E005777CF /* UIHangUpButton.m */; };
+		91B25D7B161AC21E005777CF /* UIMuteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D67161AC21E005777CF /* UIMuteButton.m */; };
+		91B25D7C161AC21E005777CF /* UIPauseResumeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D69161AC21E005777CF /* UIPauseResumeButton.m */; };
+		91B25D7D161AC21E005777CF /* UISpeakerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D6B161AC21E005777CF /* UISpeakerButton.m */; };
+		91B25D7E161AC21E005777CF /* UIToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D6D161AC21E005777CF /* UIToggleButton.m */; };
+		91B25D7F161AC21E005777CF /* UIToggleVideoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D6F161AC21E005777CF /* UIToggleVideoButton.m */; };
+		91B25D80161AC21E005777CF /* VideoZoomHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D71161AC21E005777CF /* VideoZoomHandler.m */; };
 		91CB598C1606E59B00F17FBD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB598B1606E59B00F17FBD /* CoreTelephony.framework */; };
 		91CB598E1606E5A800F17FBD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB598D1606E5A800F17FBD /* QuartzCore.framework */; };
 		91CB59901606E5ED00F17FBD /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB598F1606E5ED00F17FBD /* CoreAudio.framework */; };
@@ -86,21 +101,6 @@
 		91EEA249160C46E1001339EF /* libmssilk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91EEA244160C46E1001339EF /* libmssilk.a */; };
 		91EEA24A160C46E1001339EF /* libmsx264.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91EEA245160C46E1001339EF /* libmsx264.a */; };
 		91EEA25D160CA562001339EF /* libSKP_SILK_SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AB51606FA8300F17FBD /* libSKP_SILK_SDK.a */; };
-		91F1D2641608725900810DB5 /* FastAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D2441608725900810DB5 /* FastAddressBook.m */; };
-		91F1D2651608725900810DB5 /* LinphoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D2461608725900810DB5 /* LinphoneManager.m */; };
-		91F1D2661608725900810DB5 /* UIBluetoothButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D24A1608725900810DB5 /* UIBluetoothButton.m */; };
-		91F1D2671608725900810DB5 /* UICallButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D24C1608725900810DB5 /* UICallButton.m */; };
-		91F1D2681608725900810DB5 /* UICamSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D24E1608725900810DB5 /* UICamSwitch.m */; };
-		91F1D2691608725900810DB5 /* UIDigitButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D2501608725900810DB5 /* UIDigitButton.m */; };
-		91F1D26A1608725900810DB5 /* UIDuration.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D2521608725900810DB5 /* UIDuration.m */; };
-		91F1D26B1608725900810DB5 /* UIEraseButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D2541608725900810DB5 /* UIEraseButton.m */; };
-		91F1D26C1608725900810DB5 /* UIHangUpButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D2561608725900810DB5 /* UIHangUpButton.m */; };
-		91F1D26D1608725900810DB5 /* UIMuteButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D2591608725900810DB5 /* UIMuteButton.m */; };
-		91F1D26E1608725900810DB5 /* UIPauseResumeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D25B1608725900810DB5 /* UIPauseResumeButton.m */; };
-		91F1D26F1608725900810DB5 /* UISpeakerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D25D1608725900810DB5 /* UISpeakerButton.m */; };
-		91F1D2701608725900810DB5 /* UIToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D25F1608725900810DB5 /* UIToggleButton.m */; };
-		91F1D2711608725900810DB5 /* UIToggleVideoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D2611608725900810DB5 /* UIToggleVideoButton.m */; };
-		91F1D2721608725900810DB5 /* VideoZoomHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 91F1D2631608725900810DB5 /* VideoZoomHandler.m */; };
 		91F1D3BA160893BE00810DB5 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F1D3B9160893BE00810DB5 /* AddressBookUI.framework */; };
 		91F1D3BC160893C500810DB5 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F1D3BB160893C500810DB5 /* AddressBook.framework */; };
 /* End PBXBuildFile section */
@@ -151,6 +151,39 @@
 		9145615615EE5D1500EF9FB7 /* iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone@2x.png"; sourceTree = SOURCE_ROOT; };
 		9145615A15EE5D7A00EF9FB7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		9145615B15EE5D7A00EF9FB7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		91B25D51161AC21E005777CF /* FastAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAddressBook.h; sourceTree = "<group>"; };
+		91B25D52161AC21E005777CF /* FastAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAddressBook.m; sourceTree = "<group>"; };
+		91B25D53161AC21E005777CF /* LinphoneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinphoneManager.h; sourceTree = "<group>"; };
+		91B25D54161AC21E005777CF /* LinphoneManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinphoneManager.m; sourceTree = "<group>"; };
+		91B25D55161AC21E005777CF /* LinphoneUIDelegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinphoneUIDelegates.h; sourceTree = "<group>"; };
+		91B25D56161AC21E005777CF /* LogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogView.h; sourceTree = "<group>"; };
+		91B25D57161AC21E005777CF /* UIBluetoothButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBluetoothButton.h; sourceTree = "<group>"; };
+		91B25D58161AC21E005777CF /* UIBluetoothButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBluetoothButton.m; sourceTree = "<group>"; };
+		91B25D59161AC21E005777CF /* UICallButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICallButton.h; sourceTree = "<group>"; };
+		91B25D5A161AC21E005777CF /* UICallButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICallButton.m; sourceTree = "<group>"; };
+		91B25D5B161AC21E005777CF /* UICamSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICamSwitch.h; sourceTree = "<group>"; };
+		91B25D5C161AC21E005777CF /* UICamSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICamSwitch.m; sourceTree = "<group>"; };
+		91B25D5D161AC21E005777CF /* UIDigitButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDigitButton.h; sourceTree = "<group>"; };
+		91B25D5E161AC21E005777CF /* UIDigitButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDigitButton.m; sourceTree = "<group>"; };
+		91B25D5F161AC21E005777CF /* UIDuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDuration.h; sourceTree = "<group>"; };
+		91B25D60161AC21E005777CF /* UIDuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDuration.m; sourceTree = "<group>"; };
+		91B25D61161AC21E005777CF /* UIEraseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEraseButton.h; sourceTree = "<group>"; };
+		91B25D62161AC21E005777CF /* UIEraseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIEraseButton.m; sourceTree = "<group>"; };
+		91B25D63161AC21E005777CF /* UIHangUpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHangUpButton.h; sourceTree = "<group>"; };
+		91B25D64161AC21E005777CF /* UIHangUpButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHangUpButton.m; sourceTree = "<group>"; };
+		91B25D65161AC21E005777CF /* UILinphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILinphone.h; sourceTree = "<group>"; };
+		91B25D66161AC21E005777CF /* UIMuteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIMuteButton.h; sourceTree = "<group>"; };
+		91B25D67161AC21E005777CF /* UIMuteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIMuteButton.m; sourceTree = "<group>"; };
+		91B25D68161AC21E005777CF /* UIPauseResumeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPauseResumeButton.h; sourceTree = "<group>"; };
+		91B25D69161AC21E005777CF /* UIPauseResumeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPauseResumeButton.m; sourceTree = "<group>"; };
+		91B25D6A161AC21E005777CF /* UISpeakerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISpeakerButton.h; sourceTree = "<group>"; };
+		91B25D6B161AC21E005777CF /* UISpeakerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISpeakerButton.m; sourceTree = "<group>"; };
+		91B25D6C161AC21E005777CF /* UIToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIToggleButton.h; sourceTree = "<group>"; };
+		91B25D6D161AC21E005777CF /* UIToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIToggleButton.m; sourceTree = "<group>"; };
+		91B25D6E161AC21E005777CF /* UIToggleVideoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIToggleVideoButton.h; sourceTree = "<group>"; };
+		91B25D6F161AC21E005777CF /* UIToggleVideoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIToggleVideoButton.m; sourceTree = "<group>"; };
+		91B25D70161AC21E005777CF /* VideoZoomHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoZoomHandler.h; sourceTree = "<group>"; };
+		91B25D71161AC21E005777CF /* VideoZoomHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoZoomHandler.m; sourceTree = "<group>"; };
 		91CB598B1606E59B00F17FBD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		91CB598D1606E5A800F17FBD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91CB598F1606E5ED00F17FBD /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -208,39 +241,6 @@
 		91EEA243160C46E1001339EF /* libmsilbc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmsilbc.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/mediastreamer/plugins/libmsilbc.a"; sourceTree = "<group>"; };
 		91EEA244160C46E1001339EF /* libmssilk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmssilk.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/mediastreamer/plugins/libmssilk.a"; sourceTree = "<group>"; };
 		91EEA245160C46E1001339EF /* libmsx264.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmsx264.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/mediastreamer/plugins/libmsx264.a"; sourceTree = "<group>"; };
-		91F1D2431608725900810DB5 /* FastAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAddressBook.h; sourceTree = "<group>"; };
-		91F1D2441608725900810DB5 /* FastAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAddressBook.m; sourceTree = "<group>"; };
-		91F1D2451608725900810DB5 /* LinphoneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinphoneManager.h; sourceTree = "<group>"; };
-		91F1D2461608725900810DB5 /* LinphoneManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinphoneManager.m; sourceTree = "<group>"; };
-		91F1D2471608725900810DB5 /* LinphoneUIDelegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinphoneUIDelegates.h; sourceTree = "<group>"; };
-		91F1D2481608725900810DB5 /* LogView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogView.h; sourceTree = "<group>"; };
-		91F1D2491608725900810DB5 /* UIBluetoothButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIBluetoothButton.h; sourceTree = "<group>"; };
-		91F1D24A1608725900810DB5 /* UIBluetoothButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIBluetoothButton.m; sourceTree = "<group>"; };
-		91F1D24B1608725900810DB5 /* UICallButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICallButton.h; sourceTree = "<group>"; };
-		91F1D24C1608725900810DB5 /* UICallButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICallButton.m; sourceTree = "<group>"; };
-		91F1D24D1608725900810DB5 /* UICamSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICamSwitch.h; sourceTree = "<group>"; };
-		91F1D24E1608725900810DB5 /* UICamSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICamSwitch.m; sourceTree = "<group>"; };
-		91F1D24F1608725900810DB5 /* UIDigitButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDigitButton.h; sourceTree = "<group>"; };
-		91F1D2501608725900810DB5 /* UIDigitButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDigitButton.m; sourceTree = "<group>"; };
-		91F1D2511608725900810DB5 /* UIDuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIDuration.h; sourceTree = "<group>"; };
-		91F1D2521608725900810DB5 /* UIDuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIDuration.m; sourceTree = "<group>"; };
-		91F1D2531608725900810DB5 /* UIEraseButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIEraseButton.h; sourceTree = "<group>"; };
-		91F1D2541608725900810DB5 /* UIEraseButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIEraseButton.m; sourceTree = "<group>"; };
-		91F1D2551608725900810DB5 /* UIHangUpButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIHangUpButton.h; sourceTree = "<group>"; };
-		91F1D2561608725900810DB5 /* UIHangUpButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIHangUpButton.m; sourceTree = "<group>"; };
-		91F1D2571608725900810DB5 /* UILinphone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UILinphone.h; sourceTree = "<group>"; };
-		91F1D2581608725900810DB5 /* UIMuteButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIMuteButton.h; sourceTree = "<group>"; };
-		91F1D2591608725900810DB5 /* UIMuteButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIMuteButton.m; sourceTree = "<group>"; };
-		91F1D25A1608725900810DB5 /* UIPauseResumeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPauseResumeButton.h; sourceTree = "<group>"; };
-		91F1D25B1608725900810DB5 /* UIPauseResumeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPauseResumeButton.m; sourceTree = "<group>"; };
-		91F1D25C1608725900810DB5 /* UISpeakerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UISpeakerButton.h; sourceTree = "<group>"; };
-		91F1D25D1608725900810DB5 /* UISpeakerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UISpeakerButton.m; sourceTree = "<group>"; };
-		91F1D25E1608725900810DB5 /* UIToggleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIToggleButton.h; sourceTree = "<group>"; };
-		91F1D25F1608725900810DB5 /* UIToggleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIToggleButton.m; sourceTree = "<group>"; };
-		91F1D2601608725900810DB5 /* UIToggleVideoButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIToggleVideoButton.h; sourceTree = "<group>"; };
-		91F1D2611608725900810DB5 /* UIToggleVideoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIToggleVideoButton.m; sourceTree = "<group>"; };
-		91F1D2621608725900810DB5 /* VideoZoomHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoZoomHandler.h; sourceTree = "<group>"; };
-		91F1D2631608725900810DB5 /* VideoZoomHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoZoomHandler.m; sourceTree = "<group>"; };
 		91F1D3B9160893BE00810DB5 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		91F1D3BB160893C500810DB5 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -327,6 +327,47 @@
 			path = "Haidy House";
 			sourceTree = "<group>";
 		};
+		91B25D50161AC21E005777CF /* LinphoneUI */ = {
+			isa = PBXGroup;
+			children = (
+				91B25D53161AC21E005777CF /* LinphoneManager.h */,
+				91B25D54161AC21E005777CF /* LinphoneManager.m */,
+				91B25D55161AC21E005777CF /* LinphoneUIDelegates.h */,
+				91B25D51161AC21E005777CF /* FastAddressBook.h */,
+				91B25D52161AC21E005777CF /* FastAddressBook.m */,
+				91B25D56161AC21E005777CF /* LogView.h */,
+				91B25D57161AC21E005777CF /* UIBluetoothButton.h */,
+				91B25D58161AC21E005777CF /* UIBluetoothButton.m */,
+				91B25D59161AC21E005777CF /* UICallButton.h */,
+				91B25D5A161AC21E005777CF /* UICallButton.m */,
+				91B25D5B161AC21E005777CF /* UICamSwitch.h */,
+				91B25D5C161AC21E005777CF /* UICamSwitch.m */,
+				91B25D5D161AC21E005777CF /* UIDigitButton.h */,
+				91B25D5E161AC21E005777CF /* UIDigitButton.m */,
+				91B25D5F161AC21E005777CF /* UIDuration.h */,
+				91B25D60161AC21E005777CF /* UIDuration.m */,
+				91B25D61161AC21E005777CF /* UIEraseButton.h */,
+				91B25D62161AC21E005777CF /* UIEraseButton.m */,
+				91B25D63161AC21E005777CF /* UIHangUpButton.h */,
+				91B25D64161AC21E005777CF /* UIHangUpButton.m */,
+				91B25D65161AC21E005777CF /* UILinphone.h */,
+				91B25D66161AC21E005777CF /* UIMuteButton.h */,
+				91B25D67161AC21E005777CF /* UIMuteButton.m */,
+				91B25D68161AC21E005777CF /* UIPauseResumeButton.h */,
+				91B25D69161AC21E005777CF /* UIPauseResumeButton.m */,
+				91B25D6A161AC21E005777CF /* UISpeakerButton.h */,
+				91B25D6B161AC21E005777CF /* UISpeakerButton.m */,
+				91B25D6C161AC21E005777CF /* UIToggleButton.h */,
+				91B25D6D161AC21E005777CF /* UIToggleButton.m */,
+				91B25D6E161AC21E005777CF /* UIToggleVideoButton.h */,
+				91B25D6F161AC21E005777CF /* UIToggleVideoButton.m */,
+				91B25D70161AC21E005777CF /* VideoZoomHandler.h */,
+				91B25D71161AC21E005777CF /* VideoZoomHandler.m */,
+			);
+			name = LinphoneUI;
+			path = sip/LinphoneUI;
+			sourceTree = "<group>";
+		};
 		91CB59891606E2F400F17FBD /* Frameworks for SIP */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,7 +395,7 @@
 		91CB59AF1606F53100F17FBD /* sip-linphone-gpl */ = {
 			isa = PBXGroup;
 			children = (
-				91F1D2421608725900810DB5 /* LinphoneUI */,
+				91B25D50161AC21E005777CF /* LinphoneUI */,
 				91CB5AA61606F87300F17FBD /* static libraries */,
 				91CB5AD91606FB5C00F17FBD /* Localizable.strings */,
 			);
@@ -505,47 +546,6 @@
 			path = "Haidy House";
 			sourceTree = "<group>";
 		};
-		91F1D2421608725900810DB5 /* LinphoneUI */ = {
-			isa = PBXGroup;
-			children = (
-				91F1D2431608725900810DB5 /* FastAddressBook.h */,
-				91F1D2441608725900810DB5 /* FastAddressBook.m */,
-				91F1D2451608725900810DB5 /* LinphoneManager.h */,
-				91F1D2461608725900810DB5 /* LinphoneManager.m */,
-				91F1D2471608725900810DB5 /* LinphoneUIDelegates.h */,
-				91F1D2481608725900810DB5 /* LogView.h */,
-				91F1D2491608725900810DB5 /* UIBluetoothButton.h */,
-				91F1D24A1608725900810DB5 /* UIBluetoothButton.m */,
-				91F1D24B1608725900810DB5 /* UICallButton.h */,
-				91F1D24C1608725900810DB5 /* UICallButton.m */,
-				91F1D24D1608725900810DB5 /* UICamSwitch.h */,
-				91F1D24E1608725900810DB5 /* UICamSwitch.m */,
-				91F1D24F1608725900810DB5 /* UIDigitButton.h */,
-				91F1D2501608725900810DB5 /* UIDigitButton.m */,
-				91F1D2511608725900810DB5 /* UIDuration.h */,
-				91F1D2521608725900810DB5 /* UIDuration.m */,
-				91F1D2531608725900810DB5 /* UIEraseButton.h */,
-				91F1D2541608725900810DB5 /* UIEraseButton.m */,
-				91F1D2551608725900810DB5 /* UIHangUpButton.h */,
-				91F1D2561608725900810DB5 /* UIHangUpButton.m */,
-				91F1D2571608725900810DB5 /* UILinphone.h */,
-				91F1D2581608725900810DB5 /* UIMuteButton.h */,
-				91F1D2591608725900810DB5 /* UIMuteButton.m */,
-				91F1D25A1608725900810DB5 /* UIPauseResumeButton.h */,
-				91F1D25B1608725900810DB5 /* UIPauseResumeButton.m */,
-				91F1D25C1608725900810DB5 /* UISpeakerButton.h */,
-				91F1D25D1608725900810DB5 /* UISpeakerButton.m */,
-				91F1D25E1608725900810DB5 /* UIToggleButton.h */,
-				91F1D25F1608725900810DB5 /* UIToggleButton.m */,
-				91F1D2601608725900810DB5 /* UIToggleVideoButton.h */,
-				91F1D2611608725900810DB5 /* UIToggleVideoButton.m */,
-				91F1D2621608725900810DB5 /* VideoZoomHandler.h */,
-				91F1D2631608725900810DB5 /* VideoZoomHandler.m */,
-			);
-			name = LinphoneUI;
-			path = sip/LinphoneUI;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -680,21 +680,21 @@
 				9145612D15EE5ACA00EF9FB7 /* WebViewController.m in Sources */,
 				9145613215EE5B4700EF9FB7 /* ExNavigationData.m in Sources */,
 				9145613315EE5B4700EF9FB7 /* ExUtils.m in Sources */,
-				91F1D2641608725900810DB5 /* FastAddressBook.m in Sources */,
-				91F1D2651608725900810DB5 /* LinphoneManager.m in Sources */,
-				91F1D2661608725900810DB5 /* UIBluetoothButton.m in Sources */,
-				91F1D2671608725900810DB5 /* UICallButton.m in Sources */,
-				91F1D2681608725900810DB5 /* UICamSwitch.m in Sources */,
-				91F1D2691608725900810DB5 /* UIDigitButton.m in Sources */,
-				91F1D26A1608725900810DB5 /* UIDuration.m in Sources */,
-				91F1D26B1608725900810DB5 /* UIEraseButton.m in Sources */,
-				91F1D26C1608725900810DB5 /* UIHangUpButton.m in Sources */,
-				91F1D26D1608725900810DB5 /* UIMuteButton.m in Sources */,
-				91F1D26E1608725900810DB5 /* UIPauseResumeButton.m in Sources */,
-				91F1D26F1608725900810DB5 /* UISpeakerButton.m in Sources */,
-				91F1D2701608725900810DB5 /* UIToggleButton.m in Sources */,
-				91F1D2711608725900810DB5 /* UIToggleVideoButton.m in Sources */,
-				91F1D2721608725900810DB5 /* VideoZoomHandler.m in Sources */,
+				91B25D72161AC21E005777CF /* FastAddressBook.m in Sources */,
+				91B25D73161AC21E005777CF /* LinphoneManager.m in Sources */,
+				91B25D74161AC21E005777CF /* UIBluetoothButton.m in Sources */,
+				91B25D75161AC21E005777CF /* UICallButton.m in Sources */,
+				91B25D76161AC21E005777CF /* UICamSwitch.m in Sources */,
+				91B25D77161AC21E005777CF /* UIDigitButton.m in Sources */,
+				91B25D78161AC21E005777CF /* UIDuration.m in Sources */,
+				91B25D79161AC21E005777CF /* UIEraseButton.m in Sources */,
+				91B25D7A161AC21E005777CF /* UIHangUpButton.m in Sources */,
+				91B25D7B161AC21E005777CF /* UIMuteButton.m in Sources */,
+				91B25D7C161AC21E005777CF /* UIPauseResumeButton.m in Sources */,
+				91B25D7D161AC21E005777CF /* UISpeakerButton.m in Sources */,
+				91B25D7E161AC21E005777CF /* UIToggleButton.m in Sources */,
+				91B25D7F161AC21E005777CF /* UIToggleVideoButton.m in Sources */,
+				91B25D80161AC21E005777CF /* VideoZoomHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

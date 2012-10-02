@@ -50,7 +50,18 @@ extern void libmssilk_init();
 #if HAVE_G729
 extern  void libmsbcg729_init();
 #endif
+
+
+/*  Implementace managera. Třída zpracovává vše okolo příchozích/odchozích hovorů.
+    Zařizuje registraci uživatele na SIP serveru. Zařizuje přijetí/odmítnutí hovorů.
+    Volá metody delegátů z LinphoneUIDelegates.
+ 
+    Manager se vytváří/zaniká v AppDelegátu. Při inicializaci Manageru v AppDelegatu se nastavuje
+    callDelegát, který následně nastavuje i registrationDelegáta.
+*/
 @implementation LinphoneManager
+
+
 @synthesize callDelegate;
 @synthesize registrationDelegate;
 @synthesize connectivity;

@@ -19,6 +19,7 @@
 #import <UIKit/UIKit.h>
 #include "linphonecore.h"
 
+/* Delegát pro příjmání hovorů a reportování o stavu hovoru */
 @protocol LinphoneUICallDelegate
 // UI changes
 -(void) displayDialerFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName;
@@ -32,7 +33,7 @@
 -(void) firstVideoFrameDecoded:(LinphoneCall*) call;
 @end
 
-
+/* Reportování informací o stavu registrace SIP */
 @protocol LinphoneUIRegistrationDelegate
 // UI changes for registration
 -(void) displayRegisteredFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName onDomain:(NSString*)domain ;

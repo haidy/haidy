@@ -244,11 +244,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "AppDelegate.m"
-         timestampString = "369935876.099947"
+         timestampString = "370864158.894307"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "234"
-         endingLineNumber = "234"
+         startingLineNumber = "232"
+         endingLineNumber = "232"
          landmarkName = "-registerDefaultsFromSettingsBundle"
          landmarkType = "5">
       </FileBreakpoint>
