@@ -8,14 +8,17 @@
 
 #import "DetailViewController.h"
 #import "ExUtils.h"
+#import "WaitingViewController.h"
 
 @interface DetailViewController ()
-
+{
+    WaitingViewController* fWaitingViewController;
+}
 @end
 
 @implementation DetailViewController
 
-@synthesize fWebView, delegate, navigationItem, fActivityView, fActivityControlView;
+@synthesize fWebView, delegate, navigationItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,6 +32,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    ///Inicializace waiting dialogu
+    fWaitingViewController = [WaitingViewController createWithParentView:self.view];
+    
     //potlačení scrolování, nechceme na tomto detailu vidět efekt scrolování.
     //detail stránky by měl být plovoucí, aby se vešel vždy
     [fWebView.scrollView setScrollEnabled:NO];
@@ -64,7 +71,7 @@
 -(void) backButtonClicked:(id)sender
 {
     [fWebView loadRequest:[NSURLRequest requestWithURL:[ExUtils blankPage]]];
-    [delegate detailViewControllerDidFinish:self];
+    [delegate detailViewControllerDidFinish:self andError:NO];
 }
 
 #pragma mark - WebViewDelegate
@@ -78,12 +85,7 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webViewLocal
-{
-    [fActivityView setHidden:YES];
-    [fActivityView stopAnimating];
-    [fActivityControlView setHidden:YES];
-
-    
+{    
     NSString *isMobileScroll = [webViewLocal stringByEvaluatingJavaScriptFromString:@"isMobileScroll();"];
     NSLog(@"Mobile Scroll: %@", isMobileScroll);
     if ([isMobileScroll isEqualToString:@"true"])
@@ -91,23 +93,40 @@
     else
         [self.fWebView.scrollView setScrollEnabled:NO];
     
-    NSString *mTitle = [webViewLocal stringByEvaluatingJavaScriptFromString:@"getTitle();"];
+    NSString *mTitle = [webViewLocal stringByEvaluatingJavaScriptFromString:@"getTitle()"];
     [navigationItem setTitle:mTitle];
+    if ([mTitle rangeOfString:@"Error" options:NSCaseInsensitiveSearch].location == NSNotFound )
+        fLoadedErrorPage = NO;
+    else
+        fLoadedErrorPage = YES;
+    
+    [fWaitingViewController stopWaiting];
 }
 
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType{
     
-    //jako první otestujeme, zda nejde o požadavek události na zavření detailu
-    if ( [[[request URL] absoluteString] hasPrefix:@"close:"] ) {
+    //pokud je načtená Error stránka, tak request neotevřeme a pošleme info hlavnímu detailu
+    if (fLoadedErrorPage == YES)
+    {
+        fLoadedErrorPage = NO;
+        [fWebView loadRequest:[NSURLRequest requestWithURL:[ExUtils blankPage]]];
+        [delegate detailViewControllerDidFinish:self andError:YES];
+        return NO;
+    }
+    //else není potřeba, vše je v pořádku
+    
+    
+    //otestujeme, zda nejde o požadavek události na zavření detailu
+    if ( [[[aRequest URL] absoluteString] hasPrefix:@"close:"] ) {
         //.. parse arguments
         [self backButtonClicked:webView];
         return NO;
     }
+    
+    //do všech requestů potřebujeme přidat povinné cokies
+    [ExUtils setRequiredCookies:aRequest];
 
-    [fActivityControlView setHidden:NO];
-    [fActivityView setHidden:NO];
-    [fActivityView startAnimating];
-
+    [fWaitingViewController startWaiting];
     
     return YES;
 }

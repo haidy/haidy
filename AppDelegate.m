@@ -185,6 +185,8 @@ int __aeabi_idiv(int a, int b) {
         }
         instance->currentCallContextBeforeGoingBackground.call = 0;
     }
+    
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

@@ -17,7 +17,8 @@
 "Button Cancel" = "Cancel";
 "PopupView Section 0" = "Basic items";
 "PopupView Section 1" = "Floors map";
-"PopopVIew Section 0 Row 0" ="Basic";
-"PopopVIew Section 0 Row 1" ="Audio";
+"PopupView Section 0 Row 0" ="Basic";
+"PopupView Section 0 Row 1" ="Audio";
 "Control" = "Control";
 "Rooms" = "Rooms";
+"Waiting" = "Please wait ...";

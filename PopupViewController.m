@@ -37,7 +37,7 @@
     
     fNavigationArray = [NSMutableArray arrayWithCapacity:2];
     //nejprve přidáme první sekci
-    [fNavigationArray addObject:[NSArray arrayWithObjects:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopopVIew Section 0 Row 0", @"Základní položky") Url:@"/HaidySmartClient/MujDum/default.aspx" Childs:nil], [[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopopVIew Section 0 Row 1", @"Ovládání hudby") Url:@"/HaidySmartClient/MujDum/multiroomaudio.aspx" Childs:nil], nil ]];
+    [fNavigationArray addObject:[NSArray arrayWithObjects:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 0", @"Základní položky") Url:@"/HaidySmartClient/MujDum/default.aspx" Childs:nil], [[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 1", @"Ovládání hudby") Url:@"/HaidySmartClient/MujDum/multiroomaudio.aspx" Childs:nil], nil ]];
     [fNavigationArray addObject:[NSMutableArray arrayWithObjects:nil ]];
     //pak přidáme druhou sekci, která bude zatím prázdná
     

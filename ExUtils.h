@@ -18,4 +18,6 @@
 +(BOOL) inHome;
 +(void) setInHome:(BOOL)aInHome;
 +(NSURL*) blankPage;
++(BOOL) setRequiredRequestParams:(NSURLRequest*)aRequest;
++(void) setRequiredCookies:(NSURLRequest*)aRequest;
 @end

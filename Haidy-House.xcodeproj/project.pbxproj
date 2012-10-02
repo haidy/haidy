@@ -103,6 +103,8 @@
 		91EEA25D160CA562001339EF /* libSKP_SILK_SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AB51606FA8300F17FBD /* libSKP_SILK_SDK.a */; };
 		91F1D3BA160893BE00810DB5 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F1D3B9160893BE00810DB5 /* AddressBookUI.framework */; };
 		91F1D3BC160893C500810DB5 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F1D3BB160893C500810DB5 /* AddressBook.framework */; };
+		91EEA20316099D8D001339EF /* WaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EEA20116099D8D001339EF /* WaitingViewController.m */; };
+		91EEA20416099D8D001339EF /* WaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91EEA20216099D8D001339EF /* WaitingViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -243,6 +245,9 @@
 		91EEA245160C46E1001339EF /* libmsx264.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmsx264.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/mediastreamer/plugins/libmsx264.a"; sourceTree = "<group>"; };
 		91F1D3B9160893BE00810DB5 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		91F1D3BB160893C500810DB5 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		91EEA20016099D8D001339EF /* WaitingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingViewController.h; sourceTree = SOURCE_ROOT; };
+		91EEA20116099D8D001339EF /* WaitingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingViewController.m; sourceTree = SOURCE_ROOT; };
+		91EEA20216099D8D001339EF /* WaitingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitingViewController.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +327,9 @@
 				9145612F15EE5B4700EF9FB7 /* ExNavigationData.m */,
 				9145613015EE5B4700EF9FB7 /* ExUtils.h */,
 				9145613115EE5B4700EF9FB7 /* ExUtils.m */,
+				91EEA20016099D8D001339EF /* WaitingViewController.h */,
+				91EEA20116099D8D001339EF /* WaitingViewController.m */,
+				91EEA20216099D8D001339EF /* WaitingViewController.xib */,
 			);
 			name = Utils;
 			path = "Haidy House";
@@ -638,6 +646,7 @@
 				9145615C15EE5D7A00EF9FB7 /* Default.png in Resources */,
 				9145615D15EE5D7A00EF9FB7 /* Default@2x.png in Resources */,
 				91CB5ADA1606FB5C00F17FBD /* Localizable.strings in Resources */,
+				91EEA20416099D8D001339EF /* WaitingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +704,7 @@
 				91B25D7E161AC21E005777CF /* UIToggleButton.m in Sources */,
 				91B25D7F161AC21E005777CF /* UIToggleVideoButton.m in Sources */,
 				91B25D80161AC21E005777CF /* VideoZoomHandler.m in Sources */,
+				91EEA20316099D8D001339EF /* WaitingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
