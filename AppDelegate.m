@@ -25,11 +25,23 @@ int __aeabi_idiv(int a, int b) {
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize tabBarController = _tabBarController;
+@synthesize fNavigationController, fWebViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [self synchronizeDefaults];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        fWebViewController = [[WebViewController alloc] initWithNibName:@"WebViewController_iPhone" bundle:nil];
+    } else {
+        fWebViewController = [[WebViewController alloc] initWithNibName:@"WebViewController_iPad" bundle:nil];
+    }
+    
+    fNavigationController = [[UINavigationController alloc] initWithRootViewController:fWebViewController];
+    self.window.rootViewController = fNavigationController;
+    [self.window makeKeyAndVisible];
     
     if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]
 		&& [UIApplication sharedApplication].applicationState ==  UIApplicationStateBackground
@@ -38,59 +50,9 @@ int __aeabi_idiv(int a, int b) {
 	} else {
         [self startSIPApplication];
     }
-      
+
     
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    
-    // Override point for customization after application launch.
-    UIViewController *mRootViewController;
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        mRootViewController = [[WebViewController alloc] initWithNibName:@"WebViewController_iPhone" bundle:nil];
-    } else {
-        mRootViewController = [[WebViewController alloc] initWithNibName:@"WebViewController_iPad" bundle:nil];
-    }
-    
-    UINavigationController *mNavigatonController = [[UINavigationController alloc] initWithRootViewController:mRootViewController];
-    self.window.rootViewController = mNavigatonController;
-    [self.window makeKeyAndVisible];
-        
     return YES;
-    
-    
-    /*
-     UIViewController *viewController1, *viewController2, *viewController3;
-     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-     viewController1 = [[WebViewController alloc] initWithNibName:@"WebViewController_iPhone" bundle:nil];
-     viewController2 = [[SIPViewController alloc] initWithNibName:@"SIPViewController_iPhone" bundle:nil];
-     viewController3 = [[WebViewControllerMap alloc] initWithNibName:@"WebViewControllerMap_iPhone" bundle:nil];
-     } else {x
-     viewController1 = [[WebViewController alloc] initWithNibName:@"WebViewController_iPad" bundle:nil];
-     viewController2 = [[SIPViewController alloc] initWithNibName:@"SIPViewController_iPad" bundle:nil];
-     viewController3 = [[WebViewControllerMap alloc] initWithNibName:@"WebViewControllerMap_iPad" bundle:nil];
-     }
-     
-     self.tabBarController = [[UITabBarController alloc] init];
-     self.tabBarController.viewControllers = [NSArray arrayWithObjects:viewController1,  viewController3, viewController2, nil];
-     
-     UIImage *homeImage = [UIImage imageNamed:@"Home.png"];
-     UIImage *phoneImage = [UIImage imageNamed:@"Phone.png"];
-     
-     // ikonek pro jednotlivé tabbary
-     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-     [[[self.tabBarController.viewControllers objectAtIndex:0] tabBarItem] setImage:homeImage];
-     [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem] setImage:homeImage];
-     [[[self.tabBarController.viewControllers objectAtIndex:2] tabBarItem] setImage:phoneImage];
-     
-     } else {
-     [[[self.tabBarController.viewControllers objectAtIndex:0] tabBarItem] setImage:homeImage];
-     [[[self.tabBarController.viewControllers objectAtIndex:1] tabBarItem] setImage:homeImage];
-     [[[self.tabBarController.viewControllers objectAtIndex:2] tabBarItem] setImage:phoneImage];
-     
-     }
-     
-     self.window.rootViewController = self.tabBarController;
-     */
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -99,20 +61,22 @@ int __aeabi_idiv(int a, int b) {
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
-    
-    LinphoneCore* lc = [LinphoneManager getLc];
-    LinphoneCall* call = linphone_core_get_current_call(lc);
-    if (call == NULL)
-        return;
-    
-    /* save call context */
-    LinphoneManager* instance = [LinphoneManager instance];
-    instance->currentCallContextBeforeGoingBackground.call = call;
-    instance->currentCallContextBeforeGoingBackground.cameraIsEnabled = linphone_call_camera_enabled(call);
-    
-    const LinphoneCallParams* params = linphone_call_get_current_params(call);
-    if (linphone_call_params_video_enabled(params)) {
-        linphone_call_enable_camera(call, false);
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"])
+    {
+        LinphoneCore* lc = [LinphoneManager getLc];
+        LinphoneCall* call = linphone_core_get_current_call(lc);
+        if (call == NULL)
+            return;
+        
+        /* save call context */
+        LinphoneManager* instance = [LinphoneManager instance];
+        instance->currentCallContextBeforeGoingBackground.call = call;
+        instance->currentCallContextBeforeGoingBackground.cameraIsEnabled = linphone_call_camera_enabled(call);
+        
+        const LinphoneCallParams* params = linphone_call_get_current_params(call);
+        if (linphone_call_params_video_enabled(params)) {
+            linphone_call_enable_camera(call, false);
+        }
     }
 }
 
@@ -123,14 +87,15 @@ int __aeabi_idiv(int a, int b) {
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
     
-    if (![[LinphoneManager instance] enterBackgroundMode]) {
-        // destroying eventHandler if app cannot go in background.
-        // Otherwise if a GSM call happen and Linphone is resumed,
-        // the handler will be called before LinphoneCore is built.
-        // Then handler will be restored in appDidBecomeActive cb
-        callCenter.callEventHandler = nil;
-        callCenter = nil;
-    }
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"])
+        if (![[LinphoneManager instance] enterBackgroundMode]) {
+            // destroying eventHandler if app cannot go in background.
+            // Otherwise if a GSM call happen and Linphone is resumed,
+            // the handler will be called before LinphoneCore is built.
+            // Then handler will be restored in appDidBecomeActive cb
+            callCenter.callEventHandler = nil;
+            callCenter = nil;
+        }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -147,43 +112,47 @@ int __aeabi_idiv(int a, int b) {
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
     
-    if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]
-		&& [UIApplication sharedApplication].applicationState ==  UIApplicationStateBackground
-        && [[NSUserDefaults standardUserDefaults] boolForKey:@"disable_autoboot_preference"]) {
-		// autoboot disabled, doing nothing
-        return;
-    } else if ([LinphoneManager instance] == nil) {
-        [self startSIPApplication];
-    }
-    
-	[[LinphoneManager instance] becomeActive];
-    
-    if (callCenter == nil) {
-        callCenter = [[CTCallCenter alloc] init];
-        callCenter.callEventHandler = ^(CTCall* call) {
-            // post on main thread
-            [self performSelectorOnMainThread:@selector(handleGSMCallInteration:)
-                                   withObject:callCenter
-                                waitUntilDone:YES];
-        };
-    }
-    // check call state at startup
-    [self handleGSMCallInteration:callCenter];
-    
-    LinphoneCore* lc = [LinphoneManager getLc];
-    LinphoneCall* call = linphone_core_get_current_call(lc);
-    if (call == NULL)
-        return;
-    
-    LinphoneManager* instance = [LinphoneManager instance];
-    if (call == instance->currentCallContextBeforeGoingBackground.call) {
-        const LinphoneCallParams* params = linphone_call_get_current_params(call);
-        if (linphone_call_params_video_enabled(params)) {
-            linphone_call_enable_camera(
-                                        call,
-                                        instance->currentCallContextBeforeGoingBackground.cameraIsEnabled);
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"])
+    {
+        if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]
+            && [UIApplication sharedApplication].applicationState ==  UIApplicationStateBackground
+            && [[NSUserDefaults standardUserDefaults] boolForKey:@"disable_autoboot_preference"]) {
+            // autoboot disabled, doing nothing
+            return;
+        } else if ([LinphoneManager instance] == nil) {
+            [self startSIPApplication];
         }
-        instance->currentCallContextBeforeGoingBackground.call = 0;
+        
+        [[LinphoneManager instance] becomeActive];
+        
+        if (callCenter == nil) {
+            callCenter = [[CTCallCenter alloc] init];
+            callCenter.callEventHandler = ^(CTCall* call) {
+                // post on main thread
+                [self performSelectorOnMainThread:@selector(handleGSMCallInteration:)
+                                       withObject:callCenter
+                                    waitUntilDone:YES];
+            };
+        }
+        // check call state at startup
+        [self handleGSMCallInteration:callCenter];
+        
+        LinphoneCore* lc = [LinphoneManager getLc];
+        LinphoneCall* call = linphone_core_get_current_call(lc);
+        if (call == NULL)
+            return;
+        
+        LinphoneManager* instance = [LinphoneManager instance];
+        if (call == instance->currentCallContextBeforeGoingBackground.call) {
+            const LinphoneCallParams* params = linphone_call_get_current_params(call);
+            if (linphone_call_params_video_enabled(params)) {
+                linphone_call_enable_camera(
+                                            call,
+                                            instance->currentCallContextBeforeGoingBackground.cameraIsEnabled);
+            }
+            instance->currentCallContextBeforeGoingBackground.call = 0;
+        }
+        
     }
     
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
@@ -242,9 +211,18 @@ int __aeabi_idiv(int a, int b) {
         return;
     }
     
+    NSMutableDictionary *rootSettings = [NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"Root.plist"]];
+    NSMutableDictionary *rootSipSettings = [NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"RootSIP.plist"]];
+	NSMutableDictionary *sipAudioSettings = [NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"SIPAudio.plist"]];
+	NSMutableDictionary *sipVideoSettings = [NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"SIPVideo.plist"]];
+    NSMutableDictionary *sipAdvancedSettings = [NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"SIPAdvanced.plist"]];
     
-    NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:[settingsBundle stringByAppendingPathComponent:@"Root.plist"]];
-    NSArray *preferences = [settings objectForKey:@"PreferenceSpecifiers"];
+    NSMutableArray *preferences = [rootSettings objectForKey:@"PreferenceSpecifiers"];
+    [preferences addObjectsFromArray:[rootSipSettings objectForKey:@"PreferenceSpecifiers"]];
+    [preferences addObjectsFromArray:[sipAudioSettings objectForKey:@"PreferenceSpecifiers"]];
+    [preferences addObjectsFromArray:[sipVideoSettings objectForKey:@"PreferenceSpecifiers"]];
+    [preferences addObjectsFromArray:[sipAdvancedSettings objectForKey:@"PreferenceSpecifiers"]];
+    
     NSMutableDictionary *defaultsToRegister = [[NSMutableDictionary alloc] initWithCapacity:[preferences count]];
     
     for (NSDictionary *prefSpecification in preferences)
@@ -294,6 +272,10 @@ int __aeabi_idiv(int a, int b) {
 
 #pragma mark - Implementation SIP methods
 -(void) startSIPApplication {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"] == NO)
+        return;
+    //else je zbytek kódu
+    
     /* explicitely instanciate LinphoneManager */
     LinphoneManager* lm = [[LinphoneManager alloc] init];
     assert(lm == [LinphoneManager instance]);
@@ -304,7 +286,7 @@ int __aeabi_idiv(int a, int b) {
     
     [self setupGSMInteraction];
     
-    //[[LinphoneManager instance] setCallDelegate:myPhoneViewController];
+    [[LinphoneManager instance] setCallDelegate:fWebViewController];
     
     [UIDevice currentDevice].batteryMonitoringEnabled = YES;
 

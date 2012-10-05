@@ -11,17 +11,20 @@
 #import "PopupViewController.h"
 #import "ExUtils.h"
 #import "WaitingViewController.h"
+#import "LinphoneManager.h"
 
 @interface WebViewController()
 {
     WaitingViewController* fWaitingViewController;
 }
-- (void)configureView:(BOOL)reload;    
+- (void)configureView:(BOOL)reload;
+- (void)configureSip;
+- (void)showSipTabBarControler;
 @end
 
 @implementation WebViewController
 
-@synthesize fWebView, fImageView;
+@synthesize fWebView, fImageView, fSipTabBarController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,6 +51,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    [self configureSip];
+    
     /// Inicializace detailů stránek
     fDetailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
     fDetailViewController.delegate = self;
@@ -60,7 +65,7 @@
     fPopupViewController.delegate = self;
     
     //jako subview bude jen pro iPad, na iPhonu bude view vidět přes navigation controller
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+    if ([ExUtils runningOnIpad]){
         fPopupView = fPopupViewController.view;
         [fPopupView setFrame:CGRectMake(0,0, 250, self.view.bounds.size.height)];
         [fPopupView setCenter:CGPointMake(-1*fPopupView.frame.size.width/2, self.view.frame.size.height /2)];
@@ -91,7 +96,7 @@
     //ať jsme, kde jsme, tak schováme navigation bar, pokud je zobrazený
     if (self.navigationController.navigationBarHidden == NO)
     {
-        if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+        if ([ExUtils runningOnIpad])
             [self.navigationController setNavigationBarHidden:YES];
         else 
             [self.navigationController setNavigationBarHidden:YES animated:YES];
@@ -128,31 +133,8 @@
     [self hidePopupView];
 }
         
-- (void) configureView:(BOOL)reload
-{
-    //pokud máme nastavený URL request, tak nic neděláme
-    if (fWebView.request != nil && reload == NO)
-        return;
-    
-    //NSString *mPageToLoad = @"http://sharpdev.asp2.cz/haidy/RequestParams.aspx";
-    
-    NSString *mPageToLoad = @"default.aspx";
-    
-    
-    //Vytvoříme URL, které přijde tak jako tak, eventuelně půjde o prázdnou stránku.
-    NSURL *mUrl = [ExUtils constructUrlFromPage:mPageToLoad];
-    
-    
-    NSLog(@"Constructed URL in configureView: %@", mUrl.absoluteString);
-    
-    //URL Requst Object
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:mUrl cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0];
-    //Load the request in the UIWebView.
-    [fWebView loadRequest:requestObj];
-}
-
 -(void)showPopupView{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+    if ([ExUtils runningOnIpad]){
         if (fIsPopupVisible)
             return;
         //else je zbytek kódu
@@ -214,12 +196,55 @@
     };
 
     //pro iPad upravíme velikost okna, pokud má být zobrazen jako FormSheet
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad && fDetailViewController.modalPresentationStyle == UIModalPresentationFormSheet) {
+    if ([ExUtils runningOnIpad] && fDetailViewController.modalPresentationStyle == UIModalPresentationFormSheet) {
         [self presentViewController:fDetailViewController animated:NO completion:handler];
 
     }
     else
         [self presentViewController:fDetailViewController animated:NO completion:nil];
+}
+
+#pragma mark - Implememnt private methods
+
+- (void) configureView:(BOOL)reload
+{
+    //pokud máme nastavený URL request, tak nic neděláme
+    if (fWebView.request != nil && reload == NO)
+        return;
+    
+    //NSString *mPageToLoad = @"http://sharpdev.asp2.cz/haidy/RequestParams.aspx";
+    
+    NSString *mPageToLoad = @"default.aspx";
+    
+    
+    //Vytvoříme URL, které přijde tak jako tak, eventuelně půjde o prázdnou stránku.
+    NSURL *mUrl = [ExUtils constructUrlFromPage:mPageToLoad];
+    
+    
+    NSLog(@"Constructed URL in configureView: %@", mUrl.absoluteString);
+    
+    //URL Requst Object
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:mUrl cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0];
+    //Load the request in the UIWebView.
+    [fWebView loadRequest:requestObj];
+}
+
+- (void)configureSip{
+    //inicializace SIP TabBarControleru
+    if ([ExUtils runningOnIpad] == YES)
+        [[NSBundle mainBundle] loadNibNamed:@"MainScreenWithVideoPreview" owner:self options:nil];
+    else
+        [[NSBundle mainBundle] loadNibNamed:@"PhoneMainView" owner:self options:nil];
+    
+    fPhoneViewController = (PhoneViewController*)[fSipTabBarController.viewControllers objectAtIndex:DIALER_TAB_INDEX];
+    fPhoneViewController.myTabBarController = fSipTabBarController;
+    [fSipTabBarController setSelectedIndex:DIALER_TAB_INDEX];
+}
+
+- (void)showSipTabBarControler{
+    if (fSipTabBarController != self.modalViewController)
+        [self presentViewController:fSipTabBarController animated:YES completion:nil];
+    //else není potřeba, fSipTabBarController je již zobrazen
 }
 
 #pragma mark - WebViewDelegate
@@ -351,5 +376,49 @@
     //Load the request in the UIWebView.
     [fWebView loadRequest:requestObj];
 }
+
+-(void) selectSip{
+    [self showSipTabBarControler];
+}
+
+#pragma mark - Implement LinphoneUICallDelegate - most methods only recal to fPhoneViewController
+
+-(void) displayDialerFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {    
+	[fPhoneViewController displayDialerFromUI:viewCtrl forUser:username withDisplayName:displayName];
+}
+
+-(void) displayIncomingCall:(LinphoneCall*) call NotificationFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
+    [self showSipTabBarControler];
+    [fPhoneViewController displayIncomingCall:call NotificationFromUI:viewCtrl forUser:username withDisplayName:displayName];
+
+}
+-(void) displayCall: (LinphoneCall*) call InProgressFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
+    [self showSipTabBarControler];
+    [fPhoneViewController displayCall:call InProgressFromUI:viewCtrl forUser:username withDisplayName:displayName];
+}
+
+-(void) displayInCall: (LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
+    [self showSipTabBarControler];
+    [fPhoneViewController displayInCall:call FromUI:viewCtrl forUser:username withDisplayName:displayName];
+}
+
+-(void) displayVideoCall:(LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
+    [self showSipTabBarControler];
+    [fPhoneViewController displayVideoCall:call FromUI:viewCtrl forUser:username withDisplayName:displayName];
+}
+
+//status reporting
+-(void) displayStatus:(NSString*) message {
+	[fPhoneViewController displayStatus:message];
+}
+
+-(void) displayAskToEnableVideoCall:(LinphoneCall*) call forUser:(NSString*) username withDisplayName:(NSString*) displayName {
+	[fPhoneViewController  displayAskToEnableVideoCall:call forUser:username withDisplayName:displayName];
+}
+
+-(void) firstVideoFrameDecoded: (LinphoneCall*) call {
+    [fPhoneViewController firstVideoFrameDecoded:call];
+}
+
 
 @end

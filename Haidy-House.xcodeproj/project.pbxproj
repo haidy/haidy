@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		912AD657161CBF5B004DE7E5 /* dialer-orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 912AD655161CBF5B004DE7E5 /* dialer-orange.png */; };
+		912AD658161CBF5B004DE7E5 /* history-orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 912AD656161CBF5B004DE7E5 /* history-orange.png */; };
+		912AD65A161CC003004DE7E5 /* startcall-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 912AD659161CC003004DE7E5 /* startcall-green.png */; };
+		912AD65C161CC52D004DE7E5 /* linphone-banner.png in Resources */ = {isa = PBXBuildFile; fileRef = 912AD65B161CC52D004DE7E5 /* linphone-banner.png */; };
 		9145611015EE58BB00EF9FB7 /* icon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145610D15EE58BB00EF9FB7 /* icon57x57.png */; };
 		9145611115EE58BB00EF9FB7 /* icon72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145610E15EE58BB00EF9FB7 /* icon72x72.png */; };
 		9145611215EE58BB00EF9FB7 /* icon114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145610F15EE58BB00EF9FB7 /* icon114x114.png */; };
@@ -23,7 +27,6 @@
 		9145613515EE5B7400EF9FB7 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9145613415EE5B7400EF9FB7 /* Settings.bundle */; };
 		9145613715EE5BF800EF9FB7 /* Home.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145613615EE5BF800EF9FB7 /* Home.png */; };
 		9145613915EE5C0200EF9FB7 /* Phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145613815EE5C0200EF9FB7 /* Phone.png */; };
-		9145614615EE5C7A00EF9FB7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9145614415EE5C7A00EF9FB7 /* Localizable.strings */; };
 		9145614C15EE5CA100EF9FB7 /* WebViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9145614815EE5CA100EF9FB7 /* WebViewController_iPad.xib */; };
 		9145614D15EE5CA100EF9FB7 /* WebViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9145614A15EE5CA100EF9FB7 /* WebViewController_iPhone.xib */; };
 		9145614F15EE5CC200EF9FB7 /* BlankPage.html in Resources */ = {isa = PBXBuildFile; fileRef = 9145614E15EE5CC200EF9FB7 /* BlankPage.html */; };
@@ -34,6 +37,8 @@
 		9145615915EE5D1500EF9FB7 /* iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615615EE5D1500EF9FB7 /* iphone@2x.png */; };
 		9145615C15EE5D7A00EF9FB7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615A15EE5D7A00EF9FB7 /* Default.png */; };
 		9145615D15EE5D7A00EF9FB7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615B15EE5D7A00EF9FB7 /* Default@2x.png */; };
+		9167543B161DBF0E00114309 /* mic_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 9167543A161DBF0E00114309 /* mic_active.png */; };
+		9176BC9E161DBD4A004C8F95 /* stopcall-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9176BC9D161DBD4A004C8F95 /* stopcall-red.png */; };
 		91B25D72161AC21E005777CF /* FastAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D52161AC21E005777CF /* FastAddressBook.m */; };
 		91B25D73161AC21E005777CF /* LinphoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D54161AC21E005777CF /* LinphoneManager.m */; };
 		91B25D74161AC21E005777CF /* UIBluetoothButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D58161AC21E005777CF /* UIBluetoothButton.m */; };
@@ -49,6 +54,71 @@
 		91B25D7E161AC21E005777CF /* UIToggleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D6D161AC21E005777CF /* UIToggleButton.m */; };
 		91B25D7F161AC21E005777CF /* UIToggleVideoButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D6F161AC21E005777CF /* UIToggleVideoButton.m */; };
 		91B25D80161AC21E005777CF /* VideoZoomHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D71161AC21E005777CF /* VideoZoomHandler.m */; };
+		91B25DB1161B13D7005777CF /* CallDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D87161B13D7005777CF /* CallDelegate.m */; };
+		91B25DB2161B13D7005777CF /* CallHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D89161B13D7005777CF /* CallHistoryTableViewController.m */; };
+		91B25DB3161B13D7005777CF /* CallHistoryTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25D8A161B13D7005777CF /* CallHistoryTableViewController.xib */; };
+		91B25DB4161B13D7005777CF /* ConferenceCallDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25D8B161B13D7005777CF /* ConferenceCallDetailCell.xib */; };
+		91B25DB5161B13D7005777CF /* ConferenceCallDetailView-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25D8C161B13D7005777CF /* ConferenceCallDetailView-ipad.xib */; };
+		91B25DB6161B13D7005777CF /* ConferenceCallDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D8E161B13D7005777CF /* ConferenceCallDetailView.m */; };
+		91B25DB7161B13D7005777CF /* ConferenceCallDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25D8F161B13D7005777CF /* ConferenceCallDetailView.xib */; };
+		91B25DB8161B13D7005777CF /* ConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D91161B13D7005777CF /* ConsoleViewController.m */; };
+		91B25DB9161B13D7005777CF /* ConsoleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25D92161B13D7005777CF /* ConsoleViewController.xib */; };
+		91B25DBA161B13D7005777CF /* ContactPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D94161B13D7005777CF /* ContactPickerDelegate.m */; };
+		91B25DBB161B13D7005777CF /* FirstLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D96161B13D7005777CF /* FirstLoginViewController.m */; };
+		91B25DBC161B13D8005777CF /* FirstLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25D97161B13D7005777CF /* FirstLoginViewController.xib */; };
+		91B25DBD161B13D8005777CF /* GenericTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D99161B13D7005777CF /* GenericTabViewController.m */; };
+		91B25DBE161B13D8005777CF /* InCallViewController-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25D9A161B13D7005777CF /* InCallViewController-ipad.xib */; };
+		91B25DBF161B13D8005777CF /* IncallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D9C161B13D7005777CF /* IncallViewController.m */; };
+		91B25DC0161B13D8005777CF /* IncallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25D9D161B13D7005777CF /* IncallViewController.xib */; };
+		91B25DC2161B13D8005777CF /* MainScreenWithVideoPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25DA1161B13D7005777CF /* MainScreenWithVideoPreview.m */; };
+		91B25DC3161B13D8005777CF /* MainScreenWithVideoPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25DA2161B13D7005777CF /* MainScreenWithVideoPreview.xib */; };
+		91B25DC4161B13D8005777CF /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25DA4161B13D7005777CF /* MoreViewController.m */; };
+		91B25DC5161B13D8005777CF /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25DA5161B13D7005777CF /* MoreViewController.xib */; };
+		91B25DC6161B13D8005777CF /* PhoneViewController-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25DA6161B13D7005777CF /* PhoneViewController-ipad.xib */; };
+		91B25DC7161B13D8005777CF /* PhoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25DA8161B13D7005777CF /* PhoneViewController.m */; };
+		91B25DC8161B13D8005777CF /* PhoneViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25DA9161B13D7005777CF /* PhoneViewController.xib */; };
+		91B25DC9161B13D8005777CF /* StatusSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25DAB161B13D7005777CF /* StatusSubViewController.m */; };
+		91B25DCA161B13D8005777CF /* StatusSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25DAC161B13D7005777CF /* StatusSubViewController.xib */; };
+		91B25DCB161B13D8005777CF /* VideoViewController-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25DAD161B13D7005777CF /* VideoViewController-ipad.xib */; };
+		91B25DCC161B13D8005777CF /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25DAF161B13D7005777CF /* VideoViewController.m */; };
+		91B25DCD161B13D8005777CF /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25DB0161B13D7005777CF /* VideoViewController.xib */; };
+		91B48B99161C14E900865881 /* ajouter.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B75161C14E900865881 /* ajouter.png */; };
+		91B48B9A161C14E900865881 /* clavier-01-106px.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B76161C14E900865881 /* clavier-01-106px.png */; };
+		91B48B9B161C14E900865881 /* clavier-01-108px.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B77161C14E900865881 /* clavier-01-108px.png */; };
+		91B48B9C161C14E900865881 /* clavier-01-160px.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B78161C14E900865881 /* clavier-01-160px.png */; };
+		91B48B9D161C14E900865881 /* clavier.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B79161C14E900865881 /* clavier.png */; };
+		91B48B9E161C14E900865881 /* contact.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B7A161C14E900865881 /* contact.png */; };
+		91B48B9F161C14E900865881 /* contact_vide.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B7B161C14E900865881 /* contact_vide.png */; };
+		91B48BA0161C14E900865881 /* effacer.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B7C161C14E900865881 /* effacer.png */; };
+		91B48BA1161C14E900865881 /* grouper.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B7D161C14E900865881 /* grouper.png */; };
+		91B48BA2161C14E900865881 /* HP.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B7E161C14E900865881 /* HP.png */; };
+		91B48BA3161C14E900865881 /* HP_inverse.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B7F161C14E900865881 /* HP_inverse.png */; };
+		91B48BA4161C14E900865881 /* icone-linphone-57.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B80161C14E900865881 /* icone-linphone-57.png */; };
+		91B48BA5161C14E900865881 /* icone-linphone-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B81161C14E900865881 /* icone-linphone-72.png */; };
+		91B48BA6161C14E900865881 /* in_call.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B82161C14E900865881 /* in_call.png */; };
+		91B48BA7161C14E900865881 /* in_call_video.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B83161C14E900865881 /* in_call_video.png */; };
+		91B48BA8161C14E900865881 /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B84161C14E900865881 /* iTunesArtwork */; };
+		91B48BA9161C14E900865881 /* micro.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B85161C14E900865881 /* micro.png */; };
+		91B48BAA161C14E900865881 /* micro_inverse.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B86161C14E900865881 /* micro_inverse.png */; };
+		91B48BAB161C14E900865881 /* missed_call.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B87161C14E900865881 /* missed_call.png */; };
+		91B48BAC161C14E900865881 /* out_call.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B88161C14E900865881 /* out_call.png */; };
+		91B48BAD161C14E900865881 /* out_call_video.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B89161C14E900865881 /* out_call_video.png */; };
+		91B48BAE161C14E900865881 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B8A161C14E900865881 /* pause.png */; };
+		91B48BAF161C14E900865881 /* pause_inactif.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B8B161C14E900865881 /* pause_inactif.png */; };
+		91B48BB0161C14E900865881 /* rootca.pem in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B8C161C14E900865881 /* rootca.pem */; };
+		91B48BB1161C14E900865881 /* secured.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B8D161C14E900865881 /* secured.png */; };
+		91B48BB2161C14E900865881 /* startcall-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B8E161C14E900865881 /* startcall-gray.png */; };
+		91B48BB3161C14E900865881 /* stat_sys_signal_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B8F161C14E900865881 /* stat_sys_signal_0.png */; };
+		91B48BB4161C14E900865881 /* stat_sys_signal_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B90161C14E900865881 /* stat_sys_signal_1.png */; };
+		91B48BB5161C14E900865881 /* stat_sys_signal_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B91161C14E900865881 /* stat_sys_signal_2.png */; };
+		91B48BB6161C14E900865881 /* stat_sys_signal_3.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B92161C14E900865881 /* stat_sys_signal_3.png */; };
+		91B48BB7161C14E900865881 /* stat_sys_signal_4.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B93161C14E900865881 /* stat_sys_signal_4.png */; };
+		91B48BB8161C14E900865881 /* status_gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B94161C14E900865881 /* status_gray.png */; };
+		91B48BB9161C14E900865881 /* status_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B95161C14E900865881 /* status_green.png */; };
+		91B48BBA161C14E900865881 /* status_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B96161C14E900865881 /* status_orange.png */; };
+		91B48BBB161C14E900865881 /* status_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B97161C14E900865881 /* status_red.png */; };
+		91B48BBC161C14E900865881 /* unverified.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B98161C14E900865881 /* unverified.png */; };
+		91B48BBF161C15EC00865881 /* PhoneMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B48BBE161C15EC00865881 /* PhoneMainView.xib */; };
 		91CB598C1606E59B00F17FBD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB598B1606E59B00F17FBD /* CoreTelephony.framework */; };
 		91CB598E1606E5A800F17FBD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB598D1606E5A800F17FBD /* QuartzCore.framework */; };
 		91CB59901606E5ED00F17FBD /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB598F1606E5ED00F17FBD /* CoreAudio.framework */; };
@@ -61,7 +131,6 @@
 		91CB599E1606E67D00F17FBD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB599D1606E67D00F17FBD /* Security.framework */; };
 		91CB5AD61606FAB000F17FBD /* libc++.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AD51606FAB000F17FBD /* libc++.1.dylib */; };
 		91CB5AD81606FAC800F17FBD /* libstdc++.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AD71606FAC800F17FBD /* libstdc++.6.dylib */; };
-		91CB5ADA1606FB5C00F17FBD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91CB5AD91606FB5C00F17FBD /* Localizable.strings */; };
 		91CB5ADD1606FC5900F17FBD /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5ADC1606FC5900F17FBD /* libresolv.dylib */; };
 		91D700EB1521D9700013AAAD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D700EA1521D9700013AAAD /* UIKit.framework */; };
 		91D700ED1521D9700013AAAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D700EC1521D9700013AAAD /* Foundation.framework */; };
@@ -71,6 +140,8 @@
 		91D7011F1521D9710013AAAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D700EC1521D9700013AAAD /* Foundation.framework */; };
 		91D701271521D9710013AAAD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91D701251521D9710013AAAD /* InfoPlist.strings */; };
 		91D7012A1521D9710013AAAD /* Haidy_HouseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 91D701291521D9710013AAAD /* Haidy_HouseTests.m */; };
+		91EEA20316099D8D001339EF /* WaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EEA20116099D8D001339EF /* WaitingViewController.m */; };
+		91EEA20416099D8D001339EF /* WaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91EEA20216099D8D001339EF /* WaitingViewController.xib */; };
 		91EEA217160C3540001339EF /* libavcodec.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AA71606FA8300F17FBD /* libavcodec.a */; };
 		91EEA218160C3540001339EF /* libavutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AA81606FA8300F17FBD /* libavutil.a */; };
 		91EEA219160C3540001339EF /* libbcg729.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AA91606FA8300F17FBD /* libbcg729.a */; };
@@ -103,8 +174,7 @@
 		91EEA25D160CA562001339EF /* libSKP_SILK_SDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AB51606FA8300F17FBD /* libSKP_SILK_SDK.a */; };
 		91F1D3BA160893BE00810DB5 /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F1D3B9160893BE00810DB5 /* AddressBookUI.framework */; };
 		91F1D3BC160893C500810DB5 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91F1D3BB160893C500810DB5 /* AddressBook.framework */; };
-		91EEA20316099D8D001339EF /* WaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91EEA20116099D8D001339EF /* WaitingViewController.m */; };
-		91EEA20416099D8D001339EF /* WaitingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91EEA20216099D8D001339EF /* WaitingViewController.xib */; };
+		91FF7CE0161DA82E001B1893 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 91FF7CE2161DA82E001B1893 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +188,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		912AD655161CBF5B004DE7E5 /* dialer-orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialer-orange.png"; sourceTree = "<group>"; };
+		912AD656161CBF5B004DE7E5 /* history-orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history-orange.png"; sourceTree = "<group>"; };
+		912AD659161CC003004DE7E5 /* startcall-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startcall-green.png"; sourceTree = "<group>"; };
+		912AD65B161CC52D004DE7E5 /* linphone-banner.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "linphone-banner.png"; sourceTree = "<group>"; };
 		9145610D15EE58BB00EF9FB7 /* icon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon57x57.png; sourceTree = SOURCE_ROOT; };
 		9145610E15EE58BB00EF9FB7 /* icon72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon72x72.png; sourceTree = SOURCE_ROOT; };
 		9145610F15EE58BB00EF9FB7 /* icon114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon114x114.png; sourceTree = SOURCE_ROOT; };
@@ -141,8 +215,6 @@
 		9145613415EE5B7400EF9FB7 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = SOURCE_ROOT; };
 		9145613615EE5BF800EF9FB7 /* Home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Home.png; sourceTree = SOURCE_ROOT; };
 		9145613815EE5C0200EF9FB7 /* Phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Phone.png; sourceTree = SOURCE_ROOT; };
-		9145614515EE5C7A00EF9FB7 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
-		9145614715EE5C9000EF9FB7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = SOURCE_ROOT; };
 		9145614915EE5CA100EF9FB7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/WebViewController_iPad.xib; sourceTree = SOURCE_ROOT; };
 		9145614B15EE5CA100EF9FB7 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/WebViewController_iPhone.xib; sourceTree = SOURCE_ROOT; };
 		9145614E15EE5CC200EF9FB7 /* BlankPage.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = BlankPage.html; sourceTree = SOURCE_ROOT; };
@@ -153,6 +225,8 @@
 		9145615615EE5D1500EF9FB7 /* iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone@2x.png"; sourceTree = SOURCE_ROOT; };
 		9145615A15EE5D7A00EF9FB7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		9145615B15EE5D7A00EF9FB7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		9167543A161DBF0E00114309 /* mic_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mic_active.png; sourceTree = "<group>"; };
+		9176BC9D161DBD4A004C8F95 /* stopcall-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stopcall-red.png"; sourceTree = "<group>"; };
 		91B25D51161AC21E005777CF /* FastAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAddressBook.h; sourceTree = "<group>"; };
 		91B25D52161AC21E005777CF /* FastAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAddressBook.m; sourceTree = "<group>"; };
 		91B25D53161AC21E005777CF /* LinphoneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinphoneManager.h; sourceTree = "<group>"; };
@@ -186,6 +260,84 @@
 		91B25D6F161AC21E005777CF /* UIToggleVideoButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIToggleVideoButton.m; sourceTree = "<group>"; };
 		91B25D70161AC21E005777CF /* VideoZoomHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoZoomHandler.h; sourceTree = "<group>"; };
 		91B25D71161AC21E005777CF /* VideoZoomHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoZoomHandler.m; sourceTree = "<group>"; };
+		91B25D86161B13D7005777CF /* CallDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallDelegate.h; sourceTree = "<group>"; };
+		91B25D87161B13D7005777CF /* CallDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallDelegate.m; sourceTree = "<group>"; };
+		91B25D88161B13D7005777CF /* CallHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallHistoryTableViewController.h; sourceTree = "<group>"; };
+		91B25D89161B13D7005777CF /* CallHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallHistoryTableViewController.m; sourceTree = "<group>"; };
+		91B25D8A161B13D7005777CF /* CallHistoryTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CallHistoryTableViewController.xib; sourceTree = "<group>"; };
+		91B25D8B161B13D7005777CF /* ConferenceCallDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConferenceCallDetailCell.xib; sourceTree = "<group>"; };
+		91B25D8C161B13D7005777CF /* ConferenceCallDetailView-ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ConferenceCallDetailView-ipad.xib"; sourceTree = "<group>"; };
+		91B25D8D161B13D7005777CF /* ConferenceCallDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConferenceCallDetailView.h; sourceTree = "<group>"; };
+		91B25D8E161B13D7005777CF /* ConferenceCallDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConferenceCallDetailView.m; sourceTree = "<group>"; };
+		91B25D8F161B13D7005777CF /* ConferenceCallDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConferenceCallDetailView.xib; sourceTree = "<group>"; };
+		91B25D90161B13D7005777CF /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleViewController.h; sourceTree = "<group>"; };
+		91B25D91161B13D7005777CF /* ConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleViewController.m; sourceTree = "<group>"; };
+		91B25D92161B13D7005777CF /* ConsoleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleViewController.xib; sourceTree = "<group>"; };
+		91B25D93161B13D7005777CF /* ContactPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPickerDelegate.h; sourceTree = "<group>"; };
+		91B25D94161B13D7005777CF /* ContactPickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPickerDelegate.m; sourceTree = "<group>"; };
+		91B25D95161B13D7005777CF /* FirstLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstLoginViewController.h; sourceTree = "<group>"; };
+		91B25D96161B13D7005777CF /* FirstLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstLoginViewController.m; sourceTree = "<group>"; };
+		91B25D97161B13D7005777CF /* FirstLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstLoginViewController.xib; sourceTree = "<group>"; };
+		91B25D98161B13D7005777CF /* GenericTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericTabViewController.h; sourceTree = "<group>"; };
+		91B25D99161B13D7005777CF /* GenericTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericTabViewController.m; sourceTree = "<group>"; };
+		91B25D9A161B13D7005777CF /* InCallViewController-ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "InCallViewController-ipad.xib"; sourceTree = "<group>"; };
+		91B25D9B161B13D7005777CF /* IncallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncallViewController.h; sourceTree = "<group>"; };
+		91B25D9C161B13D7005777CF /* IncallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncallViewController.m; sourceTree = "<group>"; };
+		91B25D9D161B13D7005777CF /* IncallViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncallViewController.xib; sourceTree = "<group>"; };
+		91B25DA0161B13D7005777CF /* MainScreenWithVideoPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenWithVideoPreview.h; sourceTree = "<group>"; };
+		91B25DA1161B13D7005777CF /* MainScreenWithVideoPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenWithVideoPreview.m; sourceTree = "<group>"; };
+		91B25DA2161B13D7005777CF /* MainScreenWithVideoPreview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainScreenWithVideoPreview.xib; sourceTree = "<group>"; };
+		91B25DA3161B13D7005777CF /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
+		91B25DA4161B13D7005777CF /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
+		91B25DA5161B13D7005777CF /* MoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreViewController.xib; sourceTree = "<group>"; };
+		91B25DA6161B13D7005777CF /* PhoneViewController-ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "PhoneViewController-ipad.xib"; sourceTree = "<group>"; };
+		91B25DA7161B13D7005777CF /* PhoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneViewController.h; sourceTree = "<group>"; };
+		91B25DA8161B13D7005777CF /* PhoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneViewController.m; sourceTree = "<group>"; };
+		91B25DA9161B13D7005777CF /* PhoneViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneViewController.xib; sourceTree = "<group>"; };
+		91B25DAA161B13D7005777CF /* StatusSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusSubViewController.h; sourceTree = "<group>"; };
+		91B25DAB161B13D7005777CF /* StatusSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusSubViewController.m; sourceTree = "<group>"; };
+		91B25DAC161B13D7005777CF /* StatusSubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StatusSubViewController.xib; sourceTree = "<group>"; };
+		91B25DAD161B13D7005777CF /* VideoViewController-ipad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "VideoViewController-ipad.xib"; sourceTree = "<group>"; };
+		91B25DAE161B13D7005777CF /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
+		91B25DAF161B13D7005777CF /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
+		91B25DB0161B13D7005777CF /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
+		91B48B75161C14E900865881 /* ajouter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ajouter.png; sourceTree = "<group>"; };
+		91B48B76161C14E900865881 /* clavier-01-106px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clavier-01-106px.png"; sourceTree = "<group>"; };
+		91B48B77161C14E900865881 /* clavier-01-108px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clavier-01-108px.png"; sourceTree = "<group>"; };
+		91B48B78161C14E900865881 /* clavier-01-160px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clavier-01-160px.png"; sourceTree = "<group>"; };
+		91B48B79161C14E900865881 /* clavier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clavier.png; sourceTree = "<group>"; };
+		91B48B7A161C14E900865881 /* contact.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contact.png; sourceTree = "<group>"; };
+		91B48B7B161C14E900865881 /* contact_vide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contact_vide.png; sourceTree = "<group>"; };
+		91B48B7C161C14E900865881 /* effacer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = effacer.png; sourceTree = "<group>"; };
+		91B48B7D161C14E900865881 /* grouper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grouper.png; sourceTree = "<group>"; };
+		91B48B7E161C14E900865881 /* HP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HP.png; sourceTree = "<group>"; };
+		91B48B7F161C14E900865881 /* HP_inverse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HP_inverse.png; sourceTree = "<group>"; };
+		91B48B80161C14E900865881 /* icone-linphone-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icone-linphone-57.png"; sourceTree = "<group>"; };
+		91B48B81161C14E900865881 /* icone-linphone-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icone-linphone-72.png"; sourceTree = "<group>"; };
+		91B48B82161C14E900865881 /* in_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = in_call.png; sourceTree = "<group>"; };
+		91B48B83161C14E900865881 /* in_call_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = in_call_video.png; sourceTree = "<group>"; };
+		91B48B84161C14E900865881 /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
+		91B48B85161C14E900865881 /* micro.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = micro.png; sourceTree = "<group>"; };
+		91B48B86161C14E900865881 /* micro_inverse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = micro_inverse.png; sourceTree = "<group>"; };
+		91B48B87161C14E900865881 /* missed_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missed_call.png; sourceTree = "<group>"; };
+		91B48B88161C14E900865881 /* out_call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = out_call.png; sourceTree = "<group>"; };
+		91B48B89161C14E900865881 /* out_call_video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = out_call_video.png; sourceTree = "<group>"; };
+		91B48B8A161C14E900865881 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
+		91B48B8B161C14E900865881 /* pause_inactif.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause_inactif.png; sourceTree = "<group>"; };
+		91B48B8C161C14E900865881 /* rootca.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = rootca.pem; sourceTree = "<group>"; };
+		91B48B8D161C14E900865881 /* secured.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = secured.png; sourceTree = "<group>"; };
+		91B48B8E161C14E900865881 /* startcall-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startcall-gray.png"; sourceTree = "<group>"; };
+		91B48B8F161C14E900865881 /* stat_sys_signal_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stat_sys_signal_0.png; sourceTree = "<group>"; };
+		91B48B90161C14E900865881 /* stat_sys_signal_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stat_sys_signal_1.png; sourceTree = "<group>"; };
+		91B48B91161C14E900865881 /* stat_sys_signal_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stat_sys_signal_2.png; sourceTree = "<group>"; };
+		91B48B92161C14E900865881 /* stat_sys_signal_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stat_sys_signal_3.png; sourceTree = "<group>"; };
+		91B48B93161C14E900865881 /* stat_sys_signal_4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stat_sys_signal_4.png; sourceTree = "<group>"; };
+		91B48B94161C14E900865881 /* status_gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_gray.png; sourceTree = "<group>"; };
+		91B48B95161C14E900865881 /* status_green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_green.png; sourceTree = "<group>"; };
+		91B48B96161C14E900865881 /* status_orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_orange.png; sourceTree = "<group>"; };
+		91B48B97161C14E900865881 /* status_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_red.png; sourceTree = "<group>"; };
+		91B48B98161C14E900865881 /* unverified.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unverified.png; sourceTree = "<group>"; };
+		91B48BBE161C15EC00865881 /* PhoneMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneMainView.xib; sourceTree = "<group>"; };
 		91CB598B1606E59B00F17FBD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		91CB598D1606E5A800F17FBD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91CB598F1606E5ED00F17FBD /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -221,7 +373,6 @@
 		91CB5ABD1606FA8300F17FBD /* libzrtpcpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzrtpcpp.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/libzrtpcpp.a"; sourceTree = "<group>"; };
 		91CB5AD51606FAB000F17FBD /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "usr/lib/libc++.1.dylib"; sourceTree = SDKROOT; };
 		91CB5AD71606FAC800F17FBD /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
-		91CB5AD91606FB5C00F17FBD /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = sip/Localizable.strings; sourceTree = "<group>"; };
 		91CB5ADC1606FC5900F17FBD /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		91D700E61521D9700013AAAD /* Haidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Haidy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D700EA1521D9700013AAAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -236,6 +387,9 @@
 		91D701281521D9710013AAAD /* Haidy_HouseTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Haidy_HouseTests.h; sourceTree = "<group>"; };
 		91D701291521D9710013AAAD /* Haidy_HouseTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Haidy_HouseTests.m; sourceTree = "<group>"; };
 		91D7015215225DD50013AAAD /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = "/Users/jankoranda/Documents/Projekty/Haidy House/Haidy HouseTests/cs.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
+		91EEA20016099D8D001339EF /* WaitingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingViewController.h; sourceTree = SOURCE_ROOT; };
+		91EEA20116099D8D001339EF /* WaitingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingViewController.m; sourceTree = SOURCE_ROOT; };
+		91EEA20216099D8D001339EF /* WaitingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitingViewController.xib; sourceTree = SOURCE_ROOT; };
 		91EEA238160C4061001339EF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		91EEA23A160C42D3001339EF /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		91EEA241160C46E1001339EF /* libmsamr.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmsamr.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/mediastreamer/plugins/libmsamr.a"; sourceTree = "<group>"; };
@@ -245,9 +399,8 @@
 		91EEA245160C46E1001339EF /* libmsx264.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmsx264.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/mediastreamer/plugins/libmsx264.a"; sourceTree = "<group>"; };
 		91F1D3B9160893BE00810DB5 /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		91F1D3BB160893C500810DB5 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		91EEA20016099D8D001339EF /* WaitingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaitingViewController.h; sourceTree = SOURCE_ROOT; };
-		91EEA20116099D8D001339EF /* WaitingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaitingViewController.m; sourceTree = SOURCE_ROOT; };
-		91EEA20216099D8D001339EF /* WaitingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WaitingViewController.xib; sourceTree = SOURCE_ROOT; };
+		91FF7CE1161DA82E001B1893 /* cs */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = cs; path = cs.lproj/Localizable.strings; sourceTree = "<group>"; };
+		91FF7CE4161DA832001B1893 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -376,6 +529,106 @@
 			path = sip/LinphoneUI;
 			sourceTree = "<group>";
 		};
+		91B25D85161B13D7005777CF /* LinphoneGUI */ = {
+			isa = PBXGroup;
+			children = (
+				91B25D86161B13D7005777CF /* CallDelegate.h */,
+				91B25D87161B13D7005777CF /* CallDelegate.m */,
+				91B25D88161B13D7005777CF /* CallHistoryTableViewController.h */,
+				91B25D89161B13D7005777CF /* CallHistoryTableViewController.m */,
+				91B25D8A161B13D7005777CF /* CallHistoryTableViewController.xib */,
+				91B25D8B161B13D7005777CF /* ConferenceCallDetailCell.xib */,
+				91B25D8D161B13D7005777CF /* ConferenceCallDetailView.h */,
+				91B25D8E161B13D7005777CF /* ConferenceCallDetailView.m */,
+				91B25D8F161B13D7005777CF /* ConferenceCallDetailView.xib */,
+				91B25D8C161B13D7005777CF /* ConferenceCallDetailView-ipad.xib */,
+				91B25D90161B13D7005777CF /* ConsoleViewController.h */,
+				91B25D91161B13D7005777CF /* ConsoleViewController.m */,
+				91B25D92161B13D7005777CF /* ConsoleViewController.xib */,
+				91B25D93161B13D7005777CF /* ContactPickerDelegate.h */,
+				91B25D94161B13D7005777CF /* ContactPickerDelegate.m */,
+				91B25D95161B13D7005777CF /* FirstLoginViewController.h */,
+				91B25D96161B13D7005777CF /* FirstLoginViewController.m */,
+				91B25D97161B13D7005777CF /* FirstLoginViewController.xib */,
+				91B25D98161B13D7005777CF /* GenericTabViewController.h */,
+				91B25D99161B13D7005777CF /* GenericTabViewController.m */,
+				91B25D9B161B13D7005777CF /* IncallViewController.h */,
+				91B25D9C161B13D7005777CF /* IncallViewController.m */,
+				91B25D9D161B13D7005777CF /* IncallViewController.xib */,
+				91B25D9A161B13D7005777CF /* InCallViewController-ipad.xib */,
+				91B25DA0161B13D7005777CF /* MainScreenWithVideoPreview.h */,
+				91B25DA1161B13D7005777CF /* MainScreenWithVideoPreview.m */,
+				91B25DA2161B13D7005777CF /* MainScreenWithVideoPreview.xib */,
+				91B48BBE161C15EC00865881 /* PhoneMainView.xib */,
+				91B25DA3161B13D7005777CF /* MoreViewController.h */,
+				91B25DA4161B13D7005777CF /* MoreViewController.m */,
+				91B25DA5161B13D7005777CF /* MoreViewController.xib */,
+				91B25DA7161B13D7005777CF /* PhoneViewController.h */,
+				91B25DA8161B13D7005777CF /* PhoneViewController.m */,
+				91B25DA9161B13D7005777CF /* PhoneViewController.xib */,
+				91B25DA6161B13D7005777CF /* PhoneViewController-ipad.xib */,
+				91B25DAA161B13D7005777CF /* StatusSubViewController.h */,
+				91B25DAB161B13D7005777CF /* StatusSubViewController.m */,
+				91B25DAC161B13D7005777CF /* StatusSubViewController.xib */,
+				91B25DAD161B13D7005777CF /* VideoViewController-ipad.xib */,
+				91B25DAE161B13D7005777CF /* VideoViewController.h */,
+				91B25DAF161B13D7005777CF /* VideoViewController.m */,
+				91B25DB0161B13D7005777CF /* VideoViewController.xib */,
+			);
+			name = LinphoneGUI;
+			path = sip/LinphoneGUI;
+			sourceTree = "<group>";
+		};
+		91B48B74161C14E900865881 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9167543A161DBF0E00114309 /* mic_active.png */,
+				9176BC9D161DBD4A004C8F95 /* stopcall-red.png */,
+				912AD65B161CC52D004DE7E5 /* linphone-banner.png */,
+				912AD659161CC003004DE7E5 /* startcall-green.png */,
+				912AD655161CBF5B004DE7E5 /* dialer-orange.png */,
+				912AD656161CBF5B004DE7E5 /* history-orange.png */,
+				91B48B75161C14E900865881 /* ajouter.png */,
+				91B48B76161C14E900865881 /* clavier-01-106px.png */,
+				91B48B77161C14E900865881 /* clavier-01-108px.png */,
+				91B48B78161C14E900865881 /* clavier-01-160px.png */,
+				91B48B79161C14E900865881 /* clavier.png */,
+				91B48B7A161C14E900865881 /* contact.png */,
+				91B48B7B161C14E900865881 /* contact_vide.png */,
+				91B48B7C161C14E900865881 /* effacer.png */,
+				91B48B7D161C14E900865881 /* grouper.png */,
+				91B48B7E161C14E900865881 /* HP.png */,
+				91B48B7F161C14E900865881 /* HP_inverse.png */,
+				91B48B80161C14E900865881 /* icone-linphone-57.png */,
+				91B48B81161C14E900865881 /* icone-linphone-72.png */,
+				91B48B82161C14E900865881 /* in_call.png */,
+				91B48B83161C14E900865881 /* in_call_video.png */,
+				91B48B84161C14E900865881 /* iTunesArtwork */,
+				91B48B85161C14E900865881 /* micro.png */,
+				91B48B86161C14E900865881 /* micro_inverse.png */,
+				91B48B87161C14E900865881 /* missed_call.png */,
+				91B48B88161C14E900865881 /* out_call.png */,
+				91B48B89161C14E900865881 /* out_call_video.png */,
+				91B48B8A161C14E900865881 /* pause.png */,
+				91B48B8B161C14E900865881 /* pause_inactif.png */,
+				91B48B8C161C14E900865881 /* rootca.pem */,
+				91B48B8D161C14E900865881 /* secured.png */,
+				91B48B8E161C14E900865881 /* startcall-gray.png */,
+				91B48B8F161C14E900865881 /* stat_sys_signal_0.png */,
+				91B48B90161C14E900865881 /* stat_sys_signal_1.png */,
+				91B48B91161C14E900865881 /* stat_sys_signal_2.png */,
+				91B48B92161C14E900865881 /* stat_sys_signal_3.png */,
+				91B48B93161C14E900865881 /* stat_sys_signal_4.png */,
+				91B48B94161C14E900865881 /* status_gray.png */,
+				91B48B95161C14E900865881 /* status_green.png */,
+				91B48B96161C14E900865881 /* status_orange.png */,
+				91B48B97161C14E900865881 /* status_red.png */,
+				91B48B98161C14E900865881 /* unverified.png */,
+			);
+			name = Resources;
+			path = sip/Resources;
+			sourceTree = "<group>";
+		};
 		91CB59891606E2F400F17FBD /* Frameworks for SIP */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,9 +656,10 @@
 		91CB59AF1606F53100F17FBD /* sip-linphone-gpl */ = {
 			isa = PBXGroup;
 			children = (
+				91B25D85161B13D7005777CF /* LinphoneGUI */,
 				91B25D50161AC21E005777CF /* LinphoneUI */,
 				91CB5AA61606F87300F17FBD /* static libraries */,
-				91CB5AD91606FB5C00F17FBD /* Localizable.strings */,
+				91B48B74161C14E900865881 /* Resources */,
 			);
 			name = "sip-linphone-gpl";
 			sourceTree = "<group>";
@@ -505,11 +759,11 @@
 		91D700F11521D9700013AAAD /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				9145614415EE5C7A00EF9FB7 /* Localizable.strings */,
 				9145613415EE5B7400EF9FB7 /* Settings.bundle */,
 				9145611915EE5A7500EF9FB7 /* main.m */,
 				91D700F21521D9700013AAAD /* Haidy-Info.plist */,
 				91D700F81521D9700013AAAD /* Haidy-Prefix.pch */,
+				91FF7CE2161DA82E001B1893 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			path = "Haidy House";
@@ -634,7 +888,6 @@
 				9145613515EE5B7400EF9FB7 /* Settings.bundle in Resources */,
 				9145613715EE5BF800EF9FB7 /* Home.png in Resources */,
 				9145613915EE5C0200EF9FB7 /* Phone.png in Resources */,
-				9145614615EE5C7A00EF9FB7 /* Localizable.strings in Resources */,
 				9145614C15EE5CA100EF9FB7 /* WebViewController_iPad.xib in Resources */,
 				9145614D15EE5CA100EF9FB7 /* WebViewController_iPhone.xib in Resources */,
 				9145614F15EE5CC200EF9FB7 /* BlankPage.html in Resources */,
@@ -645,8 +898,66 @@
 				9145615915EE5D1500EF9FB7 /* iphone@2x.png in Resources */,
 				9145615C15EE5D7A00EF9FB7 /* Default.png in Resources */,
 				9145615D15EE5D7A00EF9FB7 /* Default@2x.png in Resources */,
-				91CB5ADA1606FB5C00F17FBD /* Localizable.strings in Resources */,
 				91EEA20416099D8D001339EF /* WaitingViewController.xib in Resources */,
+				91B25DB3161B13D7005777CF /* CallHistoryTableViewController.xib in Resources */,
+				91B25DB4161B13D7005777CF /* ConferenceCallDetailCell.xib in Resources */,
+				91B25DB5161B13D7005777CF /* ConferenceCallDetailView-ipad.xib in Resources */,
+				91B25DB7161B13D7005777CF /* ConferenceCallDetailView.xib in Resources */,
+				91B25DB9161B13D7005777CF /* ConsoleViewController.xib in Resources */,
+				91B25DBC161B13D8005777CF /* FirstLoginViewController.xib in Resources */,
+				91B25DBE161B13D8005777CF /* InCallViewController-ipad.xib in Resources */,
+				91B25DC0161B13D8005777CF /* IncallViewController.xib in Resources */,
+				91B25DC3161B13D8005777CF /* MainScreenWithVideoPreview.xib in Resources */,
+				91B25DC5161B13D8005777CF /* MoreViewController.xib in Resources */,
+				91B25DC6161B13D8005777CF /* PhoneViewController-ipad.xib in Resources */,
+				91B25DC8161B13D8005777CF /* PhoneViewController.xib in Resources */,
+				91B25DCA161B13D8005777CF /* StatusSubViewController.xib in Resources */,
+				91B25DCB161B13D8005777CF /* VideoViewController-ipad.xib in Resources */,
+				91B25DCD161B13D8005777CF /* VideoViewController.xib in Resources */,
+				91B48B99161C14E900865881 /* ajouter.png in Resources */,
+				91B48B9A161C14E900865881 /* clavier-01-106px.png in Resources */,
+				91B48B9B161C14E900865881 /* clavier-01-108px.png in Resources */,
+				91B48B9C161C14E900865881 /* clavier-01-160px.png in Resources */,
+				91B48B9D161C14E900865881 /* clavier.png in Resources */,
+				91B48B9E161C14E900865881 /* contact.png in Resources */,
+				91B48B9F161C14E900865881 /* contact_vide.png in Resources */,
+				91B48BA0161C14E900865881 /* effacer.png in Resources */,
+				91B48BA1161C14E900865881 /* grouper.png in Resources */,
+				91B48BA2161C14E900865881 /* HP.png in Resources */,
+				91B48BA3161C14E900865881 /* HP_inverse.png in Resources */,
+				91B48BA4161C14E900865881 /* icone-linphone-57.png in Resources */,
+				91B48BA5161C14E900865881 /* icone-linphone-72.png in Resources */,
+				91B48BA6161C14E900865881 /* in_call.png in Resources */,
+				91B48BA7161C14E900865881 /* in_call_video.png in Resources */,
+				91B48BA8161C14E900865881 /* iTunesArtwork in Resources */,
+				91B48BA9161C14E900865881 /* micro.png in Resources */,
+				91B48BAA161C14E900865881 /* micro_inverse.png in Resources */,
+				91B48BAB161C14E900865881 /* missed_call.png in Resources */,
+				91B48BAC161C14E900865881 /* out_call.png in Resources */,
+				91B48BAD161C14E900865881 /* out_call_video.png in Resources */,
+				91B48BAE161C14E900865881 /* pause.png in Resources */,
+				91B48BAF161C14E900865881 /* pause_inactif.png in Resources */,
+				91B48BB0161C14E900865881 /* rootca.pem in Resources */,
+				91B48BB1161C14E900865881 /* secured.png in Resources */,
+				91B48BB2161C14E900865881 /* startcall-gray.png in Resources */,
+				91B48BB3161C14E900865881 /* stat_sys_signal_0.png in Resources */,
+				91B48BB4161C14E900865881 /* stat_sys_signal_1.png in Resources */,
+				91B48BB5161C14E900865881 /* stat_sys_signal_2.png in Resources */,
+				91B48BB6161C14E900865881 /* stat_sys_signal_3.png in Resources */,
+				91B48BB7161C14E900865881 /* stat_sys_signal_4.png in Resources */,
+				91B48BB8161C14E900865881 /* status_gray.png in Resources */,
+				91B48BB9161C14E900865881 /* status_green.png in Resources */,
+				91B48BBA161C14E900865881 /* status_orange.png in Resources */,
+				91B48BBB161C14E900865881 /* status_red.png in Resources */,
+				91B48BBC161C14E900865881 /* unverified.png in Resources */,
+				91B48BBF161C15EC00865881 /* PhoneMainView.xib in Resources */,
+				912AD657161CBF5B004DE7E5 /* dialer-orange.png in Resources */,
+				912AD658161CBF5B004DE7E5 /* history-orange.png in Resources */,
+				912AD65A161CC003004DE7E5 /* startcall-green.png in Resources */,
+				912AD65C161CC52D004DE7E5 /* linphone-banner.png in Resources */,
+				91FF7CE0161DA82E001B1893 /* Localizable.strings in Resources */,
+				9176BC9E161DBD4A004C8F95 /* stopcall-red.png in Resources */,
+				9167543B161DBF0E00114309 /* mic_active.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +1016,19 @@
 				91B25D7F161AC21E005777CF /* UIToggleVideoButton.m in Sources */,
 				91B25D80161AC21E005777CF /* VideoZoomHandler.m in Sources */,
 				91EEA20316099D8D001339EF /* WaitingViewController.m in Sources */,
+				91B25DB1161B13D7005777CF /* CallDelegate.m in Sources */,
+				91B25DB2161B13D7005777CF /* CallHistoryTableViewController.m in Sources */,
+				91B25DB6161B13D7005777CF /* ConferenceCallDetailView.m in Sources */,
+				91B25DB8161B13D7005777CF /* ConsoleViewController.m in Sources */,
+				91B25DBA161B13D7005777CF /* ContactPickerDelegate.m in Sources */,
+				91B25DBB161B13D7005777CF /* FirstLoginViewController.m in Sources */,
+				91B25DBD161B13D8005777CF /* GenericTabViewController.m in Sources */,
+				91B25DBF161B13D8005777CF /* IncallViewController.m in Sources */,
+				91B25DC2161B13D8005777CF /* MainScreenWithVideoPreview.m in Sources */,
+				91B25DC4161B13D8005777CF /* MoreViewController.m in Sources */,
+				91B25DC7161B13D8005777CF /* PhoneViewController.m in Sources */,
+				91B25DC9161B13D8005777CF /* StatusSubViewController.m in Sources */,
+				91B25DCC161B13D8005777CF /* VideoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,15 +1051,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		9145614415EE5C7A00EF9FB7 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				9145614515EE5C7A00EF9FB7 /* cs */,
-				9145614715EE5C9000EF9FB7 /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
 		9145614815EE5CA100EF9FB7 /* WebViewController_iPad.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -760,6 +1075,15 @@
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
+		};
+		91FF7CE2161DA82E001B1893 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				91FF7CE1161DA82E001B1893 /* cs */,
+				91FF7CE4161DA832001B1893 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = SOURCE_ROOT;
 		};
 /* End PBXVariantGroup section */
 
@@ -835,14 +1159,14 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin",
-					"Users/jankoranda/svn/linphone-iphone/submodules/linphone/coreapi",
-					"Users/jankoranda/svn/linphone-iphone/submodules/linphone/mediastreamer2/include",
-					"Users/jankoranda/svn/linphone-iphone/submodules/externals/gsm/",
-					"Users/jankoranda/svn/linphone-iphone/submodules/linphone/oRTP/include",
-					"Users/jankoranda/svn/linphone-iphone/submodules/externals/osip/include",
-					"Users/jankoranda/svn/linphone-iphone/submodules/externals/speex/include",
-					"Users/jankoranda/svn/linphone-iphone/submodules/externals/exosip/include",
+					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin",
+					"/Users/jankoranda/svn/linphone-iphone/submodules/linphone/coreapi",
+					"/Users/jankoranda/svn/linphone-iphone/submodules/linphone/mediastreamer2/include",
+					"/Users/jankoranda/svn/linphone-iphone/submodules/externals/gsm/",
+					"/Users/jankoranda/svn/linphone-iphone/submodules/linphone/oRTP/include",
+					"/Users/jankoranda/svn/linphone-iphone/submodules/externals/osip/include",
+					"/Users/jankoranda/svn/linphone-iphone/submodules/externals/speex/include",
+					"/Users/jankoranda/svn/linphone-iphone/submodules/externals/exosip/include",
 				);
 				INFOPLIST_FILE = "Haidy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -856,7 +1180,7 @@
 				PROVISIONING_PROFILE = "E89B5132-6D98-4F56-9BCC-DE149E24778F";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC064810-D687-45DD-8596-9D07C4358150";
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
-				USER_HEADER_SEARCH_PATHS = "/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin/**";
+				USER_HEADER_SEARCH_PATHS = "/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin/** /Users/jankoranda/svn/linphone-iphone/submodules/linphone/coreapi";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
@@ -885,14 +1209,14 @@
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = (
-					"Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin",
-					"Users/jankoranda/svn/linphone-iphone/submodules/linphone/coreapi",
-					"Users/jankoranda/svn/linphone-iphone/submodules/linphone/mediastreamer2/include",
-					"Users/jankoranda/svn/linphone-iphone/submodules/externals/gsm/",
-					"Users/jankoranda/svn/linphone-iphone/submodules/linphone/oRTP/include",
-					"Users/jankoranda/svn/linphone-iphone/submodules/externals/osip/include",
-					"Users/jankoranda/svn/linphone-iphone/submodules/externals/speex/include",
-					"Users/jankoranda/svn/linphone-iphone/submodules/externals/exosip/include",
+					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin",
+					"/Users/jankoranda/svn/linphone-iphone/submodules/linphone/coreapi",
+					"/Users/jankoranda/svn/linphone-iphone/submodules/linphone/mediastreamer2/include",
+					"/Users/jankoranda/svn/linphone-iphone/submodules/externals/gsm/",
+					"/Users/jankoranda/svn/linphone-iphone/submodules/linphone/oRTP/include",
+					"/Users/jankoranda/svn/linphone-iphone/submodules/externals/osip/include",
+					"/Users/jankoranda/svn/linphone-iphone/submodules/externals/speex/include",
+					"/Users/jankoranda/svn/linphone-iphone/submodules/externals/exosip/include",
 				);
 				INFOPLIST_FILE = "Haidy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
@@ -906,7 +1230,7 @@
 				PROVISIONING_PROFILE = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
-				USER_HEADER_SEARCH_PATHS = "/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin/**";
+				USER_HEADER_SEARCH_PATHS = "/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin/** /Users/jankoranda/svn/linphone-iphone/submodules/linphone/coreapi";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};

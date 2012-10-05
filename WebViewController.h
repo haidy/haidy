@@ -9,11 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "DetailViewController.h"
 #import "PopupViewController.h"
+#import "PhoneViewController.h"
 
-@interface WebViewController : UIViewController<UIWebViewDelegate, UIAlertViewDelegate, DetailViewControllerDelegate, PopupViewControllerDelegate>
+#define DIALER_TAB_INDEX 1
+
+@interface WebViewController : UIViewController<UIWebViewDelegate, UIAlertViewDelegate, DetailViewControllerDelegate, PopupViewControllerDelegate, LinphoneUICallDelegate >
 {
     DetailViewController *fDetailViewController;
     PopupViewController *fPopupViewController;
+    PhoneViewController *fPhoneViewController;
+    
+    
     UIView *fPopupView;
     BOOL fIsPopupVisible;
     @private BOOL fLoadedErrorPage;
@@ -21,6 +27,7 @@
 
 @property (strong, nonatomic) IBOutlet UIWebView *fWebView;
 @property (strong, nonatomic) IBOutlet UIImageView *fImageView;
+@property (retain, nonatomic) IBOutlet UITabBarController *fSipTabBarController;
 
 - (IBAction) handleSwipeRight:(UISwipeGestureRecognizer*)sender;
 - (IBAction) handleSwipeLeft:(UISwipeGestureRecognizer*)sender;

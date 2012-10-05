@@ -31,6 +31,16 @@
 			<false/>
 		</dict>
 		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>UseSIP</string>
+			<key>Key</key>
+			<string>UseSIP</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
 			<key>Title</key>
 			<string>SIP</string>
 			<key>Type</key>

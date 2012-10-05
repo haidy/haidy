@@ -157,4 +157,8 @@ static NSNumber* fInHome = nil;
     return nil;
 }
 
++(BOOL) runningOnIpad {
+    return ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad);
+}
+
 @end

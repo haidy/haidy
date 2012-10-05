@@ -8,17 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "CoreTelephony/CTCallCenter.h"
+#import "WebViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 {
     CTCallCenter* callCenter;
 }
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) UITabBarController *tabBarController;
+@property (strong, nonatomic) WebViewController *fWebViewController;
+@property (strong, nonatomic) UINavigationController *fNavigationController;
 
 -(void) synchronizeDefaults;
 -(void) registerDefaultsFromSettingsBundle;
--(void) setupUI;
 
 //sip methods
 -(void) setupGSMInteraction;

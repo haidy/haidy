@@ -20,4 +20,5 @@
 +(NSURL*) blankPage;
 +(BOOL) setRequiredRequestParams:(NSURLRequest*)aRequest;
 +(void) setRequiredCookies:(NSURLRequest*)aRequest;
++(BOOL) runningOnIpad;
 @end

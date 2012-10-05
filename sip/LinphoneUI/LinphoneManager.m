@@ -181,7 +181,7 @@ extern  void libmsbcg729_init();
 			[callDelegate	displayIncomingCall:call 
                            NotificationFromUI:mCurrentViewController
 														forUser:lUserName 
-												withDisplayName:lDisplayName];
+                                                    withDisplayName:lDisplayName];
 			break;
 			
 		case LinphoneCallOutgoingInit: 

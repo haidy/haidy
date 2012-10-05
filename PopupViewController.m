@@ -36,16 +36,21 @@
     }
     
     fNavigationArray = [NSMutableArray arrayWithCapacity:2];
-    //nejprve přidáme první sekci
-    [fNavigationArray addObject:[NSArray arrayWithObjects:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 0", @"Základní položky") Url:@"/HaidySmartClient/MujDum/default.aspx" Childs:nil], [[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 1", @"Ovládání hudby") Url:@"/HaidySmartClient/MujDum/multiroomaudio.aspx" Childs:nil], nil ]];
-    [fNavigationArray addObject:[NSMutableArray arrayWithObjects:nil ]];
+    //nejprve vytvoříme první sekci
+    NSMutableArray *mFirstSection = [NSMutableArray arrayWithObjects:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 0", @"Základní položky") Url:@"/HaidySmartClient/MujDum/default.aspx" Childs:nil], [[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 1", @"Ovládání hudby") Url:@"/HaidySmartClient/MujDum/multiroomaudio.aspx" Childs:nil], nil ];
+    
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"])
+        [mFirstSection addObject:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 2", @"Sip") Url:nil Childs:nil]];
+    //přidáme první sekci do seznamu
+    [fNavigationArray addObject:mFirstSection];
     //pak přidáme druhou sekci, která bude zatím prázdná
+    [fNavigationArray addObject:[NSMutableArray arrayWithObjects:nil ]];
     
     self.navigationRoomController = [[NavigationRoomViewController alloc] initWithStyle:UITableViewStylePlain];
     self.navigationRoomController.delegate = self;
     self.navigationRoomController.title = NSLocalizedString(@"Rooms", @"Titulek pro seznam místnosí");
     
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    if ([ExUtils runningOnIpad])
     {
         self.popoverController = [[UIPopoverController alloc] initWithContentViewController:self.navigationRoomController];
         self.popoverController.delegate = self;
@@ -62,7 +67,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+    if ([ExUtils runningOnIpad])
     {
         [self.view.layer setCornerRadius:5.0f];
         [self.view.layer setBorderColor:[UIColor blackColor].CGColor];
@@ -224,7 +229,10 @@
     NSLog(@"Selected url Popuview: %@", mControlClass.url);
 
     //uživatel si vybral co chce zobrazit a tak nastavíme URL a skryjeme popup
-    [delegate selectWebPage:mControlClass.url];
+    if (mControlClass.url != nil)
+        [delegate selectWebPage:mControlClass.url];
+    else
+        [delegate selectSip];
     [delegate hidePopupView];
     
 }
@@ -238,7 +246,7 @@
     
     [navigationRoomController setNavigationArray:mControlClass.childs];
     
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad){
+    if ([ExUtils runningOnIpad]){
         CGRect mCellRect = [self.tableView rectForRowAtIndexPath:indexPath];
         CGRect mPopoverRect = CGRectMake(mCellRect.origin.x, mCellRect.origin.y, mCellRect.size.width, 10);
         
@@ -279,7 +287,7 @@
     //uživatel vybral stránku, takže požádáme o její zobrazení
     //skryjeme popover a skryjeme i popup
     [delegate selectWebPage:aWebPage];
-    if (UIDevice.currentDevice.userInterfaceIdiom == UIUserInterfaceIdiomPad)
+    if ([ExUtils runningOnIpad])
     {
         [popoverController dismissPopoverAnimated:YES];
         
