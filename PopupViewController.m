@@ -19,7 +19,7 @@
 @interface PopupViewController ()
 
 -(void)parseJsonArray:(NSArray*)aJsonArray destinationArray:(NSMutableArray*)aDestinationArray;
-
+-(void)initDataForMenu;
 @end
 
 @implementation PopupViewController
@@ -35,17 +35,6 @@
         //self.tabBarItem.image = [UIImage imageNamed:@"first"];
     }
     
-    fNavigationArray = [NSMutableArray arrayWithCapacity:2];
-    //nejprve vytvoříme první sekci
-    NSMutableArray *mFirstSection = [NSMutableArray arrayWithObjects:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 0", @"Základní položky") Url:@"/HaidySmartClient/MujDum/default.aspx" Childs:nil], [[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 1", @"Ovládání hudby") Url:@"/HaidySmartClient/MujDum/multiroomaudio.aspx" Childs:nil], nil ];
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"])
-        [mFirstSection addObject:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 2", @"Sip") Url:nil Childs:nil]];
-    //přidáme první sekci do seznamu
-    [fNavigationArray addObject:mFirstSection];
-    //pak přidáme druhou sekci, která bude zatím prázdná
-    [fNavigationArray addObject:[NSMutableArray arrayWithObjects:nil ]];
-    
     self.navigationRoomController = [[NavigationRoomViewController alloc] initWithStyle:UITableViewStylePlain];
     self.navigationRoomController.delegate = self;
     self.navigationRoomController.title = NSLocalizedString(@"Rooms", @"Titulek pro seznam místnosí");
@@ -55,6 +44,10 @@
         self.popoverController = [[UIPopoverController alloc] initWithContentViewController:self.navigationRoomController];
         self.popoverController.delegate = self;
     }
+    
+    isUseSip = [[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"];
+    
+    [self initDataForMenu];
     
     return self;
 }
@@ -71,7 +64,7 @@
     {
         [self.view.layer setCornerRadius:5.0f];
         [self.view.layer setBorderColor:[UIColor blackColor].CGColor];
-        [self.view.layer setBorderWidth:3.0f];
+        [self.view.layer setBorderWidth:6.5f];
         [self.tableView setScrollEnabled:NO];
     }
 }
@@ -81,6 +74,17 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (isUseSip != [[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"])
+    {
+        isUseSip = [[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"];
+        [self initDataForMenu];
+        [self.tableView reloadData];
+    }
+    //else se nic neděje, 
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
@@ -104,7 +108,7 @@
         
         //varianta přes NSURLConnection, se synchroním dotazem, protože jsme již v asynchroním makru
         //můžeme přidat hlavičky dotazu apod.
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[ExUtils constructUrlFromPage:@"GetInformationForMobile.aspx"]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[ExUtils constructUrlFromPage:@"http://sharpdev.asp2.cz/haidy/JSONDataExample.aspx"]];
         //Request
         NSURLResponse *response = nil;
         NSMutableData *data = (NSMutableData*)[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -166,6 +170,28 @@
 
 }
 
+//co je potřeba udělat:
+//při zobrazování zjistit, jestli se změnilo UseSIP, pokud ano, tak se musí změnit data a zavolat invalidate na UITableView -> potřeba globální proměnná, která se inicializuje na začátku
+//je také potřeba zajistit odchycení zobrazení, standardní metody viewDidAppear asi fungovat nebudou, asi je bude potřeba pro iPad zavolat ručně, pro iPhonu budou fungovat, tak by se testování změny hodnoty mohlo hodit tam
+//je potřeba otestovat, že se teď SIP zobrazí a že se zobrazí při příchozím hovoru apod.
+//chce se podívat na appdelegáta, jestli se při změně nastavení nastartuje SIP
+//je vlastně otázka, jestli by se něměla ev. shazovat aplikace, asi je jedno, že user zakáže sip ve chvíli, kdy bude SIP okno otevřené
+
+//Inicializuje pole fNavigationArray, ze kterého se následně zkonstruje zobrazená tabulka
+-(void)initDataForMenu{
+    fNavigationArray = nil;
+    fNavigationArray = [NSMutableArray arrayWithCapacity:2];
+    //nejprve vytvoříme první sekci
+    NSMutableArray *mFirstSection = [NSMutableArray arrayWithObjects:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 0", @"Základní položky") Url:@"/HaidySmartClient/MujDum/default.aspx" Childs:nil], [[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 1", @"Ovládání hudby") Url:@"/HaidySmartClient/MujDum/multiroomaudio.aspx" Childs:nil], nil ];
+    
+    if (isUseSip)
+        [mFirstSection addObject:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 2", @"Sip") Url:nil Childs:nil]];
+    //přidáme první sekci do seznamu
+    [fNavigationArray addObject:mFirstSection];
+    //pak přidáme druhou sekci, která bude zatím prázdná
+    [fNavigationArray addObject:[NSMutableArray arrayWithObjects:nil ]];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -195,7 +221,7 @@
     ExNavigationData *mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
     cell.textLabel.text = [mControlClass title];
     
-    if (mControlClass.childs.count > 0 ) {
+    if (mControlClass.childs != nil && mControlClass.childs.count > 0 ) {
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     }
     
@@ -233,7 +259,8 @@
         [delegate selectWebPage:mControlClass.url];
     else
         [delegate selectSip];
-    [delegate hidePopupView];
+    
+    //[delegate hidePopupView] - nyní se volá z webview, jako následek výběru stránky;
     
 }
 
@@ -293,7 +320,7 @@
         
     }
     //else pro iPhone se zavolá jen hidePopupView a ten se postará o skrytí všeho. V hidePopupView se volá popup do rootového view
-    [delegate hidePopupView];
+    //[delegate hidePopupView];
    
 }
 

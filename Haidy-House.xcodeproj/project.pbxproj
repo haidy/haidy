@@ -70,7 +70,7 @@
 		91B25DBE161B13D8005777CF /* InCallViewController-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25D9A161B13D7005777CF /* InCallViewController-ipad.xib */; };
 		91B25DBF161B13D8005777CF /* IncallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D9C161B13D7005777CF /* IncallViewController.m */; };
 		91B25DC0161B13D8005777CF /* IncallViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25D9D161B13D7005777CF /* IncallViewController.xib */; };
-		91B25DC2161B13D8005777CF /* MainScreenWithVideoPreview.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25DA1161B13D7005777CF /* MainScreenWithVideoPreview.m */; };
+		91B25DC2161B13D8005777CF /* VideoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25DA1161B13D7005777CF /* VideoPreviewController.m */; };
 		91B25DC3161B13D8005777CF /* MainScreenWithVideoPreview.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25DA2161B13D7005777CF /* MainScreenWithVideoPreview.xib */; };
 		91B25DC4161B13D8005777CF /* MoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25DA4161B13D7005777CF /* MoreViewController.m */; };
 		91B25DC5161B13D8005777CF /* MoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25DA5161B13D7005777CF /* MoreViewController.xib */; };
@@ -82,6 +82,9 @@
 		91B25DCB161B13D8005777CF /* VideoViewController-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25DAD161B13D7005777CF /* VideoViewController-ipad.xib */; };
 		91B25DCC161B13D8005777CF /* VideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25DAF161B13D7005777CF /* VideoViewController.m */; };
 		91B25DCD161B13D8005777CF /* VideoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25DB0161B13D7005777CF /* VideoViewController.xib */; };
+		91B421081622C43F005019B9 /* oldphone-mono-30s.caf in Resources */ = {isa = PBXBuildFile; fileRef = 91B421071622C43F005019B9 /* oldphone-mono-30s.caf */; };
+		91B421101622CF9B005019B9 /* oldphone-mono.wav in Resources */ = {isa = PBXBuildFile; fileRef = 91B4210E1622CF9B005019B9 /* oldphone-mono.wav */; };
+		91B421111622CF9B005019B9 /* ringback.wav in Resources */ = {isa = PBXBuildFile; fileRef = 91B4210F1622CF9B005019B9 /* ringback.wav */; };
 		91B48B99161C14E900865881 /* ajouter.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B75161C14E900865881 /* ajouter.png */; };
 		91B48B9A161C14E900865881 /* clavier-01-106px.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B76161C14E900865881 /* clavier-01-106px.png */; };
 		91B48B9B161C14E900865881 /* clavier-01-108px.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B77161C14E900865881 /* clavier-01-108px.png */; };
@@ -284,8 +287,8 @@
 		91B25D9B161B13D7005777CF /* IncallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IncallViewController.h; sourceTree = "<group>"; };
 		91B25D9C161B13D7005777CF /* IncallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IncallViewController.m; sourceTree = "<group>"; };
 		91B25D9D161B13D7005777CF /* IncallViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncallViewController.xib; sourceTree = "<group>"; };
-		91B25DA0161B13D7005777CF /* MainScreenWithVideoPreview.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenWithVideoPreview.h; sourceTree = "<group>"; };
-		91B25DA1161B13D7005777CF /* MainScreenWithVideoPreview.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenWithVideoPreview.m; sourceTree = "<group>"; };
+		91B25DA0161B13D7005777CF /* VideoPreviewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoPreviewController.h; sourceTree = "<group>"; };
+		91B25DA1161B13D7005777CF /* VideoPreviewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoPreviewController.m; sourceTree = "<group>"; };
 		91B25DA2161B13D7005777CF /* MainScreenWithVideoPreview.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainScreenWithVideoPreview.xib; sourceTree = "<group>"; };
 		91B25DA3161B13D7005777CF /* MoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoreViewController.h; sourceTree = "<group>"; };
 		91B25DA4161B13D7005777CF /* MoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoreViewController.m; sourceTree = "<group>"; };
@@ -301,6 +304,9 @@
 		91B25DAE161B13D7005777CF /* VideoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoViewController.h; sourceTree = "<group>"; };
 		91B25DAF161B13D7005777CF /* VideoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoViewController.m; sourceTree = "<group>"; };
 		91B25DB0161B13D7005777CF /* VideoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = VideoViewController.xib; sourceTree = "<group>"; };
+		91B421071622C43F005019B9 /* oldphone-mono-30s.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "oldphone-mono-30s.caf"; sourceTree = "<group>"; };
+		91B4210E1622CF9B005019B9 /* oldphone-mono.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "oldphone-mono.wav"; sourceTree = "<group>"; };
+		91B4210F1622CF9B005019B9 /* ringback.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = ringback.wav; sourceTree = "<group>"; };
 		91B48B75161C14E900865881 /* ajouter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ajouter.png; sourceTree = "<group>"; };
 		91B48B76161C14E900865881 /* clavier-01-106px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clavier-01-106px.png"; sourceTree = "<group>"; };
 		91B48B77161C14E900865881 /* clavier-01-108px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clavier-01-108px.png"; sourceTree = "<group>"; };
@@ -534,9 +540,6 @@
 			children = (
 				91B25D86161B13D7005777CF /* CallDelegate.h */,
 				91B25D87161B13D7005777CF /* CallDelegate.m */,
-				91B25D88161B13D7005777CF /* CallHistoryTableViewController.h */,
-				91B25D89161B13D7005777CF /* CallHistoryTableViewController.m */,
-				91B25D8A161B13D7005777CF /* CallHistoryTableViewController.xib */,
 				91B25D8B161B13D7005777CF /* ConferenceCallDetailCell.xib */,
 				91B25D8D161B13D7005777CF /* ConferenceCallDetailView.h */,
 				91B25D8E161B13D7005777CF /* ConferenceCallDetailView.m */,
@@ -547,22 +550,14 @@
 				91B25D92161B13D7005777CF /* ConsoleViewController.xib */,
 				91B25D93161B13D7005777CF /* ContactPickerDelegate.h */,
 				91B25D94161B13D7005777CF /* ContactPickerDelegate.m */,
-				91B25D95161B13D7005777CF /* FirstLoginViewController.h */,
-				91B25D96161B13D7005777CF /* FirstLoginViewController.m */,
-				91B25D97161B13D7005777CF /* FirstLoginViewController.xib */,
 				91B25D98161B13D7005777CF /* GenericTabViewController.h */,
 				91B25D99161B13D7005777CF /* GenericTabViewController.m */,
 				91B25D9B161B13D7005777CF /* IncallViewController.h */,
 				91B25D9C161B13D7005777CF /* IncallViewController.m */,
 				91B25D9D161B13D7005777CF /* IncallViewController.xib */,
 				91B25D9A161B13D7005777CF /* InCallViewController-ipad.xib */,
-				91B25DA0161B13D7005777CF /* MainScreenWithVideoPreview.h */,
-				91B25DA1161B13D7005777CF /* MainScreenWithVideoPreview.m */,
-				91B25DA2161B13D7005777CF /* MainScreenWithVideoPreview.xib */,
-				91B48BBE161C15EC00865881 /* PhoneMainView.xib */,
-				91B25DA3161B13D7005777CF /* MoreViewController.h */,
-				91B25DA4161B13D7005777CF /* MoreViewController.m */,
-				91B25DA5161B13D7005777CF /* MoreViewController.xib */,
+				91B25DA0161B13D7005777CF /* VideoPreviewController.h */,
+				91B25DA1161B13D7005777CF /* VideoPreviewController.m */,
 				91B25DA7161B13D7005777CF /* PhoneViewController.h */,
 				91B25DA8161B13D7005777CF /* PhoneViewController.m */,
 				91B25DA9161B13D7005777CF /* PhoneViewController.xib */,
@@ -574,6 +569,10 @@
 				91B25DAE161B13D7005777CF /* VideoViewController.h */,
 				91B25DAF161B13D7005777CF /* VideoViewController.m */,
 				91B25DB0161B13D7005777CF /* VideoViewController.xib */,
+				91B25D95161B13D7005777CF /* FirstLoginViewController.h */,
+				91B25D96161B13D7005777CF /* FirstLoginViewController.m */,
+				91B25D97161B13D7005777CF /* FirstLoginViewController.xib */,
+				91B53B6816256CE5001D6588 /* Derefered */,
 			);
 			name = LinphoneGUI;
 			path = sip/LinphoneGUI;
@@ -582,6 +581,9 @@
 		91B48B74161C14E900865881 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				91B4210E1622CF9B005019B9 /* oldphone-mono.wav */,
+				91B4210F1622CF9B005019B9 /* ringback.wav */,
+				91B421071622C43F005019B9 /* oldphone-mono-30s.caf */,
 				9167543A161DBF0E00114309 /* mic_active.png */,
 				9176BC9D161DBD4A004C8F95 /* stopcall-red.png */,
 				912AD65B161CC52D004DE7E5 /* linphone-banner.png */,
@@ -627,6 +629,21 @@
 			);
 			name = Resources;
 			path = sip/Resources;
+			sourceTree = "<group>";
+		};
+		91B53B6816256CE5001D6588 /* Derefered */ = {
+			isa = PBXGroup;
+			children = (
+				91B25D88161B13D7005777CF /* CallHistoryTableViewController.h */,
+				91B25D89161B13D7005777CF /* CallHistoryTableViewController.m */,
+				91B25D8A161B13D7005777CF /* CallHistoryTableViewController.xib */,
+				91B25DA3161B13D7005777CF /* MoreViewController.h */,
+				91B25DA4161B13D7005777CF /* MoreViewController.m */,
+				91B25DA5161B13D7005777CF /* MoreViewController.xib */,
+				91B25DA2161B13D7005777CF /* MainScreenWithVideoPreview.xib */,
+				91B48BBE161C15EC00865881 /* PhoneMainView.xib */,
+			);
+			name = Derefered;
 			sourceTree = "<group>";
 		};
 		91CB59891606E2F400F17FBD /* Frameworks for SIP */ = {
@@ -958,6 +975,9 @@
 				91FF7CE0161DA82E001B1893 /* Localizable.strings in Resources */,
 				9176BC9E161DBD4A004C8F95 /* stopcall-red.png in Resources */,
 				9167543B161DBF0E00114309 /* mic_active.png in Resources */,
+				91B421081622C43F005019B9 /* oldphone-mono-30s.caf in Resources */,
+				91B421101622CF9B005019B9 /* oldphone-mono.wav in Resources */,
+				91B421111622CF9B005019B9 /* ringback.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1024,7 +1044,7 @@
 				91B25DBB161B13D7005777CF /* FirstLoginViewController.m in Sources */,
 				91B25DBD161B13D8005777CF /* GenericTabViewController.m in Sources */,
 				91B25DBF161B13D8005777CF /* IncallViewController.m in Sources */,
-				91B25DC2161B13D8005777CF /* MainScreenWithVideoPreview.m in Sources */,
+				91B25DC2161B13D8005777CF /* VideoPreviewController.m in Sources */,
 				91B25DC4161B13D8005777CF /* MoreViewController.m in Sources */,
 				91B25DC7161B13D8005777CF /* PhoneViewController.m in Sources */,
 				91B25DC9161B13D8005777CF /* StatusSubViewController.m in Sources */,

@@ -20,6 +20,7 @@
 
 -(void) synchronizeDefaults;
 -(void) registerDefaultsFromSettingsBundle;
+- (void)defaultsChanged:(NSNotification *)notification ;
 
 //sip methods
 -(void) setupGSMInteraction;

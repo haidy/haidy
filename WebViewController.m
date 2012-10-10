@@ -18,13 +18,16 @@
     WaitingViewController* fWaitingViewController;
 }
 - (void)configureView:(BOOL)reload;
-- (void)configureSip;
-- (void)showSipTabBarControler;
+- (void)showSipController:(BOOL)withCall;
+- (void)hideSipController;
 @end
+
+/* Třída je call i registračním delegátem pro Linphon managera. Informace předává dále přímo třídě řešící ovládání SIPu - Linphon. Tato třída slouží pro Linphone jako proxy a aby bylo možné v případě potřeby zobrazit okno pro ovládání SIPu nebo ho skrýt a předat mu potřebné informace. O proti standardnímu Linphonu pro iPhon, se nezobrazuje TabBarController s Historií, Kontakty apod, ale zobrazuje se jen upravení PhoneViewController.
+ */
 
 @implementation WebViewController
 
-@synthesize fWebView, fImageView, fSipTabBarController;
+@synthesize fWebView, fImageView, fPhoneViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,8 +53,8 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    [self configureSip];
+
+    fIsVisibleSipForIncommingCall = NO;
     
     /// Inicializace detailů stránek
     fDetailViewController = [[DetailViewController alloc] initWithNibName:@"DetailViewController" bundle:nil];
@@ -139,6 +142,11 @@
             return;
         //else je zbytek kódu
         
+        //test nastavení velikosti navigation controlleru
+        //CGRect mRect = self.navigationController.view.frame;
+        //[self.navigationController.view setFrame:CGRectMake(mRect.origin.x, mRect.origin.y ,mRect.size.width-50, mRect.size.height)];
+        
+        [fPopupViewController viewDidAppear:YES];
         fPopupView.center = CGPointMake(-1*fPopupView.frame.size.width/2, self.view.bounds.size.height /2);
         [self.view bringSubviewToFront:fPopupView];
     
@@ -162,6 +170,7 @@
             return;
         //else je zbytek kódu
     
+        [fPopupViewController viewDidDisappear:YES];
         [UIView animateWithDuration:0.2 animations:^{ fPopupView.center= CGPointMake(-1*fPopupView.bounds.size.width/2, self.view.bounds.size.height /2); }];
     
         fIsPopupVisible = NO;
@@ -204,6 +213,21 @@
         [self presentViewController:fDetailViewController animated:NO completion:nil];
 }
 
+//Getter fPhoneViewControlleru, který zajištuje incializaci dle zařízení
+//implementace dle http://www.bdunagan.com/2009/12/22/uitabbarcontroller-from-a-xib/
+- (PhoneViewController *)fPhoneViewController{
+    if (fPhoneViewController == nil){
+        //inicializace SIP PhoneViewControlleru
+        if ([ExUtils runningOnIpad] == YES)
+            fPhoneViewController = [[PhoneViewController alloc] initWithNibName:@"PhoneViewController-ipad" bundle:nil];
+        else
+            fPhoneViewController = [[PhoneViewController alloc] initWithNibName:@"PhoneViewController" bundle:nil];
+        
+    }
+    
+    return fPhoneViewController;
+}
+
 #pragma mark - Implememnt private methods
 
 - (void) configureView:(BOOL)reload
@@ -229,22 +253,21 @@
     [fWebView loadRequest:requestObj];
 }
 
-- (void)configureSip{
-    //inicializace SIP TabBarControleru
-    if ([ExUtils runningOnIpad] == YES)
-        [[NSBundle mainBundle] loadNibNamed:@"MainScreenWithVideoPreview" owner:self options:nil];
-    else
-        [[NSBundle mainBundle] loadNibNamed:@"PhoneMainView" owner:self options:nil];
-    
-    fPhoneViewController = (PhoneViewController*)[fSipTabBarController.viewControllers objectAtIndex:DIALER_TAB_INDEX];
-    fPhoneViewController.myTabBarController = fSipTabBarController;
-    [fSipTabBarController setSelectedIndex:DIALER_TAB_INDEX];
+- (void)showSipController:(BOOL)withCall{    
+    if ([self.navigationController.viewControllers containsObject:self.fPhoneViewController] == NO)
+    {
+        if(withCall)
+            fIsVisibleSipForIncommingCall = YES;
+        [self.navigationController pushViewController:self.fPhoneViewController animated:YES];
+        [self.navigationController setNavigationBarHidden:NO];
+    }
+    //else není potřeba, fPhoneViewController je již zobrazen
 }
 
-- (void)showSipTabBarControler{
-    if (fSipTabBarController != self.modalViewController)
-        [self presentViewController:fSipTabBarController animated:YES completion:nil];
-    //else není potřeba, fSipTabBarController je již zobrazen
+- (void)hideSipController{
+    fIsVisibleSipForIncommingCall = false;
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    //[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - WebViewDelegate
@@ -375,49 +398,55 @@
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:mUrl];
     //Load the request in the UIWebView.
     [fWebView loadRequest:requestObj];
+    
+    [self hidePopupView];
 }
 
 -(void) selectSip{
-    [self showSipTabBarControler];
+    [self showSipController:NO];
 }
 
 #pragma mark - Implement LinphoneUICallDelegate - most methods only recal to fPhoneViewController
 
--(void) displayDialerFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {    
-	[fPhoneViewController displayDialerFromUI:viewCtrl forUser:username withDisplayName:displayName];
+-(void) displayDialerFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
+	[self.fPhoneViewController displayDialerFromUI:viewCtrl forUser:username withDisplayName:displayName];
+    
+    if (fIsVisibleSipForIncommingCall)
+        [self hideSipController];
+    //else - pokud je zobrazený SIP kvůli příchozímu hovoru, tak ho zavřeme. Pokud by tomu tak nebylo, tak se zobrazí záložka Dialer a my zde v else nemusíme nic dělat.
 }
 
 -(void) displayIncomingCall:(LinphoneCall*) call NotificationFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-    [self showSipTabBarControler];
-    [fPhoneViewController displayIncomingCall:call NotificationFromUI:viewCtrl forUser:username withDisplayName:displayName];
+    [self showSipController:YES];
+    [self.fPhoneViewController displayIncomingCall:call NotificationFromUI:viewCtrl forUser:username withDisplayName:displayName];
 
 }
 -(void) displayCall: (LinphoneCall*) call InProgressFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-    [self showSipTabBarControler];
-    [fPhoneViewController displayCall:call InProgressFromUI:viewCtrl forUser:username withDisplayName:displayName];
+    [self showSipController:YES];
+    [self.fPhoneViewController displayCall:call InProgressFromUI:viewCtrl forUser:username withDisplayName:displayName];
 }
 
 -(void) displayInCall: (LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-    [self showSipTabBarControler];
-    [fPhoneViewController displayInCall:call FromUI:viewCtrl forUser:username withDisplayName:displayName];
+    [self showSipController:YES];
+    [self.fPhoneViewController displayInCall:call FromUI:viewCtrl forUser:username withDisplayName:displayName];
 }
 
 -(void) displayVideoCall:(LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-    [self showSipTabBarControler];
-    [fPhoneViewController displayVideoCall:call FromUI:viewCtrl forUser:username withDisplayName:displayName];
+    [self showSipController:YES];
+    [self.fPhoneViewController displayVideoCall:call FromUI:viewCtrl forUser:username withDisplayName:displayName];
 }
 
 //status reporting
 -(void) displayStatus:(NSString*) message {
-	[fPhoneViewController displayStatus:message];
+	[self.fPhoneViewController displayStatus:message];
 }
 
 -(void) displayAskToEnableVideoCall:(LinphoneCall*) call forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-	[fPhoneViewController  displayAskToEnableVideoCall:call forUser:username withDisplayName:displayName];
+	[self.fPhoneViewController  displayAskToEnableVideoCall:call forUser:username withDisplayName:displayName];
 }
 
 -(void) firstVideoFrameDecoded: (LinphoneCall*) call {
-    [fPhoneViewController firstVideoFrameDecoded:call];
+    [self.fPhoneViewController firstVideoFrameDecoded:call];
 }
 
 

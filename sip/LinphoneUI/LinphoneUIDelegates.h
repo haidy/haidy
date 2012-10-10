@@ -22,8 +22,10 @@
 /* Delegát pro příjmání hovorů a reportování o stavu hovoru */
 @protocol LinphoneUICallDelegate
 // UI changes
+//má zobrazit záložku Dialer - volá se při chybě komunikace nebo při opravdovém ukončení hovoru
 -(void) displayDialerFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName;
 -(void) displayCall: (LinphoneCall*) call InProgressFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName;
+//má zobrazit příchozí hovor
 -(void) displayIncomingCall: (LinphoneCall*) call NotificationFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName;
 -(void) displayInCall: (LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName;
 -(void) displayVideoCall:(LinphoneCall*) call  FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName;

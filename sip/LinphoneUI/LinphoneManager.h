@@ -71,6 +71,7 @@ typedef struct _LinphoneCallAppData {
     CallContext currentCallContextBeforeGoingBackground;
 }
 +(LinphoneManager*) instance;
++(void) destroyInstance;
 +(LinphoneCore*) getLc;
 +(BOOL) runningOnIpad;
 +(void) set:(UIView*)view hidden: (BOOL) hidden withName:(const char*)name andReason:(const char*) reason;
@@ -79,13 +80,13 @@ typedef struct _LinphoneCallAppData {
 -(void) displayDialer;
 
 -(void) registerLogView:(id<LogView>) view;
+-(BOOL) isNotIphone3G;
 
 -(void) startLibLinphone;
--(BOOL) isNotIphone3G;
 -(void) destroyLibLinphone;
-  
 -(BOOL) enterBackgroundMode;
 -(void) becomeActive;
+
 -(void) kickOffNetworkConnection;
 -(NSString*) getDisplayNameFromAddressBook:(NSString*) number andUpdateCallLog:(LinphoneCallLog*)log; 
 -(UIImage*) getImageFromAddressBook:(NSString*) number;

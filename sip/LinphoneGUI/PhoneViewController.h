@@ -23,7 +23,7 @@
 #import "CallDelegate.h"
 #import "StatusSubViewController.h"
 
-@class MainScreenWithVideoPreview;
+@class VideoPreviewController;
 @class IncallViewController;
 @class FirstLoginViewController;
 
@@ -58,7 +58,8 @@
 	UIButton* backToCallView;
     UIView* statusViewHolder;
 	
-	UITabBarController*  myTabBarController;
+    //Zakomentováno do doby, dokud nebudeme chtít zase používat TabBarController
+	//UITabBarController*  myTabBarController;
     
     //ActionSheet si držíme, protože může přijít od volajícího informace o položení hovoru. V takovém případě je potřeba ActionSheet zavřít.
 	UIActionSheet *fIncomingCallActionSheet;
@@ -68,7 +69,7 @@
 	FirstLoginViewController* fFirstLoginViewController;
 	IncallViewController* mIncallViewController;
 
-    MainScreenWithVideoPreview* mMainScreenWithVideoPreview;
+    VideoPreviewController* mVideoPreviewController;
     StatusSubViewController* statusSubViewController;
     
     UIButton* switchCamera;
@@ -101,6 +102,8 @@
 
 @property (nonatomic, retain) IBOutlet UIButton* switchCamera;
 
-@property (nonatomic, retain) IBOutlet UITabBarController*  myTabBarController;
-@property (nonatomic, retain) IBOutlet MainScreenWithVideoPreview*  mMainScreenWithVideoPreview;
+//Zakomentováno do doby, dokud nebudeme chtít zase používat TabBarController
+//@property (nonatomic, retain) IBOutlet UITabBarController*  myTabBarController;
+
+@property (nonatomic, retain) IBOutlet VideoPreviewController*  mVideoPreviewController;
 @end

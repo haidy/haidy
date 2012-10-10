@@ -154,6 +154,12 @@ int __aeabi_idiv(int a, int b) {
         }
         
     }
+    else
+    {
+        //SIP se nemá používat, ale může být použitý z dřívějška. Pokud tomu tak je, tak sip deaktivujeme
+        if ([LinphoneManager instance] != nil)
+            [LinphoneManager destroyInstance];
+    }
     
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
 }
@@ -242,7 +248,7 @@ int __aeabi_idiv(int a, int b) {
           else
           {
             // already readable: don't touch
-            NSLog(@"Key %@ is readable (value: %@), nothing written to defaults.", key, currentObject);
+            NSLog(@"Key %@ is read	able (value: %@), nothing written to defaults.", key, currentObject);
           }
         }
     }

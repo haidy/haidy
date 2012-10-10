@@ -17,17 +17,19 @@
 {
     DetailViewController *fDetailViewController;
     PopupViewController *fPopupViewController;
-    PhoneViewController *fPhoneViewController;
-    
-    
+
     UIView *fPopupView;
+    //Zda je zobrazený popupview
     BOOL fIsPopupVisible;
+    //Zda je zobrazený SIP kvůli příchozímu hovoru, ale okno se sipem, ještě nebylo zobrazen
+    BOOL fIsVisibleSipForIncommingCall;
     @private BOOL fLoadedErrorPage;
+    @private PhoneViewController *fPhoneViewController;
 }
 
 @property (strong, nonatomic) IBOutlet UIWebView *fWebView;
 @property (strong, nonatomic) IBOutlet UIImageView *fImageView;
-@property (retain, nonatomic) IBOutlet UITabBarController *fSipTabBarController;
+@property (retain, nonatomic, readonly) PhoneViewController *fPhoneViewController;
 
 - (IBAction) handleSwipeRight:(UISwipeGestureRecognizer*)sender;
 - (IBAction) handleSwipeLeft:(UISwipeGestureRecognizer*)sender;

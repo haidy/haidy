@@ -68,6 +68,7 @@ extern  void libmsbcg729_init();
 @synthesize frontCamId;
 @synthesize backCamId;
 
+//Inicializace managera
 -(id) init {
     assert (!theLinphoneManager);
     if ((self= [super init])) {
@@ -76,8 +77,16 @@ extern  void libmsbcg729_init();
     }
     return self;
 }
+
+//Vrátí instanci managera, která se vytvořila při initu
 +(LinphoneManager*) instance {
 	return theLinphoneManager;
+}
+
+//Ukončí aktuální instanci managera. Nejprve ukončí LinphoneCore a pak nastaví instanci sebe sama na nil.
++(void) destroyInstance {
+    [[self instance] destroyLibLinphone];
+    theLinphoneManager = nil;    
 }
 
 -(NSString*) getDisplayNameFromAddressBook:(NSString*) number andUpdateCallLog:(LinphoneCallLog*)log {
@@ -283,6 +292,7 @@ extern  void libmsbcg729_init();
 									  forUser:@"" 
 							  withDisplayName:@""];
             } else {
+                //asi kdyby končil jeden hovor a ihned 
                 call = linphone_core_get_current_call([LinphoneManager getLc]);
                 if(call) {
                     const LinphoneCallParams* current = linphone_call_get_current_params(call);

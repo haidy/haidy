@@ -23,7 +23,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "LinphoneManager.h"
 #include "FirstLoginViewController.h"
-#include "MainScreenWithVideoPreview.h"
+#include "VideoPreviewController.h"
 #include "linphonecore.h"
 #include "private.h"
 #include "WebViewController.h"
@@ -51,10 +51,10 @@
 
 @synthesize statusViewHolder;
 
-@synthesize myTabBarController;
-@synthesize mMainScreenWithVideoPreview;
+//Zakomentováno do doby, dokud nebudeme chtít zase používat TabBarController
+//@synthesize myTabBarController;
+@synthesize mVideoPreviewController;
 @synthesize backToCallView;
-
 @synthesize switchCamera;
 
 -(void) updateStatusSubView {
@@ -133,7 +133,7 @@
 	}
     [[LinphoneManager instance] setRegistrationDelegate:self];
     
-    [mMainScreenWithVideoPreview showPreview:YES];
+    [mVideoPreviewController showPreview:YES];
     [self updateCallAndBackButtons];
 }
 
@@ -145,7 +145,7 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib : may be called twice
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+        
 	mDisplayName = [UILabel alloc];
 	[zero initWithNumber:'0'  addressField:address dtmf:false];
 	[one initWithNumber:'1'  addressField:address dtmf:false];
@@ -219,11 +219,12 @@
     }
 }
 
+#pragma mark - Implementation LinphoneUICallDelegate
 
 -(void) displayDialerFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
 	
 	//cancel local notification, just in case
-	if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]  
+	if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]
 		&& [UIApplication sharedApplication].applicationState ==  UIApplicationStateBackground ) {
 		// cancel local notif if needed
 		[[UIApplication sharedApplication] cancelAllLocalNotifications];
@@ -239,29 +240,25 @@
 	} //else keep previous
 	
 	[mDisplayName setText:displayName];
-
+    
     [self updateCallAndBackButtons];
-
+    
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"firstlogindone_preference" ] == true) {
-		//first login case, dismmis first login view																		 
+		//first login case, dismmis first login view
 		[self dismissModalViewControllerAnimated:true];
-	}; 
+	};
 	[mIncallViewController displayDialerFromUI:viewCtrl
 									   forUser:username
 							   withDisplayName:displayName];
 	
-	[myTabBarController setSelectedIndex:DIALER_TAB_INDEX];
+    //Zakomentováno do doby, dokud nebudeme zase chtít používat tabBarController
+	//[myTabBarController setSelectedIndex:DIALER_TAB_INDEX];
     
-    [mMainScreenWithVideoPreview showPreview:YES];
+    [mVideoPreviewController showPreview:YES];
 }
 
-
-
-#pragma mark - Implementation LinphoneUICallDelegate
-
-
 -(void) displayIncomingCall:(LinphoneCall*) call NotificationFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-	[mMainScreenWithVideoPreview showPreview:NO]; 
+	[mVideoPreviewController showPreview:NO]; 
 	if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)] 
 		&& [UIApplication sharedApplication].applicationState !=  UIApplicationStateActive) {
 		// Create a new notification
@@ -301,11 +298,11 @@
         }
     }
 	
-    [mMainScreenWithVideoPreview showPreview:NO];
+    [mVideoPreviewController showPreview:NO];
 }
 
 -(void) displayCall: (LinphoneCall*) call InProgressFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-    [mMainScreenWithVideoPreview showPreview:NO]; 
+    [mVideoPreviewController showPreview:NO]; 
 	if (self.presentedViewController != (UIViewController*)mIncallViewController) {
 		[self presentModalViewController:(UIViewController*)mIncallViewController animated:true];
 	}
@@ -313,12 +310,12 @@
 							   forUser:username
 					   withDisplayName:displayName];
     
-    [mMainScreenWithVideoPreview showPreview:NO];
+    [mVideoPreviewController showPreview:NO];
 	
 }
 
 -(void) displayInCall: (LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-    [mMainScreenWithVideoPreview showPreview:NO]; 
+    [mVideoPreviewController showPreview:NO]; 
     if (self.presentedViewController != (UIViewController*)mIncallViewController /*&& (call == 0x0 ||
 																  linphone_call_get_dir(call)==LinphoneCallIncoming)*/){
 		[self presentModalViewController:(UIViewController*)mIncallViewController animated:true];
@@ -339,12 +336,12 @@
 
 
 -(void) displayVideoCall:(LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName { 
-    [mMainScreenWithVideoPreview showPreview:NO]; 
+    [mVideoPreviewController showPreview:NO]; 
 	[mIncallViewController  displayVideoCall:call FromUI:viewCtrl 
 									 forUser:username 
 							 withDisplayName:displayName];
     
-    [mMainScreenWithVideoPreview showPreview:NO];
+    [mVideoPreviewController showPreview:NO];
     [self updateCallAndBackButtons];
 }
 

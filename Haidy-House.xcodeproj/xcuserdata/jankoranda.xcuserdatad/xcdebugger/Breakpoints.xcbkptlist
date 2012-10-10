@@ -244,11 +244,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "AppDelegate.m"
-         timestampString = "371026566.770002"
+         timestampString = "371565978.674257"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "201"
-         endingLineNumber = "201"
+         startingLineNumber = "207"
+         endingLineNumber = "207"
          landmarkName = "-registerDefaultsFromSettingsBundle"
          landmarkType = "5">
       </FileBreakpoint>
@@ -256,13 +256,13 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "sip/LinphoneGUI/IncallViewController.m"
-         timestampString = "371139714.857635"
+         filePath = "AppDelegate.m"
+         timestampString = "371565966.17679"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "703"
-         endingLineNumber = "703"
-         landmarkName = "-displayDialerFromUI:forUser:withDisplayName:"
+         startingLineNumber = "160"
+         endingLineNumber = "160"
+         landmarkName = "-applicationDidBecomeActive:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

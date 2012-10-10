@@ -21,7 +21,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "PhoneViewController.h"
  
-@interface MainScreenWithVideoPreview : UIViewController {
+@interface VideoPreviewController : UIViewController {
     PhoneViewController* phoneMainView;
     
     
