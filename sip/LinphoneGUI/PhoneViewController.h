@@ -23,12 +23,13 @@
 #import "CallDelegate.h"
 #import "StatusSubViewController.h"
 
+@class ContactTableViewController;
 @class VideoPreviewController;
 @class IncallViewController;
 @class FirstLoginViewController;
 
 
-@interface PhoneViewController : UIViewController <UITextFieldDelegate,LinphoneUICallDelegate, UIActionSheetCustomDelegate, LinphoneUIRegistrationDelegate> {
+@interface PhoneViewController : UIViewController <UITextFieldDelegate,LinphoneUICallDelegate, UIActionSheetCustomDelegate, LinphoneUIRegistrationDelegate, UITableViewDelegate, UITableViewDataSource> {
 
 @private
 	//UI definition
@@ -40,20 +41,6 @@
 	UICallButton* callLarge;
 	
 	UILabel* status;
-
-	//key pad
-	UIDigitButton* one;
-	UIDigitButton* two;
-	UIDigitButton* three;
-	UIDigitButton* four;
-	UIDigitButton* five;
-	UIDigitButton* six;
-	UIDigitButton* seven;
-	UIDigitButton* eight;
-	UIDigitButton* nine;
-	UIDigitButton* star;
-	UIDigitButton* zero;
-	UIDigitButton* hash;
 
 	UIButton* backToCallView;
     UIView* statusViewHolder;
@@ -69,8 +56,10 @@
 	FirstLoginViewController* fFirstLoginViewController;
 	IncallViewController* mIncallViewController;
 
-    VideoPreviewController* mVideoPreviewController;
+    VideoPreviewController* fVideoPreviewController;
     StatusSubViewController* statusSubViewController;
+    UIView* fViewForContact;
+    ContactTableViewController* fContacTableViewController;
     
     UIButton* switchCamera;
 }
@@ -83,19 +72,6 @@
 @property (nonatomic, retain) IBOutlet UILabel* status;
 @property (nonatomic, retain) IBOutlet UIEraseButton* erase;
 
-@property (nonatomic, retain) IBOutlet UIButton* one;
-@property (nonatomic, retain) IBOutlet UIButton* two;
-@property (nonatomic, retain) IBOutlet UIButton* three;
-@property (nonatomic, retain) IBOutlet UIButton* four;
-@property (nonatomic, retain) IBOutlet UIButton* five;
-@property (nonatomic, retain) IBOutlet UIButton* six;
-@property (nonatomic, retain) IBOutlet UIButton* seven;
-@property (nonatomic, retain) IBOutlet UIButton* eight;
-@property (nonatomic, retain) IBOutlet UIButton* nine;
-@property (nonatomic, retain) IBOutlet UIButton* star;
-@property (nonatomic, retain) IBOutlet UIButton* zero;
-@property (nonatomic, retain) IBOutlet UIButton* hash;
-
 @property (nonatomic, retain) IBOutlet UIView* statusViewHolder;
 
 @property (nonatomic, retain) IBOutlet UIButton* backToCallView;
@@ -105,5 +81,7 @@
 //Zakomentováno do doby, dokud nebudeme chtít zase používat TabBarController
 //@property (nonatomic, retain) IBOutlet UITabBarController*  myTabBarController;
 
-@property (nonatomic, retain) IBOutlet VideoPreviewController*  mVideoPreviewController;
+@property (nonatomic, retain) IBOutlet VideoPreviewController*  fVideoPreviewController;
+@property (nonatomic, retain) IBOutlet UIView* fViewForContact;
+@property (nonatomic, retain) IBOutlet ContactTableViewController* fContacTableViewController;
 @end

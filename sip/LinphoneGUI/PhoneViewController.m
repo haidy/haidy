@@ -27,6 +27,7 @@
 #include "linphonecore.h"
 #include "private.h"
 #include "WebViewController.h"
+#include "ContactTableViewController.h"
 
 @implementation PhoneViewController
 @synthesize  dialerView ;
@@ -36,24 +37,11 @@
 @synthesize status;
 @synthesize erase;
 
-@synthesize one;
-@synthesize two;
-@synthesize three;
-@synthesize four;
-@synthesize five;
-@synthesize six;
-@synthesize seven;
-@synthesize eight;
-@synthesize nine;
-@synthesize star;
-@synthesize zero;
-@synthesize hash;
-
 @synthesize statusViewHolder;
 
 //Zakomentováno do doby, dokud nebudeme chtít zase používat TabBarController
 //@synthesize myTabBarController;
-@synthesize mVideoPreviewController;
+@synthesize fVideoPreviewController, fViewForContact, fContacTableViewController;
 @synthesize backToCallView;
 @synthesize switchCamera;
 
@@ -133,7 +121,7 @@
 	}
     [[LinphoneManager instance] setRegistrationDelegate:self];
     
-    [mVideoPreviewController showPreview:YES];
+    [fVideoPreviewController showPreview:YES];
     [self updateCallAndBackButtons];
 }
 
@@ -147,22 +135,11 @@
     [super viewDidLoad];
         
 	mDisplayName = [UILabel alloc];
-	[zero initWithNumber:'0'  addressField:address dtmf:false];
-	[one initWithNumber:'1'  addressField:address dtmf:false];
-	[two initWithNumber:'2'  addressField:address dtmf:false];
-	[three initWithNumber:'3'  addressField:address dtmf:false];
-	[four initWithNumber:'4'  addressField:address dtmf:false];
-	[five initWithNumber:'5'  addressField:address dtmf:false];
-	[six initWithNumber:'6'  addressField:address dtmf:false];
-	[seven initWithNumber:'7'  addressField:address dtmf:false];
-	[eight initWithNumber:'8'  addressField:address dtmf:false];
-	[nine initWithNumber:'9'  addressField:address dtmf:false];
-	[star initWithNumber:'*'  addressField:address dtmf:false];
-	[hash initWithNumber:'#'  addressField:address dtmf:false];
 	[callShort initWithAddress:address];
 	[callLarge initWithAddress:address];
 	[erase initWithAddressField:address];
     [backToCallView addTarget:self action:@selector(backToCallViewPressed) forControlEvents:UIControlEventTouchUpInside];
+    [fContacTableViewController setAdressField:address];
     
     if (mIncallViewController == NULL)
         mIncallViewController = [[IncallViewController alloc]  initWithNibName:[LinphoneManager runningOnIpad]?@"InCallViewController-ipad":@"IncallViewController" 
@@ -254,11 +231,11 @@
     //Zakomentováno do doby, dokud nebudeme zase chtít používat tabBarController
 	//[myTabBarController setSelectedIndex:DIALER_TAB_INDEX];
     
-    [mVideoPreviewController showPreview:YES];
+    [fVideoPreviewController showPreview:YES];
 }
 
 -(void) displayIncomingCall:(LinphoneCall*) call NotificationFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-	[mVideoPreviewController showPreview:NO]; 
+	[fVideoPreviewController showPreview:NO]; 
 	if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)] 
 		&& [UIApplication sharedApplication].applicationState !=  UIApplicationStateActive) {
 		// Create a new notification
@@ -298,11 +275,11 @@
         }
     }
 	
-    [mVideoPreviewController showPreview:NO];
+    [fVideoPreviewController showPreview:NO];
 }
 
 -(void) displayCall: (LinphoneCall*) call InProgressFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-    [mVideoPreviewController showPreview:NO]; 
+    [fVideoPreviewController showPreview:NO]; 
 	if (self.presentedViewController != (UIViewController*)mIncallViewController) {
 		[self presentModalViewController:(UIViewController*)mIncallViewController animated:true];
 	}
@@ -310,12 +287,12 @@
 							   forUser:username
 					   withDisplayName:displayName];
     
-    [mVideoPreviewController showPreview:NO];
+    [fVideoPreviewController showPreview:NO];
 	
 }
 
 -(void) displayInCall: (LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-    [mVideoPreviewController showPreview:NO]; 
+    [fVideoPreviewController showPreview:NO]; 
     if (self.presentedViewController != (UIViewController*)mIncallViewController /*&& (call == 0x0 ||
 																  linphone_call_get_dir(call)==LinphoneCallIncoming)*/){
 		[self presentModalViewController:(UIViewController*)mIncallViewController animated:true];
@@ -336,12 +313,12 @@
 
 
 -(void) displayVideoCall:(LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName { 
-    [mVideoPreviewController showPreview:NO]; 
+    [fVideoPreviewController showPreview:NO]; 
 	[mIncallViewController  displayVideoCall:call FromUI:viewCtrl 
 									 forUser:username 
 							 withDisplayName:displayName];
     
-    [mVideoPreviewController showPreview:NO];
+    [fVideoPreviewController showPreview:NO];
     [self updateCallAndBackButtons];
 }
 
@@ -398,7 +375,5 @@
     }
     [self updateStatusSubView];
 }
-
-
 
 @end

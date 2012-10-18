@@ -170,13 +170,6 @@
 
 }
 
-//co je potřeba udělat:
-//při zobrazování zjistit, jestli se změnilo UseSIP, pokud ano, tak se musí změnit data a zavolat invalidate na UITableView -> potřeba globální proměnná, která se inicializuje na začátku
-//je také potřeba zajistit odchycení zobrazení, standardní metody viewDidAppear asi fungovat nebudou, asi je bude potřeba pro iPad zavolat ručně, pro iPhonu budou fungovat, tak by se testování změny hodnoty mohlo hodit tam
-//je potřeba otestovat, že se teď SIP zobrazí a že se zobrazí při příchozím hovoru apod.
-//chce se podívat na appdelegáta, jestli se při změně nastavení nastartuje SIP
-//je vlastně otázka, jestli by se něměla ev. shazovat aplikace, asi je jedno, že user zakáže sip ve chvíli, kdy bude SIP okno otevřené
-
 //Inicializuje pole fNavigationArray, ze kterého se následně zkonstruje zobrazená tabulka
 -(void)initDataForMenu{
     fNavigationArray = nil;

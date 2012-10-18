@@ -63,7 +63,6 @@
 		91B25DB7161B13D7005777CF /* ConferenceCallDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25D8F161B13D7005777CF /* ConferenceCallDetailView.xib */; };
 		91B25DB8161B13D7005777CF /* ConsoleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D91161B13D7005777CF /* ConsoleViewController.m */; };
 		91B25DB9161B13D7005777CF /* ConsoleViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25D92161B13D7005777CF /* ConsoleViewController.xib */; };
-		91B25DBA161B13D7005777CF /* ContactPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D94161B13D7005777CF /* ContactPickerDelegate.m */; };
 		91B25DBB161B13D7005777CF /* FirstLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D96161B13D7005777CF /* FirstLoginViewController.m */; };
 		91B25DBC161B13D8005777CF /* FirstLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B25D97161B13D7005777CF /* FirstLoginViewController.xib */; };
 		91B25DBD161B13D8005777CF /* GenericTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D99161B13D7005777CF /* GenericTabViewController.m */; };
@@ -122,6 +121,8 @@
 		91B48BBB161C14E900865881 /* status_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B97161C14E900865881 /* status_red.png */; };
 		91B48BBC161C14E900865881 /* unverified.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B98161C14E900865881 /* unverified.png */; };
 		91B48BBF161C15EC00865881 /* PhoneMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B48BBE161C15EC00865881 /* PhoneMainView.xib */; };
+		91B53B6A1625A924001D6588 /* ContactPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D94161B13D7005777CF /* ContactPickerDelegate.m */; };
+		91B53B701625B7D9001D6588 /* ContactTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B53B6F1625B7D9001D6588 /* ContactTableViewController.m */; };
 		91CB598C1606E59B00F17FBD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB598B1606E59B00F17FBD /* CoreTelephony.framework */; };
 		91CB598E1606E5A800F17FBD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB598D1606E5A800F17FBD /* QuartzCore.framework */; };
 		91CB59901606E5ED00F17FBD /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB598F1606E5ED00F17FBD /* CoreAudio.framework */; };
@@ -344,6 +345,8 @@
 		91B48B97161C14E900865881 /* status_red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_red.png; sourceTree = "<group>"; };
 		91B48B98161C14E900865881 /* unverified.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unverified.png; sourceTree = "<group>"; };
 		91B48BBE161C15EC00865881 /* PhoneMainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhoneMainView.xib; sourceTree = "<group>"; };
+		91B53B6E1625B7D9001D6588 /* ContactTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactTableViewController.h; sourceTree = "<group>"; };
+		91B53B6F1625B7D9001D6588 /* ContactTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactTableViewController.m; sourceTree = "<group>"; };
 		91CB598B1606E59B00F17FBD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		91CB598D1606E5A800F17FBD /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		91CB598F1606E5ED00F17FBD /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
@@ -380,7 +383,7 @@
 		91CB5AD51606FAB000F17FBD /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "usr/lib/libc++.1.dylib"; sourceTree = SDKROOT; };
 		91CB5AD71606FAC800F17FBD /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		91CB5ADC1606FC5900F17FBD /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
-		91D700E61521D9700013AAAD /* Haidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Haidy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		91D700E61521D9700013AAAD /* Haidy 2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Haidy 2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D700EA1521D9700013AAAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		91D700EC1521D9700013AAAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		91D700EE1521D9700013AAAD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -548,8 +551,6 @@
 				91B25D90161B13D7005777CF /* ConsoleViewController.h */,
 				91B25D91161B13D7005777CF /* ConsoleViewController.m */,
 				91B25D92161B13D7005777CF /* ConsoleViewController.xib */,
-				91B25D93161B13D7005777CF /* ContactPickerDelegate.h */,
-				91B25D94161B13D7005777CF /* ContactPickerDelegate.m */,
 				91B25D98161B13D7005777CF /* GenericTabViewController.h */,
 				91B25D99161B13D7005777CF /* GenericTabViewController.m */,
 				91B25D9B161B13D7005777CF /* IncallViewController.h */,
@@ -572,6 +573,10 @@
 				91B25D95161B13D7005777CF /* FirstLoginViewController.h */,
 				91B25D96161B13D7005777CF /* FirstLoginViewController.m */,
 				91B25D97161B13D7005777CF /* FirstLoginViewController.xib */,
+				91B53B6E1625B7D9001D6588 /* ContactTableViewController.h */,
+				91B53B6F1625B7D9001D6588 /* ContactTableViewController.m */,
+				91B25D93161B13D7005777CF /* ContactPickerDelegate.h */,
+				91B25D94161B13D7005777CF /* ContactPickerDelegate.m */,
 				91B53B6816256CE5001D6588 /* Derefered */,
 			);
 			name = LinphoneGUI;
@@ -733,7 +738,7 @@
 		91D700E71521D9700013AAAD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				91D700E61521D9700013AAAD /* Haidy.app */,
+				91D700E61521D9700013AAAD /* Haidy 2.app */,
 				91D7011B1521D9710013AAAD /* Haidy HouseTests.octest */,
 			);
 			name = Products;
@@ -842,7 +847,7 @@
 			);
 			name = "Haidy House";
 			productName = "Haidy House";
-			productReference = 91D700E61521D9700013AAAD /* Haidy.app */;
+			productReference = 91D700E61521D9700013AAAD /* Haidy 2.app */;
 			productType = "com.apple.product-type.application";
 		};
 		91D7011A1521D9710013AAAD /* Haidy HouseTests */ = {
@@ -1040,7 +1045,6 @@
 				91B25DB2161B13D7005777CF /* CallHistoryTableViewController.m in Sources */,
 				91B25DB6161B13D7005777CF /* ConferenceCallDetailView.m in Sources */,
 				91B25DB8161B13D7005777CF /* ConsoleViewController.m in Sources */,
-				91B25DBA161B13D7005777CF /* ContactPickerDelegate.m in Sources */,
 				91B25DBB161B13D7005777CF /* FirstLoginViewController.m in Sources */,
 				91B25DBD161B13D8005777CF /* GenericTabViewController.m in Sources */,
 				91B25DBF161B13D8005777CF /* IncallViewController.m in Sources */,
@@ -1049,6 +1053,8 @@
 				91B25DC7161B13D8005777CF /* PhoneViewController.m in Sources */,
 				91B25DC9161B13D8005777CF /* StatusSubViewController.m in Sources */,
 				91B25DCC161B13D8005777CF /* VideoViewController.m in Sources */,
+				91B53B6A1625A924001D6588 /* ContactPickerDelegate.m in Sources */,
+				91B53B701625B7D9001D6588 /* ContactTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1196,7 +1202,7 @@
 					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib/mediastreamer/plugins",
 					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
 				);
-				PRODUCT_NAME = Haidy;
+				PRODUCT_NAME = "Haidy 2";
 				PROVISIONING_PROFILE = "E89B5132-6D98-4F56-9BCC-DE149E24778F";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC064810-D687-45DD-8596-9D07C4358150";
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
@@ -1246,7 +1252,7 @@
 					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib/mediastreamer/plugins",
 					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
 				);
-				PRODUCT_NAME = Haidy;
+				PRODUCT_NAME = "Haidy 2";
 				PROVISIONING_PROFILE = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
