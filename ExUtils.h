@@ -10,7 +10,7 @@
 
 @interface ExUtils : NSObject
 {
-    BOOL fInHome;
+ 
 }
 
 
@@ -20,4 +20,5 @@
 +(NSURL*) blankPage;
 +(BOOL) setRequiredRequestParams:(NSURLRequest*)aRequest;
 +(void) setRequiredCookies:(NSURLRequest*)aRequest;
++(void) handlingErrorCode102WithWebKitErrorDomain:(NSString*)aLoadedUrl;
 @end

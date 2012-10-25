@@ -8,10 +8,20 @@
 
 #import "ExUtils.h"
 
+@interface ExUtils()
+{
+}
++(void) setDefaultPartOneUrl:(NSString*)aPartOneUrl;
++(NSString*) defaultPartOneUrl;
+
+@end
+
+
 @implementation ExUtils
 
 
 static NSNumber* fInHome = nil;
+
 
 +(BOOL) inHome{
     if (fInHome == nil)
@@ -27,6 +37,17 @@ static NSNumber* fInHome = nil;
     fInHome = [NSNumber numberWithBool:aInHome];
 }
 
+//První část url adresy. Může se změnit v závislosti na nastavení lokálního IIS
+static NSString* fDefaultPartOneUrl = @"HAIdySmartClient";
+
++(void) setDefaultPartOneUrl:(NSString *)aPartOneUrl{
+    fDefaultPartOneUrl = aPartOneUrl;
+    NSLog(@"DefaultPartOneUrl changed to: %@", aPartOneUrl);
+}
+
++(NSString *)defaultPartOneUrl{
+    return fDefaultPartOneUrl;
+}
 
 
 +(NSURL*) constructUrlFromPage:(NSString*)aPage{
@@ -57,9 +78,9 @@ static NSNumber* fInHome = nil;
     if ([[aPage lowercaseString] rangeOfString:@"haidysmartclient"].location == NSNotFound)
     {
         if ([mPageUrl rangeOfString:@"http://"].location == NSNotFound && mSecure == NO)
-            mPageUrl = [NSString stringWithFormat:@"http://%@/HaidySmartClient/%@", mPageUrl, aPage];
+            mPageUrl = [NSString stringWithFormat:@"http://%@/%@/%@", mPageUrl, fDefaultPartOneUrl, aPage];
         else if ([mPageUrl rangeOfString:@"https://"].location == NSNotFound && mSecure == YES)
-            mPageUrl = [NSString stringWithFormat:@"https://%@/HaidySmartClient/%@", mPageUrl, aPage];
+            mPageUrl = [NSString stringWithFormat:@"https://%@/%@/%@", mPageUrl, fDefaultPartOneUrl, aPage];
     }
     else
     {
@@ -81,6 +102,19 @@ static NSNumber* fInHome = nil;
     return mUrl;
 }
 
+//Zjistí, zda došlo k chybě při načítání stránky z HAIDY webserveru. Pokud ano, tak získá novou defaultní první část url dotazu a přenastaví ji, aby se chyba nemohla opakovat. A nedocházelo tak k odhlašování.
+//aLoadedUrl: Url stránky, která byla načtena
++(void)handlingErrorCode102WithWebKitErrorDomain:(NSString *)aLoadedUrl{
+    //pokud dojde k této chybě, tak otestujeme,
+    NSRange mRangeDefaultPartOneUrl = [aLoadedUrl rangeOfString:[ExUtils defaultPartOneUrl] options:NSCaseInsensitiveSearch];
+    if (mRangeDefaultPartOneUrl.location != NSNotFound)
+    {
+        NSString *mNewDefaultPartOneUrl = [aLoadedUrl substringWithRange:mRangeDefaultPartOneUrl];
+        [ExUtils setDefaultPartOneUrl:mNewDefaultPartOneUrl];
+    }
+    //else není potřeba, šlo o načtení stránky bez defaultPartOneUrl a to nás nezajímá
+}
+
 +(NSURL*)blankPage{
     NSString* mBlankPagePath = [[NSBundle mainBundle] pathForResource:@"BlankPage" ofType:@"html"];
     NSLog(@"BlankPage url: %@", mBlankPagePath);
@@ -90,6 +124,10 @@ static NSNumber* fInHome = nil;
 ///aRequest - Request, který bude modifikován
 ///result - YES má se provést request, NO nemá se provést request a zavolá se znovu načtení s aktuální modifikací
 +(BOOL)setRequiredRequestParams:(NSURLRequest *)aRequest{
+    if ([aRequest.URL.absoluteString rangeOfString:@"BlankPage" options:NSCaseInsensitiveSearch].location != NSNotFound)
+        return YES; //má se načíst blankpage a k té nechceme přidávat nic
+    //else není potřeba, je zbytek kódu
+    
     //oblezlička proto, abych mohl aplikačně přidávat parametry do všech requestů
     if ([aRequest.URL.absoluteString rangeOfString:@"animations"].location == NSNotFound)
     {
@@ -114,6 +152,11 @@ static NSNumber* fInHome = nil;
 ///Nastaví povinné cookies
 ///aRequest - zdroj pro URL k jakému se má cookie vlastně nastavit
 + (void)setRequiredCookies:(NSURLRequest*)aRequest{
+    
+    if ([aRequest.URL.absoluteString rangeOfString:@"BlankPage" options:NSCaseInsensitiveSearch].location != NSNotFound)
+        return; //má se načíst blankpage a k té nechceme přidávat nic
+    //else není potřeba, je zbytek kódu
+    
     NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
     [cookieProperties setObject:@"CulturePreference" forKey:NSHTTPCookieName];
     

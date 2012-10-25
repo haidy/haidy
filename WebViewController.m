@@ -232,7 +232,12 @@
     if (error.code == NSURLErrorCancelled) return;
     
     // Ignore "Fame Load Interrupted" errors. Seen after app store links.
-    if (error.code == 102 && [error.domain isEqual:@"WebKitErrorDomain"]) return;
+    // Remarks: Nastane i v případě, že se stane redirect stránky, třeba z důvodu jiné velikosti písma v názvu url např. /HaidySmartClient/ a /HAIdySmartClient
+    else if (error.code == 102 && [error.domain isEqual:@"WebKitErrorDomain"]){
+        [ExUtils handlingErrorCode102WithWebKitErrorDomain:webView.request.URL.absoluteString];
+        return;
+    }
+    //else: není potřeba, jde o zbytek kódu
     
     // Normal error handling…
     UIAlertView *allert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Server url", @"") message:NSLocalizedString(@"Bad connect", @"Nepodařilo se připojit") delegate:self cancelButtonTitle:NSLocalizedString(@"Button Home", @"") 

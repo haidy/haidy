@@ -92,7 +92,7 @@
 		9145615615EE5D1500EF9FB7 /* iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone@2x.png"; sourceTree = SOURCE_ROOT; };
 		9145615A15EE5D7A00EF9FB7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		9145615B15EE5D7A00EF9FB7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
-		91D700E61521D9700013AAAD /* Haidy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Haidy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		91D700E61521D9700013AAAD /* HAIDY².app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HAIDY².app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D700EA1521D9700013AAAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		91D700EC1521D9700013AAAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		91D700EE1521D9700013AAAD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -166,7 +166,7 @@
 		91D700E71521D9700013AAAD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				91D700E61521D9700013AAAD /* Haidy.app */,
+				91D700E61521D9700013AAAD /* HAIDY².app */,
 				91D7011B1521D9710013AAAD /* Haidy HouseTests.octest */,
 			);
 			name = Products;
@@ -274,7 +274,7 @@
 			);
 			name = "Haidy House";
 			productName = "Haidy House";
-			productReference = 91D700E61521D9700013AAAD /* Haidy.app */;
+			productReference = 91D700E61521D9700013AAAD /* HAIDY².app */;
 			productType = "com.apple.product-type.application";
 		};
 		91D7011A1521D9710013AAAD /* Haidy HouseTests */ = {
@@ -451,6 +451,66 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		91B838F916368999002586C3 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					armv7,
+					armv6,
+				);
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+			};
+			name = Distribution;
+		};
+		91B838FA16368999002586C3 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Positro a.s.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Positro a.s.";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Haidy-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				INFOPLIST_FILE = "Haidy-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				PRODUCT_NAME = "HAIDY²";
+				PROVISIONING_PROFILE = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Distribution;
+		};
+		91B838FB16368999002586C3 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Haidy House.app/Haidy House";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Haidy House/Haidy House-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
+				INFOPLIST_FILE = "Haidy HouseTests/Haidy HouseTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Distribution;
+		};
 		91D7012B1521D9710013AAAD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -516,7 +576,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "Haidy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PRODUCT_NAME = Haidy;
+				PRODUCT_NAME = "HAIDY²";
 				PROVISIONING_PROFILE = "EC064810-D687-45DD-8596-9D07C4358150";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC064810-D687-45DD-8596-9D07C4358150";
 				WRAPPER_EXTENSION = app;
@@ -526,16 +586,16 @@
 		91D7012F1521D9710013AAAD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Positro a.s.";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Positro a.s.";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Jan Koranda (FMMMVU74AP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jan Koranda (FMMMVU74AP)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Haidy-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "Haidy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PRODUCT_NAME = Haidy;
-				PROVISIONING_PROFILE = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
+				PRODUCT_NAME = "HAIDY²";
+				PROVISIONING_PROFILE = "2ADA436E-13AC-4AF4-B682-D39F904770A6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2ADA436E-13AC-4AF4-B682-D39F904770A6";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -584,6 +644,7 @@
 			buildConfigurations = (
 				91D7012B1521D9710013AAAD /* Debug */,
 				91D7012C1521D9710013AAAD /* Release */,
+				91B838F916368999002586C3 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -593,6 +654,7 @@
 			buildConfigurations = (
 				91D7012E1521D9710013AAAD /* Debug */,
 				91D7012F1521D9710013AAAD /* Release */,
+				91B838FA16368999002586C3 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -602,6 +664,7 @@
 			buildConfigurations = (
 				91D701311521D9710013AAAD /* Debug */,
 				91D701321521D9710013AAAD /* Release */,
+				91B838FB16368999002586C3 /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
