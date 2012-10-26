@@ -75,7 +75,7 @@ static NSString* fDefaultPartOneUrl = @"HAIdySmartClient";
     }
     
     //může nám přijít stránka již s přesnější specifikací na HaidySmartClient, podle toho budeme vytvářet URL
-    if ([[aPage lowercaseString] rangeOfString:@"haidysmartclient"].location == NSNotFound)
+    if ([aPage rangeOfString:self.defaultPartOneUrl options:NSCaseInsensitiveSearch].location == NSNotFound )
     {
         if ([mPageUrl rangeOfString:@"http://"].location == NSNotFound && mSecure == NO)
             mPageUrl = [NSString stringWithFormat:@"http://%@/%@/%@", mPageUrl, fDefaultPartOneUrl, aPage];
