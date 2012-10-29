@@ -828,7 +828,17 @@ void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReach
 	}
 }
 -(void) destroyLibLinphone {
-	[mIterateTimer invalidate]; 
+	[mIterateTimer invalidate];
+    
+    [mIterateTimer invalidate];
+	
+	// destroying eventHandler if app cannot go in background.
+	// Otherwise if a GSM call happen and Linphone is resumed,
+	// the handler will be called before LinphoneCore is built.
+	// Then handler will be restored in becomeActive cb
+	callCenter.callEventHandler = nil;
+	callCenter = nil;
+	
 	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
 	[audioSession setDelegate:nil];
 	if (theLinphoneCore != nil) { //just in case application terminate before linphone core initialization
@@ -969,6 +979,10 @@ void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReach
 #if HAVE_G729
 	libmsbcg729_init(); // load g729 plugin
 #endif
+    
+    /* Initialize GSM Interaction */
+    [self setupGSMInteraction];
+    
 	/* Initialize linphone core*/
 	
     NSLog(@"Create linphonecore");
@@ -1078,6 +1092,14 @@ void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReach
 	/*IOS specific*/
 	linphone_core_start_dtmf_stream(theLinphoneCore);
     
+    
+	//call center is unrelialable on the long run, so we change it each time the application is resumed. To avoid zombie GSM call
+	[self setupGSMInteraction];
+	
+	//to make sure presence status is correct
+	if ([callCenter currentCalls]==nil)
+		linphone_core_set_presence_info(theLinphoneCore, 0, nil, LinphoneStatusAltService);
+    
 }
 -(void) registerLogView:(id<LogView>) view {
 	mLogView = view;
@@ -1111,6 +1133,36 @@ void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReach
 
 +(void) logUIElementPressed:(const char*) name {
     ms_message("UI - '%s' pressed", name);
+}
+
+#pragma GSM management
+
+-(void) setupGSMInteraction {
+	if (callCenter != nil)
+        callCenter = nil;
+	
+	callCenter = [[CTCallCenter alloc] init];
+	callCenter.callEventHandler = ^(CTCall* call) {
+		// post on main thread
+		[self performSelectorOnMainThread:@selector(handleGSMCallInteration:)
+							   withObject:callCenter
+							waitUntilDone:YES];
+	};
+}
+
+-(void) handleGSMCallInteration: (id) cCenter {
+	CTCallCenter* ct = (CTCallCenter*) cCenter;
+	/* pause current call, if any */
+	LinphoneCall* call = linphone_core_get_current_call(theLinphoneCore);
+	if ([ct currentCalls]!=nil) {
+		if (call) {
+			NSLog(@"Pausing SIP call");
+			linphone_core_pause_call(theLinphoneCore, call);
+		}
+		//set current status to busy
+		linphone_core_set_presence_info(theLinphoneCore, 0, nil, LinphoneStatusBusy);
+	} else
+		linphone_core_set_presence_info(theLinphoneCore, 0, nil, LinphoneStatusAltService);
 }
 
 

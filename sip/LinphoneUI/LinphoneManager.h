@@ -20,6 +20,7 @@
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVAudioSession.h>
 #import <SystemConfiguration/SCNetworkReachability.h>
+#import "CoreTelephony/CTCallCenter.h"
 #include "linphonecore.h"
 #import "LogView.h"
 #import "LinphoneUIDelegates.h"
@@ -66,6 +67,7 @@ typedef struct _LinphoneCallAppData {
 	const char*  backCamId;
     
     NSDictionary* currentSettings;
+    CTCallCenter* callCenter;
     
 @public
     CallContext currentCallContextBeforeGoingBackground;

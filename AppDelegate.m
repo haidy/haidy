@@ -89,12 +89,7 @@ int __aeabi_idiv(int a, int b) {
     
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"])
         if (![[LinphoneManager instance] enterBackgroundMode]) {
-            // destroying eventHandler if app cannot go in background.
-            // Otherwise if a GSM call happen and Linphone is resumed,
-            // the handler will be called before LinphoneCore is built.
-            // Then handler will be restored in appDidBecomeActive cb
-            callCenter.callEventHandler = nil;
-            callCenter = nil;
+
         }
 }
 
@@ -125,18 +120,7 @@ int __aeabi_idiv(int a, int b) {
         
         [[LinphoneManager instance] becomeActive];
         
-        if (callCenter == nil) {
-            callCenter = [[CTCallCenter alloc] init];
-            callCenter.callEventHandler = ^(CTCall* call) {
-                // post on main thread
-                [self performSelectorOnMainThread:@selector(handleGSMCallInteration:)
-                                       withObject:callCenter
-                                    waitUntilDone:YES];
-            };
-        }
-        // check call state at startup
-        [self handleGSMCallInteration:callCenter];
-        
+       
         LinphoneCore* lc = [LinphoneManager getLc];
         LinphoneCall* call = linphone_core_get_current_call(lc);
         if (call == NULL)
@@ -290,42 +274,10 @@ int __aeabi_idiv(int a, int b) {
     
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
     
-    [self setupGSMInteraction];
-    
     [[LinphoneManager instance] setCallDelegate:fWebViewController];
     
     [UIDevice currentDevice].batteryMonitoringEnabled = YES;
 
-}
-
--(void) setupGSMInteraction {
-	callCenter = [[CTCallCenter alloc] init];
-    __unsafe_unretained CTCallCenter *mRefCallCenter = callCenter;
-    callCenter.callEventHandler = ^(CTCall* call) {
-        // post on main thread
-        [self performSelectorOnMainThread:@selector(handleGSMCallInteration:)
-                               withObject:mRefCallCenter
-                            waitUntilDone:YES];
-    };
-}
-
--(void) handleGSMCallInteration: (id) cCenter {
-    CTCallCenter* ct = (CTCallCenter*) cCenter;
-    
-    int callCount = [ct.currentCalls count];
-    if (!callCount) {
-        NSLog(@"No GSM call -> enabling SIP calls");
-        linphone_core_set_max_calls([LinphoneManager getLc], 3);
-    } else {
-        NSLog(@"%d GSM call(s) -> disabling SIP calls", callCount);
-        /* pause current call, if any */
-        LinphoneCall* call = linphone_core_get_current_call([LinphoneManager getLc]);
-        if (call) {
-            NSLog(@"Pausing SIP call");
-            linphone_core_pause_call([LinphoneManager getLc], call);
-        }
-        linphone_core_set_max_calls([LinphoneManager getLc], 0);
-    }
 }
 
 @end
