@@ -64,7 +64,7 @@
     {
         [self.view.layer setCornerRadius:5.0f];
         [self.view.layer setBorderColor:[UIColor blackColor].CGColor];
-        [self.view.layer setBorderWidth:6.5f];
+        [self.view.layer setBorderWidth:3.0f];
         [self.tableView setScrollEnabled:NO];
     }
 }
@@ -108,7 +108,7 @@
         
         //varianta přes NSURLConnection, se synchroním dotazem, protože jsme již v asynchroním makru
         //můžeme přidat hlavičky dotazu apod.
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[ExUtils constructUrlFromPage:@"http://sharpdev.asp2.cz/haidy/JSONDataExample.aspx"]];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[ExUtils constructUrlFromPage:@"GetInformationForMobile.aspx"]];
         //Request
         NSURLResponse *response = nil;
         NSMutableData *data = (NSMutableData*)[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -175,7 +175,7 @@
     fNavigationArray = nil;
     fNavigationArray = [NSMutableArray arrayWithCapacity:2];
     //nejprve vytvoříme první sekci
-    NSMutableArray *mFirstSection = [NSMutableArray arrayWithObjects:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 0", @"Základní položky") Url:@"/HaidySmartClient/MujDum/default.aspx" Childs:nil], [[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 1", @"Ovládání hudby") Url:@"/HaidySmartClient/MujDum/multiroomaudio.aspx" Childs:nil], nil ];
+    NSMutableArray *mFirstSection = [NSMutableArray arrayWithObjects:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 0", @"Základní položky") Url:@"default.aspx" Childs:nil], [[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 1", @"Ovládání hudby") Url:@"multiroomaudio.aspx" Childs:nil], nil ];
     
     if (isUseSip)
         [mFirstSection addObject:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 2", @"Sip") Url:nil Childs:nil]];
