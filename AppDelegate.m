@@ -135,6 +135,8 @@ int __aeabi_idiv(int a, int b) {
                                             instance->currentCallContextBeforeGoingBackground.cameraIsEnabled);
             }
             instance->currentCallContextBeforeGoingBackground.call = 0;
+            [fWebViewController displayCall:call InProgressFromUI:nil forUser:nil withDisplayName:nil];
+
         }
         
     }
