@@ -74,8 +74,6 @@
     
     /// Nastavení webview a načtení první stránky
     fWebView.delegate = self;
-    //nakonec načteme prázdnou stránku
-    [fWebView loadRequest:[NSURLRequest requestWithURL:[ExUtils blankPage]]];
 }
 
 - (void)viewDidUnload
