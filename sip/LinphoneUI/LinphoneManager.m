@@ -186,7 +186,18 @@ extern  void libmsbcg729_init();
     }
     
 	switch (new_state) {					
-		case LinphoneCallIncomingReceived: 
+		case LinphoneCallIncomingReceived:
+            /*first step is to re-enable ctcall center*/
+			[self setupGSMInteraction];
+			
+			/*should we reject this call ?*/
+			if ([callCenter currentCalls]!=nil) {
+				ms_message("Mobile call ongoing... rejecting call from [%s]",linphone_address_get_username(linphone_call_get_call_log(call)->from));
+				linphone_core_decline_call([LinphoneManager getLc], call, LinphoneReasonBusy);
+				return;
+			}
+
+            
 			[callDelegate	displayIncomingCall:call 
                            NotificationFromUI:mCurrentViewController
 														forUser:lUserName 
@@ -222,7 +233,7 @@ extern  void libmsbcg729_init();
             }
             break;
         }
-        case LinphoneCallUpdated:
+        case LinphoneCallUpdating:
         {
             const LinphoneCallParams* current = linphone_call_get_current_params(call);
             if (linphone_call_params_video_enabled(current)) {
@@ -469,7 +480,7 @@ static LinphoneCoreVTable linphonec_vtable = {
 -(void) configurePayloadType:(const char*) type fromPrefKey: (NSString*)key withRate:(int)rate  {
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:key]) { 		
 		PayloadType* pt;
-		if((pt = linphone_core_find_payload_type(theLinphoneCore,type,rate))) {
+		if((pt = linphone_core_find_payload_type(theLinphoneCore,type,rate, LINPHONE_FIND_PAYLOAD_IGNORE_CHANNELS))) {
 			linphone_core_enable_payload_type(theLinphoneCore,pt, TRUE);
 		}
 	} 
@@ -881,6 +892,13 @@ void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReach
 															   }
 															   //kick up network cnx, just in case
 															   [self kickOffNetworkConnection];
+                                                               
+															   [self setupGSMInteraction];
+															   //to make sure presence status is correct
+															   if ([callCenter currentCalls]==nil)
+																   linphone_core_set_presence_info(theLinphoneCore, 0, nil, LinphoneStatusAltService);
+															   
+
 															   [self refreshRegisters];
 															   linphone_core_iterate(theLinphoneCore);
 														   }
@@ -1139,8 +1157,10 @@ void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReach
 
 -(void) setupGSMInteraction {
 	if (callCenter != nil)
+    {
+        callCenter.callEventHandler=NULL;
         callCenter = nil;
-	
+	}
 	callCenter = [[CTCallCenter alloc] init];
 	callCenter.callEventHandler = ^(CTCall* call) {
 		// post on main thread
