@@ -42,8 +42,8 @@
     [fLabel setText:NSLocalizedString(@"Waiting", @"Titulek pro čekací dialog")];
     
     [self.view.layer setCornerRadius:5.0f];
-    [self.view.layer setBorderColor:[UIColor whiteColor].CGColor];
-    [self.view.layer setBorderWidth:3.0f];
+    [self.view.layer setBorderColor:[UIColor blackColor].CGColor];
+    [self.view.layer setBorderWidth:1.5f];
 }
 
 - (void)viewDidUnload

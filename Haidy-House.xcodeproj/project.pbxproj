@@ -37,6 +37,7 @@
 		9145615915EE5D1500EF9FB7 /* iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615615EE5D1500EF9FB7 /* iphone@2x.png */; };
 		9145615C15EE5D7A00EF9FB7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615A15EE5D7A00EF9FB7 /* Default.png */; };
 		9145615D15EE5D7A00EF9FB7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615B15EE5D7A00EF9FB7 /* Default@2x.png */; };
+		9173D63C1647E085002EAE7F /* icon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 9173D63B1647E085002EAE7F /* icon144x144.png */; };
 		9167543B161DBF0E00114309 /* mic_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 9167543A161DBF0E00114309 /* mic_active.png */; };
 		9176BC9E161DBD4A004C8F95 /* stopcall-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9176BC9D161DBD4A004C8F95 /* stopcall-red.png */; };
 		91B25D72161AC21E005777CF /* FastAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D52161AC21E005777CF /* FastAddressBook.m */; };
@@ -229,6 +230,7 @@
 		9145615615EE5D1500EF9FB7 /* iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone@2x.png"; sourceTree = SOURCE_ROOT; };
 		9145615A15EE5D7A00EF9FB7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		9145615B15EE5D7A00EF9FB7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		9173D63B1647E085002EAE7F /* icon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144x144.png; sourceTree = SOURCE_ROOT; };
 		9167543A161DBF0E00114309 /* mic_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mic_active.png; sourceTree = "<group>"; };
 		9176BC9D161DBD4A004C8F95 /* stopcall-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stopcall-red.png"; sourceTree = "<group>"; };
 		91B25D51161AC21E005777CF /* FastAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAddressBook.h; sourceTree = "<group>"; };
@@ -825,6 +827,7 @@
 				9145610D15EE58BB00EF9FB7 /* icon57x57.png */,
 				9145610E15EE58BB00EF9FB7 /* icon72x72.png */,
 				9145610F15EE58BB00EF9FB7 /* icon114x114.png */,
+				9173D63B1647E085002EAE7F /* icon144x144.png */,
 			);
 			name = Icons;
 			path = "Haidy House";
@@ -983,6 +986,7 @@
 				91B421081622C43F005019B9 /* oldphone-mono-30s.caf in Resources */,
 				91B421101622CF9B005019B9 /* oldphone-mono.wav in Resources */,
 				91B421111622CF9B005019B9 /* ringback.wav in Resources */,
+				9173D63C1647E085002EAE7F /* icon144x144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
