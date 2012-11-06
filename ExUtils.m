@@ -24,12 +24,9 @@ static NSNumber* fInHome = nil;
 
 
 +(BOOL) inHome{
-    if (fInHome == nil)
-    {
-        fInHome = [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"ImHome"]];
-        NSLog (@"Loaded ImHome: %@", [[NSUserDefaults standardUserDefaults] boolForKey:@"ImHome"] == YES ? @"true" : @"false");
-        
-    }
+
+    fInHome = [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"ImHome"]];
+    NSLog (@"Loaded ImHome: %@", [[NSUserDefaults standardUserDefaults] boolForKey:@"ImHome"] == YES ? @"true" : @"false");
     return [fInHome boolValue];
 }
 
@@ -152,15 +149,13 @@ static NSString* fDefaultPartOneUrl = @"HAIdySmartClient";
 ///Nastaví povinné cookies
 ///aRequest - zdroj pro URL k jakému se má cookie vlastně nastavit
 + (void)setRequiredCookies:(NSURLRequest*)aRequest{
-    
+  
     if ([aRequest.URL.absoluteString rangeOfString:@"BlankPage" options:NSCaseInsensitiveSearch].location != NSNotFound)
         return; //má se načíst blankpage a k té nechceme přidávat nic
     //else není potřeba, je zbytek kódu
     
     NSMutableDictionary *cookieProperties = [NSMutableDictionary dictionary];
     [cookieProperties setObject:@"CulturePreference" forKey:NSHTTPCookieName];
-    
-    
     
     //Vezmeme z aplikace seznam podporovaných jazyků, ten porovnáme s preferovanými jazyky v systému a to nám vratí pole preferovaných jazyků. Pokud bude mít uživatel vybraný jazyk, který naše aplikace nepodporuje, tak metoda vrátí defaultní jazyk vývojového prostředí. 
     NSArray *mApplicationPreferedLanguages = [NSBundle preferredLocalizationsFromArray:[[NSBundle mainBundle] preferredLocalizations]];
@@ -187,6 +182,28 @@ static NSString* fDefaultPartOneUrl = @"HAIdySmartClient";
     
     NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:cookieProperties];
     [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
+    
+    ////////
+    //////// Vytvoření cookie, která informuje web, že jdou dotazy z obálky
+    ////////
+    
+    NSMutableDictionary *wrapCookieProperties = [NSMutableDictionary dictionary];
+    [wrapCookieProperties setObject:@"WrappApplication" forKey:NSHTTPCookieName];
+    [wrapCookieProperties setObject:@"true" forKey:NSHTTPCookieValue];
+    
+    [wrapCookieProperties setObject:[self domainFromUrl:aRequest.URL.absoluteString] forKey:NSHTTPCookieDomain];
+    [wrapCookieProperties setObject:[self domainFromUrl:aRequest.URL.absoluteString] forKey:NSHTTPCookieOriginURL];
+    
+    [wrapCookieProperties setObject:@"/" forKey:NSHTTPCookiePath];
+    [wrapCookieProperties setObject:@"0" forKey:NSHTTPCookieVersion];
+    
+    // set expiration to one month from now or any NSDate of your choosing
+    // this makes the cookie sessionless and it will persist across web sessions and app launches
+    /// if you want the cookie to be destroyed when your app exits, don't set this
+    [wrapCookieProperties setObject:[[NSDate date] dateByAddingTimeInterval:2629743] forKey:NSHTTPCookieExpires];
+    
+    NSHTTPCookie *wrapCookie = [NSHTTPCookie cookieWithProperties:wrapCookieProperties];
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:wrapCookie];
 }
 
 +(NSString*)domainFromUrl:(NSString*)url

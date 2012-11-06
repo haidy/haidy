@@ -6,15 +6,15 @@
   Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 */
 
-"Server URL" = "Adresa serveru";
-"Bad URL" = "Špatná adresa serveru, prosím zkontrolujte nastavení";
-"Button Close" = "Zavři";
+"Server URL" = "URL serveru";
+"Bad URL" = "Chybné URL serveru, prosím zkontrolujte nastavení";
+"Button Close" = "Zavřít";
 "House" = "Dům";
 "House Map" = "Mapa domu";
 "SIP" = "SIP";
 "Button Home" = "Doma";
 "Button Remotely" = "Vzdáleně";
-"Button Cancel" = "Zruš";
+"Button Cancel" = "Zrušit";
 "PopupView Section 0" = "Základní položky";
 "PopupView Section 1" = "Mapa podlaží";
 "PopupView Section 0 Row 0" ="Základní";

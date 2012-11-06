@@ -222,7 +222,7 @@
 
 #pragma mark - WebViewDelegate
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+- (void)webView:(UIWebView *)aWebView didFailLoadWithError:(NSError *)error
 {
     NSLog(@"Chyba při načítání: %@", error);
     
@@ -232,7 +232,7 @@
     // Ignore "Fame Load Interrupted" errors. Seen after app store links.
     // Remarks: Nastane i v případě, že se stane redirect stránky, třeba z důvodu jiné velikosti písma v názvu url např. /HaidySmartClient/ a /HAIdySmartClient
     else if (error.code == 102 && [error.domain isEqual:@"WebKitErrorDomain"]){
-        [ExUtils handlingErrorCode102WithWebKitErrorDomain:webView.request.URL.absoluteString];
+        [ExUtils handlingErrorCode102WithWebKitErrorDomain:aWebView.request.URL.absoluteString];
         return;
     }
     //else: není potřeba, jde o zbytek kódu
@@ -279,18 +279,21 @@
     return YES;
 }
 
-- (void)webViewDidFinishLoad:(UIWebView *)webViewLocal
+- (void)webViewDidFinishLoad:(UIWebView *)aWebView
 {
+    //Prevence proti handlingErrorCode102WithWebKitErrorDomain, nevím proč, ale pokud je uživatel již přihlášen a spusti se aplikačka, tak nedojde k chybě a tato metoda se nezavolá
+    [ExUtils handlingErrorCode102WithWebKitErrorDomain:aWebView.request.URL.absoluteString];
+    
     //nejprve ze stránky odebereme defaultní navigaci
     NSString *jsCommand = [NSString stringWithFormat:@"removeNavFloors();"];
-    [webViewLocal stringByEvaluatingJavaScriptFromString:jsCommand];
+    [aWebView stringByEvaluatingJavaScriptFromString:jsCommand];
     
     //následně do stránky přidáme javascript hlídající touch gesta
     //je potřeba, abychom mohli eventuelně schovat popupview
     jsCommand = [NSString stringWithFormat:@"document.addEventListener('touchstart', function(event) { window.location.replace('touch://www.haidy.cz'); }, false);"];
-    [webViewLocal stringByEvaluatingJavaScriptFromString:jsCommand];
+    [aWebView stringByEvaluatingJavaScriptFromString:jsCommand];
     
-    NSString *mTitle = [webViewLocal stringByEvaluatingJavaScriptFromString:@"getTitle()"];
+    NSString *mTitle = [aWebView stringByEvaluatingJavaScriptFromString:@"getTitle()"];
     if ([mTitle rangeOfString:@"Error" options:NSCaseInsensitiveSearch].location == NSNotFound )
         fLoadedErrorPage = NO;
     else

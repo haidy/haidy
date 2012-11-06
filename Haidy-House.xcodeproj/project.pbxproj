@@ -34,6 +34,7 @@
 		9145615915EE5D1500EF9FB7 /* iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615615EE5D1500EF9FB7 /* iphone@2x.png */; };
 		9145615C15EE5D7A00EF9FB7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615A15EE5D7A00EF9FB7 /* Default.png */; };
 		9145615D15EE5D7A00EF9FB7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615B15EE5D7A00EF9FB7 /* Default@2x.png */; };
+		9173D63C1647E085002EAE7F /* icon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 9173D63B1647E085002EAE7F /* icon144x144.png */; };
 		91D700EB1521D9700013AAAD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D700EA1521D9700013AAAD /* UIKit.framework */; };
 		91D700ED1521D9700013AAAD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D700EC1521D9700013AAAD /* Foundation.framework */; };
 		91D700EF1521D9700013AAAD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91D700EE1521D9700013AAAD /* CoreGraphics.framework */; };
@@ -92,6 +93,7 @@
 		9145615615EE5D1500EF9FB7 /* iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone@2x.png"; sourceTree = SOURCE_ROOT; };
 		9145615A15EE5D7A00EF9FB7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		9145615B15EE5D7A00EF9FB7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		9173D63B1647E085002EAE7F /* icon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144x144.png; sourceTree = SOURCE_ROOT; };
 		91D700E61521D9700013AAAD /* HAIDY².app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HAIDY².app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D700EA1521D9700013AAAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		91D700EC1521D9700013AAAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -252,6 +254,7 @@
 				9145610D15EE58BB00EF9FB7 /* icon57x57.png */,
 				9145610E15EE58BB00EF9FB7 /* icon72x72.png */,
 				9145610F15EE58BB00EF9FB7 /* icon114x114.png */,
+				9173D63B1647E085002EAE7F /* icon144x144.png */,
 			);
 			name = Icons;
 			path = "Haidy House";
@@ -349,6 +352,7 @@
 				9145615C15EE5D7A00EF9FB7 /* Default.png in Resources */,
 				9145615D15EE5D7A00EF9FB7 /* Default@2x.png in Resources */,
 				91EEA20416099D8D001339EF /* WaitingViewController.xib in Resources */,
+				9173D63C1647E085002EAE7F /* icon144x144.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
