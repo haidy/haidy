@@ -37,9 +37,11 @@
 		9145615915EE5D1500EF9FB7 /* iphone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615615EE5D1500EF9FB7 /* iphone@2x.png */; };
 		9145615C15EE5D7A00EF9FB7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615A15EE5D7A00EF9FB7 /* Default.png */; };
 		9145615D15EE5D7A00EF9FB7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615B15EE5D7A00EF9FB7 /* Default@2x.png */; };
-		9173D63C1647E085002EAE7F /* icon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 9173D63B1647E085002EAE7F /* icon144x144.png */; };
 		9167543B161DBF0E00114309 /* mic_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 9167543A161DBF0E00114309 /* mic_active.png */; };
+		9173D63C1647E085002EAE7F /* icon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 9173D63B1647E085002EAE7F /* icon144x144.png */; };
 		9176BC9E161DBD4A004C8F95 /* stopcall-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9176BC9D161DBD4A004C8F95 /* stopcall-red.png */; };
+		918AF1DE1649246300730871 /* libmediastreamer_base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 918AF1DC1649246300730871 /* libmediastreamer_base.a */; };
+		918AF1DF1649246300730871 /* libmediastreamer_voip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 918AF1DD1649246300730871 /* libmediastreamer_voip.a */; };
 		91B25D72161AC21E005777CF /* FastAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D52161AC21E005777CF /* FastAddressBook.m */; };
 		91B25D73161AC21E005777CF /* LinphoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D54161AC21E005777CF /* LinphoneManager.m */; };
 		91B25D74161AC21E005777CF /* UIBluetoothButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D58161AC21E005777CF /* UIBluetoothButton.m */; };
@@ -230,9 +232,11 @@
 		9145615615EE5D1500EF9FB7 /* iphone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iphone@2x.png"; sourceTree = SOURCE_ROOT; };
 		9145615A15EE5D7A00EF9FB7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		9145615B15EE5D7A00EF9FB7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
-		9173D63B1647E085002EAE7F /* icon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144x144.png; sourceTree = SOURCE_ROOT; };
 		9167543A161DBF0E00114309 /* mic_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mic_active.png; sourceTree = "<group>"; };
+		9173D63B1647E085002EAE7F /* icon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144x144.png; sourceTree = SOURCE_ROOT; };
 		9176BC9D161DBD4A004C8F95 /* stopcall-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stopcall-red.png"; sourceTree = "<group>"; };
+		918AF1DC1649246300730871 /* libmediastreamer_base.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmediastreamer_base.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/libmediastreamer_base.a"; sourceTree = "<group>"; };
+		918AF1DD1649246300730871 /* libmediastreamer_voip.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmediastreamer_voip.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/libmediastreamer_voip.a"; sourceTree = "<group>"; };
 		91B25D51161AC21E005777CF /* FastAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAddressBook.h; sourceTree = "<group>"; };
 		91B25D52161AC21E005777CF /* FastAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAddressBook.m; sourceTree = "<group>"; };
 		91B25D53161AC21E005777CF /* LinphoneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinphoneManager.h; sourceTree = "<group>"; };
@@ -467,6 +471,8 @@
 				91D700EB1521D9700013AAAD /* UIKit.framework in Frameworks */,
 				91D700ED1521D9700013AAAD /* Foundation.framework in Frameworks */,
 				91D700EF1521D9700013AAAD /* CoreGraphics.framework in Frameworks */,
+				918AF1DE1649246300730871 /* libmediastreamer_base.a in Frameworks */,
+				918AF1DF1649246300730871 /* libmediastreamer_voip.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,6 +697,8 @@
 		91CB5AA61606F87300F17FBD /* static libraries */ = {
 			isa = PBXGroup;
 			children = (
+				918AF1DC1649246300730871 /* libmediastreamer_base.a */,
+				918AF1DD1649246300730871 /* libmediastreamer_voip.a */,
 				91EEA241160C46E1001339EF /* libmsamr.a */,
 				91EEA242160C46E1001339EF /* libmsbcg729.a */,
 				91EEA243160C46E1001339EF /* libmsilbc.a */,
@@ -740,7 +748,7 @@
 		91D700E71521D9700013AAAD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				91D700E61521D9700013AAAD /* Haidy 2.app */,
+				91D700E61521D9700013AAAD /* HAIDY².app */,
 				91D7011B1521D9710013AAAD /* Haidy HouseTests.octest */,
 			);
 			name = Products;
@@ -1153,6 +1161,10 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "Haidy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
+				);
 				PRODUCT_NAME = "HAIDY²";
 				PROVISIONING_PROFILE = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
@@ -1284,10 +1296,10 @@
 					"$(ARCHS_STANDARD_32_BIT)",
 					armv6,
 				);
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Jan Koranda (FMMMVU74AP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Jan Koranda (FMMMVU74AP)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Haidy-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1316,12 +1328,12 @@
 					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib/mediastreamer/plugins",
 					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
 				);
-				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
-				USER_HEADER_SEARCH_PATHS = "/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin/** /Users/jankoranda/svn/linphone-iphone/submodules/linphone/coreapi";
-				VALID_ARCHS = armv7;
 				PRODUCT_NAME = "HAIDY²";
 				PROVISIONING_PROFILE = "2ADA436E-13AC-4AF4-B682-D39F904770A6";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2ADA436E-13AC-4AF4-B682-D39F904770A6";
+				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
+				USER_HEADER_SEARCH_PATHS = "/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/apple-darwin/** /Users/jankoranda/svn/linphone-iphone/submodules/linphone/coreapi";
+				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
