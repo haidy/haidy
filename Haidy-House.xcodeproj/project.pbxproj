@@ -41,7 +41,7 @@
 		9173D63C1647E085002EAE7F /* icon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 9173D63B1647E085002EAE7F /* icon144x144.png */; };
 		9176BC9E161DBD4A004C8F95 /* stopcall-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9176BC9D161DBD4A004C8F95 /* stopcall-red.png */; };
 		918AF1DE1649246300730871 /* libmediastreamer_base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 918AF1DC1649246300730871 /* libmediastreamer_base.a */; };
-		918AF1DF1649246300730871 /* libmediastreamer_voip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 918AF1DD1649246300730871 /* libmediastreamer_voip.a */; };
+		918AF1E21649413600730871 /* libmediastreamer_voip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 918AF1E11649413600730871 /* libmediastreamer_voip.a */; };
 		91B25D72161AC21E005777CF /* FastAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D52161AC21E005777CF /* FastAddressBook.m */; };
 		91B25D73161AC21E005777CF /* LinphoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D54161AC21E005777CF /* LinphoneManager.m */; };
 		91B25D74161AC21E005777CF /* UIBluetoothButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D58161AC21E005777CF /* UIBluetoothButton.m */; };
@@ -157,7 +157,6 @@
 		91EEA21C160C3540001339EF /* libgsm.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AAC1606FA8300F17FBD /* libgsm.a */; };
 		91EEA21D160C3540001339EF /* libilbc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AAD1606FA8300F17FBD /* libilbc.a */; };
 		91EEA21E160C3540001339EF /* liblinphone.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AAE1606FA8300F17FBD /* liblinphone.a */; };
-		91EEA21F160C3540001339EF /* libmediastreamer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AAF1606FA8300F17FBD /* libmediastreamer.a */; };
 		91EEA220160C3540001339EF /* libopencore-amrnb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AB01606FA8300F17FBD /* libopencore-amrnb.a */; };
 		91EEA221160C3540001339EF /* libopencore-amrwb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AB11606FA8300F17FBD /* libopencore-amrwb.a */; };
 		91EEA222160C3540001339EF /* libortp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB5AB21606FA8300F17FBD /* libortp.a */; };
@@ -236,7 +235,7 @@
 		9173D63B1647E085002EAE7F /* icon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144x144.png; sourceTree = SOURCE_ROOT; };
 		9176BC9D161DBD4A004C8F95 /* stopcall-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stopcall-red.png"; sourceTree = "<group>"; };
 		918AF1DC1649246300730871 /* libmediastreamer_base.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmediastreamer_base.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/libmediastreamer_base.a"; sourceTree = "<group>"; };
-		918AF1DD1649246300730871 /* libmediastreamer_voip.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmediastreamer_voip.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/libmediastreamer_voip.a"; sourceTree = "<group>"; };
+		918AF1E11649413600730871 /* libmediastreamer_voip.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmediastreamer_voip.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/libmediastreamer_voip.a"; sourceTree = "<group>"; };
 		91B25D51161AC21E005777CF /* FastAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAddressBook.h; sourceTree = "<group>"; };
 		91B25D52161AC21E005777CF /* FastAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAddressBook.m; sourceTree = "<group>"; };
 		91B25D53161AC21E005777CF /* LinphoneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinphoneManager.h; sourceTree = "<group>"; };
@@ -371,7 +370,6 @@
 		91CB5AAC1606FA8300F17FBD /* libgsm.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgsm.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/libgsm.a"; sourceTree = "<group>"; };
 		91CB5AAD1606FA8300F17FBD /* libilbc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libilbc.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/libilbc.a"; sourceTree = "<group>"; };
 		91CB5AAE1606FA8300F17FBD /* liblinphone.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblinphone.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/liblinphone.a"; sourceTree = "<group>"; };
-		91CB5AAF1606FA8300F17FBD /* libmediastreamer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmediastreamer.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/libmediastreamer.a"; sourceTree = "<group>"; };
 		91CB5AB01606FA8300F17FBD /* libopencore-amrnb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libopencore-amrnb.a"; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/libopencore-amrnb.a"; sourceTree = "<group>"; };
 		91CB5AB11606FA8300F17FBD /* libopencore-amrwb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libopencore-amrwb.a"; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/libopencore-amrwb.a"; sourceTree = "<group>"; };
 		91CB5AB21606FA8300F17FBD /* libortp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libortp.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/libortp.a"; sourceTree = "<group>"; };
@@ -437,7 +435,6 @@
 				91EEA21C160C3540001339EF /* libgsm.a in Frameworks */,
 				91EEA21D160C3540001339EF /* libilbc.a in Frameworks */,
 				91EEA21E160C3540001339EF /* liblinphone.a in Frameworks */,
-				91EEA21F160C3540001339EF /* libmediastreamer.a in Frameworks */,
 				91EEA220160C3540001339EF /* libopencore-amrnb.a in Frameworks */,
 				91EEA221160C3540001339EF /* libopencore-amrwb.a in Frameworks */,
 				91EEA222160C3540001339EF /* libortp.a in Frameworks */,
@@ -472,7 +469,7 @@
 				91D700ED1521D9700013AAAD /* Foundation.framework in Frameworks */,
 				91D700EF1521D9700013AAAD /* CoreGraphics.framework in Frameworks */,
 				918AF1DE1649246300730871 /* libmediastreamer_base.a in Frameworks */,
-				918AF1DF1649246300730871 /* libmediastreamer_voip.a in Frameworks */,
+				918AF1E21649413600730871 /* libmediastreamer_voip.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -697,8 +694,8 @@
 		91CB5AA61606F87300F17FBD /* static libraries */ = {
 			isa = PBXGroup;
 			children = (
+				918AF1E11649413600730871 /* libmediastreamer_voip.a */,
 				918AF1DC1649246300730871 /* libmediastreamer_base.a */,
-				918AF1DD1649246300730871 /* libmediastreamer_voip.a */,
 				91EEA241160C46E1001339EF /* libmsamr.a */,
 				91EEA242160C46E1001339EF /* libmsbcg729.a */,
 				91EEA243160C46E1001339EF /* libmsilbc.a */,
@@ -712,7 +709,6 @@
 				91CB5AAC1606FA8300F17FBD /* libgsm.a */,
 				91CB5AAD1606FA8300F17FBD /* libilbc.a */,
 				91CB5AAE1606FA8300F17FBD /* liblinphone.a */,
-				91CB5AAF1606FA8300F17FBD /* libmediastreamer.a */,
 				91CB5AB01606FA8300F17FBD /* libopencore-amrnb.a */,
 				91CB5AB11606FA8300F17FBD /* libopencore-amrwb.a */,
 				91CB5AB21606FA8300F17FBD /* libortp.a */,

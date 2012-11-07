@@ -177,6 +177,7 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     [self updateCallAndBackButtons];
+    [self.fContacTableViewController viewWillAppear:animated];
     [super viewWillAppear:animated];
 }
 

@@ -22,6 +22,7 @@
 
 @interface ContactTableViewController : UITableViewController {
 @private UITextField* fAdressField;
+    NSMutableArray *fSipContactsArray;
 }
 
 - (void) setAdressField:(UITextField*)aAdressField;

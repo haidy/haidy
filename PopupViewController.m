@@ -6,14 +6,13 @@
 //
 //
 
-
-#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
-
 #import "PopupViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ExNavigationData.h"
 #import "NavigationRoomViewController.h"
 #import "ExUtils.h"
+
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 
 @interface PopupViewController ()
@@ -96,57 +95,28 @@
 	return YES;
 }
 
+static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetFloorsInformation";
+
 - (void)loadJSONData{
     dispatch_async(kBgQueue, ^{
-        NSError* error = nil;
-        //test
+            
+        //očekáváme, že přijde pole, proto proměnná typu array
+        NSArray* mJsonArray = [ExUtils getJsonDataWithPage:fPageForFloorsData];
         
-        //jednodušší varianta, ale nejde ji parametrizovat
-        //NSData* data = [NSData dataWithContentsOfURL:
-                        //[NSURL URLWithString:@"http://sharpdev.asp2.cz/haidy/JSONDataExample.aspx"] options:NSDataReadingMappedIfSafe error:&error];
-                        //[NSURL URLWithString:@"http://192.168.40.91/HaidySmartClient/MujDum/GetInformationForMobile.aspx"]]; //options:NSDataReadingUncached error:&error];
-        
-        //varianta přes NSURLConnection, se synchroním dotazem, protože jsme již v asynchroním makru
-        //můžeme přidat hlavičky dotazu apod.
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[ExUtils constructUrlFromPage:@"GetInformationForMobile.aspx"]];
-        //Request
-        NSURLResponse *response = nil;
-        NSMutableData *data = (NSMutableData*)[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        
-        if (error != nil)
-            NSLog(@"Error loading data: %@", error);
-        
-        [self performSelectorOnMainThread:@selector(fetchedJSONData:) withObject:data waitUntilDone:YES];
-    });
+        [self performSelectorOnMainThread:@selector(fetchedJSONData:) withObject:mJsonArray waitUntilDone:YES];
+        });
 }
 
-- (void)fetchedJSONData:(NSData*)responseData{
-    NSLog(@"Response JSON data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
-    //parse out the json data
-    if (responseData == nil){
-        NSLog(@"Nepřišla data k navigaci po podlažích");
-        return;
-    }
-    
-    NSError* error = nil;
-    NSArray* mJsonArray = [NSJSONSerialization
-                          JSONObjectWithData:responseData //1
-                          
-                          options:kNilOptions
-                          error:&error];
-
-    if (error != nil){
-        NSLog(@"Error: %@", error);
-        return;
-    }
-    
-
+- (void)fetchedJSONData:(NSArray*)aFloorsArray{
+    if (aFloorsArray == nil)
+        return; //nemáme data, není co dělat
+    //else není potřeba, jde o zbytek kódu
     
     //připravíme si pole pro načtení dat a smažeme data stará
     NSMutableArray *mArrayFloors = (NSMutableArray*)[fNavigationArray objectAtIndex:1];
     [mArrayFloors removeAllObjects];
     
-    [self parseJsonArray:mJsonArray destinationArray:mArrayFloors];
+    [self parseJsonArray:aFloorsArray destinationArray:mArrayFloors];
              
     [self.tableView reloadData];
 }

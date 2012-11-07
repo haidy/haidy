@@ -19,6 +19,17 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "ContactTableViewController.h"
+#import "ExUtils.h"
+
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
+
+@interface ContactTableViewController ()
+- (void)loadJSONData;
+- (void)fetchedJSONData:(NSArray*)aSipArray;
+@end
+
+
 
 //Třída zajišťuje zobrazení tableview s kontakty. Po výběru kontaktu, kliknutím na řádek tabulky, se kontakt vyplní do adresního řádku a uživatel může vytočit hovor.
 @implementation ContactTableViewController
@@ -47,8 +58,54 @@
     [fPhoneViewController.fViewForContact addSubview:self.view];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self loadJSONData];
+}
+
 - (void)setAdressField:(UITextField*)aAdressField {
     fAdressField = aAdressField;
+}
+
+static NSString* fPageForSipData = @"GetInformationForMobile.aspx?Method=GetSipInformation";
+
+- (void)loadJSONData{
+    dispatch_async(kBgQueue, ^{
+        
+        //očekáváme, že přijde pole, proto proměnná typu array
+        NSArray* mJsonArray = [ExUtils getJsonDataWithPage:fPageForSipData];
+        
+        [self performSelectorOnMainThread:@selector(fetchedJSONData:) withObject:mJsonArray waitUntilDone:YES];
+    });
+}
+
+- (void)fetchedJSONData:(NSArray*)aSipArray{
+    if (aSipArray == nil)
+        return; //nemáme data, není co dělat
+                //else není potřeba, jde o zbytek kódu
+    
+    fSipContactsArray = [NSMutableArray arrayWithArray:aSipArray];
+    
+    NSString* localPhoneNumber = [[NSUserDefaults standardUserDefaults] stringForKey:@"username_preference"];
+    
+    if (localPhoneNumber != nil)
+    {
+        NSDictionary* mLocalDict = nil;
+        for (NSDictionary* mSipContact in fSipContactsArray) {
+            NSString* mSipContactPhoneNumber = [mSipContact objectForKey:@"PhoneNumber"];
+            if ([localPhoneNumber caseInsensitiveCompare:mSipContactPhoneNumber] == NSOrderedSame )
+            {
+                mLocalDict = mSipContact;
+                break;
+            }
+            //else není potřeba, hledáme konkrétní prvek
+        }
+        if (mLocalDict != nil)
+            [fSipContactsArray removeObject:mLocalDict];
+        //else - není co mazat
+    }
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - TableViewDataSource
@@ -60,19 +117,25 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 1;
+    if (fSipContactsArray != nil)
+        return fSipContactsArray.count;
+    else
+        return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    NSDictionary* mContact = fSipContactsArray[indexPath.row];
+    
+    NSString *CellIdentifier = [mContact objectForKey:@"ID"];
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    cell.textLabel.text = @"Testovací uživatel";
+    cell.textLabel.text = [mContact objectForKey:@"Name"];
     
     
     return cell;
@@ -84,7 +147,9 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    [fAdressField setText:@"haidy2"];
+    NSDictionary* mContact = fSipContactsArray[indexPath.row];
+    
+    [fAdressField setText:[mContact objectForKey:@"PhoneNumber"]];
 }
 
 @end

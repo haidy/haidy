@@ -6,6 +6,7 @@
 //
 //
 
+
 #import "ExUtils.h"
 
 @interface ExUtils()
@@ -32,6 +33,7 @@ static NSNumber* fInHome = nil;
 
 +(void) setInHome:(BOOL)aInHome{
     fInHome = [NSNumber numberWithBool:aInHome];
+    [[NSUserDefaults standardUserDefaults] setBool:aInHome forKey:@"ImHome"];
 }
 
 //První část url adresy. Může se změnit v závislosti na nastavení lokálního IIS
@@ -219,6 +221,48 @@ static NSString* fDefaultPartOneUrl = @"HAIdySmartClient";
 
 +(BOOL) runningOnIpad {
     return ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad);
+}
+
+///
+///Synchroně načte data z webové stránky. Data jsou převedena z JSON do dictionary. Předpokládá se, že bude metoda volána asynchroně, aby nebylo bržděno hlavní vlákno.
+///
++(id) getJsonDataWithPage:(NSString*)aPage{
+
+        NSError* error = nil;
+        //jednodušší varianta, ale nejde ji parametrizovat
+        //NSData* data = [NSData dataWithContentsOfURL:
+        //[NSURL URLWithString:@"http://sharpdev.asp2.cz/haidy/JSONDataExample.aspx"] options:NSDataReadingMappedIfSafe error:&error];
+        //[NSURL URLWithString:@"http://192.168.40.91/HaidySmartClient/MujDum/GetInformationForMobile.aspx"]]; //options:NSDataReadingUncached error:&error];
+        
+        //varianta přes NSURLConnection, se synchroním dotazem, protože jsme již v asynchroním makru
+        //můžeme přidat hlavičky dotazu apod.
+        // NSMutableURLRequest *mRequest = [NSMutableURLRequest requestWithURL:[ExUtils constructUrlFromPage:aPage]];
+    NSMutableURLRequest *mRequest  = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://sharpdev.asp2.cz/haidy/%@", aPage]]];
+    
+        NSURLResponse *mResponse = nil;
+        NSMutableData *mResponseData = (NSMutableData*)[NSURLConnection sendSynchronousRequest:mRequest returningResponse:&mResponse error:&error];
+        
+        if (error != nil)
+            NSLog(@"Error loading data from method getJsonDataFromPage: %@", error);
+    
+        if (mResponseData == nil){
+            NSLog(@"Volaná stránka %@ nevrátila data", aPage);
+            return nil;
+        }
+        else
+            NSLog(@"Stránka %@ vrátila JSON data: %@", aPage, [[NSString alloc] initWithData:mResponseData encoding:NSUTF8StringEncoding]);
+    
+    
+        //JSON data naparsujeme   
+        error = nil;
+        id mJsonResult = [NSJSONSerialization JSONObjectWithData:mResponseData options:kNilOptions error:&error];
+        
+        if (error != nil){
+            NSLog(@"Chyba při parsování JSON dat: %@", error);
+            return nil;
+        }
+ 
+    return mJsonResult;
 }
 
 @end
