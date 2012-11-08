@@ -60,28 +60,28 @@
     LinphoneProxyConfig* config;
     linphone_core_get_default_proxy([LinphoneManager getLc], &config);
     
-    LinphoneRegistrationState s;
+    LinphoneRegistrationState mRegistrationState;
     NSString* m = nil;
     
     if (config == NULL) {
-        s = LinphoneRegistrationNone;
+        mRegistrationState = LinphoneRegistrationNone;
         m = linphone_core_is_network_reachable([LinphoneManager getLc]) ? NSLocalizedString(@"No SIP account configured", nil) : NSLocalizedString(@"Network down", nil);
     } else {
-        s = linphone_proxy_config_get_state(config);
+        mRegistrationState = linphone_proxy_config_get_state(config);
     
-        switch (s) {
-            case LinphoneRegistrationOk: m = @"Registered"; break;
+        switch (mRegistrationState) {
+            case LinphoneRegistrationOk: m =  NSLocalizedString(@"Registered", nil); break;
             case LinphoneRegistrationNone: 
 			case LinphoneRegistrationCleared:
-				m=@"Not registered"; break;
-            case LinphoneRegistrationFailed: m = @"Registration failed"; break;
+				m= NSLocalizedString(@"Not registered", nil); break;
+            case LinphoneRegistrationFailed: m = NSLocalizedString(@"Registration failed", nil); break;
             case LinphoneRegistrationProgress: m = @"Registration in progress"; break;
             //case LinphoneRegistrationCleared: m= @"No SIP account"; break;
             default: break;
         }
     }
     
-    enableCallButtons = [statusSubViewController updateWithRegistrationState:s message:m];
+    enableCallButtons = [statusSubViewController updateWithRegistrationState:mRegistrationState message:m];
     
     [callLarge setEnabled:enableCallButtons];
     [callShort setEnabled:enableCallButtons];   
@@ -152,6 +152,14 @@
     }
     
     [self updateCallAndBackButtons];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    if (UIInterfaceOrientationIsPortrait(interfaceOrientation))
+        return YES;
+    else
+        return NO;
 }
 
 - (void)didReceiveMemoryWarning {

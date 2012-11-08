@@ -17,12 +17,15 @@
 "Button Cancel" = "Cancel";
 "PopupView Section 0" = "Basic items";
 "PopupView Section 1" = "Floors map";
+"PopupView Section 2" = "More";
 "PopupView Section 0 Row 0" ="Basic";
 "PopupView Section 0 Row 1" ="Audio";
 "PopupView Section 0 Row 2" ="SIP";
 "Control" = "Control";
 "Rooms" = "Rooms";
 "Waiting" = "Please wait ...";
+"I'm home" = "I'm home";
+"About" = "About";
 
 /*
  
@@ -95,6 +98,9 @@
 
 /* No comment provided by engineer. */
 "Registration failure" = "Registration failure";
+"Registered" = "Registered";
+"Not registered" = "Not registered";
+"No SIP account configured" = "No SIP account configured";
 
 /* No comment provided by engineer. */
 "SIP server unreachable" = "SIP server unreachable";

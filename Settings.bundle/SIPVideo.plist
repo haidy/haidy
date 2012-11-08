@@ -61,5 +61,7 @@
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
 	</array>
+	<key>StringTable</key>
+	<string>Root</string>
 </dict>
 </plist>

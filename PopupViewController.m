@@ -11,6 +11,7 @@
 #import "ExNavigationData.h"
 #import "NavigationRoomViewController.h"
 #import "ExUtils.h"
+#import "SwitchCell.h"
 
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
@@ -160,34 +161,100 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return [fNavigationArray count];
+    return [fNavigationArray count] + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [(NSMutableArray*)[fNavigationArray objectAtIndex:section] count];
+    if (section < 2)
+        return [(NSMutableArray*)[fNavigationArray objectAtIndex:section] count];
+    else //sekci 3 kompletně definujeme ručně
+        return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UITableViewCell *cell = nil;
+
+    NSMutableArray *mSectionArray = nil;
+    ExNavigationData *mControlClass = nil;
     
-    if (cell == nil){
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    switch(indexPath.section){
+        case 0:
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil){
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            
+            //získáme pole sekce
+            mSectionArray = [fNavigationArray objectAtIndex:indexPath.section];
+            //získáme třídu, ze které si vytáhneme potřebné informace
+            mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
+            cell.textLabel.text = [mControlClass title];
+        }
+            break;
+        case 1:
+        {
+            cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            
+            if (cell == nil){
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+            }
+            
+            //získáme pole sekce
+            mSectionArray = [fNavigationArray objectAtIndex:indexPath.section];
+            //získáme třídu, ze které si vytáhneme potřebné informace
+            mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
+            cell.textLabel.text = [mControlClass title];
+            
+        
+            if (mControlClass.childs != nil && mControlClass.childs.count > 0 ) {
+                cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+            }
+        }
+            break;
+        case 2:
+        {
+            switch(indexPath.row)
+            {
+                case 0:
+                {
+                    static NSString *mSwitchCellIndetifier = @"SwitchCell";
+                    cell = [tableView dequeueReusableCellWithIdentifier:mSwitchCellIndetifier];
+                    if (cell == nil){
+                        UINib *mTmpNib = [UINib nibWithNibName:@"CellDefinitions" bundle:nil];
+                        [tableView registerNib:mTmpNib forCellReuseIdentifier:mSwitchCellIndetifier];
+                       cell = [tableView dequeueReusableCellWithIdentifier:mSwitchCellIndetifier];
+                    }
+                    SwitchCell *mSwitchCell = (SwitchCell*)cell;
+                    mSwitchCell.textLabel.text = NSLocalizedString(@"I'm home",nil);
+                    mSwitchCell.valueSwitch.selected = [ExUtils inHome];
+                    [mSwitchCell.valueSwitch addTarget:self action:@selector(inHomeChanged:) forControlEvents:UIControlEventValueChanged];
+                }
+                    break;
+                case 1:
+                {
+                    cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+                    
+                    if (cell == nil){
+                        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                    }
+                    cell.textLabel.text = NSLocalizedString(@"About", nil);
+                    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+                }
+                    break;
+            }
+            
+        }
+            break;
+        default:
+            //Přišla nám neznámá sekce TODO: dododělat exception nebo tak něco
+            break;
     }
-    
-    //získáme pole sekce
-    NSMutableArray *mSectionArray = [fNavigationArray objectAtIndex:indexPath.section];
-    //získáme třídu, ze které si vytáhneme potřebné informace
-    ExNavigationData *mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
-    cell.textLabel.text = [mControlClass title];
-    
-    if (mControlClass.childs != nil && mControlClass.childs.count > 0 ) {
-        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-    }
-    
+
     return cell;
 }
 
@@ -199,30 +266,36 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
 
 #pragma mark - Table view delegate
 
+//omezení selekce/výběru řádků
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 2 && indexPath.row == 0)
+        return nil;
+    else
+        return indexPath;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[DetailViewController alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
-    
-    //získáme pole sekce
-    NSMutableArray *mSectionArray = [fNavigationArray objectAtIndex:indexPath.section];
-    //získáme třídu, ze které si vytáhneme potřebné informace
-    ExNavigationData *mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
-    NSLog(@"Selected url Popuview: %@", mControlClass.url);
+    if (indexPath.section < 2)
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        //získáme pole sekce
+        NSMutableArray *mSectionArray = [fNavigationArray objectAtIndex:indexPath.section];
+        //získáme třídu, ze které si vytáhneme potřebné informace
+        ExNavigationData *mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
+        NSLog(@"Selected url Popuview: %@", mControlClass.url);
 
-    //uživatel si vybral co chce zobrazit a tak nastavíme URL a skryjeme popup
-    if (mControlClass.url != nil)
-        [delegate selectWebPage:mControlClass.url];
-    else
-        [delegate selectSip];
-    
+        //uživatel si vybral co chce zobrazit a tak nastavíme URL a skryjeme popup
+        if (mControlClass.url != nil)
+            [delegate selectWebPage:mControlClass.url];
+        else
+            [delegate selectSip];
+    }
+    else if (indexPath.section == 2)
+    {
+        
+    }
     //[delegate hidePopupView] - nyní se volá z webview, jako následek výběru stránky;
     
 }
@@ -287,5 +360,9 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
    
 }
 
+#pragma Hook Events
+- (void)inHomeChanged:(UISwitch*)aSender{
+    [ExUtils setInHome:aSender.selected];
+}
 
 @end

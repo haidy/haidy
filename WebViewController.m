@@ -412,6 +412,12 @@
     [self showSipController:NO];
 }
 
+-(void) selectAbout{
+    //[]
+    //[self.navigationController pushViewController: animated:YES];
+    //[self.navigationController setNavigationBarHidden:NO];
+}
+
 #pragma mark - Implement LinphoneUICallDelegate - most methods only recal to fPhoneViewController
 
 -(void) displayDialerFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {

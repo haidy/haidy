@@ -14,6 +14,7 @@
 @required
 - (void)selectWebPage:(NSString*)aPage;
 - (void)selectSip;
+- (void)selectAbout;
 - (void)hidePopupView;
 @end
 

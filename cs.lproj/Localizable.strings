@@ -17,13 +17,15 @@
 "Button Cancel" = "Zrušit";
 "PopupView Section 0" = "Základní položky";
 "PopupView Section 1" = "Mapa podlaží";
+"PopupView Section 2" = "Další";
 "PopupView Section 0 Row 0" ="Základní";
 "PopupView Section 0 Row 1" ="Hudba";
 "PopupView Section 0 Row 2" ="SIP";
 "Control" = "Ovládání";
 "Rooms" = "Seznam místností";
 "Waiting" = "Čekejte prosím ...";
-
+"I'm home" = "Jsem doma";
+"About" = "O aplikaci";
 
 /*
  
@@ -95,7 +97,10 @@
 "Please make sure your device is connected to the internet and double check your SIP account configuration in the settings." = "Zkontrolujte prosím, zda je vaše zařízení připojeno k internetu, a dvakrát si ověřte konfiguraci účtu SIP v nastaveních.";
 
 /* No comment provided by engineer. */
-"Registration failure" = "Registrace se nezdařila";
+"Registration failure" = "Přihlášení se nezdařilo";
+"Registered" = "Přihlášen";
+"Not registered" = "Nepřihlášen";
+"No SIP account configured" = "Není nastavený SIP účet";
 
 /* No comment provided by engineer. */
 "SIP server unreachable" = "Server SIP je nedostupný";
