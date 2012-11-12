@@ -389,7 +389,7 @@
 		91CB5AD51606FAB000F17FBD /* libc++.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.1.dylib"; path = "usr/lib/libc++.1.dylib"; sourceTree = SDKROOT; };
 		91CB5AD71606FAC800F17FBD /* libstdc++.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.dylib"; path = "usr/lib/libstdc++.6.dylib"; sourceTree = SDKROOT; };
 		91CB5ADC1606FC5900F17FBD /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
-		91D700E61521D9700013AAAD /* HAIDY².app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HAIDY².app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		91D700E61521D9700013AAAD /* HAIDY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HAIDY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D700EA1521D9700013AAAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		91D700EC1521D9700013AAAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		91D700EE1521D9700013AAAD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -749,7 +749,7 @@
 		91D700E71521D9700013AAAD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				91D700E61521D9700013AAAD /* HAIDY².app */,
+				91D700E61521D9700013AAAD /* HAIDY.app */,
 				91D7011B1521D9710013AAAD /* Haidy HouseTests.octest */,
 			);
 			name = Products;
@@ -862,7 +862,7 @@
 			);
 			name = "Haidy House";
 			productName = "Haidy House";
-			productReference = 91D700E61521D9700013AAAD /* HAIDY².app */;
+			productReference = 91D700E61521D9700013AAAD /* HAIDY.app */;
 			productType = "com.apple.product-type.application";
 		};
 		91D7011A1521D9710013AAAD /* Haidy HouseTests */ = {
@@ -1171,7 +1171,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
 				);
-				PRODUCT_NAME = "HAIDY²";
+				PRODUCT_NAME = HAIDY;
 				PROVISIONING_PROFILE = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
 				WRAPPER_EXTENSION = app;
@@ -1284,7 +1284,7 @@
 					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib/mediastreamer/plugins",
 					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
 				);
-				PRODUCT_NAME = "HAIDY²";
+				PRODUCT_NAME = HAIDY;
 				PROVISIONING_PROFILE = "EC064810-D687-45DD-8596-9D07C4358150";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC064810-D687-45DD-8596-9D07C4358150";
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
@@ -1334,7 +1334,7 @@
 					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib/mediastreamer/plugins",
 					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
 				);
-				PRODUCT_NAME = "HAIDY²";
+				PRODUCT_NAME = HAIDY;
 				PROVISIONING_PROFILE = "2ADA436E-13AC-4AF4-B682-D39F904770A6";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2ADA436E-13AC-4AF4-B682-D39F904770A6";
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
