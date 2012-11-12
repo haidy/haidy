@@ -109,13 +109,14 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
 }
 
 - (void)fetchedJSONData:(NSArray*)aFloorsArray{
+    //připravíme si pole pro načtení dat a smažeme data stará
+    //data smažeme, i když nic nepřijde, protože je možné, že došlo k odhlášení
+    NSMutableArray *mArrayFloors = (NSMutableArray*)[fNavigationArray objectAtIndex:1];
+    [mArrayFloors removeAllObjects];
+    
     if (aFloorsArray == nil)
         return; //nemáme data, není co dělat
     //else není potřeba, jde o zbytek kódu
-    
-    //připravíme si pole pro načtení dat a smažeme data stará
-    NSMutableArray *mArrayFloors = (NSMutableArray*)[fNavigationArray objectAtIndex:1];
-    [mArrayFloors removeAllObjects];
     
     [self parseJsonArray:aFloorsArray destinationArray:mArrayFloors];
              

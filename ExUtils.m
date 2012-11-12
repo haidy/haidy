@@ -236,8 +236,8 @@ static NSString* fDefaultPartOneUrl = @"HAIdySmartClient";
         
         //varianta přes NSURLConnection, se synchroním dotazem, protože jsme již v asynchroním makru
         //můžeme přidat hlavičky dotazu apod.
-        // NSMutableURLRequest *mRequest = [NSMutableURLRequest requestWithURL:[ExUtils constructUrlFromPage:aPage]];
-    NSMutableURLRequest *mRequest  = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://sharpdev.asp2.cz/haidy/%@", aPage]]];
+        NSMutableURLRequest *mRequest = [NSMutableURLRequest requestWithURL:[ExUtils constructUrlFromPage:aPage]];
+        //NSMutableURLRequest *mRequest  = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://sharpdev.asp2.cz/haidy/%@", aPage]]];
     
         NSURLResponse *mResponse = nil;
         NSMutableData *mResponseData = (NSMutableData*)[NSURLConnection sendSynchronousRequest:mRequest returningResponse:&mResponse error:&error];
@@ -245,7 +245,7 @@ static NSString* fDefaultPartOneUrl = @"HAIdySmartClient";
         if (error != nil)
             NSLog(@"Error loading data from method getJsonDataFromPage: %@", error);
     
-        if (mResponseData == nil){
+        if (mResponseData.length == 0){
             NSLog(@"Volaná stránka %@ nevrátila data", aPage);
             return nil;
         }
