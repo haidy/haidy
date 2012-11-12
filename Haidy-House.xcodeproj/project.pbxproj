@@ -94,7 +94,7 @@
 		9145615A15EE5D7A00EF9FB7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		9145615B15EE5D7A00EF9FB7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
 		9173D63B1647E085002EAE7F /* icon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144x144.png; sourceTree = SOURCE_ROOT; };
-		91D700E61521D9700013AAAD /* HAIDY².app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HAIDY².app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		91D700E61521D9700013AAAD /* HAIDY.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HAIDY.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		91D700EA1521D9700013AAAD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		91D700EC1521D9700013AAAD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		91D700EE1521D9700013AAAD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -168,7 +168,7 @@
 		91D700E71521D9700013AAAD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				91D700E61521D9700013AAAD /* HAIDY².app */,
+				91D700E61521D9700013AAAD /* HAIDY.app */,
 				91D7011B1521D9710013AAAD /* Haidy HouseTests.octest */,
 			);
 			name = Products;
@@ -277,7 +277,7 @@
 			);
 			name = "Haidy House";
 			productName = "Haidy House";
-			productReference = 91D700E61521D9700013AAAD /* HAIDY².app */;
+			productReference = 91D700E61521D9700013AAAD /* HAIDY.app */;
 			productType = "com.apple.product-type.application";
 		};
 		91D7011A1521D9710013AAAD /* Haidy HouseTests */ = {
@@ -490,7 +490,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "Haidy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PRODUCT_NAME = "HAIDY²";
+				PRODUCT_NAME = HAIDY;
 				PROVISIONING_PROFILE = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
 				WRAPPER_EXTENSION = app;
@@ -580,7 +580,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "Haidy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PRODUCT_NAME = "HAIDY²";
+				PRODUCT_NAME = HAIDY;
 				PROVISIONING_PROFILE = "EC064810-D687-45DD-8596-9D07C4358150";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "EC064810-D687-45DD-8596-9D07C4358150";
 				WRAPPER_EXTENSION = app;
@@ -597,7 +597,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "Haidy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
-				PRODUCT_NAME = "HAIDY²";
+				PRODUCT_NAME = HAIDY;
 				PROVISIONING_PROFILE = "2ADA436E-13AC-4AF4-B682-D39F904770A6";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2ADA436E-13AC-4AF4-B682-D39F904770A6";
 				WRAPPER_EXTENSION = app;

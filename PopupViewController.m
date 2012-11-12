@@ -98,10 +98,13 @@
         //varianta přes NSURLConnection, se synchroním dotazem, protože jsme již v asynchroním makru
         //můžeme přidat hlavičky dotazu apod.
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[ExUtils constructUrlFromPage:@"GetInformationForMobile.aspx"]];
-        //Request
-        NSURLResponse *response = nil;
-        NSMutableData *data = (NSMutableData*)[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        [ExUtils setRequiredCookies:request];
         
+        NSURLResponse *response = nil;
+        NSMutableData *data = nil;
+        data = (NSMutableData*)[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        //ignorujeme chybu, kdy nedorazí data. Data nemusí dorazit kvůli neprovedené autentizaci
         if (error != nil)
             NSLog(@"Error loading data: %@", error);
         
@@ -111,8 +114,13 @@
 
 - (void)fetchedJSONData:(NSData*)responseData{
     NSLog(@"Response JSON data: %@", [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding]);
+    
+    //připravíme si pole pro načtení dat a smažeme data stará
+    NSMutableArray *mArrayFloors = (NSMutableArray*)[fNavigationArray objectAtIndex:1];
+    [mArrayFloors removeAllObjects];
+    
     //parse out the json data
-    if (responseData == nil){
+    if (responseData.length == 0 ){
         NSLog(@"Nepřišla data k navigaci po podlažích");
         return;
     }
@@ -128,12 +136,6 @@
         NSLog(@"Error: %@", error);
         return;
     }
-    
-
-    
-    //připravíme si pole pro načtení dat a smažeme data stará
-    NSMutableArray *mArrayFloors = (NSMutableArray*)[fNavigationArray objectAtIndex:1];
-    [mArrayFloors removeAllObjects];
     
     [self parseJsonArray:mJsonArray destinationArray:mArrayFloors];
              
