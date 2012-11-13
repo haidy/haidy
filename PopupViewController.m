@@ -122,6 +122,7 @@
     //parse out the json data
     if (responseData.length == 0 ){
         NSLog(@"Nepřišla data k navigaci po podlažích");
+        [self.tableView reloadData];
         return;
     }
     
@@ -163,15 +164,18 @@
 
 #pragma mark - Table view data source
 
+// Return the number of sections.
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    return [fNavigationArray count];
+    if ([(NSMutableArray*)[fNavigationArray objectAtIndex:1] count] !=0 )
+        return [fNavigationArray count];
+    else
+        return [fNavigationArray count] - 1;
 }
 
+// Return the number of rows in the section.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return [(NSMutableArray*)[fNavigationArray objectAtIndex:section] count];
 }
 
