@@ -111,12 +111,31 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
 - (void)fetchedJSONData:(NSArray*)aFloorsArray{
     //připravíme si pole pro načtení dat a smažeme data stará
     //data smažeme, i když nic nepřijde, protože je možné, že došlo k odhlášení
-    NSMutableArray *mArrayFloors = (NSMutableArray*)[fNavigationArray objectAtIndex:1];
-    [mArrayFloors removeAllObjects];
     
     if (aFloorsArray == nil)
-        return; //nemáme data, není co dělat
+    {
+        //nemáme data, pokud již byly načteny informace o patrech, tak je smažeme a zobrazíme zneplatníme data tabulky
+        if ([fNavigationArray count] == 2)
+            [fNavigationArray removeObjectAtIndex:1];
+        //else data nebyla načtena, nic nedělám
+        [self.tableView reloadData];
+        return; 
+    }
     //else není potřeba, jde o zbytek kódu
+    
+    NSMutableArray *mArrayFloors = nil;
+    if ([fNavigationArray count] == 2)
+    {
+        //existuje pole pater, tak jen promažeme jeho obsah
+        mArrayFloors = (NSMutableArray*)[fNavigationArray objectAtIndex:1];
+        [mArrayFloors removeAllObjects];
+    }
+    else
+    {
+        //pole pater neexistuje, tak ho založíme
+        mArrayFloors = [NSMutableArray arrayWithCapacity:0];
+        [fNavigationArray addObject:mArrayFloors];
+    }
     
     [self parseJsonArray:aFloorsArray destinationArray:mArrayFloors];
              
@@ -153,8 +172,6 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
         [mFirstSection addObject:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 2", @"Sip") Url:nil Childs:nil]];
     //přidáme první sekci do seznamu
     [fNavigationArray addObject:mFirstSection];
-    //pak přidáme druhou sekci, která bude zatím prázdná
-    [fNavigationArray addObject:[NSMutableArray arrayWithObjects:nil ]];
 }
 
 #pragma mark - Table view data source
@@ -168,9 +185,9 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if (section < 2)
+    if (section < [fNavigationArray count])
         return [(NSMutableArray*)[fNavigationArray objectAtIndex:section] count];
-    else //sekci 3 kompletně definujeme ručně
+    else //poslední sekci definujeme kompletně ručně
         return 2;
 }
 
@@ -182,9 +199,7 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
     NSMutableArray *mSectionArray = nil;
     ExNavigationData *mControlClass = nil;
     
-    switch(indexPath.section){
-        case 0:
-        {
+    if (indexPath.section == 0) {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (cell == nil){
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -195,10 +210,9 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
             //získáme třídu, ze které si vytáhneme potřebné informace
             mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
             cell.textLabel.text = [mControlClass title];
-        }
-            break;
-        case 1:
-        {
+    }
+    else if (indexPath.section == 1 && [fNavigationArray count] == 2)
+    {
             cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             
             if (cell == nil){
@@ -215,10 +229,8 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
             if (mControlClass.childs != nil && mControlClass.childs.count > 0 ) {
                 cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
             }
-        }
-            break;
-        case 2:
-        {
+    }
+    else{
             switch(indexPath.row)
             {
                 case 0:
@@ -245,22 +257,20 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
                     }
                     cell.textLabel.text = NSLocalizedString(@"About", nil);
                     cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+                    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
                 }
                     break;
             }
-            
-        }
-            break;
-        default:
-            //Přišla nám neznámá sekce TODO: dododělat exception nebo tak něco
-            break;
     }
 
     return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSString *mLocalizedStringKey = [NSString stringWithFormat:@"PopupView Section %i", section];
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)aSection {
+    if ([fNavigationArray count] != 2 && aSection == 1)
+        aSection = 2;
+    
+    NSString *mLocalizedStringKey = [NSString stringWithFormat:@"PopupView Section %i", aSection];
     return NSLocalizedString(mLocalizedStringKey, @"Název sekce");
 }
 
