@@ -67,7 +67,7 @@ NSTimer *callQualityRefresher;
 }
 
 -(void) backButtonPressed {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidUnload

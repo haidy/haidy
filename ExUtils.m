@@ -20,20 +20,23 @@
 
 @implementation ExUtils
 
-
-static NSNumber* fInHome = nil;
-
-
 +(BOOL) inHome{
-
-    fInHome = [NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:@"ImHome"]];
-    NSLog (@"Loaded ImHome: %@", [[NSUserDefaults standardUserDefaults] boolForKey:@"ImHome"] == YES ? @"true" : @"false");
-    return [fInHome boolValue];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"ImHome"];
 }
 
 +(void) setInHome:(BOOL)aInHome{
-    fInHome = [NSNumber numberWithBool:aInHome];
     [[NSUserDefaults standardUserDefaults] setBool:aInHome forKey:@"ImHome"];
+    
+    NSLog (@"Set ImHome: %@", [[NSUserDefaults standardUserDefaults] boolForKey:@"ImHome"] == YES ? @"true" : @"false");
+}
+
++(BOOL) useSip{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"];
+}
+
++(void) setUseSip:(BOOL)aUseSip{
+    [[NSUserDefaults standardUserDefaults] setBool:aUseSip forKey:@"UseSIP"];
+    NSLog (@"Set UseSIP: %@", [[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"] == YES ? @"true" : @"false");
 }
 
 //První část url adresy. Může se změnit v závislosti na nastavení lokálního IIS

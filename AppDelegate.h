@@ -21,6 +21,7 @@
 -(void) registerDefaultsFromSettingsBundle;
 
 //sip methods
--(void) startSIPApplication;
+-(void) startSipApplication;
+-(void) endSipApplication;
 
 @end

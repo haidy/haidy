@@ -17,10 +17,13 @@
 +(NSURL*) constructUrlFromPage:(NSString*)aPage;
 +(BOOL) inHome;
 +(void) setInHome:(BOOL)aInHome;
++(BOOL) useSip;
++(void) setUseSip:(BOOL)aUseSip;
 +(NSURL*) blankPage;
 +(BOOL) setRequiredRequestParams:(NSURLRequest*)aRequest;
 +(void) setRequiredCookies:(NSURLRequest*)aRequest;
 +(void) handlingErrorCode102WithWebKitErrorDomain:(NSString*)aLoadedUrl;
 +(BOOL) runningOnIpad;
 +(id) getJsonDataWithPage:(NSString*)aPage;
+
 @end

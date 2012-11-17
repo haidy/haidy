@@ -65,6 +65,8 @@
 			<string>HomeUrl</string>
 			<key>DefaultValue</key>
 			<string>demo.haidy.cz</string>
+			<key>KeyboardType</key>
+			<string>URL</string>
 		</dict>
 		<dict>
 			<key>Type</key>
@@ -91,6 +93,8 @@
 			<string>RemotelyUrl</string>
 			<key>DefaultValue</key>
 			<string>demo.haidy.cz</string>
+			<key>KeyboardType</key>
+			<string>URL</string>
 		</dict>
 		<dict>
 			<key>Type</key>

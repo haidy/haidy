@@ -25,6 +25,7 @@
 	UITextField* mAddress;    
 }
 -(void) initWithAddress:(UITextField*) address;
+-(void) touchUp:(id) sender;
 
 +(void) enableTransforMode:(BOOL) enable;
 +(BOOL) transforModeEnabled;

@@ -19,13 +19,14 @@
 @interface PopupViewController ()
 
 -(void)parseJsonArray:(NSArray*)aJsonArray destinationArray:(NSMutableArray*)aDestinationArray;
--(void)initDataForMenu;
+-(BOOL)initDataForMenu;
 @end
 
 @implementation PopupViewController
 
 @synthesize delegate, popoverController, navigationRoomController;
 
+static ExNavigationData *fSipNavigationData;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -45,8 +46,8 @@
         self.popoverController.delegate = self;
     }
     
-    isUseSip = [[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"];
-    
+    fSipNavigationData = [[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 2", @"Sip") Url:nil Childs:nil];
+
     [self initDataForMenu];
     
     return self;
@@ -78,12 +79,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    if (isUseSip != [[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"])
-    {
-        isUseSip = [[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"];
-        [self initDataForMenu];
+    if ([self initDataForMenu])
         [self.tableView reloadData];
-    }
     //else se nic neděje, 
 }
 
@@ -162,16 +159,37 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
 }
 
 //Inicializuje pole fNavigationArray, ze kterého se následně zkonstruje zobrazená tabulka
--(void)initDataForMenu{
-    fNavigationArray = nil;
-    fNavigationArray = [NSMutableArray arrayWithCapacity:2];
-    //nejprve vytvoříme první sekci
-    NSMutableArray *mFirstSection = [NSMutableArray arrayWithObjects:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 0", @"Základní položky") Url:@"default.aspx" Childs:nil], [[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 1", @"Ovládání hudby") Url:@"multiroomaudio.aspx" Childs:nil], nil ];
+-(BOOL)initDataForMenu{
+    BOOL mChanged = NO;
+    if (fNavigationArray == nil)
+    {
+        fNavigationArray = [NSMutableArray arrayWithCapacity:2];
+        //nejprve vytvoříme první sekci
+        [fNavigationArray addObject:[NSMutableArray arrayWithObjects:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 0", @"Základní položky") Url:@"default.aspx" Childs:nil], [[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 1", @"Ovládání hudby") Url:@"multiroomaudio.aspx" Childs:nil], nil ]];
+        mChanged = YES;
+    }
+    NSMutableArray *mFirstSection = [fNavigationArray objectAtIndex:0];
     
-    if (isUseSip)
-        [mFirstSection addObject:[[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 2", @"Sip") Url:nil Childs:nil]];
-    //přidáme první sekci do seznamu
-    [fNavigationArray addObject:mFirstSection];
+    if ([ExUtils useSip])
+    {
+        if (![mFirstSection containsObject:fSipNavigationData])
+        {
+            [mFirstSection addObject:fSipNavigationData];
+            mChanged = true;
+        }
+        //else - objekt je nic neřešíme
+    }
+    else
+    {
+        if ([mFirstSection containsObject:fSipNavigationData])
+        {
+            [mFirstSection removeObject:fSipNavigationData];
+            mChanged = true;
+        }
+        //else - objekt není nic neřešíme
+    }
+    
+    return mChanged;
 }
 
 #pragma mark - Table view data source
@@ -188,7 +206,7 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
     if (section < [fNavigationArray count])
         return [(NSMutableArray*)[fNavigationArray objectAtIndex:section] count];
     else //poslední sekci definujeme kompletně ručně
-        return 2;
+        return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -244,11 +262,26 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
                     }
                     SwitchCell *mSwitchCell = (SwitchCell*)cell;
                     mSwitchCell.textLabel.text = NSLocalizedString(@"I'm home",nil);
-                    mSwitchCell.valueSwitch.selected = [ExUtils inHome];
+                    mSwitchCell.valueSwitch.on = [ExUtils inHome];
                     [mSwitchCell.valueSwitch addTarget:self action:@selector(inHomeChanged:) forControlEvents:UIControlEventValueChanged];
                 }
                     break;
                 case 1:
+                {
+                    static NSString *mSwitchCellIndetifier = @"SwitchCell";
+                    cell = [tableView dequeueReusableCellWithIdentifier:mSwitchCellIndetifier];
+                    if (cell == nil){
+                        UINib *mTmpNib = [UINib nibWithNibName:@"CellDefinitions" bundle:nil];
+                        [tableView registerNib:mTmpNib forCellReuseIdentifier:mSwitchCellIndetifier];
+                        cell = [tableView dequeueReusableCellWithIdentifier:mSwitchCellIndetifier];
+                    }
+                    SwitchCell *mSwitchCell = (SwitchCell*)cell;
+                    mSwitchCell.textLabel.text = NSLocalizedString(@"UseSIP",nil);
+                    mSwitchCell.valueSwitch.on = [ExUtils useSip];
+                    [mSwitchCell.valueSwitch addTarget:self action:@selector(useSipChanged:) forControlEvents:UIControlEventValueChanged];
+                }
+                    break;
+                case 2:
                 {
                     cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
                     
@@ -373,7 +406,13 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
 
 #pragma Hook Events
 - (void)inHomeChanged:(UISwitch*)aSender{
-    [ExUtils setInHome:aSender.selected];
+    [ExUtils setInHome:aSender.isOn];
+}
+
+- (void)useSipChanged:(UISwitch*)aSender{
+    [ExUtils setUseSip:aSender.isOn];
+    if ([self initDataForMenu])
+        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 @end

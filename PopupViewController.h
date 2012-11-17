@@ -22,7 +22,6 @@
 {
     UIViewController *fTemporaryView;
     NSMutableArray *fNavigationArray;
-@private BOOL isUseSip;
 }
 
 @property (nonatomic, assign) id <PopupViewControllerDelegate> delegate;

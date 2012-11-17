@@ -80,7 +80,7 @@
 -(void) displayRegisteredFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName onDomain:(NSString*)domain {
 	[[NSUserDefaults standardUserDefaults] setBool:false forKey:@"enable_first_login_view_preference"]; 
 	[self.activityIndicator setHidden:true];
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 -(void) displayRegisteringFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName onDomain:(NSString*)domain {
 	[self.activityIndicator setHidden:false];

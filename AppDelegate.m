@@ -11,6 +11,7 @@
 
 #import "LinphoneManager.h"
 #include "linphonecore.h"
+#include "ExUtils.h"
 
 #if __clang__ && __arm__
 extern int __divsi3(int a, int b);
@@ -31,6 +32,25 @@ int __aeabi_idiv(int a, int b) {
 {
     [self synchronizeDefaults];
     
+    //Povolení push
+	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
+    
+    //notifikuje o změně stavu baterií ... můžeme na to nějak reagovat
+    //asi by bylo fajn, kdyby to vyhodilo hlášku nebo by to odpojilo třeba SIP, když ně
+    //nesouvisí to se tip
+    [UIDevice currentDevice].batteryMonitoringEnabled = YES;
+
+    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
+    
+    //zaregistrujeme appDelegata pro zachycení změny použití SIPu
+    //jde o to, abychom mohli SIP ev. deaktivovat
+    //nastavujeme observer takto, protože nás zajímají jen změny v rámci app
+    //další možnost by bylo použití NotificationCenter NSUserDefaultsDidChangeNotification
+    [[NSUserDefaults standardUserDefaults] addObserver:self
+                                            forKeyPath:@"UseSIP"
+                                               options:(NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld)
+                                               context:NULL];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
@@ -48,7 +68,7 @@ int __aeabi_idiv(int a, int b) {
         && [[NSUserDefaults standardUserDefaults] boolForKey:@"disable_autoboot_preference"]) {
 		// autoboot disabled, doing nothing
 	} else {
-        [self startSIPApplication];
+        [self startSipApplication];
     }
 
     
@@ -61,7 +81,7 @@ int __aeabi_idiv(int a, int b) {
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
      Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
      */
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"])
+    if (ExUtils.useSip)
     {
         LinphoneCore* lc = [LinphoneManager getLc];
         LinphoneCall* call = linphone_core_get_current_call(lc);
@@ -87,7 +107,7 @@ int __aeabi_idiv(int a, int b) {
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"])
+    if ([ExUtils useSip])
         if (![[LinphoneManager instance] enterBackgroundMode]) {
 
         }
@@ -98,7 +118,7 @@ int __aeabi_idiv(int a, int b) {
     /*
      Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
      */
-        [self synchronizeDefaults];
+    [self synchronizeDefaults];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -107,7 +127,7 @@ int __aeabi_idiv(int a, int b) {
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"])
+    if (ExUtils.useSip)
     {
         if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]
             && [UIApplication sharedApplication].applicationState ==  UIApplicationStateBackground
@@ -115,7 +135,7 @@ int __aeabi_idiv(int a, int b) {
             // autoboot disabled, doing nothing
             return;
         } else if ([LinphoneManager instance] == nil) {
-            [self startSIPApplication];
+            [self startSipApplication];
         }
         
         [[LinphoneManager instance] becomeActive];
@@ -143,11 +163,8 @@ int __aeabi_idiv(int a, int b) {
     else
     {
         //SIP se nemá používat, ale může být použitý z dřívějška. Pokud tomu tak je, tak sip deaktivujeme
-        if ([LinphoneManager instance] != nil)
-            [LinphoneManager destroyInstance];
+        [self endSipApplication];
     }
-    
-    [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookieAcceptPolicy:NSHTTPCookieAcceptPolicyAlways];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -157,6 +174,8 @@ int __aeabi_idiv(int a, int b) {
      Save data if appropriate.
      See also applicationDidEnterBackground:.
      */
+    [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:@"UseSIP"];
+
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
@@ -261,10 +280,23 @@ int __aeabi_idiv(int a, int b) {
     NSLog (@"Uložena data registrace: %@", mSavedData == YES ? @"true" : @"false");
 }
 
+#pragma mark - Implementation observe defaults
+- (void)observeValueForKeyPath:(NSString *) keyPath ofObject:(id) object change:(NSDictionary *) change context:(void *) context
+{
+    if([keyPath isEqual:@"UseSIP"])
+    {
+        NSLog(@"UseSIP change: %@", change);
+        if (ExUtils.useSip)
+            [self startSipApplication];
+        else
+            [self endSipApplication];
+    }
+}
 
 #pragma mark - Implementation SIP methods
--(void) startSIPApplication {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"] == NO)
+//spustí SIP aplikaci a nastaví jí delegáta pro události
+-(void) startSipApplication {
+    if (ExUtils.useSip == NO || [LinphoneManager instance] != nil)
         return;
     //else je zbytek kódu
     
@@ -274,12 +306,14 @@ int __aeabi_idiv(int a, int b) {
     
 	[[LinphoneManager instance]	startLibLinphone];
     
-	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
-    
-    [[LinphoneManager instance] setCallDelegate:fWebViewController];
-    
-    [UIDevice currentDevice].batteryMonitoringEnabled = YES;
 
+    [[LinphoneManager instance] setCallDelegate:fWebViewController];
+}
+
+//Ukončí SIP applikaci
+-(void) endSipApplication{
+    if ([LinphoneManager instance] != nil)
+        [LinphoneManager destroyInstance];
 }
 
 @end

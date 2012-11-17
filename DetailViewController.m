@@ -14,6 +14,8 @@
 {
     WaitingViewController* fWaitingViewController;
 }
+- (void)closeDetailWithError:(NSNumber*)aError;
+
 @end
 
 @implementation DetailViewController
@@ -49,6 +51,7 @@
     // e.g. self.myOutlet = nil;
 }
 
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone)
@@ -64,14 +67,15 @@
 
 - (void) loadPage:(NSURLRequest*)urlRequest{
     //vytvoříme nový request, abychom mohli zajistit, že nebude dotaz vykonaný pomocí cache
-    [fWebView loadRequest:[NSURLRequest requestWithURL:urlRequest.URL  cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0]];
-    //[fWebView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.40.91/HaidySmartClient/Temp/ManualBinaryDevice2.html"]]];
+    [fWebView loadRequest:[NSURLRequest requestWithURL:urlRequest.URL  cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:1.0]];
 }
 
--(void) backButtonClicked:(id)sender
+//Metoda zajistí zavření detailu, a předá informaci o tom, zda došlo k chybě
+//aError: indentifikuje, zda došlo k chybě. Aby bylo možné informaci předat přes performselector withDelay, je nutné, aby byl BOOL převeden na NSNumber a zde zpět.
+-(void)closeDetailWithError:(NSNumber*)aError
 {
     [fWebView loadRequest:[NSURLRequest requestWithURL:[ExUtils blankPage]]];
-    [delegate detailViewControllerDidFinish:self andError:NO];
+    [delegate detailViewControllerDidFinish:self andError:[aError boolValue]];
 }
 
 #pragma mark - WebViewDelegate
@@ -88,11 +92,13 @@
         return;
     }
     //else: není potřeba, jde o zbytek kódu
+    [fWaitingViewController stopWaiting];
+    [self closeDetailWithError:[NSNumber numberWithBool:NO]];
     
     UIAlertView *allert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Server url", @"") message:NSLocalizedString(@"Bad connect", @"Nepodařilo se připojit") delegate:self cancelButtonTitle:NSLocalizedString(@"Button Home", @"")
                                            otherButtonTitles:NSLocalizedString(@"Button Remotely", @""), NSLocalizedString(@"Button Cancel", nil), nil ];
     [allert show];
-    NSLog(NSLocalizedString(@"Button Remotely", @""));
+    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webViewLocal
@@ -106,31 +112,23 @@
     
     NSString *mTitle = [webViewLocal stringByEvaluatingJavaScriptFromString:@"getTitle()"];
     [navigationItem setTitle:mTitle];
-    if ([mTitle rangeOfString:@"Error" options:NSCaseInsensitiveSearch].location == NSNotFound )
-        fLoadedErrorPage = NO;
-    else
-        fLoadedErrorPage = YES;
+    NSLog(@"Title: %@", mTitle);
+    if ([mTitle caseInsensitiveCompare:@"Error"] == NSOrderedSame )
+        [self performSelector:@selector(closeDetailWithError:) withObject:[NSNumber numberWithBool:YES] afterDelay:3.0];
+    else if ([mTitle caseInsensitiveCompare:@"Server Connecting"] == NSOrderedSame )
+        [self performSelector:@selector(closeDetailWithError:) withObject:[NSNumber numberWithBool:NO] afterDelay:3.0];
+    //else - vše je v pořádku, nic se neděje
+        
     
     [fWaitingViewController stopWaiting];
 }
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType{
-    
-    //pokud je načtená Error stránka, tak request neotevřeme a pošleme info hlavnímu detailu
-    if (fLoadedErrorPage == YES)
-    {
-        fLoadedErrorPage = NO;
-        [fWebView loadRequest:[NSURLRequest requestWithURL:[ExUtils blankPage]]];
-        [delegate detailViewControllerDidFinish:self andError:YES];
-        return NO;
-    }
-    //else není potřeba, vše je v pořádku
-    
-    
+        
     //otestujeme, zda nejde o požadavek události na zavření detailu
     if ( [[[aRequest URL] absoluteString] hasPrefix:@"close:"] ) {
         //.. parse arguments
-        [self backButtonClicked:webView];
+        [self closeDetailWithError:[NSNumber numberWithBool:NO]];
         return NO;
     }
     

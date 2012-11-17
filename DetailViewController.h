@@ -17,7 +17,7 @@
 
 @interface DetailViewController : UIViewController
 {
-@private BOOL fLoadedErrorPage;
+
 }
 @property (strong, nonatomic) IBOutlet UIWebView *fWebView;
 @property (strong, nonatomic) IBOutlet UINavigationItem *navigationItem;
@@ -25,5 +25,4 @@
 
 
 - (void) loadPage:(NSURLRequest*)urlRequest;
-- (void)backButtonClicked:(id)sender;
 @end

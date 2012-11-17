@@ -80,8 +80,15 @@
     ///Inicializace waiting dialogu
     fWaitingViewController = [WaitingViewController createWithParentView:self.view];
     
-    /// Nastavení webview a načtení první stránky
     fWebView.delegate = self;
+    
+    fInHome = [ExUtils inHome];
+    //zaregistrování sebe sama do notoficationcentra pro změny nastavení, zda je uživatel doma.
+    //zde přijde zpráva po nastvení hodnoty v settings i při aplikaci v pozadí
+    [[NSNotificationCenter defaultCenter] addObserver:self
+               selector:@selector(defaultsChanged:)
+                   name:NSUserDefaultsDidChangeNotification
+                 object:nil];
 }
 
 - (void)viewDidUnload
@@ -89,6 +96,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:NSUserDefaultsDidChangeNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -112,16 +120,6 @@
     [super viewDidAppear:animated];
         
     [self configureView:NO];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -289,7 +287,6 @@
     UIAlertView *allert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Server url", @"") message:NSLocalizedString(@"Bad connect", @"Nepodařilo se připojit") delegate:self cancelButtonTitle:NSLocalizedString(@"Button Home", @"") 
         otherButtonTitles:NSLocalizedString(@"Button Remotely", @""), NSLocalizedString(@"Button Cancel", nil), nil ];
     [allert show];
-    NSLog(NSLocalizedString(@"Button Remotely", @""));
 }
 
 - (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType
@@ -459,6 +456,23 @@
 
 -(void) firstVideoFrameDecoded: (LinphoneCall*) call {
     [self.fPhoneViewController firstVideoFrameDecoded:call];
+}
+
+#pragma mark - Implememnt Notification
+
+static BOOL fInHome;
+
+- (void)defaultsChanged:(NSNotification *)notification {
+    if (fInHome != [ExUtils inHome])
+    {
+        fInHome = [ExUtils inHome];
+        if (self.navigationController.presentedViewController != nil && [self.navigationController.presentedViewController isKindOfClass:[DetailViewController class]])
+            [self.navigationController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
+        //else - nic schovávat nechceme
+        
+        //zajistíme refres okna
+        [self configureView:YES];
+    }
 }
 
 

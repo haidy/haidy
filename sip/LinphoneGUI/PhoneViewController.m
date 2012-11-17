@@ -117,7 +117,7 @@
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"enable_first_login_view_preference"] == true) {
 		fFirstLoginViewController = [[FirstLoginViewController alloc]  initWithNibName:@"FirstLoginViewController" 
 																				 bundle:[NSBundle mainBundle]];
-		[self presentModalViewController:fFirstLoginViewController animated:true];
+		[self presentViewController:fFirstLoginViewController animated:true completion:nil];
 	}
     [[LinphoneManager instance] setRegistrationDelegate:self];
     
@@ -133,7 +133,8 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib : may be called twice
 - (void)viewDidLoad {
     [super viewDidLoad];
-        
+    
+    [self setTitle:NSLocalizedString(@"SIP", @"Popisek sipu")];
 	mDisplayName = [UILabel alloc];
 	[callShort initWithAddress:address];
 	[callLarge initWithAddress:address];
@@ -154,14 +155,6 @@
     [self updateCallAndBackButtons];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    if (UIInterfaceOrientationIsPortrait(interfaceOrientation))
-        return YES;
-    else
-        return NO;
-}
-
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
@@ -178,7 +171,7 @@
     if (theTextField == address) {
         [address resignFirstResponder];
 		[mDisplayName setText:@""]; //display name only relefvant 
-		
+		[callLarge touchUp:callLarge];
     } 
     return YES;
 }
@@ -191,7 +184,7 @@
 
 -(void) backToCallViewPressed {
     [UICallButton enableTransforMode:NO];
-    [self presentModalViewController:(UIViewController*)mIncallViewController animated:true];
+    [self presentViewController:(UIViewController*)mIncallViewController animated:true completion:nil];
     
     LinphoneCall* call = linphone_core_get_current_call([LinphoneManager getLc]);
     
@@ -231,7 +224,7 @@
     
 	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"firstlogindone_preference" ] == true) {
 		//first login case, dismmis first login view
-		[self dismissModalViewControllerAnimated:true];
+		[self dismissViewControllerAnimated:true completion:nil];
 	};
 	[mIncallViewController displayDialerFromUI:viewCtrl
 									   forUser:username
@@ -275,8 +268,8 @@
         
 		fIncomingCallActionSheet.actionSheetStyle = UIActionSheetStyleDefault;
         if ([LinphoneManager runningOnIpad]) {
-            if (self.modalViewController != nil)
-                [fIncomingCallActionSheet showInView:[self.modalViewController view]];
+            if (self.presentedViewController != nil)
+                [fIncomingCallActionSheet showInView:[self.presentedViewController view]];
             else
                 [fIncomingCallActionSheet showInView:self.parentViewController.view];
         } else {
@@ -290,7 +283,7 @@
 -(void) displayCall: (LinphoneCall*) call InProgressFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
     [fVideoPreviewController showPreview:NO]; 
 	if (self.presentedViewController != (UIViewController*)mIncallViewController) {
-		[self presentModalViewController:(UIViewController*)mIncallViewController animated:true];
+		[self presentViewController:(UIViewController*)mIncallViewController animated:true completion:nil];
 	}
 	[mIncallViewController displayCall:call InProgressFromUI:viewCtrl
 							   forUser:username
@@ -304,7 +297,7 @@
     [fVideoPreviewController showPreview:NO]; 
     if (self.presentedViewController != (UIViewController*)mIncallViewController /*&& (call == 0x0 ||
 																  linphone_call_get_dir(call)==LinphoneCallIncoming)*/){
-		[self presentModalViewController:(UIViewController*)mIncallViewController animated:true];
+		[self presentViewController:(UIViewController*)mIncallViewController animated:true completion:nil];
 		
 	}
     
@@ -360,26 +353,26 @@
 #pragma mark - Implementation LinphoneUIRegistrationDelegate
 
 -(void) displayRegisteredFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName onDomain:(NSString*)domain {    
-    if (fFirstLoginViewController != nil && self.modalViewController == fFirstLoginViewController) {
+    if (fFirstLoginViewController != nil && self.presentedViewController == fFirstLoginViewController) {
         [fFirstLoginViewController displayRegisteredFromUI:viewCtrl forUser:username withDisplayName:displayName onDomain:domain];
     }
     [self updateStatusSubView];
 }
 -(void) displayRegisteringFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName onDomain:(NSString*)domain {
-    if (fFirstLoginViewController != nil && self.modalViewController == fFirstLoginViewController) {
+    if (fFirstLoginViewController != nil && self.presentedViewController == fFirstLoginViewController) {
         [fFirstLoginViewController displayRegisteringFromUI:viewCtrl forUser:username withDisplayName:displayName onDomain:domain];
     }
     [self updateStatusSubView];
 }
 -(void) displayRegistrationFailedFromUI:(UIViewController*) viewCtrl forUser:(NSString*) user withDisplayName:(NSString*) displayName onDomain:(NSString*)domain forReason:(NSString*) reason {
-    if (fFirstLoginViewController != nil && self.modalViewController == fFirstLoginViewController) {
+    if (fFirstLoginViewController != nil && self.presentedViewController == fFirstLoginViewController) {
         [fFirstLoginViewController displayRegistrationFailedFromUI:viewCtrl forUser:user withDisplayName:displayName onDomain:domain forReason:reason];
     }
     [self updateStatusSubView];
 }
 
 -(void) displayNotRegisteredFromUI:(UIViewController*) viewCtrl { 
-    if (fFirstLoginViewController != nil && self.modalViewController == fFirstLoginViewController) {
+    if (fFirstLoginViewController != nil && self.presentedViewController == fFirstLoginViewController) {
         [fFirstLoginViewController displayNotRegisteredFromUI:viewCtrl];
     }
     [self updateStatusSubView];
