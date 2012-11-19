@@ -90,8 +90,8 @@ static NSString* fPageForSipData = @"GetInformationForMobile.aspx?Method=GetSipI
                 //else není potřeba, jde o zbytek kódu
     
     fSipContactsArray = [NSMutableArray arrayWithArray:aSipArray];
-    [fSipContactsArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Testovací Haidy1", @"Name", @"haidy1", @"PhoneNumber", nil]];
-    [fSipContactsArray addObject:[NSDictionary dictionaryWithObjectsAndKeys: @"Testovací Haidy2", @"Name", @"haidy2",@"PhoneNumber", nil]];
+    //[fSipContactsArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Testovací Haidy1", @"Name", @"haidy1", @"PhoneNumber", nil]];
+    //[fSipContactsArray addObject:[NSDictionary dictionaryWithObjectsAndKeys: @"Testovací Haidy2", @"Name", @"haidy2",@"PhoneNumber", nil]];
     
     
     NSString* localPhoneNumber = [[NSUserDefaults standardUserDefaults] stringForKey:@"username_preference"];
