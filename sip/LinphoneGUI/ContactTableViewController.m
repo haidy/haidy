@@ -112,7 +112,13 @@ static NSString* fPageForSipData = @"GetInformationForMobile.aspx?Method=GetSipI
             [fSipContactsArray removeObject:mLocalDict];
         //else - není co mazat
     }
-
+    
+    [fSipContactsArray sortUsingComparator:^NSComparisonResult(id aLeft, id aRight) {
+        NSString *mNameLeft = [(NSDictionary*)aLeft objectForKey:@"Name"];
+        NSString *mNameRight = [(NSDictionary*)aRight objectForKey:@"Name"];
+        
+        return (NSComparisonResult)[mNameLeft localizedCaseInsensitiveCompare:mNameRight];
+    }];
     
     [self.tableView reloadData];
 }
