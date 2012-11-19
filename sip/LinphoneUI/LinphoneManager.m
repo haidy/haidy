@@ -25,7 +25,6 @@
 #include <netdb.h>
 #import <AVFoundation/AVAudioSession.h>
 #import <AudioToolbox/AudioToolbox.h>
-#import "FastAddressBook.h"
 #include <sys/sysctl.h>
 #include <SystemConfiguration/SystemConfiguration.h>
 
@@ -64,6 +63,7 @@ extern  void libmsbcg729_init();
 
 @synthesize callDelegate;
 @synthesize registrationDelegate;
+@synthesize contactDelegate;
 @synthesize connectivity;
 @synthesize frontCamId;
 @synthesize backCamId;
@@ -72,7 +72,6 @@ extern  void libmsbcg729_init();
 -(id) init {
     assert (!theLinphoneManager);
     if ((self= [super init])) {
-        mFastAddressBook = [[FastAddressBook alloc] init];
         theLinphoneManager = self;
     }
     return self;
@@ -89,49 +88,22 @@ extern  void libmsbcg729_init();
     theLinphoneManager = nil;    
 }
 
--(NSString*) getDisplayNameFromAddressBook:(NSString*) number andUpdateCallLog:(LinphoneCallLog*)log {
-    //1 normalize
-    NSString* lNormalizedNumber = [FastAddressBook normalizePhoneNumber:number];
-    Contact* lContact = [mFastAddressBook getMatchingRecord:lNormalizedNumber];
-    if (lContact) {
-        CFStringRef lDisplayName = ABRecordCopyCompositeName(lContact.record);
-        
-        if (log) {
-            //add phone type
-            char ltmpString[256];
-            CFStringRef lFormatedString = CFStringCreateWithFormat(NULL,NULL,CFSTR("phone_type:%@;"),lContact.numberType);
-            CFStringGetCString(lFormatedString, ltmpString,sizeof(ltmpString), kCFStringEncodingUTF8);
-            linphone_call_log_set_ref_key(log, ltmpString);
-            CFRelease(lFormatedString);
-        }
-        return (__bridge NSString*)lDisplayName;   
-    }
-    //[number release];
- 
-    return nil;
+//Získání displayName z adresáře kontaktů
+-(NSString*) getDisplayNameFromAddressBook:(NSString*) aNumber andUpdateCallLog:(LinphoneCallLog *)log{
+    if (contactDelegate == nil)
+        return nil;
+    else
+        return [contactDelegate getDisplayName:aNumber];
 }
 
 -(UIImage*) getImageFromAddressBook:(NSString *)number {
-    NSString* lNormalizedNumber = [FastAddressBook normalizePhoneNumber:number];
-    Contact* lContact = [mFastAddressBook getMatchingRecord:lNormalizedNumber];
-    if (lContact) {
-        ABRecordRef person = ABAddressBookGetPersonWithRecordID(mFastAddressBook.addressBook, ABRecordGetRecordID(lContact.record));            
-        if (ABPersonHasImageData(person)) {
-            NSData* d;
-            // ios 4.1+
-            if ( &ABPersonCopyImageDataWithFormat != nil) {
-                d = (__bridge NSData*)ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
-            } else {
-                d = (__bridge NSData*)ABPersonCopyImageData(person);
-            }
-            return [UIImage imageWithData:d];
-        }
-    }
+    /* Získání image zatím není implementováno */
+    
     /* return default image */
     return [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"contact_vide" ofType:@"png"]];
-    //return nil;
 }
 
+//Získání displayName
 -(void) updateCallWithAddressBookData:(LinphoneCall*) call {
     //1 copy adress book
     LinphoneCallLog* lLog = linphone_call_get_call_log(call);
@@ -150,8 +122,8 @@ extern  void libmsbcg729_init();
     NSString* lE164Number = [[NSString alloc] initWithCString:lUserName encoding:[NSString defaultCStringEncoding]];
     NSString* lDisplayName = [self getDisplayNameFromAddressBook:lE164Number andUpdateCallLog:lLog];
     
-    if(lDisplayName) {        
-        linphone_address_set_display_name(lAddress, [lDisplayName cStringUsingEncoding:[NSString defaultCStringEncoding]]);
+    if(lDisplayName) {
+        linphone_address_set_display_name(lAddress, [lDisplayName cStringUsingEncoding:NSUTF8StringEncoding]);
     } else {
         ms_message("No contact entry found for  [%s] in address book",lUserName);
     }
@@ -170,12 +142,12 @@ extern  void libmsbcg729_init();
     
     const char* lUserNameChars=linphone_address_get_username(linphone_call_get_remote_address(call));
     NSString* lUserName = lUserNameChars?[[NSString alloc] initWithUTF8String:lUserNameChars]:NSLocalizedString(@"Unknown",nil);
-    if (new_state == LinphoneCallIncomingReceived) {
-       [self updateCallWithAddressBookData:call]; // display name is updated 
-    }
-    const char* lDisplayNameChars =  linphone_address_get_display_name(linphone_call_get_remote_address(call));
     
-    NSString* lDisplayName = lDisplayNameChars ? [[NSString alloc] initWithUTF8String:lDisplayNameChars] :@"" ;
+    if (new_state == LinphoneCallIncomingReceived) {
+       [self updateCallWithAddressBookData:call]; // nastaví display name do linphonu
+    }
+
+    NSString* lDisplayName = [self getDisplayNameFromAddressBook:lUserName andUpdateCallLog:nil];
     
     bool canHideInCallView = (linphone_core_get_calls([LinphoneManager getLc]) == NULL);
 	
@@ -189,7 +161,7 @@ extern  void libmsbcg729_init();
 		case LinphoneCallIncomingReceived:
             /*first step is to re-enable ctcall center*/
 			[self setupGSMInteraction];
-			
+
 			/*should we reject this call ?*/
 			if ([callCenter currentCalls]!=nil) {
 				ms_message("Mobile call ongoing... rejecting call from [%s]",linphone_address_get_username(linphone_call_get_call_log(call)->from));

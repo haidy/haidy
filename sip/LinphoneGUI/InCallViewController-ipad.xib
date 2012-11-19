@@ -696,7 +696,6 @@
 								<int key="NSvFlags">301</int>
 								<string key="NSFrame">{{80, 132}, {80, 66}}</string>
 								<reference key="NSSuperview" ref="331380355"/>
-								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="379880382"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>

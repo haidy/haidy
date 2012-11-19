@@ -44,7 +44,7 @@
 "Alert" = "Alarm";
 
 /* No comment provided by engineer. */
-"Answer" = "Odpověď";
+"Answer" = "Přijmout";
 
 /* No comment provided by engineer. */
 "Bad credentials, check your account settings" = "Neplatné oprávnění, zkontrolujte nastavení účtu";
@@ -62,7 +62,7 @@
 "Continue" = "Pokračovat";
 
 /* No comment provided by engineer. */
-"Decline" = "Pokles";
+"Decline" = "Odmítnout";
 
 /* No comment provided by engineer. */
 "Dismiss" = "Zamítnout";

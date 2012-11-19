@@ -42,7 +42,6 @@
 		9176BC9E161DBD4A004C8F95 /* stopcall-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9176BC9D161DBD4A004C8F95 /* stopcall-red.png */; };
 		918AF1DE1649246300730871 /* libmediastreamer_base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 918AF1DC1649246300730871 /* libmediastreamer_base.a */; };
 		918AF1E21649413600730871 /* libmediastreamer_voip.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 918AF1E11649413600730871 /* libmediastreamer_voip.a */; };
-		91B25D72161AC21E005777CF /* FastAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D52161AC21E005777CF /* FastAddressBook.m */; };
 		91B25D73161AC21E005777CF /* LinphoneManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D54161AC21E005777CF /* LinphoneManager.m */; };
 		91B25D74161AC21E005777CF /* UIBluetoothButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D58161AC21E005777CF /* UIBluetoothButton.m */; };
 		91B25D75161AC21E005777CF /* UICallButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D5A161AC21E005777CF /* UICallButton.m */; };
@@ -238,8 +237,6 @@
 		9176BC9D161DBD4A004C8F95 /* stopcall-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stopcall-red.png"; sourceTree = "<group>"; };
 		918AF1DC1649246300730871 /* libmediastreamer_base.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmediastreamer_base.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/libmediastreamer_base.a"; sourceTree = "<group>"; };
 		918AF1E11649413600730871 /* libmediastreamer_voip.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libmediastreamer_voip.a; path = "../linphone-iphone/liblinphone-sdk/apple-darwin/lib/libmediastreamer_voip.a"; sourceTree = "<group>"; };
-		91B25D51161AC21E005777CF /* FastAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastAddressBook.h; sourceTree = "<group>"; };
-		91B25D52161AC21E005777CF /* FastAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastAddressBook.m; sourceTree = "<group>"; };
 		91B25D53161AC21E005777CF /* LinphoneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinphoneManager.h; sourceTree = "<group>"; };
 		91B25D54161AC21E005777CF /* LinphoneManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinphoneManager.m; sourceTree = "<group>"; };
 		91B25D55161AC21E005777CF /* LinphoneUIDelegates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinphoneUIDelegates.h; sourceTree = "<group>"; };
@@ -513,8 +510,6 @@
 				91B25D53161AC21E005777CF /* LinphoneManager.h */,
 				91B25D54161AC21E005777CF /* LinphoneManager.m */,
 				91B25D55161AC21E005777CF /* LinphoneUIDelegates.h */,
-				91B25D51161AC21E005777CF /* FastAddressBook.h */,
-				91B25D52161AC21E005777CF /* FastAddressBook.m */,
 				91B25D56161AC21E005777CF /* LogView.h */,
 				91B25D57161AC21E005777CF /* UIBluetoothButton.h */,
 				91B25D58161AC21E005777CF /* UIBluetoothButton.m */,
@@ -1042,7 +1037,6 @@
 				9145612D15EE5ACA00EF9FB7 /* WebViewController.m in Sources */,
 				9145613215EE5B4700EF9FB7 /* ExNavigationData.m in Sources */,
 				9145613315EE5B4700EF9FB7 /* ExUtils.m in Sources */,
-				91B25D72161AC21E005777CF /* FastAddressBook.m in Sources */,
 				91B25D73161AC21E005777CF /* LinphoneManager.m in Sources */,
 				91B25D74161AC21E005777CF /* UIBluetoothButton.m in Sources */,
 				91B25D75161AC21E005777CF /* UICallButton.m in Sources */,

@@ -141,10 +141,10 @@
 							<object class="IBUIButton" id="837567493">
 								<reference key="NSNextResponder" ref="315620167"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{482, 277}, {253, 66}}</string>
+								<string key="NSFrame">{{482, 277}, {251, 66}}</string>
 								<reference key="NSSuperview" ref="315620167"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="538225967"/>
+								<reference key="NSNextKeyView" ref="660008935"/>
 								<string key="NSReuseIdentifierKey">_NS:241</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -234,7 +234,7 @@
 								<string key="NSFrame">{{482, 112}, {251, 167}}</string>
 								<reference key="NSSuperview" ref="315620167"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="660008935"/>
+								<reference key="NSNextKeyView" ref="837567493"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
@@ -261,6 +261,7 @@
 								<string key="NSFrame">{{482, 351}, {253, 20}}</string>
 								<reference key="NSSuperview" ref="315620167"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:212</string>
 								<object class="NSColor" key="IBUIBackgroundColor" id="115596650">
 									<int key="NSColorSpace">3</int>
@@ -274,7 +275,7 @@
 								<string key="NSFrame">{{34, 111}, {415, 259}}</string>
 								<reference key="NSSuperview" ref="315620167"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="837567493"/>
+								<reference key="NSNextKeyView" ref="538225967"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<object class="NSColor" key="IBUIBackgroundColor">
 									<int key="NSColorSpace">3</int>
@@ -311,6 +312,7 @@
 					<string key="NSFrame">{{0, 20}, {768, 1004}}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
+					<reference key="NSNextKeyView"/>
 					<string key="NSReuseIdentifierKey">_NS:10</string>
 					<reference key="IBUIBackgroundColor" ref="839360217"/>
 					<bool key="IBUIClipsSubviews">YES</bool>
@@ -340,6 +342,7 @@
 					<string key="NSFrameSize">{768, 1004}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
+					<reference key="NSNextKeyView"/>
 					<string key="NSReuseIdentifierKey">_NS:212</string>
 					<object class="NSColor" key="IBUIBackgroundColor">
 						<int key="NSColorSpace">1</int>
@@ -540,12 +543,6 @@
 						<string key="objectName">back</string>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">91</int>
-						<reference key="object" ref="178153394"/>
-						<reference key="parent" ref="315620167"/>
-						<string key="objectName">Call-large</string>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">92</int>
 						<reference key="object" ref="837567493"/>
 						<reference key="parent" ref="315620167"/>
@@ -586,6 +583,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">137</int>
 						<reference key="object" ref="215936737"/>
+						<array class="NSMutableArray" key="children"/>
 						<reference key="parent" ref="315620167"/>
 						<string key="objectName">ViewForContact</string>
 					</object>
@@ -610,6 +608,12 @@
 						<reference key="object" ref="969118820"/>
 						<reference key="parent" ref="563435076"/>
 						<string key="objectName">Erase</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">91</int>
+						<reference key="object" ref="178153394"/>
+						<reference key="parent" ref="315620167"/>
+						<string key="objectName">Call-large</string>
 					</object>
 				</array>
 			</object>

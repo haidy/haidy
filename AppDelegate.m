@@ -143,21 +143,23 @@ int __aeabi_idiv(int a, int b) {
        
         LinphoneCore* lc = [LinphoneManager getLc];
         LinphoneCall* call = linphone_core_get_current_call(lc);
-        if (call == NULL)
-            return;
+        if (call != NULL)
+        {
         
-        LinphoneManager* instance = [LinphoneManager instance];
-        if (call == instance->currentCallContextBeforeGoingBackground.call) {
-            const LinphoneCallParams* params = linphone_call_get_current_params(call);
-            if (linphone_call_params_video_enabled(params)) {
-                linphone_call_enable_camera(
-                                            call,
-                                            instance->currentCallContextBeforeGoingBackground.cameraIsEnabled);
-            }
-            instance->currentCallContextBeforeGoingBackground.call = 0;
-            [fWebViewController displayCall:call InProgressFromUI:nil forUser:nil withDisplayName:nil];
+            LinphoneManager* instance = [LinphoneManager instance];
+            if (call == instance->currentCallContextBeforeGoingBackground.call) {
+                const LinphoneCallParams* params = linphone_call_get_current_params(call);
+                if (linphone_call_params_video_enabled(params)) {
+                    linphone_call_enable_camera(
+                                                call,
+                                                instance->currentCallContextBeforeGoingBackground.cameraIsEnabled);
+                }
+                instance->currentCallContextBeforeGoingBackground.call = 0;
+                [fWebViewController displayCall:call InProgressFromUI:nil forUser:nil withDisplayName:nil];
 
+            }
         }
+        //else -- nemáme aktivní hovor, tak nic neděláme
         
     }
     else
@@ -165,6 +167,9 @@ int __aeabi_idiv(int a, int b) {
         //SIP se nemá používat, ale může být použitý z dřívějška. Pokud tomu tak je, tak sip deaktivujeme
         [self endSipApplication];
     }
+    
+    //Prozatím nechceme řešit nevyzvednuté notifikace, tak je všechny cancelnem
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

@@ -57,12 +57,13 @@ typedef struct _LinphoneCallAppData {
 	NSTimer* mIterateTimer;
 	id<LogView> mLogView;	
 	bool isbackgroundModeEnabled;
-	id<LinphoneUICallDelegate> callDelegate;
-	id<LinphoneUIRegistrationDelegate> registrationDelegate;
 	
+    id<LinphoneUICallDelegate> callDelegate;
+	id<LinphoneUIRegistrationDelegate> registrationDelegate;
+	id<LinphoneUIContactDelegate> contactDelegate;
+    
 	UIViewController* mCurrentViewController;
 	Connectivity connectivity;
-    FastAddressBook* mFastAddressBook;
 	const char*  frontCamId;
 	const char*  backCamId;
     
@@ -99,6 +100,8 @@ typedef struct _LinphoneCallAppData {
 
 @property (nonatomic, retain) id<LinphoneUICallDelegate> callDelegate;
 @property (nonatomic, retain) id<LinphoneUIRegistrationDelegate> registrationDelegate;
+@property (nonatomic, retain) id<LinphoneUIContactDelegate> contactDelegate;
+
 @property Connectivity connectivity;
 @property (readonly) const char*  frontCamId;
 @property (readonly) const char*  backCamId;

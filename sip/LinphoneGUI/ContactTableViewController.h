@@ -19,8 +19,9 @@
 
 #import <UIKit/UIKit.h>
 #import "PhoneViewController.h"
+#import "LinphoneUIDelegates.h"
 
-@interface ContactTableViewController : UITableViewController {
+@interface ContactTableViewController : UITableViewController<LinphoneUIContactDelegate> {
 @private UITextField* fAdressField;
     NSMutableArray *fSipContactsArray;
 }

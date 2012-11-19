@@ -244,11 +244,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "AppDelegate.m"
-         timestampString = "374660864.968912"
+         timestampString = "375009239.180447"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "226"
-         endingLineNumber = "226"
+         startingLineNumber = "231"
+         endingLineNumber = "231"
          landmarkName = "-registerDefaultsFromSettingsBundle"
          landmarkType = "5">
       </FileBreakpoint>
@@ -257,11 +257,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "374572733.967125"
+         timestampString = "375019535.828243"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "301"
-         endingLineNumber = "301"
+         startingLineNumber = "273"
+         endingLineNumber = "273"
          landmarkName = "-onCall:StateChanged:withMessage:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -270,11 +270,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "374572821.798267"
+         timestampString = "375019535.828243"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "224"
-         endingLineNumber = "224"
+         startingLineNumber = "196"
+         endingLineNumber = "196"
          landmarkName = "-onCall:StateChanged:withMessage:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -283,11 +283,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "374572878.641561"
+         timestampString = "375019535.828243"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "238"
-         endingLineNumber = "238"
+         startingLineNumber = "210"
+         endingLineNumber = "210"
          landmarkName = "-onCall:StateChanged:withMessage:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -328,19 +328,6 @@
          startingLineNumber = "169"
          endingLineNumber = "169"
          landmarkName = "-shouldAutorotateToInterfaceOrientation:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "WebViewController.m"
-         timestampString = "374788940.989843"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "466"
-         endingLineNumber = "466"
-         landmarkName = "-defaultsChanged:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

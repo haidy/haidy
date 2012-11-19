@@ -44,3 +44,7 @@
 -(void) displayNotRegisteredFromUI:(UIViewController*) viewCtrl; 
 @end
 
+@protocol LinphoneUIContactDelegate
+// Název volajícího
+- (NSString*) getDisplayName:(NSString*)aNumber;
+@end

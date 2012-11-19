@@ -90,6 +90,9 @@ static NSString* fPageForSipData = @"GetInformationForMobile.aspx?Method=GetSipI
                 //else není potřeba, jde o zbytek kódu
     
     fSipContactsArray = [NSMutableArray arrayWithArray:aSipArray];
+    [fSipContactsArray addObject:[NSDictionary dictionaryWithObjectsAndKeys:@"Testovací Haidy1", @"Name", @"haidy1", @"PhoneNumber", nil]];
+    [fSipContactsArray addObject:[NSDictionary dictionaryWithObjectsAndKeys: @"Testovací Haidy2", @"Name", @"haidy2",@"PhoneNumber", nil]];
+    
     
     NSString* localPhoneNumber = [[NSUserDefaults standardUserDefaults] stringForKey:@"username_preference"];
     
@@ -109,6 +112,7 @@ static NSString* fPageForSipData = @"GetInformationForMobile.aspx?Method=GetSipI
             [fSipContactsArray removeObject:mLocalDict];
         //else - není co mazat
     }
+
     
     [self.tableView reloadData];
 }
@@ -132,7 +136,7 @@ static NSString* fPageForSipData = @"GetInformationForMobile.aspx?Method=GetSipI
 {
     NSDictionary* mContact = fSipContactsArray[indexPath.row];
     
-    NSString *CellIdentifier = [mContact objectForKey:@"ID"];
+    static NSString *CellIdentifier = @"CellIndetifier";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
@@ -156,5 +160,18 @@ static NSString* fPageForSipData = @"GetInformationForMobile.aspx?Method=GetSipI
     
     [fAdressField setText:[mContact objectForKey:@"PhoneNumber"]];
 }
+
+#pragma mark - Implement LinphoneUIContactDelegate
+-(NSString *)getDisplayName:(NSString *)aNumber{
+    for (NSDictionary* mSipContact in fSipContactsArray) {
+        NSString* mSipContactPhoneNumber = [mSipContact objectForKey:@"PhoneNumber"];
+        if ([mSipContactPhoneNumber caseInsensitiveCompare:aNumber] == NSOrderedSame )
+            return [mSipContact objectForKey:@"Name"];
+        //else není potřeba, hledáme konkrétní prvek
+    }
+    
+    return nil;
+}
+
 
 @end

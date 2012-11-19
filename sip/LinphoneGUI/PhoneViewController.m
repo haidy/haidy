@@ -120,6 +120,7 @@
 		[self presentViewController:fFirstLoginViewController animated:true completion:nil];
 	}
     [[LinphoneManager instance] setRegistrationDelegate:self];
+    [[LinphoneManager instance] setContactDelegate:fContacTableViewController];
     
     [fVideoPreviewController showPreview:YES];
     [self updateCallAndBackButtons];
@@ -246,7 +247,7 @@
 		{
 			notif.repeatInterval = 0;
 			notif.alertBody =[NSString  stringWithFormat:NSLocalizedString(@" %@ is calling you",nil),[displayName length]>0?displayName:username];
-			notif.alertAction = @"Answer";
+			notif.alertAction = NSLocalizedString(@"Answer", nil);
 			notif.soundName = @"oldphone-mono-30s.caf";
             NSData *callData = [NSData dataWithBytes:&call length:sizeof(call)];
 			notif.userInfo = [NSDictionary dictionaryWithObject:callData forKey:@"call"];
