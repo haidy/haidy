@@ -228,6 +228,12 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
             //získáme třídu, ze které si vytáhneme potřebné informace
             mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
             cell.textLabel.text = [mControlClass title];
+        
+            if (indexPath.row == 2)
+            {
+                cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+                [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            }
     }
     else if (indexPath.section == 1 && [fNavigationArray count] == 2)
     {
@@ -279,6 +285,7 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
                     mSwitchCell.textLabel.text = NSLocalizedString(@"UseSIP",nil);
                     mSwitchCell.valueSwitch.on = [ExUtils useSip];
                     [mSwitchCell.valueSwitch addTarget:self action:@selector(useSipChanged:) forControlEvents:UIControlEventValueChanged];
+
                 }
                     break;
                 case 2:
@@ -312,7 +319,9 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
 
 //omezení selekce/výběru řádků
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == 2 && indexPath.row == 0)
+    if (indexPath.section == fNavigationArray.count)
+        return nil;
+    else if (indexPath.section == 0 && indexPath.row == 2)
         return nil;
     else
         return indexPath;
@@ -320,49 +329,49 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section < 2)
-    {
-        [tableView deselectRowAtIndexPath:indexPath animated:YES];
-        
-        //získáme pole sekce
-        NSMutableArray *mSectionArray = [fNavigationArray objectAtIndex:indexPath.section];
-        //získáme třídu, ze které si vytáhneme potřebné informace
-        ExNavigationData *mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
-        NSLog(@"Selected url Popuview: %@", mControlClass.url);
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    //získáme pole sekce
+    NSMutableArray *mSectionArray = [fNavigationArray objectAtIndex:indexPath.section];
+    //získáme třídu, ze které si vytáhneme potřebné informace
+    ExNavigationData *mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
+    NSLog(@"Selected url Popuview: %@", mControlClass.url);
 
-        //uživatel si vybral co chce zobrazit a tak nastavíme URL a skryjeme popup
-        if (mControlClass.url != nil)
-            [delegate selectWebPage:mControlClass.url];
-        else
-            [delegate selectSip];
-    }
-    else if (indexPath.section == 2)
-    {
-        
-    }
+    //uživatel si vybral co chce zobrazit a tak nastavíme URL a skryjeme popup
+    [delegate selectWebPage:mControlClass.url];
+       
     //[delegate hidePopupView] - nyní se volá z webview, jako následek výběru stránky;
     
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
-{    
-    //získáme pole sekce
-    NSMutableArray *mSectionArray = [fNavigationArray objectAtIndex:indexPath.section];
-    //získáme třídu, ze které si vytáhneme potřebné informace
-    ExNavigationData *mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
-    
-    [navigationRoomController setNavigationArray:mControlClass.childs];
-    
-    if ([ExUtils runningOnIpad]){
-        CGRect mCellRect = [self.tableView rectForRowAtIndexPath:indexPath];
-        CGRect mPopoverRect = CGRectMake(mCellRect.origin.x, mCellRect.origin.y, mCellRect.size.width, 10);
+{
+    if (indexPath.section == 0 )
+        [delegate selectSip];
+    else if (indexPath.section == 1 && (fNavigationArray.count+1) == 3)
+    {
+        //získáme pole sekce
+        NSMutableArray *mSectionArray = [fNavigationArray objectAtIndex:indexPath.section];
+        //získáme třídu, ze které si vytáhneme potřebné informace
+        ExNavigationData *mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
         
-        CGSize size = CGSizeMake(320, [mControlClass.childs count]*44);
-        [self.popoverController setPopoverContentSize:size];
-        [self.popoverController presentPopoverFromRect:mPopoverRect inView:self.view.superview permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+        [navigationRoomController setNavigationArray:mControlClass.childs];
+        
+        if ([ExUtils runningOnIpad]){
+            CGRect mCellRect = [self.tableView rectForRowAtIndexPath:indexPath];
+            CGRect mPopoverRect = CGRectMake(mCellRect.origin.x, mCellRect.origin.y, mCellRect.size.width, 10);
+            
+            CGSize size = CGSizeMake(320, [mControlClass.childs count]*44);
+            [self.popoverController setPopoverContentSize:size];
+            [self.popoverController presentPopoverFromRect:mPopoverRect inView:self.view.superview permittedArrowDirections:UIPopoverArrowDirectionLeft animated:YES];
+        }
+        else{
+            [self.navigationController pushViewController:navigationRoomController animated:YES];
+        }
     }
-    else{
-        [self.navigationController pushViewController:navigationRoomController animated:YES];
+    else
+    {
+        [delegate selectAbout];
     }
     
 }

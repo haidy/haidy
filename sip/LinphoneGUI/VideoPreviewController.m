@@ -43,7 +43,7 @@
 -(void) initVideoPreview {
     session = [[AVCaptureSession alloc] init];
     
-    currentCamera = 0;
+    currentCamera = 1;
     
     AVCaptureVideoPreviewLayer* previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:session];
     
@@ -55,7 +55,7 @@
     [session setSessionPreset:AVCaptureSessionPresetHigh];
     [session commitConfiguration];
     
-    [self useCameraAtIndex:0 startSession:NO];    
+    [self useCameraAtIndex:currentCamera startSession:NO];    
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -65,7 +65,7 @@
 }
 
 -(void) switchCameraPressed {
-    [self useCameraAtIndex: (currentCamera + 1) startSession:YES];
+    [self useCameraAtIndex: (currentCamera - 1) startSession:YES];
 }
 
 -(void) useCameraAtIndex:(NSInteger)camIndex startSession:(BOOL)start {

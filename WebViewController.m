@@ -11,6 +11,7 @@
 #import "PopupViewController.h"
 #import "ExUtils.h"
 #import "WaitingViewController.h"
+#import "AboutViewController.h"
 #import "LinphoneManager.h"
 
 @interface WebViewController()
@@ -410,9 +411,9 @@
 }
 
 -(void) selectAbout{
-    //[]
-    //[self.navigationController pushViewController: animated:YES];
-    //[self.navigationController setNavigationBarHidden:NO];
+    AboutViewController *mAboutViewController = [[AboutViewController alloc] initWithNibName:@"AboutViewController" bundle:nil];
+    [self.navigationController pushViewController:mAboutViewController animated:YES];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 #pragma mark - Implement LinphoneUICallDelegate - most methods only recal to fPhoneViewController

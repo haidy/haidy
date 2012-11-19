@@ -17,12 +17,12 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */          
 
-#import "MoreViewController.h"
+#import "AboutViewController.h"
 #include "ConsoleViewController.h"
 #import "LinphoneManager.h"
 
 
-@implementation MoreViewController
+@implementation AboutViewController
 @synthesize web;
 @synthesize credit;
 @synthesize console;
@@ -34,10 +34,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	[creditText setText: [NSString stringWithFormat:creditText.text,[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]]];
-	consoleViewController = [[ConsoleViewController alloc] initWithNibName:@"ConsoleViewController" bundle:[NSBundle mainBundle]];
-	[[LinphoneManager instance] registerLogView:consoleViewController];
-	isDebug =  [[NSUserDefaults standardUserDefaults] boolForKey:@"debugenable_preference"];  
-
 }
 
 
@@ -83,12 +79,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	if (section == 0) {
 		return 1;
-	} else {
-		if (isDebug) {
-			return 2;
-		} else {
-			return 1;
-		}
+	}
+    else {
+        return 1;
 	}
 }
 
@@ -123,10 +116,6 @@
 			[[UIApplication sharedApplication] openURL:url];
 			break;
 		};
-		case 1:  {
-			[self.navigationController pushViewController:consoleViewController animated:true];
-			break;
-		}
     }
 	
 }

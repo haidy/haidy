@@ -1,6 +1,6 @@
 /* MoreViewController.h
  *
- * Copyright (C) 2009  Belledonne Comunications, Grenoble, France
+ * Copyright (C) 2012  Haidy a.s., Prague, Czech Republic
  *
  *  This program is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -19,8 +19,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class ConsoleViewController;
-@interface MoreViewController : UITableViewController {
+@interface AboutViewController : UITableViewController {
 
 	bool isLogViewEnabled;
 	
@@ -31,8 +30,6 @@
 	UILabel *weburi;
 	UITableViewCell *console;
 
-	ConsoleViewController *consoleViewController;
-	bool isDebug;
 }
 
 @property (nonatomic, retain) IBOutlet UITableViewCell* web;
