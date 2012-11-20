@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9113BB65165BB8EF00615AD8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9113BB64165BB8EF00615AD8 /* Default-568h@2x.png */; };
 		912AD657161CBF5B004DE7E5 /* dialer-orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 912AD655161CBF5B004DE7E5 /* dialer-orange.png */; };
 		912AD658161CBF5B004DE7E5 /* history-orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 912AD656161CBF5B004DE7E5 /* history-orange.png */; };
 		912AD65A161CC003004DE7E5 /* startcall-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 912AD659161CC003004DE7E5 /* startcall-green.png */; };
@@ -40,7 +41,6 @@
 		9167543B161DBF0E00114309 /* mic_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 9167543A161DBF0E00114309 /* mic_active.png */; };
 		9173D63C1647E085002EAE7F /* icon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 9173D63B1647E085002EAE7F /* icon144x144.png */; };
 		9176BC9E161DBD4A004C8F95 /* stopcall-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 9176BC9D161DBD4A004C8F95 /* stopcall-red.png */; };
-		917A1FA9165AA7D6001E67AD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 917A1FA8165AA7D5001E67AD /* Default-568h@2x.png */; };
 		917A1FB2165AB3D0001E67AD /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 917A1FB0165AB3CF001E67AD /* AboutViewController.m */; };
 		917A1FB3165AB3D0001E67AD /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917A1FB1165AB3D0001E67AD /* AboutViewController.xib */; };
 		918AF1DE1649246300730871 /* libmediastreamer_base.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 918AF1DC1649246300730871 /* libmediastreamer_base.a */; };
@@ -196,6 +196,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9113BB64165BB8EF00615AD8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 		912AD655161CBF5B004DE7E5 /* dialer-orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dialer-orange.png"; sourceTree = "<group>"; };
 		912AD656161CBF5B004DE7E5 /* history-orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history-orange.png"; sourceTree = "<group>"; };
 		912AD659161CC003004DE7E5 /* startcall-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "startcall-green.png"; sourceTree = "<group>"; };
@@ -236,7 +237,6 @@
 		9167543A161DBF0E00114309 /* mic_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mic_active.png; sourceTree = "<group>"; };
 		9173D63B1647E085002EAE7F /* icon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144x144.png; sourceTree = SOURCE_ROOT; };
 		9176BC9D161DBD4A004C8F95 /* stopcall-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stopcall-red.png"; sourceTree = "<group>"; };
-		917A1FA8165AA7D5001E67AD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		917A1FAF165AB3CF001E67AD /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = SOURCE_ROOT; };
 		917A1FB0165AB3CF001E67AD /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = SOURCE_ROOT; };
 		917A1FB1165AB3D0001E67AD /* AboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = SOURCE_ROOT; };
@@ -729,7 +729,6 @@
 		91D700DB1521D9700013AAAD = {
 			isa = PBXGroup;
 			children = (
-				917A1FA8165AA7D5001E67AD /* Default-568h@2x.png */,
 				91D700F01521D9700013AAAD /* Haidy */,
 				91D700F11521D9700013AAAD /* Supporting Files */,
 				911D53D115E7999400E8C4FB /* Utils */,
@@ -825,6 +824,7 @@
 		91D7013F1521E14E0013AAAD /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				9113BB64165BB8EF00615AD8 /* Default-568h@2x.png */,
 				9145615A15EE5D7A00EF9FB7 /* Default.png */,
 				9145615B15EE5D7A00EF9FB7 /* Default@2x.png */,
 				9145615415EE5D1500EF9FB7 /* ipad.png */,
@@ -997,8 +997,8 @@
 				91B421111622CF9B005019B9 /* ringback.wav in Resources */,
 				9173D63C1647E085002EAE7F /* icon144x144.png in Resources */,
 				91EAFD82164AFAB600C56AB7 /* CellDefinitions.xib in Resources */,
-				917A1FA9165AA7D6001E67AD /* Default-568h@2x.png in Resources */,
 				917A1FB3165AB3D0001E67AD /* AboutViewController.xib in Resources */,
+				9113BB65165BB8EF00615AD8 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

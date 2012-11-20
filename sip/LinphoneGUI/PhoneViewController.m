@@ -344,8 +344,9 @@
     
     LinphoneCall* call = (LinphoneCall*)datas;
 	if (buttonIndex == actionSheet.destructiveButtonIndex ) {
-		linphone_core_accept_call([LinphoneManager getLc],call);	
+		linphone_core_accept_call([LinphoneManager getLc],call);
 	} else {
+        linphone_core_accept_call([LinphoneManager getLc],call);	
 		linphone_core_terminate_call ([LinphoneManager getLc], call);
 	}
 	fIncomingCallActionSheet = nil;
