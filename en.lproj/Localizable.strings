@@ -28,6 +28,16 @@
 "About" = "About";
 "UseSIP" = "Use SIP";
 
+
+/*
+ 
+ About dialog
+ 
+ */
+"Third party software" = "Third party software";
+"Credit text" = "HAIDY 2 build version %@.\nClient for HAIDY server version 1.5, integrate SIP Linphonephone.\nGNU General Public License V2.\n©2012 HAIDY a.s.";
+
+
 /*
  
  SIP Localization

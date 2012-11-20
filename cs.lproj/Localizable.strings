@@ -30,6 +30,14 @@
 
 /*
  
+ About dialog
+ 
+ */
+"Third party software" = "Software třetích stran";
+"Credit text" = "HAIDY 2 build verze %@.\nKlient je určený pro HAIDY server verze 1.5, integruje SIP z projektu Linphone.\nGNU General Public Licence V2.\n© 2012 HAIDY a.s.";
+
+/*
+ 
  SIP Localization
  
  */

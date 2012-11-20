@@ -319,9 +319,7 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
 
 //omezení selekce/výběru řádků
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section == fNavigationArray.count)
-        return nil;
-    else if (indexPath.section == 0 && indexPath.row == 2)
+    if (indexPath.section == fNavigationArray.count && indexPath.row < 2)
         return nil;
     else
         return indexPath;
@@ -329,19 +327,26 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    //získáme pole sekce
-    NSMutableArray *mSectionArray = [fNavigationArray objectAtIndex:indexPath.section];
-    //získáme třídu, ze které si vytáhneme potřebné informace
-    ExNavigationData *mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
-    NSLog(@"Selected url Popuview: %@", mControlClass.url);
+    if (indexPath.section == 0 && indexPath.row == 2)
+        [self tableView:tableView accessoryButtonTappedForRowWithIndexPath:indexPath];
+    else if (indexPath.section == fNavigationArray.count && indexPath.row == 2)
+        [self tableView:tableView accessoryButtonTappedForRowWithIndexPath:indexPath];
 
-    //uživatel si vybral co chce zobrazit a tak nastavíme URL a skryjeme popup
-    [delegate selectWebPage:mControlClass.url];
-       
-    //[delegate hidePopupView] - nyní se volá z webview, jako následek výběru stránky;
-    
+    else
+    {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        
+        //získáme pole sekce
+        NSMutableArray *mSectionArray = [fNavigationArray objectAtIndex:indexPath.section];
+        //získáme třídu, ze které si vytáhneme potřebné informace
+        ExNavigationData *mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
+        NSLog(@"Selected url Popuview: %@", mControlClass.url);
+
+        //uživatel si vybral co chce zobrazit a tak nastavíme URL a skryjeme popup
+        [delegate selectWebPage:mControlClass.url];
+           
+        //[delegate hidePopupView] - nyní se volá z webview, jako následek výběru stránky;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
