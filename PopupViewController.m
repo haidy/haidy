@@ -61,7 +61,7 @@ static ExNavigationData *fSipNavigationData;
         self.popoverController.delegate = self;
     }
     
-    fSipNavigationData = [[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"PopupView Section 0 Row 2", @"Sip") Url:nil Childs:nil];
+    fSipNavigationData = [[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"SIP", @"Sip") Url:nil Childs:nil];
 
     [self initDataForMenu];
     

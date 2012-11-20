@@ -634,11 +634,11 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
 		NSString* lUserName = lUserNameChars?[[NSString alloc] initWithUTF8String:lUserNameChars]:NSLocalizedString(@"Unknown",nil);
         NSMutableString* mss = [[NSMutableString alloc] init];
         /* contact name */
-        const char* n = linphone_address_get_display_name(addr);
-        if (n) 
-            [mss appendFormat:@"%s", n, nil];
+        NSString *mAdresBookName = [[LinphoneManager instance] getDisplayNameFromAddressBook:lUserName andUpdateCallLog:nil];
+        if (mAdresBookName) 
+            [mss appendFormat:@"%@", mAdresBookName, nil];
         else
-            [mss appendFormat:@"%@",lUserName , nil];
+            [mss appendFormat:@"%@", lUserName , nil];
         
         if ([mss compare:label.text] != 0 || imageView.image == nil) {
             [label setText:mss];

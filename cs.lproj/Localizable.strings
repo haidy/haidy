@@ -11,7 +11,7 @@
 "Button Close" = "Zavřít";
 "House" = "Dům";
 "House Map" = "Mapa domu";
-"SIP" = "SIP";
+"SIP" = "Komunikátor";
 "Button Home" = "Doma";
 "Button Remotely" = "Vzdáleně";
 "Button Cancel" = "Zrušit";
@@ -20,14 +20,16 @@
 "PopupView Section 2" = "Další";
 "PopupView Section 0 Row 0" ="Základní";
 "PopupView Section 0 Row 1" ="Hudba";
-"PopupView Section 0 Row 2" ="SIP";
 "Control" = "Ovládání";
 "Rooms" = "Seznam místností";
 "Waiting" = "Čekejte prosím ...";
 "I'm home" = "Jsem doma";
 "About" = "O aplikaci";
 "UseSIP" = "Použít SIP";
-
+"Call number" = "Volat číslo:";
+"Transfer call" = "Přenést hovor:";
+"Add call" = "Přidat hovor:";
+"Return to call" = "Zpět k hovoru";
 /*
  
  About dialog

@@ -11,7 +11,7 @@
 "Button Close" = "Close";
 "House" = "House";
 "House Map" = "House Map";
-"SIP" = "SIP";
+"SIP" = "Communicator";
 "Button Home" = "Home";
 "Button Remotely" = "Remotely";
 "Button Cancel" = "Cancel";
@@ -20,14 +20,16 @@
 "PopupView Section 2" = "More";
 "PopupView Section 0 Row 0" ="Basic";
 "PopupView Section 0 Row 1" ="Audio";
-"PopupView Section 0 Row 2" ="SIP";
 "Control" = "Control";
 "Rooms" = "Rooms";
 "Waiting" = "Please wait ...";
 "I'm home" = "I'm home";
 "About" = "About";
 "UseSIP" = "Use SIP";
-
+"Call number" = "Call number:";
+"Transfer call" = "Transfer call:";
+"Add call" = "Add call:";
+"Return to call" = "Return to call";
 
 /*
  

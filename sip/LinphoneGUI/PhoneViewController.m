@@ -97,7 +97,10 @@
         [LinphoneManager set:callShort hidden:zeroCall withName:"CALL_SHORT button" andReason:__FUNCTION__];
         [LinphoneManager set:backToCallView hidden:zeroCall withName:"BACK button" andReason:__FUNCTION__];
         
-        [callShort setTitle:[UICallButton transforModeEnabled] ? @"transfer":@"call" forState:UIControlStateNormal];
+        if (zeroCall)
+            [address setPlaceholder:NSLocalizedString(@"Call number", nil)];
+        else
+            [address setPlaceholder:[UICallButton transforModeEnabled] ? NSLocalizedString(@"Transfer call", nil) : NSLocalizedString(@"Add call", nil)];
         
         if (!callShort.hidden)
             [callShort setEnabled:!linphone_core_sound_resources_locked([LinphoneManager getLc])];
@@ -136,6 +139,8 @@
     [super viewDidLoad];
     
     [self setTitle:NSLocalizedString(@"SIP", @"Popisek sipu")];
+    [backToCallView setTitle:NSLocalizedString(@"Return to call", nil) forState:UIControlStateNormal];
+    
 	mDisplayName = [UILabel alloc];
 	[callShort initWithAddress:address];
 	[callLarge initWithAddress:address];
