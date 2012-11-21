@@ -20,6 +20,7 @@
 #import "UICallButton.h"
 #import "LinphoneManager.h"
 #import "CoreTelephony/CTCallCenter.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @implementation UICallButton
@@ -32,6 +33,19 @@ static BOOL transferMode = NO;
 
 +(BOOL) transforModeEnabled {
     return transferMode;
+}
+
+-(id)initWithCoder:(NSCoder *)aDecoder{
+    self = [super initWithCoder:aDecoder];
+    if (self)
+    {
+        
+    }
+    return self;
+}
+
+-(void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx{
+    
 }
 
 -(void) touchUp:(id) sender {
@@ -116,7 +130,34 @@ static BOOL transferMode = NO;
 -(void) initWithAddress:(UITextField*) address{
 	mAddress = address;
     transferMode = NO;
-	[self addTarget:self action:@selector(touchUp:) forControlEvents:UIControlEventTouchUpInside];
+    [self addTarget:self action:@selector(touchUp:) forControlEvents:UIControlEventTouchUpInside];
+    
+    /*
+    [self setBackgroundColor:[UIColor whiteColor]];
+    
+    CAGradientLayer *mGradient = [CAGradientLayer layer];
+    mGradient.frame = self.bounds;
+    mGradient.colors = [NSArray arrayWithObjects:
+                        (id)[[UIColor colorWithRed:188.0f / 255.0f green:227.0f / 255.0f blue:159.0f / 255.0f alpha:1.0f] CGColor],
+                        (id)[[UIColor colorWithRed:67.0f / 255.0f green:139.0f / 255.0f blue:50.0f / 255.0f alpha:1.0f] CGColor],
+                        nil];
+    [self.layer insertSublayer:mGradient atIndex:0];
+
+    
+    UIImage *mImage = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"startcall-green" ofType:@"png"]];
+    
+    UIImageView *mImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0 , mImage.size.width, mImage.size.height)];
+    // Image is hard coded in here for simplicity of this tutorial
+    [mImageView setImage:mImage];
+    [mImageView setCenter:CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2)];
+    [self addSubview:mImageView];
+
+    
+    [self.layer setCornerRadius:9.0];
+    [self.layer setBorderColor:[[UIColor lightGrayColor] CGColor]];
+    [self.layer setBorderWidth:2.0];
+    [self.layer setMasksToBounds:YES];
+     */
 }
 
 

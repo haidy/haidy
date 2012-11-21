@@ -152,7 +152,6 @@
 						<string key="NSFrame">{{160, 394}, {160, 66}}</string>
 						<reference key="NSSuperview" ref="703569839"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -170,11 +169,11 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">clavier-01-160px.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="232228103">
 							<int key="type">2</int>
 							<int key="size">2</int>
 						</object>
-						<object class="NSFont" key="IBUIFont">
+						<object class="NSFont" key="IBUIFont" id="671911929">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">18</double>
 							<int key="NSfFlags">16</int>
@@ -243,15 +242,18 @@
 						<reference key="IBUIHighlightedTitleColor" ref="923326808"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+							<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="177190558"/>
 						<reference key="IBUIDisabledImage" ref="901023847"/>
 						<reference key="IBUINormalImage" ref="599473267"/>
 						<reference key="IBUIDisabledBackgroundImage" ref="446278506"/>
-						<reference key="IBUINormalBackgroundImage" ref="446278506"/>
-						<reference key="IBUIFontDescription" ref="857420967"/>
-						<reference key="IBUIFont" ref="223742042"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">clavier-01-106px.png</string>
+						</object>
+						<reference key="IBUIFontDescription" ref="232228103"/>
+						<reference key="IBUIFont" ref="671911929"/>
 					</object>
 				</object>
 				<string key="NSFrameSize">{320, 460}</string>
@@ -270,7 +272,6 @@
 					<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
-					<reference key="NSNextKeyView"/>
 					<string key="NSReuseIdentifierKey">_NS:10</string>
 					<reference key="IBUIBackgroundColor" ref="923326808"/>
 					<bool key="IBUIClipsSubviews">YES</bool>
@@ -584,7 +585,7 @@
 					</object>
 					<string>UICallButton</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="3"/>
+					<real value="0.0"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UICallButton</string>
@@ -799,6 +800,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>clavier-01-106px.png</string>
 				<string>clavier-01-160px.png</string>
 				<string>effacer.png</string>
 				<string>startcall-gray.png</string>
@@ -806,6 +808,7 @@
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
+				<string>{106, 60}</string>
 				<string>{160, 60}</string>
 				<string>{66, 65}</string>
 				<string>{60, 52}</string>

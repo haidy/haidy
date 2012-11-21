@@ -28,7 +28,6 @@
  
 }
 
-
 +(NSURL*) constructUrlFromPage:(NSString*)aPage;
 +(BOOL) inHome;
 +(void) setInHome:(BOOL)aInHome;

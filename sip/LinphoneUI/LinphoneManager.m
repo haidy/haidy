@@ -27,6 +27,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #include <sys/sysctl.h>
 #include <SystemConfiguration/SystemConfiguration.h>
+#import "CoreTelephony/CTCall.h"
 
 static LinphoneCore* theLinphoneCore=nil;
 static LinphoneManager* theLinphoneManager=nil;
@@ -1134,19 +1135,32 @@ void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReach
         callCenter = nil;
 	}
 	callCenter = [[CTCallCenter alloc] init];
-	callCenter.callEventHandler = ^(CTCall* call) {
-        // post on main thread
-		[self performSelectorOnMainThread:@selector(handleGSMCallInteration:)
-							   withObject:callCenter
-							waitUntilDone:YES];
+	callCenter.callEventHandler = ^(CTCall* aCall) {
+        //Sem se vstoupí, pokud je nějaká změna na GSM hovoru (přichází, odchází, je položen). Pokud je aktivní SIP hovor, tak dojde k pozastavení SIP hovoru (k pause). Po ukončení GSM hovoru je možné SIP hovor znovu oživit.
+        // Funkce dispatch_async zařídí asynchroní spojení s hlavním vláknem aplikace pomocí dispatch_get_main_queue() a anonymní blok provede popsané víše. Provedeno dle návodu: http://stackoverflow.com/questions/9701923/arc-bridge-cast-block-copy-block-release
+        dispatch_async(dispatch_get_main_queue(), ^{
+            LinphoneCall* call = linphone_core_get_current_call(theLinphoneCore);
+            if (aCall.callState != CTCallStateDisconnected) {
+                if (call) {
+                    NSLog(@"Pausing SIP call");
+                    linphone_core_pause_call(theLinphoneCore, call);
+                }
+                //set current status to busy
+                linphone_core_set_presence_info(theLinphoneCore, 0, nil, LinphoneStatusBusy);
+            } else
+                linphone_core_set_presence_info(theLinphoneCore, 0, nil, LinphoneStatusAltService);
+        });
+		//Zakomentováno, ponecháno pro případy potíží
+        //[self performSelectorOnMainThread:@selector(handleGSMCallInteration:) withObject:call waitUntilDone:YES];
 	};
 }
 
--(void) handleGSMCallInteration: (id) cCenter {
-	CTCallCenter* ct = (CTCallCenter*) cCenter;
-	/* pause current call, if any */
+/*
+ -(void) handleGSMCallInteration: (id) aCall {
+	CTCall* mCall = (CTCall*) aCall;
+ // pause current call, if any
 	LinphoneCall* call = linphone_core_get_current_call(theLinphoneCore);
-	if ([ct currentCalls]!=nil) {
+	if (mCall.callState != CTCallStateDisconnected) {
 		if (call) {
 			NSLog(@"Pausing SIP call");
 			linphone_core_pause_call(theLinphoneCore, call);
@@ -1156,6 +1170,6 @@ void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReach
 	} else
 		linphone_core_set_presence_info(theLinphoneCore, 0, nil, LinphoneStatusAltService);
 }
-
+*/
 
 @end

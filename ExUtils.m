@@ -24,6 +24,7 @@
 
 #import "ExUtils.h"
 
+
 @interface ExUtils()
 {
 }
@@ -34,6 +35,21 @@
 
 
 @implementation ExUtils
+
+static NSUserDefaults *fOldDefaults;
+
++(BOOL)reloadAfterChangeSettings:(NSUserDefaults *)aSettings{
+    if (fOldDefaults == nil)
+    {
+        fOldDefaults = aSettings;
+        return NO;
+    }
+    else
+    {
+            }
+    
+    return NO;
+}
 
 +(BOOL) inHome{
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"ImHome"];

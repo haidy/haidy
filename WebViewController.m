@@ -98,13 +98,14 @@
     
     fWebView.delegate = self;
     
-    fInHome = [ExUtils inHome];
+    fOldDefaults = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+    
     //zaregistrování sebe sama do notoficationcentra pro změny nastavení, zda je uživatel doma.
     //zde přijde zpráva po nastvení hodnoty v settings i při aplikaci v pozadí
     [[NSNotificationCenter defaultCenter] addObserver:self
-               selector:@selector(defaultsChanged:)
-                   name:NSUserDefaultsDidChangeNotification
-                 object:nil];
+                                             selector:@selector(defaultsChanged:)
+                                                 name:NSUserDefaultsDidChangeNotification
+                                               object:nil];
 }
 
 - (void)viewDidUnload
@@ -476,12 +477,36 @@
 
 #pragma mark - Implememnt Notification
 
-static BOOL fInHome;
+static NSDictionary *fOldDefaults;
 
 - (void)defaultsChanged:(NSNotification *)notification {
-    if (fInHome != [ExUtils inHome])
+    NSDictionary *mNewDefaults = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
+    BOOL mNeedReload = NO;
+    
+    BOOL mOldBoolValue = [[fOldDefaults valueForKey:@"ImHome"] boolValue];
+    BOOL mNewBoolValue = [[mNewDefaults valueForKey:@"ImHome"] boolValue];
+    if (mOldBoolValue != mNewBoolValue)
+        mNeedReload = YES;
+    //else rovnají se, pokračujeme v testování
+    
+    NSString *mOldValue = [fOldDefaults valueForKey:@"HomeUrl"];
+    NSString *mNewValue = [mNewDefaults valueForKey:@"HomeUrl"];
+    if (![mNewValue isEqualToString:mOldValue] && [ExUtils inHome])
+        mNeedReload = YES;
+    //else rovnají se, pokračujeme v testování
+    
+    mOldValue = [fOldDefaults valueForKey:@"RemotelyUrl"];
+    mNewValue = [mNewDefaults valueForKey:@"RemotelyUrl"];
+    if (![mNewValue isEqualToString:mOldValue] && ![ExUtils inHome])
+        mNeedReload = YES;
+    //else rovnají se, pokračujeme v testování
+    
+    
+
+    
+    if (mNeedReload)
     {
-        fInHome = [ExUtils inHome];
+        fOldDefaults = mNewDefaults;
         if (self.navigationController.presentedViewController != nil && [self.navigationController.presentedViewController isKindOfClass:[DetailViewController class]])
             [self.navigationController.presentedViewController dismissViewControllerAnimated:YES completion:nil];
         //else - nic schovávat nechceme

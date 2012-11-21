@@ -436,6 +436,7 @@ static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetF
 #pragma Hook Events
 - (void)inHomeChanged:(UISwitch*)aSender{
     [ExUtils setInHome:aSender.isOn];
+    [self loadJSONData];
 }
 
 - (void)useSipChanged:(UISwitch*)aSender{
