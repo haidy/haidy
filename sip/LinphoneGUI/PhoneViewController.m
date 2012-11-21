@@ -268,11 +268,12 @@
         
 		fIncomingCallActionSheet = [[UIActionSheet alloc] initWithTitle:[NSString  stringWithFormat:NSLocalizedString(@" %@ is calling you",nil),[displayName length]>0?displayName:username]
 															   delegate:fCallDelegate 
-													  cancelButtonTitle:nil 
+													  cancelButtonTitle:nil
 												 destructiveButtonTitle:NSLocalizedString(@"Answer",nil) 
-													  otherButtonTitles:NSLocalizedString(@"Decline",nil),nil];
+													  otherButtonTitles:NSLocalizedString(@"Decline",nil), NSLocalizedString(@"Decline all",nil),nil];
         
 		fIncomingCallActionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+        
         if ([LinphoneManager runningOnIpad]) {
             if (self.presentedViewController != nil)
                 [fIncomingCallActionSheet showInView:[self.presentedViewController view]];
@@ -350,10 +351,16 @@
     LinphoneCall* call = (LinphoneCall*)datas;
 	if (buttonIndex == actionSheet.destructiveButtonIndex ) {
 		linphone_core_accept_call([LinphoneManager getLc],call);
-	} else {
-        linphone_core_accept_call([LinphoneManager getLc],call);	
+	} else if (buttonIndex == 1) {
+        linphone_core_terminate_call ([LinphoneManager getLc], call);
+	}
+    else
+    {
+        linphone_core_accept_call([LinphoneManager getLc],call);
 		linphone_core_terminate_call ([LinphoneManager getLc], call);
 	}
+
+    
 	fIncomingCallActionSheet = nil;
 }
 
