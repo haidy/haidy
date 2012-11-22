@@ -322,20 +322,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "375223048.938959"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1138"
-         endingLineNumber = "1138"
-         landmarkName = "-setupGSMInteraction"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "375223048.938959"
+         timestampString = "375268788.418642"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1152"
@@ -344,17 +331,30 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "sip/LinphoneUI/LinphoneManager.m"
+         timestampString = "375268788.418642"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "1166"
+         endingLineNumber = "1166"
+         landmarkName = "-setupGSMInteraction"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "375223048.938959"
+         timestampString = "375268788.418642"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1164"
-         endingLineNumber = "1164"
-         landmarkName = "-handleGSMCallInteration:"
-         landmarkType = "5">
+         startingLineNumber = "1177"
+         endingLineNumber = "1177"
+         landmarkName = "@implementation LinphoneManager"
+         landmarkType = "3">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

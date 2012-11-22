@@ -823,8 +823,9 @@ void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReach
 	callCenter.callEventHandler = nil;
 	callCenter = nil;
 	
-	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-	[audioSession setDelegate:nil];
+    //odregistrujeme managera z odběru notifikací o spuštění zvuku
+	[[NSNotificationCenter defaultCenter] removeObserver:self name:AVAudioSessionInterruptionNotification object:nil];
+    
 	if (theLinphoneCore != nil) { //just in case application terminate before linphone core initialization
         NSLog(@"Destroy linphonecore");
 		linphone_core_destroy(theLinphoneCore);
@@ -998,8 +999,8 @@ void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReach
 													repeats:YES];
 	//init audio session
 	AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-	BOOL bAudioInputAvailable= [audioSession inputIsAvailable];
-    [audioSession setDelegate:self];
+	BOOL bAudioInputAvailable = [audioSession isInputAvailable];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(audioInteruption:)  name:AVAudioSessionInterruptionNotification object:nil];
 	
 	NSError* err;
 	[audioSession setActive:NO error: &err]; 
@@ -1096,18 +1097,6 @@ void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReach
 	mLogView = view;
 }
 
--(void) beginInterruption {
-    LinphoneCall* c = linphone_core_get_current_call(theLinphoneCore);
-    ms_message("Sound interruption detected!");
-    if (c) {
-        linphone_core_pause_call(theLinphoneCore, c);
-    }
-}
-
--(void) endInterruption {
-    ms_message("Sound interruption ended!");
-    //let the user resume the call manually.
-}
 +(BOOL) runningOnIpad {
 #ifdef UI_USER_INTERFACE_IDIOM
     return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
@@ -1124,6 +1113,30 @@ void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReach
 
 +(void) logUIElementPressed:(const char*) name {
     ms_message("UI - '%s' pressed", name);
+}
+
+#pragma mark - AVAudioSession Notification implemented
+
+-(void) audioInteruption:(NSNotification *)aNotification
+{
+    NSNumber *mAudioInterruptionKey = [aNotification.userInfo valueForKey:@"AVAudioSessionInterruptionOptionKey"];
+    if ([mAudioInterruptionKey intValue] == AVAudioSessionInterruptionTypeBegan)
+        [self beginInterruption];
+    else
+        [self endAudioInterruption];
+}
+
+-(void) beginAudioInterruption {
+    LinphoneCall* mCall = linphone_core_get_current_call(theLinphoneCore);
+    ms_message("Sound interruption detected!");
+    if (mCall) {
+        linphone_core_pause_call(theLinphoneCore, mCall);
+    }
+}
+
+-(void) endAudioInterruption {
+    ms_message("Sound interruption ended!");
+    //let the user resume the call manually.
 }
 
 #pragma GSM management

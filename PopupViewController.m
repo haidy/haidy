@@ -63,7 +63,7 @@ static ExNavigationData *fSipNavigationData;
     
     fSipNavigationData = [[ExNavigationData alloc] initWithTitle:NSLocalizedString(@"SIP", @"Sip") Url:nil Childs:nil];
 
-    [self initDataForMenu];
+    (void)[self initDataForMenu];
     
     return self;
 }
