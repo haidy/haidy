@@ -19,14 +19,15 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import "ContactTableViewController.h"
+#import "JsonService.h"
 #import "ExUtils.h"
 
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 
 @interface ContactTableViewController ()
-- (void)loadJSONData;
-- (void)fetchedJSONData:(NSArray*)aSipArray;
+- (void)loadContacts;
+- (void)fetchedContacts:(NSArray*)aSipArray;
 @end
 
 
@@ -53,19 +54,18 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
-    [self.view.layer setCornerRadius:0.0f];
-    [self.view.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-    [self.view.layer setBorderWidth:2.0f];
 
     CGRect mRectViewForContact = fPhoneViewController.fViewForContact.frame;
-    [self.view setFrame:CGRectMake(0, 0, mRectViewForContact.size.width, mRectViewForContact.size.height)];
+    if ([ExUtils runningOnIpad])
+        [self.view setFrame:CGRectMake(20, 20, mRectViewForContact.size.width-40, mRectViewForContact.size.height-40)];
+    else
+        [self.view setFrame:CGRectMake(0, 0, mRectViewForContact.size.width, mRectViewForContact.size.height)];
     [fPhoneViewController.fViewForContact addSubview:self.view];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self loadJSONData];
+    [self loadContacts];
 }
 
 - (void)setAdressField:(UITextField*)aAdressField {
@@ -74,17 +74,17 @@
 
 static NSString* fPageForSipData = @"GetInformationForMobile.aspx?Method=GetSipInformation";
 
-- (void)loadJSONData{
+- (void)loadContacts{
     dispatch_async(kBgQueue, ^{
         
         //očekáváme, že přijde pole, proto proměnná typu array
-        NSArray* mJsonArray = [ExUtils getJsonDataWithPage:fPageForSipData];
+        NSArray* mJsonArray = [JsonService getSipContacts];
         
-        [self performSelectorOnMainThread:@selector(fetchedJSONData:) withObject:mJsonArray waitUntilDone:YES];
+        [self performSelectorOnMainThread:@selector(fetchedContacts:) withObject:mJsonArray waitUntilDone:YES];
     });
 }
 
-- (void)fetchedJSONData:(NSArray*)aSipArray{
+- (void)fetchedContacts:(NSArray*)aSipArray{
     if (aSipArray == nil)
         return; //nemáme data, není co dělat
                 //else není potřeba, jde o zbytek kódu
@@ -151,7 +151,7 @@ static NSString* fPageForSipData = @"GetInformationForMobile.aspx?Method=GetSipI
     }
     
     cell.textLabel.text = [mContact objectForKey:@"Name"];
-    
+    cell.textLabel.textColor = [UIColor whiteColor];
     
     return cell;
 }

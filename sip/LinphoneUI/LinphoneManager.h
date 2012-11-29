@@ -81,7 +81,7 @@ typedef struct _LinphoneCallAppData {
 +(void) logUIElementPressed:(const char*) name;
 
 -(void) displayDialer;
-
+-(void) displayScenes;
 -(void) registerLogView:(id<LogView>) view;
 -(BOOL) isNotIphone3G;
 
@@ -101,6 +101,7 @@ typedef struct _LinphoneCallAppData {
 @property (nonatomic, retain) id<LinphoneUICallDelegate> callDelegate;
 @property (nonatomic, retain) id<LinphoneUIRegistrationDelegate> registrationDelegate;
 @property (nonatomic, retain) id<LinphoneUIContactDelegate> contactDelegate;
+@property (nonatomic, retain) id<LinphoneUIActionDelegate> actionDelefate;
 
 @property Connectivity connectivity;
 @property (readonly) const char*  frontCamId;

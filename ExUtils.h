@@ -38,6 +38,6 @@
 +(void) setRequiredCookies:(NSURLRequest*)aRequest;
 +(void) handlingErrorCode102WithWebKitErrorDomain:(NSString*)aLoadedUrl;
 +(BOOL) runningOnIpad;
-+(id) getJsonDataWithPage:(NSString*)aPage;
++(void) initRemoteServerSessions:(NSArray*)aRemoteServerSessions;
 
 @end

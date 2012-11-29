@@ -22,17 +22,15 @@
 
 @implementation UIMuteButton
 
-
-
 -(void) onOn {
-	linphone_core_mute_mic([LinphoneManager getLc], true);
+	linphone_core_mute_mic([LinphoneManager getLc], false);
 }
 -(void) onOff {
-	linphone_core_mute_mic([LinphoneManager getLc], false);
+	linphone_core_mute_mic([LinphoneManager getLc], true);
 }
 -(bool) isInitialStateOn {
 	@try {
-		return true == linphone_core_is_mic_muted([LinphoneManager getLc]);
+		return false == linphone_core_is_mic_muted([LinphoneManager getLc]);
 	} @catch(NSException* e) {
 		//not ready yet
         return false;

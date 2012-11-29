@@ -27,6 +27,7 @@
 #import "NavigationRoomViewController.h"
 #import "ExUtils.h"
 #import "SwitchCell.h"
+#import "JsonService.h"
 
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
@@ -108,13 +109,12 @@ static ExNavigationData *fSipNavigationData;
 	return YES;
 }
 
-static NSString* fPageForFloorsData = @"GetInformationForMobile.aspx?Method=GetFloorsInformation";
 
 - (void)loadJSONData{
     dispatch_async(kBgQueue, ^{
             
         //očekáváme, že přijde pole, proto proměnná typu array
-        NSArray* mJsonArray = [ExUtils getJsonDataWithPage:fPageForFloorsData];
+        NSArray* mJsonArray = [JsonService getFloorsInformation];
         
         [self performSelectorOnMainThread:@selector(fetchedJSONData:) withObject:mJsonArray waitUntilDone:YES];
         });

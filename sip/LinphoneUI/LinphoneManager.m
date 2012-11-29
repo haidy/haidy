@@ -62,9 +62,8 @@ extern  void libmsbcg729_init();
 @implementation LinphoneManager
 
 
-@synthesize callDelegate;
-@synthesize registrationDelegate;
-@synthesize contactDelegate;
+@synthesize callDelegate, registrationDelegate, contactDelegate, actionDelefate;
+
 @synthesize connectivity;
 @synthesize frontCamId;
 @synthesize backCamId;
@@ -313,6 +312,10 @@ extern  void libmsbcg729_init();
     [callDelegate	displayDialerFromUI:mCurrentViewController
                               forUser:@"" 
                       withDisplayName:@""];
+}
+
+- (void) displayScenes{
+    [actionDelefate displayScenes];
 }
 
 +(LinphoneCore*) getLc {

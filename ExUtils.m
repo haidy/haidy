@@ -24,12 +24,11 @@
 
 #import "ExUtils.h"
 
-
 @interface ExUtils()
 {
 }
-+(void) setDefaultPartOneUrl:(NSString*)aPartOneUrl;
-+(NSString*) defaultPartOneUrl;
++(void) setUrlPartOne:(NSString*)aPartOneUrl;
++(NSString*) urlPartOne;
 
 @end
 
@@ -46,7 +45,8 @@ static NSUserDefaults *fOldDefaults;
     }
     else
     {
-            }
+        
+    }
     
     return NO;
 }
@@ -70,18 +70,25 @@ static NSUserDefaults *fOldDefaults;
     NSLog (@"Set UseSIP: %@", [[NSUserDefaults standardUserDefaults] boolForKey:@"UseSIP"] == YES ? @"true" : @"false");
 }
 
-//První část url adresy. Může se změnit v závislosti na nastavení lokálního IIS
-static NSString* fDefaultPartOneUrl = @"HAIdySmartClient";
+static NSArray* fRemoteServerSessions;
 
-+(void) setDefaultPartOneUrl:(NSString *)aPartOneUrl{
-    fDefaultPartOneUrl = aPartOneUrl;
-    NSLog(@"DefaultPartOneUrl changed to: %@", aPartOneUrl);
++(void) setUrlPartOne:(NSString *)aUrlPartOne{
+    [[NSUserDefaults standardUserDefaults] setValue:aUrlPartOne forKey:@"UrlPartOne"];
+    NSLog(@"UrlPartOne changed to: %@", aUrlPartOne);
 }
 
-+(NSString *)defaultPartOneUrl{
-    return fDefaultPartOneUrl;
++(NSString *)urlPartOne{
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"UrlPartOne"];
 }
 
++(void) setSelectedRemoteServerSession:(NSString*)aRemoteServerSession{
+    [[NSUserDefaults standardUserDefaults] setValue:aRemoteServerSession forKey:@"SelectedRemoteServerSession"];
+}
+
+
++(NSString*) selectedRemoteServerSession{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"SelectedRemoteServerSession"];
+}
 
 +(NSURL*) constructUrlFromPage:(NSString*)aPage{
     
@@ -108,12 +115,12 @@ static NSString* fDefaultPartOneUrl = @"HAIdySmartClient";
     }
     
     //může nám přijít stránka již s přesnější specifikací na HaidySmartClient, podle toho budeme vytvářet URL
-    if ([aPage rangeOfString:self.defaultPartOneUrl options:NSCaseInsensitiveSearch].location == NSNotFound )
+    if ([aPage rangeOfString:[self urlPartOne] options:NSCaseInsensitiveSearch].location == NSNotFound )
     {
         if ([mPageUrl rangeOfString:@"http://"].location == NSNotFound && mSecure == NO)
-            mPageUrl = [NSString stringWithFormat:@"http://%@/%@/%@", mPageUrl, fDefaultPartOneUrl, aPage];
+            mPageUrl = [NSString stringWithFormat:@"http://%@/%@/%@/%@", mPageUrl, [self urlPartOne], [self selectedRemoteServerSession], aPage];
         else if ([mPageUrl rangeOfString:@"https://"].location == NSNotFound && mSecure == YES)
-            mPageUrl = [NSString stringWithFormat:@"https://%@/%@/%@", mPageUrl, fDefaultPartOneUrl, aPage];
+            mPageUrl = [NSString stringWithFormat:@"https://%@/%@/%@/%@", mPageUrl, [self urlPartOne], [self selectedRemoteServerSession], aPage];
     }
     else
     {
@@ -139,11 +146,11 @@ static NSString* fDefaultPartOneUrl = @"HAIdySmartClient";
 //aLoadedUrl: Url stránky, která byla načtena
 +(void)handlingErrorCode102WithWebKitErrorDomain:(NSString *)aLoadedUrl{
     //pokud dojde k této chybě, tak otestujeme,
-    NSRange mRangeDefaultPartOneUrl = [aLoadedUrl rangeOfString:[ExUtils defaultPartOneUrl] options:NSCaseInsensitiveSearch];
+    NSRange mRangeDefaultPartOneUrl = [aLoadedUrl rangeOfString:[ExUtils urlPartOne] options:NSCaseInsensitiveSearch];
     if (mRangeDefaultPartOneUrl.location != NSNotFound)
     {
         NSString *mNewDefaultPartOneUrl = [aLoadedUrl substringWithRange:mRangeDefaultPartOneUrl];
-        [ExUtils setDefaultPartOneUrl:mNewDefaultPartOneUrl];
+        [ExUtils setUrlPartOne:mNewDefaultPartOneUrl];
     }
     //else není potřeba, šlo o načtení stránky bez defaultPartOneUrl a to nás nezajímá
 }
@@ -257,46 +264,14 @@ static NSString* fDefaultPartOneUrl = @"HAIdySmartClient";
     return ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad);
 }
 
-///
-///Synchroně načte data z webové stránky. Data jsou převedena z JSON do dictionary. Předpokládá se, že bude metoda volána asynchroně, aby nebylo bržděno hlavní vlákno.
-///
-+(id) getJsonDataWithPage:(NSString*)aPage{
-
-        NSError* error = nil;
-        //jednodušší varianta, ale nejde ji parametrizovat
-        //NSData* data = [NSData dataWithContentsOfURL:
-        //[NSURL URLWithString:@"http://sharpdev.asp2.cz/haidy/JSONDataExample.aspx"] options:NSDataReadingMappedIfSafe error:&error];
-        //[NSURL URLWithString:@"http://192.168.40.91/HaidySmartClient/MujDum/GetInformationForMobile.aspx"]]; //options:NSDataReadingUncached error:&error];
-        
-        //varianta přes NSURLConnection, se synchroním dotazem, protože jsme již v asynchroním makru
-        //můžeme přidat hlavičky dotazu apod.
-        NSMutableURLRequest *mRequest = [NSMutableURLRequest requestWithURL:[ExUtils constructUrlFromPage:aPage]];
-        //NSMutableURLRequest *mRequest  = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://sharpdev.asp2.cz/haidy/%@", aPage]]];
-    
-        NSURLResponse *mResponse = nil;
-        NSMutableData *mResponseData = (NSMutableData*)[NSURLConnection sendSynchronousRequest:mRequest returningResponse:&mResponse error:&error];
-        
-        if (error != nil)
-            NSLog(@"Error loading data from method getJsonDataFromPage: %@", error);
-    
-        if (mResponseData.length == 0){
-            NSLog(@"Volaná stránka %@ nevrátila data", aPage);
-            return nil;
-        }
-        else
-            NSLog(@"Stránka %@ vrátila JSON data: %@", aPage, [[NSString alloc] initWithData:mResponseData encoding:NSUTF8StringEncoding]);
-    
-    
-        //JSON data naparsujeme   
-        error = nil;
-        id mJsonResult = [NSJSONSerialization JSONObjectWithData:mResponseData options:kNilOptions error:&error];
-        
-        if (error != nil){
-            NSLog(@"Chyba při parsování JSON dat: %@", error);
-            return nil;
-        }
- 
-    return mJsonResult;
++(void)initRemoteServerSessions:(NSArray*)aRemoteServerSessions{
+    fRemoteServerSessions = aRemoteServerSessions;
+    if (aRemoteServerSessions.count > 0)
+        [self setSelectedRemoteServerSession:[aRemoteServerSessions objectAtIndex:0]];
+    else
+        [self setSelectedRemoteServerSession:@"MujDum"];
+    //toto je tu dočasné, než bude čas pořešit co s více session
+    //else - je více nebo žádná session a tak nemůže automaticky vybrat aktivní session
 }
 
 @end

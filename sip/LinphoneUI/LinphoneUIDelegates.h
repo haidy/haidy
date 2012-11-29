@@ -48,3 +48,8 @@
 // Název volajícího
 - (NSString*) getDisplayName:(NSString*)aNumber;
 @end
+
+@protocol LinphoneUIActionDelegate
+//zobrazení scén
+- (void) displayScenes;
+@end

@@ -27,6 +27,7 @@
 #import "LinphoneManager.h"
 #include "linphonecore.h"
 #include "ExUtils.h"
+#include "JsonService.h"
 
 #if __clang__ && __arm__
 extern int __divsi3(int a, int b);
@@ -86,6 +87,8 @@ int __aeabi_idiv(int a, int b) {
         [self startSipApplication];
     }
 
+    //Načteme si ihned ze serveru dostupné RemoteServerSession, abychom je ihned mohli používat a případně vybrat aktivní session
+    [ExUtils initRemoteServerSessions:[JsonService getRemoteServerSessions]];
     
     return YES;
 }
@@ -281,6 +284,12 @@ int __aeabi_idiv(int a, int b) {
     //nakonec ještě přidáme registraci položky animace
     //prozatím byla vyhozena z bundle setting, dokud nebudeme mít HW nebo SW, který je umí rozumně zobrazit
     [defaultsToRegister setObject:[NSNumber numberWithBool:NO] forKey:@"Animations"];
+    if ([defs objectForKey:@"UrlPartOne"] == nil)
+        [defaultsToRegister setObject:@"HAIdySmartClient" forKey:@"UrlPartOne"];
+    //else - již je nastaveno nesahat
+    if ([defs objectForKey:@"SelectedRemoteServerSession"] == nil)
+        [defaultsToRegister setObject:@"startSession" forKey:@"SelectedRemoteServerSession"];
+    //else - již je nastaveno nesahat
     
     NSDictionary *appDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
                                  @"NO", @"enable_first_login_view_preference", //

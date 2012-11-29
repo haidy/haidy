@@ -244,11 +244,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "AppDelegate.m"
-         timestampString = "375111672.430401"
+         timestampString = "375825429.752415"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "246"
-         endingLineNumber = "246"
+         startingLineNumber = "249"
+         endingLineNumber = "249"
          landmarkName = "-registerDefaultsFromSettingsBundle"
          landmarkType = "5">
       </FileBreakpoint>
@@ -257,11 +257,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "375223048.938959"
+         timestampString = "375362257.738388"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "274"
-         endingLineNumber = "274"
+         startingLineNumber = "273"
+         endingLineNumber = "273"
          landmarkName = "-onCall:StateChanged:withMessage:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -270,11 +270,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "375223048.938959"
+         timestampString = "375362257.738388"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "197"
-         endingLineNumber = "197"
+         startingLineNumber = "196"
+         endingLineNumber = "196"
          landmarkName = "-onCall:StateChanged:withMessage:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -283,11 +283,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "375223048.938959"
+         timestampString = "375362257.738388"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "211"
-         endingLineNumber = "211"
+         startingLineNumber = "210"
+         endingLineNumber = "210"
          landmarkName = "-onCall:StateChanged:withMessage:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -322,11 +322,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "375268788.418642"
+         timestampString = "375362257.738388"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1152"
-         endingLineNumber = "1152"
+         startingLineNumber = "1155"
+         endingLineNumber = "1155"
          landmarkName = "-setupGSMInteraction"
          landmarkType = "5">
       </FileBreakpoint>
@@ -335,11 +335,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "375268788.418642"
+         timestampString = "375362257.738388"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1166"
-         endingLineNumber = "1166"
+         startingLineNumber = "1169"
+         endingLineNumber = "1169"
          landmarkName = "-setupGSMInteraction"
          landmarkType = "5">
       </FileBreakpoint>
@@ -348,11 +348,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "375268788.418642"
+         timestampString = "375362257.738388"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1177"
-         endingLineNumber = "1177"
+         startingLineNumber = "1180"
+         endingLineNumber = "1180"
          landmarkName = "@implementation LinphoneManager"
          landmarkType = "3">
       </FileBreakpoint>

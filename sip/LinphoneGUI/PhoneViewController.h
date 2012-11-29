@@ -29,7 +29,7 @@
 @class FirstLoginViewController;
 
 
-@interface PhoneViewController : UIViewController <UITextFieldDelegate,LinphoneUICallDelegate, UIActionSheetCustomDelegate, LinphoneUIRegistrationDelegate, UITableViewDelegate, UITableViewDataSource> {
+@interface PhoneViewController : UIViewController <UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, LinphoneUICallDelegate, UIActionSheetCustomDelegate, LinphoneUIRegistrationDelegate, LinphoneUIActionDelegate > {
 
 @private
 	//UI definition
@@ -39,11 +39,12 @@
 	UIEraseButton* erase;
 	UICallButton* callShort;
 	UICallButton* callLarge;
-	
+	UIButton* scenes;
 	UILabel* status;
 
 	UIButton* backToCallView;
     UIView* statusViewHolder;
+    UIImageView* addressImage;
 	
     //Zakomentováno do doby, dokud nebudeme chtít zase používat TabBarController
 	//UITabBarController*  myTabBarController;
@@ -62,25 +63,25 @@
     ContactTableViewController* fContacTableViewController;
     
     UIButton* switchCamera;
+    
+    NSArray *fScenesButtons;
+    UIImage *fCallAddImage;
+    UIImage *fCallTransferImage;
 }
 
 @property (nonatomic, retain) IBOutlet UIView* dialerView;
-
+@property (nonatomic, retain) IBOutlet UIImageView* addressImage;
 @property (nonatomic, retain) IBOutlet UITextField* address;
 @property (nonatomic, retain) IBOutlet UIButton* callShort;
 @property (nonatomic, retain) IBOutlet UIButton* callLarge;
+@property (nonatomic, retain) IBOutlet UIButton* scenes;
 @property (nonatomic, retain) IBOutlet UILabel* status;
 @property (nonatomic, retain) IBOutlet UIEraseButton* erase;
-
 @property (nonatomic, retain) IBOutlet UIView* statusViewHolder;
-
 @property (nonatomic, retain) IBOutlet UIButton* backToCallView;
-
 @property (nonatomic, retain) IBOutlet UIButton* switchCamera;
-
 //Zakomentováno do doby, dokud nebudeme chtít zase používat TabBarController
 //@property (nonatomic, retain) IBOutlet UITabBarController*  myTabBarController;
-
 @property (nonatomic, retain) IBOutlet VideoPreviewController*  fVideoPreviewController;
 @property (nonatomic, retain) IBOutlet UIView* fViewForContact;
 @property (nonatomic, retain) IBOutlet ContactTableViewController* fContacTableViewController;

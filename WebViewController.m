@@ -415,9 +415,10 @@
     NSLog(@"Constructed URL in selectWebPage: %@", mUrl.absoluteString);
     
     //URL Requst Object
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:mUrl];
+    NSMutableURLRequest *mRequest = [NSMutableURLRequest requestWithURL:mUrl];
+    (void)[ExUtils setRequiredRequestParams:mRequest];
     //Load the request in the UIWebView.
-    [fWebView loadRequest:requestObj];
+    [fWebView loadRequest:mRequest];
     
     [self hidePopupView];
 }
@@ -482,7 +483,7 @@ static NSDictionary *fOldDefaults;
 - (void)defaultsChanged:(NSNotification *)notification {
     NSDictionary *mNewDefaults = [[NSUserDefaults standardUserDefaults] dictionaryRepresentation];
     BOOL mNeedReload = NO;
-    
+
     BOOL mOldBoolValue = [[fOldDefaults valueForKey:@"ImHome"] boolValue];
     BOOL mNewBoolValue = [[mNewDefaults valueForKey:@"ImHome"] boolValue];
     if (mOldBoolValue != mNewBoolValue)
@@ -501,8 +502,6 @@ static NSDictionary *fOldDefaults;
         mNeedReload = YES;
     //else rovnají se, pokračujeme v testování
     
-    
-
     
     if (mNeedReload)
     {

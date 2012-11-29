@@ -14,6 +14,7 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>IBProxyObject</string>
 			<string>IBUIButton</string>
+			<string>IBUIImageView</string>
 			<string>IBUITableView</string>
 			<string>IBUITableViewController</string>
 			<string>IBUITextField</string>
@@ -42,6 +43,21 @@
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBUIImageView" id="629377404">
+						<reference key="NSNextResponder" ref="703569839"/>
+						<int key="NSvFlags">274</int>
+						<string key="NSFrame">{{-12, -15}, {342, 494}}</string>
+						<reference key="NSSuperview" ref="703569839"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="515019573"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">Background.png</string>
+						</object>
+					</object>
 					<object class="IBUIView" id="515019573">
 						<reference key="NSNextResponder" ref="703569839"/>
 						<int key="NSvFlags">290</int>
@@ -70,9 +86,13 @@
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
+								<object class="NSCustomResource" key="IBUINormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">BackSpace.png</string>
+								</object>
 								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">effacer.png</string>
+									<string key="NSResourceName">Button1.png</string>
 								</object>
 								<object class="IBUIFontDescription" key="IBUIFontDescription" id="857420967">
 									<string key="name">Helvetica-Bold</string>
@@ -93,17 +113,17 @@
 								<reference key="NSSuperview" ref="515019573"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="32471320"/>
-								<reference key="IBUIBackgroundColor" ref="923326808"/>
+								<object class="NSColor" key="IBUIBackgroundColor" id="81217398">
+									<int key="NSColorSpace">3</int>
+									<bytes key="NSWhite">MCAwAA</bytes>
+								</object>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUIText"/>
 								<string key="IBUIPlaceholder">sip:</string>
-								<object class="NSColor" key="IBUITextColor">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MAA</bytes>
-								</object>
+								<reference key="IBUITextColor" ref="923326808"/>
 								<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 								<float key="IBUIMinimumFontSize">15</float>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
@@ -129,7 +149,7 @@
 						<reference key="NSSuperview" ref="703569839"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="586379123"/>
-						<reference key="IBUIBackgroundColor" ref="923326808"/>
+						<reference key="IBUIBackgroundColor" ref="81217398"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUIView" id="399439445">
@@ -140,15 +160,12 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="676471043"/>
 						<string key="NSReuseIdentifierKey">_NS:196</string>
-						<object class="NSColor" key="IBUIBackgroundColor" id="81217398">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="81217398"/>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUIButton" id="954083041">
 						<reference key="NSNextResponder" ref="703569839"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">265</int>
 						<string key="NSFrame">{{160, 394}, {160, 66}}</string>
 						<reference key="NSSuperview" ref="703569839"/>
 						<reference key="NSWindow"/>
@@ -157,17 +174,19 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">Back</string>
 						<reference key="IBUIHighlightedTitleColor" ref="923326808"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="177190558"/>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="446278506">
+						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">clavier-01-160px.png</string>
+							<string key="NSResourceName">BackCallHighlight.png</string>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage" id="904258479">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">Button2.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="232228103">
 							<int key="type">2</int>
@@ -181,7 +200,7 @@
 					</object>
 					<object class="IBUIButton" id="735910816">
 						<reference key="NSNextResponder" ref="703569839"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{0, 394}, {160, 66}}</string>
 						<reference key="NSSuperview" ref="703569839"/>
 						<reference key="NSWindow"/>
@@ -197,16 +216,15 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="177190558"/>
-						<object class="NSCustomResource" key="IBUIDisabledImage" id="901023847">
+						<object class="NSCustomResource" key="IBUIDisabledImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">startcall-gray.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalImage" id="599473267">
+						<object class="NSCustomResource" key="IBUINormalImage" id="956407114">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">startcall-green.png</string>
+							<string key="NSResourceName">StartCallHighlight.png</string>
 						</object>
-						<reference key="IBUIDisabledBackgroundImage" ref="446278506"/>
-						<reference key="IBUINormalBackgroundImage" ref="446278506"/>
+						<reference key="IBUINormalBackgroundImage" ref="904258479"/>
 						<reference key="IBUIFontDescription" ref="857420967"/>
 						<reference key="IBUIFont" ref="223742042"/>
 					</object>
@@ -218,13 +236,8 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="735910816"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MQA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace">
-								<int key="NSID">2</int>
-							</object>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="81217398"/>
+						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 					<object class="IBUIButton" id="559206695">
@@ -245,12 +258,14 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzE0IDAuMzA5ODAzOTIxNiAwLjUyMTU2ODYyNzUAA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="177190558"/>
-						<reference key="IBUIDisabledImage" ref="901023847"/>
-						<reference key="IBUINormalImage" ref="599473267"/>
-						<reference key="IBUIDisabledBackgroundImage" ref="446278506"/>
+						<object class="NSCustomResource" key="IBUIDisabledImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">StartCallDisable.png</string>
+						</object>
+						<reference key="IBUINormalImage" ref="956407114"/>
 						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">clavier-01-106px.png</string>
+							<string key="NSResourceName">Button4.png</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="232228103"/>
 						<reference key="IBUIFont" ref="671911929"/>
@@ -259,7 +274,7 @@
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="515019573"/>
+				<reference key="NSNextKeyView" ref="629377404"/>
 				<reference key="IBUIBackgroundColor" ref="81217398"/>
 				<int key="IBUIContentMode">5</int>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -273,11 +288,17 @@
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<string key="NSReuseIdentifierKey">_NS:10</string>
-					<reference key="IBUIBackgroundColor" ref="923326808"/>
+					<reference key="IBUIBackgroundColor" ref="81217398"/>
+					<bool key="IBUIOpaque">NO</bool>
 					<bool key="IBUIClipsSubviews">YES</bool>
 					<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					<bool key="IBUIAlwaysBounceVertical">YES</bool>
+					<int key="IBUIIndicatorStyle">2</int>
 					<int key="IBUISeparatorStyle">1</int>
+					<object class="NSColor" key="IBUISeparatorColor">
+						<int key="NSColorSpace">3</int>
+						<bytes key="NSWhite">MC4zMzMzMzMzMzMzAA</bytes>
+					</object>
 					<int key="IBUISectionIndexMinimumDisplayRowCount">0</int>
 					<bool key="IBUIShowsSelectionImmediatelyOnTouchBegin">YES</bool>
 					<float key="IBUIRowHeight">44</float>
@@ -461,6 +482,7 @@
 							<reference ref="735910816"/>
 							<reference ref="954083041"/>
 							<reference ref="559206695"/>
+							<reference ref="629377404"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -480,12 +502,6 @@
 						<reference key="object" ref="954083041"/>
 						<reference key="parent" ref="703569839"/>
 						<string key="objectName">back</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">221</int>
-						<reference key="object" ref="735910816"/>
-						<reference key="parent" ref="703569839"/>
-						<string key="objectName">Call-short</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">230</int>
@@ -529,6 +545,17 @@
 						<reference key="parent" ref="564085108"/>
 					</object>
 					<object class="IBObjectRecord">
+						<int key="objectID">274</int>
+						<reference key="object" ref="629377404"/>
+						<reference key="parent" ref="703569839"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">221</int>
+						<reference key="object" ref="735910816"/>
+						<reference key="parent" ref="703569839"/>
+						<string key="objectName">Call-short</string>
+					</object>
+					<object class="IBObjectRecord">
 						<int key="objectID">214</int>
 						<reference key="object" ref="559206695"/>
 						<reference key="parent" ref="703569839"/>
@@ -551,6 +578,7 @@
 					<string>214.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>219.IBPluginDependency</string>
 					<string>220.IBPluginDependency</string>
+					<string>220.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
 					<string>221.CustomClassName</string>
 					<string>221.IBPluginDependency</string>
 					<string>221.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
@@ -562,6 +590,7 @@
 					<string>264.CustomClassName</string>
 					<string>264.IBPluginDependency</string>
 					<string>265.IBPluginDependency</string>
+					<string>274.IBPluginDependency</string>
 				</object>
 				<object class="NSArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -574,7 +603,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="IBUserGuide">
 							<reference key="view" ref="703569839"/>
-							<double key="location">412</double>
+							<double key="location">395</double>
 							<int key="affinity">1</int>
 						</object>
 						<object class="IBUserGuide">
@@ -588,15 +617,17 @@
 					<real value="0.0"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<real value="0.0"/>
 					<string>UICallButton</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="3"/>
+					<real value="0.0"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIEraseButton</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>ContactTableViewController</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>
@@ -613,7 +644,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">273</int>
+			<int key="maxID">274</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -645,6 +676,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>address</string>
+							<string>addressImage</string>
 							<string>backToCallView</string>
 							<string>callLarge</string>
 							<string>callShort</string>
@@ -653,6 +685,7 @@
 							<string>fContacTableViewController</string>
 							<string>fVideoPreviewController</string>
 							<string>fViewForContact</string>
+							<string>scenes</string>
 							<string>status</string>
 							<string>statusViewHolder</string>
 							<string>switchCamera</string>
@@ -660,6 +693,7 @@
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UITextField</string>
+							<string>UIImageView</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
@@ -668,6 +702,7 @@
 							<string>ContactTableViewController</string>
 							<string>VideoPreviewController</string>
 							<string>UIView</string>
+							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UIView</string>
 							<string>UIButton</string>
@@ -678,6 +713,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>address</string>
+							<string>addressImage</string>
 							<string>backToCallView</string>
 							<string>callLarge</string>
 							<string>callShort</string>
@@ -686,6 +722,7 @@
 							<string>fContacTableViewController</string>
 							<string>fVideoPreviewController</string>
 							<string>fViewForContact</string>
+							<string>scenes</string>
 							<string>status</string>
 							<string>statusViewHolder</string>
 							<string>switchCamera</string>
@@ -695,6 +732,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">address</string>
 								<string key="candidateClassName">UITextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">addressImage</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">backToCallView</string>
@@ -727,6 +768,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">fViewForContact</string>
 								<string key="candidateClassName">UIView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">scenes</string>
+								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">status</string>
@@ -800,19 +845,27 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>clavier-01-106px.png</string>
-				<string>clavier-01-160px.png</string>
-				<string>effacer.png</string>
+				<string>BackCallHighlight.png</string>
+				<string>BackSpace.png</string>
+				<string>Background.png</string>
+				<string>Button1.png</string>
+				<string>Button2.png</string>
+				<string>Button4.png</string>
+				<string>StartCallDisable.png</string>
+				<string>StartCallHighlight.png</string>
 				<string>startcall-gray.png</string>
-				<string>startcall-green.png</string>
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{106, 60}</string>
-				<string>{160, 60}</string>
-				<string>{66, 65}</string>
-				<string>{60, 52}</string>
-				<string>{60, 52}</string>
+				<string>{80, 66}</string>
+				<string>{80, 66}</string>
+				<string>{400, 330}</string>
+				<string>{80, 66}</string>
+				<string>{160, 66}</string>
+				<string>{320, 66}</string>
+				<string>{80, 66}</string>
+				<string>{80, 66}</string>
+				<string>{16, 16}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1930</string>

@@ -28,7 +28,7 @@
 
 #define DIALER_TAB_INDEX 1
 
-@interface WebViewController : UIViewController<UIWebViewDelegate, UIAlertViewDelegate, DetailViewControllerDelegate, PopupViewControllerDelegate, LinphoneUICallDelegate >
+@interface WebViewController : UIViewController<UIWebViewDelegate, UIAlertViewDelegate, DetailViewControllerDelegate, PopupViewControllerDelegate, LinphoneUICallDelegate>
 {
     DetailViewController *fDetailViewController;
     PopupViewController *fPopupViewController;

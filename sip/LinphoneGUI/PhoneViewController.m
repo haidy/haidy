@@ -28,14 +28,19 @@
 #include "private.h"
 #include "WebViewController.h"
 #include "ContactTableViewController.h"
+#include "ExUtils.h"
+#include "JsonService.h"
+
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 @implementation PhoneViewController
 @synthesize  dialerView ;
-@synthesize  address ;
+@synthesize  address, addressImage ;
 @synthesize  callShort;
 @synthesize  callLarge;
 @synthesize status;
 @synthesize erase;
+@synthesize scenes;
 
 @synthesize statusViewHolder;
 
@@ -100,7 +105,16 @@
         if (zeroCall)
             [address setPlaceholder:NSLocalizedString(@"Call number", nil)];
         else
-            [address setPlaceholder:[UICallButton transforModeEnabled] ? NSLocalizedString(@"Transfer call", nil) : NSLocalizedString(@"Add call", nil)];
+            if ([UICallButton transforModeEnabled])
+            {
+                [address setPlaceholder:NSLocalizedString(@"Transfer call", nil)];
+                [callShort setImage:fCallTransferImage forState:UIControlStateNormal];
+            }
+            else
+            {
+                [address setPlaceholder:NSLocalizedString(@"Add call", nil)];
+                [callShort setImage:fCallAddImage forState:UIControlStateNormal];
+            }
         
         if (!callShort.hidden)
             [callShort setEnabled:!linphone_core_sound_resources_locked([LinphoneManager getLc])];
@@ -124,9 +138,11 @@
 	}
     [[LinphoneManager instance] setRegistrationDelegate:self];
     [[LinphoneManager instance] setContactDelegate:fContacTableViewController];
+    [[LinphoneManager instance] setActionDelefate:self];
     
     [fVideoPreviewController showPreview:YES];
     [self updateCallAndBackButtons];
+    [self loadScenesButtons];
 }
 
 -(void) viewDidDisappear:(BOOL)animated {
@@ -138,14 +154,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    fCallAddImage = [UIImage imageNamed:@"StartCallAddHighlight.png"];
+    fCallTransferImage = [UIImage imageNamed:@"TransferCallHighlight.png"];
+    
     [self setTitle:NSLocalizedString(@"SIP", @"Popisek sipu")];
-    [backToCallView setTitle:NSLocalizedString(@"Return to call", nil) forState:UIControlStateNormal];
     
 	mDisplayName = [UILabel alloc];
 	[callShort initWithAddress:address];
 	[callLarge initWithAddress:address];
 	[erase initWithAddressField:address];
     [backToCallView addTarget:self action:@selector(backToCallViewPressed) forControlEvents:UIControlEventTouchUpInside];
+    [scenes addTarget:self action:@selector(displayScenes) forControlEvents:UIControlEventTouchUpInside];
+    
     [fContacTableViewController setAdressField:address];
     
     if (mIncallViewController == NULL)
@@ -269,8 +289,8 @@
 		fIncomingCallActionSheet = [[UIActionSheet alloc] initWithTitle:[NSString  stringWithFormat:NSLocalizedString(@" %@ is calling you",nil),[displayName length]>0?displayName:username]
 															   delegate:fCallDelegate 
 													  cancelButtonTitle:nil
-												 destructiveButtonTitle:NSLocalizedString(@"Answer",nil) 
-													  otherButtonTitles:NSLocalizedString(@"Decline",nil), NSLocalizedString(@"Decline all",nil),nil];
+												 destructiveButtonTitle:nil
+													  otherButtonTitles:NSLocalizedString(@"Answer",nil),NSLocalizedString(@"Decline",nil), NSLocalizedString(@"Decline all",nil),nil];
         
 		fIncomingCallActionSheet.actionSheetStyle = UIActionSheetStyleDefault;
         
@@ -349,7 +369,7 @@
         return;
     
     LinphoneCall* call = (LinphoneCall*)datas;
-	if (buttonIndex == actionSheet.destructiveButtonIndex ) {
+	if (buttonIndex == 0 ) {
 		linphone_core_accept_call([LinphoneManager getLc],call);
 	} else if (buttonIndex == 1) {
         linphone_core_terminate_call ([LinphoneManager getLc], call);
@@ -390,6 +410,41 @@
         [fFirstLoginViewController displayNotRegisteredFromUI:viewCtrl];
     }
     [self updateStatusSubView];
+}
+
+#pragma mark - Implementation LinphoneUIActionDelegate and UIActionSheetDetelegate
+-(void) displayScenes{
+    UIActionSheet *mActionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Scenes" ,nil) delegate:self cancelButtonTitle:nil  destructiveButtonTitle:nil otherButtonTitles: nil];
+    
+    for (NSDictionary *mScene in fScenesButtons) {
+        [mActionSheet addButtonWithTitle:[mScene valueForKey:@"DisplayName"]];
+        NSLog(@"Duration: %@", [mScene valueForKey:@"SceneActivityDuration"]);
+    }
+    
+    [mActionSheet setCancelButtonIndex:[mActionSheet addButtonWithTitle:NSLocalizedString(@"Close", nil)]];
+    
+    [mActionSheet setActionSheetStyle:UIActionSheetStyleDefault];
+    [mActionSheet showInView:self.navigationController.visibleViewController.view ];
+}
+
+-(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == actionSheet.cancelButtonIndex || buttonIndex < 1)
+        return;
+    else
+    {
+        NSDictionary *mButton = [fScenesButtons objectAtIndex:buttonIndex];
+        //asynchronně odešleme data a neřešíme
+        dispatch_async(kBgQueue, ^{
+            //tato metoda nevrací žádná data, klidně můžeme zavolat a dotaz se odešle :).
+            [JsonService activateSipSceneWithButton:mButton];
+        });
+    }
+}
+
+- (void)loadScenesButtons{
+    dispatch_async(kBgQueue, ^{
+        fScenesButtons = [JsonService getSipScenesButtons];
+    });
 }
 
 @end

@@ -55,6 +55,7 @@ const NSInteger SECURE_BUTTON_TAG=5;
 @synthesize addCall;
 @synthesize mergeCalls;
 @synthesize transfer;
+@synthesize scenes;
 
 @synthesize one;
 @synthesize two;
@@ -140,7 +141,7 @@ void addAnimationFadeTransition(UIView* view, float duration) {
     [hangUpView setAlpha:1.0];
     if ([LinphoneManager instance].frontCamId !=nil ) {
         // only show camera switch button if we have more than 1 camera
-        [videoCameraSwitch setAlpha:1.0];
+        [videoCameraSwitch setEnabled:YES];
     }
     [UIView commitAnimations];
     
@@ -153,7 +154,7 @@ void addAnimationFadeTransition(UIView* view, float duration) {
     [UIView setAnimationDuration:0.3];
     [controlSubView setAlpha:0.0];
     [hangUpView setAlpha:0.0];
-    [videoCameraSwitch setAlpha:0.0];
+    [videoCameraSwitch setEnabled:NO];
     [UIView commitAnimations];
     
     hideControlsTimer = nil;
@@ -207,7 +208,7 @@ void addAnimationFadeTransition(UIView* view, float duration) {
     [controlSubView setAlpha:1.0];
     [hangUpView setAlpha:1.0];
     [callTableView setAlpha:1.0];
-    [videoCameraSwitch setAlpha:0.0];
+    [videoCameraSwitch setEnabled:NO];
     [UIView commitAnimations];
     
     if (hideControlsTimer != nil) {
@@ -267,10 +268,10 @@ void addAnimationFadeTransition(UIView* view, float duration) {
             LinphoneCallState state = linphone_call_get_state(currentCall);
             if (state == LinphoneCallStreamsRunning || state == LinphoneCallUpdating || state == LinphoneCallUpdatedByRemote) {
                 if (linphone_call_params_video_enabled(linphone_call_get_current_params(currentCall))) {
-                    [addVideo setTitle:NSLocalizedString(@"-video", nil) forState:UIControlStateNormal];
+                    [addVideo setSelected:YES];
                     [IncallViewController updateIndicator: videoCallQuality withCallQuality:linphone_call_get_average_quality(currentCall)];
                 } else {
-                    [addVideo setTitle:NSLocalizedString(@"+video", nil) forState:UIControlStateNormal];
+                    [addVideo setSelected:NO];
                 }
                 [addVideo setEnabled:YES];
             } else {
@@ -358,6 +359,11 @@ void addAnimationFadeTransition(UIView* view, float duration) {
         else
             [visibleActionSheet showInView:self.view];
     }
+}
+
+-(void) scenesPressed {
+    [LinphoneManager logUIElementPressed:"SCENES button"];
+    [[LinphoneManager instance] displayScenes];
 }
 
 -(void) addCallPressed {
@@ -909,8 +915,8 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
 - (void)viewDidLoad {
     [super viewDidLoad];
 	//Controls
-	[mute initWithOnImage:[UIImage imageNamed:@"micro_inverse.png"]  offImage:[UIImage imageNamed:@"micro.png"] debugName:"MUTE button"];
-    [speaker initWithOnImage:[UIImage imageNamed:@"HP_inverse.png"]  offImage:[UIImage imageNamed:@"HP.png"] debugName:"SPEAKER button"];
+	[mute initWithOnImage:[UIImage imageNamed:@"MicrophoneHighlight.png"]  offImage:[UIImage imageNamed:@"MicrophoneEnable.png"] debugName:"MUTE button"];
+    [speaker initWithOnImage:[UIImage imageNamed:@"SpeakerEnable.png"]  offImage:[UIImage imageNamed:@"SpeakerHighlight.png"] debugName:"SPEAKER button"];
     
     verified = [UIImage imageNamed:@"secured.png"];
     unverified = [UIImage imageNamed:@"unverified.png"];
@@ -932,6 +938,7 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
     [addCall addTarget:self action:@selector(addCallPressed) forControlEvents:UIControlEventTouchUpInside];
     [mergeCalls addTarget:self action:@selector(mergeCallsPressed) forControlEvents:UIControlEventTouchUpInside];
     [pause addTarget:self action:@selector(pauseCallPressed) forControlEvents:UIControlEventTouchUpInside];
+    [scenes addTarget:self action:@selector(scenesPressed) forControlEvents:UIControlEventTouchUpInside];
     [LinphoneManager set:mergeCalls hidden:YES withName:"MERGE button" andReason:"initialisation"];
     
     if ([LinphoneManager runningOnIpad]) {

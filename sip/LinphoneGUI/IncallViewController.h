@@ -41,6 +41,7 @@
     UITableView* callTableView;
     UIButton* addCall, *mergeCalls;
     UIButton* transfer;
+    UIButton* scenes;
 
 	
 	//key pad
@@ -113,6 +114,7 @@
 @property (nonatomic, retain) IBOutlet UIButton* endCtrl;
 @property (nonatomic, retain) IBOutlet UIButton* dialer;
 @property (nonatomic, retain) IBOutlet UIButton* mute;
+@property (nonatomic, retain) IBOutlet UIButton* scenes;
 @property (nonatomic, retain) IBOutlet UIButton* pause;
 @property (nonatomic, retain) IBOutlet UIButton* speaker;
 @property (nonatomic, retain) IBOutlet UIButton* contacts;
