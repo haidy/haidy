@@ -46,17 +46,13 @@
 					<object class="IBUIImageView" id="629377404">
 						<reference key="NSNextResponder" ref="703569839"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{-12, -15}, {342, 494}}</string>
+						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="703569839"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="515019573"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">Background.png</string>
-						</object>
 					</object>
 					<object class="IBUIView" id="515019573">
 						<reference key="NSNextResponder" ref="703569839"/>
@@ -418,6 +414,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">imageView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="629377404"/>
+					</object>
+					<int key="connectionID">276</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="586379123"/>
 						<reference key="destination" ref="372490531"/>
@@ -644,7 +648,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">274</int>
+			<int key="maxID">276</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -676,7 +680,6 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>address</string>
-							<string>addressImage</string>
 							<string>backToCallView</string>
 							<string>callLarge</string>
 							<string>callShort</string>
@@ -685,6 +688,7 @@
 							<string>fContacTableViewController</string>
 							<string>fVideoPreviewController</string>
 							<string>fViewForContact</string>
+							<string>imageView</string>
 							<string>scenes</string>
 							<string>status</string>
 							<string>statusViewHolder</string>
@@ -693,7 +697,6 @@
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UITextField</string>
-							<string>UIImageView</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
@@ -702,6 +705,7 @@
 							<string>ContactTableViewController</string>
 							<string>VideoPreviewController</string>
 							<string>UIView</string>
+							<string>UIImageView</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UIView</string>
@@ -713,7 +717,6 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>address</string>
-							<string>addressImage</string>
 							<string>backToCallView</string>
 							<string>callLarge</string>
 							<string>callShort</string>
@@ -722,6 +725,7 @@
 							<string>fContacTableViewController</string>
 							<string>fVideoPreviewController</string>
 							<string>fViewForContact</string>
+							<string>imageView</string>
 							<string>scenes</string>
 							<string>status</string>
 							<string>statusViewHolder</string>
@@ -732,10 +736,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">address</string>
 								<string key="candidateClassName">UITextField</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">addressImage</string>
-								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">backToCallView</string>
@@ -768,6 +768,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">fViewForContact</string>
 								<string key="candidateClassName">UIView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">imageView</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">scenes</string>
@@ -847,7 +851,6 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>BackCallHighlight.png</string>
 				<string>BackSpace.png</string>
-				<string>Background.png</string>
 				<string>Button1.png</string>
 				<string>Button2.png</string>
 				<string>Button4.png</string>
@@ -859,7 +862,6 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{80, 66}</string>
 				<string>{80, 66}</string>
-				<string>{400, 330}</string>
 				<string>{80, 66}</string>
 				<string>{160, 66}</string>
 				<string>{320, 66}</string>

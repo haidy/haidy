@@ -169,11 +169,25 @@ extern  void libmsbcg729_init();
 				return;
 			}
 
-            
-			[callDelegate	displayIncomingCall:call 
-                           NotificationFromUI:mCurrentViewController
-														forUser:lUserName 
-                                                    withDisplayName:lDisplayName];
+            if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]
+                && [UIApplication sharedApplication].applicationState !=  UIApplicationStateActive) {
+                // Create a new notification
+                UILocalNotification* notif = [[UILocalNotification alloc] init];
+                if (notif)
+                {
+                    LinphoneCallLog* callLog=linphone_call_get_call_log(call);
+                    NSString* callId=[NSString stringWithUTF8String:callLog->call_id];
+                    notif.repeatInterval = 0;
+                    notif.alertBody =[NSString  stringWithFormat:NSLocalizedString(@" %@ is calling you",nil),[lDisplayName length]>0?lDisplayName:lUserName];
+                    notif.alertAction = NSLocalizedString(@"Answer", nil);
+                    notif.soundName = @"oldphone-mono-30s.caf";
+                    notif.userInfo = [NSDictionary dictionaryWithObject:callId forKey:@"callId"];
+                    
+                    [[UIApplication sharedApplication]  presentLocalNotificationNow:notif];
+                }
+            }
+            else
+                [callDelegate	displayIncomingCall:call  NotificationFromUI:mCurrentViewController forUser:lUserName  withDisplayName:lDisplayName];
 			break;
 			
 		case LinphoneCallOutgoingInit: 
@@ -465,10 +479,12 @@ static LinphoneCoreVTable linphonec_vtable = {
 		}
 	} 
 }
+
 -(void) kickOffNetworkConnection {
 	/*start a new thread to avoid blocking the main ui in case of peer host failure*/
 	[NSThread detachNewThreadSelector:@selector(runNetworkConnection) toTarget:self withObject:nil];
 }
+
 -(void) runNetworkConnection {
 	CFWriteStreamRef writeStream;
 	CFStreamCreatePairWithSocketToHost(NULL, (CFStringRef)@"192.168.0.200"/*"linphone.org"*/, 15000, nil, &writeStream);
@@ -476,7 +492,7 @@ static LinphoneCoreVTable linphonec_vtable = {
 	const char* buff="hello";
 	CFWriteStreamWrite (writeStream,(const UInt8*)buff,strlen(buff));
 	CFWriteStreamClose (writeStream);
-}	
+}
 
 static void showNetworkFlags(SCNetworkReachabilityFlags flags){
 	ms_message("Network connection flags:");

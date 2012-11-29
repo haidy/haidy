@@ -44,7 +44,7 @@
 
 	UIButton* backToCallView;
     UIView* statusViewHolder;
-    UIImageView* addressImage;
+    UIImageView* imageView;
 	
     //Zakomentováno do doby, dokud nebudeme chtít zase používat TabBarController
 	//UITabBarController*  myTabBarController;
@@ -70,7 +70,7 @@
 }
 
 @property (nonatomic, retain) IBOutlet UIView* dialerView;
-@property (nonatomic, retain) IBOutlet UIImageView* addressImage;
+@property (nonatomic, retain) IBOutlet UIImageView* imageView;
 @property (nonatomic, retain) IBOutlet UITextField* address;
 @property (nonatomic, retain) IBOutlet UIButton* callShort;
 @property (nonatomic, retain) IBOutlet UIButton* callLarge;

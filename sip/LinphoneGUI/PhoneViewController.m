@@ -35,7 +35,7 @@
 
 @implementation PhoneViewController
 @synthesize  dialerView ;
-@synthesize  address, addressImage ;
+@synthesize  address, imageView ;
 @synthesize  callShort;
 @synthesize  callLarge;
 @synthesize status;
@@ -154,6 +154,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //oříznutí pozadí o okraje pro iPhone
+    if (![ExUtils runningOnIpad])
+    {
+        UIImage *mResourceImage = [UIImage imageNamed:@"Background.png"];
+        CGRect mRect = CGRectMake(15, 15, mResourceImage.size.width-30, mResourceImage.size.height-30);
+        CGImageRef mCroptedImage = CGImageCreateWithImageInRect([mResourceImage CGImage], mRect);
+
+        imageView.image= [UIImage imageWithCGImage:mCroptedImage];
+        CGImageRelease(mCroptedImage);
+    }
+    
     fCallAddImage = [UIImage imageNamed:@"StartCallAddHighlight.png"];
     fCallTransferImage = [UIImage imageNamed:@"TransferCallHighlight.png"];
     
@@ -263,49 +274,30 @@
 }
 
 -(void) displayIncomingCall:(LinphoneCall*) call NotificationFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-	[fVideoPreviewController showPreview:NO]; 
-	if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)] 
-		&& [UIApplication sharedApplication].applicationState !=  UIApplicationStateActive) {
-		// Create a new notification
-		UILocalNotification* notif = [[UILocalNotification alloc] init];
-		if (notif)
-		{
-            LinphoneCallLog* callLog=linphone_call_get_call_log(call);
-			NSString* callId=[NSString stringWithUTF8String:callLog->call_id];
-			notif.repeatInterval = 0;
-			notif.alertBody =[NSString  stringWithFormat:NSLocalizedString(@" %@ is calling you",nil),[displayName length]>0?displayName:username];
-			notif.alertAction = NSLocalizedString(@"Answer", nil);
-			notif.soundName = @"oldphone-mono-30s.caf";
-			notif.userInfo = [NSDictionary dictionaryWithObject:callId forKey:@"callId"];
-			
-			[[UIApplication sharedApplication]  presentLocalNotificationNow:notif];
-		}
-	} else 	{
-        fCallDelegate = nil;
-        fCallDelegate = [[CallDelegate alloc] init];
-        fCallDelegate.eventType = CD_NEW_CALL;
-        fCallDelegate.delegate = self;
-        fCallDelegate.call = call;
-        
-		fIncomingCallActionSheet = [[UIActionSheet alloc] initWithTitle:[NSString  stringWithFormat:NSLocalizedString(@" %@ is calling you",nil),[displayName length]>0?displayName:username]
-															   delegate:fCallDelegate 
-													  cancelButtonTitle:nil
-												 destructiveButtonTitle:nil
-													  otherButtonTitles:NSLocalizedString(@"Answer",nil),NSLocalizedString(@"Decline",nil), NSLocalizedString(@"Decline all",nil),nil];
-        
-		fIncomingCallActionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-        
-        if ([LinphoneManager runningOnIpad]) {
-            if (self.presentedViewController != nil)
-                [fIncomingCallActionSheet showInView:[self.presentedViewController view]];
-            else
-                [fIncomingCallActionSheet showInView:self.parentViewController.view];
-        } else {
+
+	[fVideoPreviewController showPreview:NO];
+    fCallDelegate = nil;
+    fCallDelegate = [[CallDelegate alloc] init];
+    fCallDelegate.eventType = CD_NEW_CALL;
+    fCallDelegate.delegate = self;
+    fCallDelegate.call = call;
+    
+    fIncomingCallActionSheet = [[UIActionSheet alloc] initWithTitle:[NSString  stringWithFormat:NSLocalizedString(@" %@ is calling you",nil),[displayName length]>0?displayName:username]
+                                                           delegate:fCallDelegate 
+                                                  cancelButtonTitle:nil
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:NSLocalizedString(@"Answer",nil),NSLocalizedString(@"Decline",nil), NSLocalizedString(@"Decline all",nil),nil];
+    
+    fIncomingCallActionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+    
+    if ([LinphoneManager runningOnIpad]) {
+        if (self.presentedViewController != nil)
+            [fIncomingCallActionSheet showInView:[self.presentedViewController view]];
+        else
             [fIncomingCallActionSheet showInView:self.parentViewController.view];
-        }
+    } else {
+        [fIncomingCallActionSheet showInView:self.parentViewController.view];
     }
-	
-    [fVideoPreviewController showPreview:NO];
 }
 
 -(void) displayCall: (LinphoneCall*) call InProgressFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
