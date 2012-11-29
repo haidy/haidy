@@ -76,6 +76,7 @@ typedef struct _LinphoneCallAppData {
 +(LinphoneManager*) instance;
 +(void) destroyInstance;
 +(LinphoneCore*) getLc;
++(BOOL)isLcReady;
 +(BOOL) runningOnIpad;
 +(void) set:(UIView*)view hidden: (BOOL) hidden withName:(const char*)name andReason:(const char*) reason;
 +(void) logUIElementPressed:(const char*) name;
@@ -97,6 +98,9 @@ typedef struct _LinphoneCallAppData {
 -(BOOL) reconfigureLinphoneIfNeeded:(NSDictionary *)oldSettings;
 -(void) setupNetworkReachabilityCallback;
 -(void) refreshRegisters;
+
+- (void)acceptCallForCallId:(NSString*)aCallId;
+
 
 @property (nonatomic, retain) id<LinphoneUICallDelegate> callDelegate;
 @property (nonatomic, retain) id<LinphoneUIRegistrationDelegate> registrationDelegate;

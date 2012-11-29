@@ -202,13 +202,10 @@ int __aeabi_idiv(int a, int b) {
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    LinphoneCall* call;
-	[(NSData*)([notification.userInfo objectForKey:@"call"])  getBytes:&call];
-    if (!call) {
-        ms_warning("Local notification received with nil call");
-        return;
-    }
-	linphone_core_accept_call([LinphoneManager getLc], call);
+    
+    if([notification.userInfo objectForKey:@"callId"] != nil)
+        [[LinphoneManager instance] acceptCallForCallId:[notification.userInfo objectForKey:@"callId"]];
+
 }
 
 /*

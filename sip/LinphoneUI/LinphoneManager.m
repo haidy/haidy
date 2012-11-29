@@ -318,6 +318,10 @@ extern  void libmsbcg729_init();
     [actionDelefate displayScenes];
 }
 
++ (BOOL)isLcReady {
+    return theLinphoneCore != nil;
+}
+
 +(LinphoneCore*) getLc {
 	if (theLinphoneCore==nil) {
 		@throw([NSException exceptionWithName:@"LinphoneCoreException" reason:@"Linphone core not initialized yet" userInfo:nil]);
@@ -1117,6 +1121,23 @@ void networkReachabilityCallBack(SCNetworkReachabilityRef target, SCNetworkReach
 +(void) logUIElementPressed:(const char*) name {
     ms_message("UI - '%s' pressed", name);
 }
+
+static int comp_call_id(const LinphoneCall* call , const char *callid) {
+	return strcmp(linphone_call_get_call_log(call)->call_id, callid);
+}
+
+- (void)acceptCallForCallId:(NSString*)callid {
+    //first, make sure this callid is not already involved in a call
+	if ([LinphoneManager isLcReady]) {
+		MSList* calls = (MSList*)linphone_core_get_calls([LinphoneManager getLc]);
+        MSList* call = ms_list_find_custom(calls, (MSCompareFunc)comp_call_id, [callid UTF8String]);
+		if (call != NULL) {
+            linphone_core_accept_call(theLinphoneCore, (LinphoneCall*)call->data);
+			return;
+		};
+	}
+}
+
 
 #pragma mark - AVAudioSession Notification implemented
 

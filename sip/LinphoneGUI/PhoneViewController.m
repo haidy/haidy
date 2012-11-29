@@ -270,12 +270,13 @@
 		UILocalNotification* notif = [[UILocalNotification alloc] init];
 		if (notif)
 		{
+            LinphoneCallLog* callLog=linphone_call_get_call_log(call);
+			NSString* callId=[NSString stringWithUTF8String:callLog->call_id];
 			notif.repeatInterval = 0;
 			notif.alertBody =[NSString  stringWithFormat:NSLocalizedString(@" %@ is calling you",nil),[displayName length]>0?displayName:username];
 			notif.alertAction = NSLocalizedString(@"Answer", nil);
 			notif.soundName = @"oldphone-mono-30s.caf";
-            NSData *callData = [NSData dataWithBytes:&call length:sizeof(call)];
-			notif.userInfo = [NSDictionary dictionaryWithObject:callData forKey:@"call"];
+			notif.userInfo = [NSDictionary dictionaryWithObject:callId forKey:@"callId"];
 			
 			[[UIApplication sharedApplication]  presentLocalNotificationNow:notif];
 		}
