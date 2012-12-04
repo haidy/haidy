@@ -15,5 +15,6 @@
 +(NSArray*) getSipScenesButtons;
 +(void) activateSipSceneWithButton:(NSDictionary*)aButton;
 +(NSArray*) getRemoteServerSessions;
++(NSArray*) getNotifications;
 
 @end

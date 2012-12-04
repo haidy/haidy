@@ -421,7 +421,7 @@
 }
 
 -(void) actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == actionSheet.cancelButtonIndex || buttonIndex < 1)
+    if (buttonIndex == actionSheet.cancelButtonIndex || buttonIndex < 0)
         return;
     else
     {

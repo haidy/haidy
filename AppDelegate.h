@@ -32,6 +32,7 @@
 @property (strong, nonatomic) WebViewController *fWebViewController;
 @property (strong, nonatomic) UINavigationController *fNavigationController;
 
+
 -(void) synchronizeDefaults;
 -(void) registerDefaultsFromSettingsBundle;
 

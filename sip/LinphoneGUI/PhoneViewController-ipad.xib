@@ -558,14 +558,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">addressImage</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="264518448"/>
-					</object>
-					<int key="connectionID">163</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="1039451160"/>
 						<reference key="destination" ref="372490531"/>
@@ -838,7 +830,6 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="address">UITextField</string>
-						<string key="addressImage">UIImageView</string>
 						<string key="backToCallView">UIButton</string>
 						<string key="callLarge">UIButton</string>
 						<string key="callShort">UIButton</string>
@@ -847,6 +838,7 @@
 						<string key="fContacTableViewController">ContactTableViewController</string>
 						<string key="fVideoPreviewController">VideoPreviewController</string>
 						<string key="fViewForContact">UIView</string>
+						<string key="imageView">UIImageView</string>
 						<string key="scenes">UIButton</string>
 						<string key="status">UILabel</string>
 						<string key="statusViewHolder">UIView</string>
@@ -856,10 +848,6 @@
 						<object class="IBToOneOutletInfo" key="address">
 							<string key="name">address</string>
 							<string key="candidateClassName">UITextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="addressImage">
-							<string key="name">addressImage</string>
-							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="backToCallView">
 							<string key="name">backToCallView</string>
@@ -892,6 +880,10 @@
 						<object class="IBToOneOutletInfo" key="fViewForContact">
 							<string key="name">fViewForContact</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="imageView">
+							<string key="name">imageView</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="scenes">
 							<string key="name">scenes</string>

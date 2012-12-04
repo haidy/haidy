@@ -96,7 +96,7 @@
 
 +(void) activateSipSceneWithButton:(NSDictionary*)aButton{
     NSDictionary *mParametrs = [NSDictionary dictionaryWithObjectsAndKeys:aButton, @"aButton", nil];
-    [self getJsonDataWithMethod:@"GetSipScenesButtons" andParametrs:mParametrs];
+    [self getJsonDataWithMethod:@"ActivateSipScene" andParametrs:mParametrs];
     return;
 }
 
@@ -104,5 +104,8 @@
     return (NSArray*)[self getJsonDataWithMethod:@"GetRemoteServerSessions" andParametrs:nil];
 }
 
++(NSArray*) getNotifications{
+    return (NSArray*)[self getJsonDataWithMethod:@"CheckForImportantNotification" andParametrs:nil];
+}
 
 @end

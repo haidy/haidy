@@ -40,6 +40,9 @@
     BOOL fIsVisibleSipForIncommingCall;
     @private BOOL fLoadedErrorPage;
     @private PhoneViewController *fPhoneViewController;
+    
+    NSTimer *fNotificationTimer;
+    UIAlertView *fNotificationAllertView;
 }
 
 @property (strong, nonatomic) IBOutlet UIWebView *fWebView;

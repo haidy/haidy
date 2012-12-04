@@ -37,6 +37,7 @@
 		9145615C15EE5D7A00EF9FB7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615A15EE5D7A00EF9FB7 /* Default.png */; };
 		9145615D15EE5D7A00EF9FB7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9145615B15EE5D7A00EF9FB7 /* Default@2x.png */; };
 		91488A911667959900E41C99 /* Background2.png in Resources */ = {isa = PBXBuildFile; fileRef = 91488A901667959900E41C99 /* Background2.png */; };
+		9149BC7A166E452300837576 /* HaidyNotification.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9149BC79166E452300837576 /* HaidyNotification.wav */; };
 		9173D63C1647E085002EAE7F /* icon144x144.png in Resources */ = {isa = PBXBuildFile; fileRef = 9173D63B1647E085002EAE7F /* icon144x144.png */; };
 		917A1FB2165AB3D0001E67AD /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 917A1FB0165AB3CF001E67AD /* AboutViewController.m */; };
 		917A1FB3165AB3D0001E67AD /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 917A1FB1165AB3D0001E67AD /* AboutViewController.xib */; };
@@ -263,6 +264,7 @@
 		9145615A15EE5D7A00EF9FB7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		9145615B15EE5D7A00EF9FB7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = SOURCE_ROOT; };
 		91488A901667959900E41C99 /* Background2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background2.png; sourceTree = "<group>"; };
+		9149BC79166E452300837576 /* HaidyNotification.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HaidyNotification.wav; sourceTree = SOURCE_ROOT; };
 		9173D63B1647E085002EAE7F /* icon144x144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon144x144.png; sourceTree = SOURCE_ROOT; };
 		917A1FAF165AB3CF001E67AD /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = SOURCE_ROOT; };
 		917A1FB0165AB3CF001E67AD /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = SOURCE_ROOT; };
@@ -569,6 +571,15 @@
 			path = "Haidy House";
 			sourceTree = "<group>";
 		};
+		9149BC73166E444C00837576 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				9149BC79166E452300837576 /* HaidyNotification.wav */,
+			);
+			name = Sounds;
+			path = "Haidy House";
+			sourceTree = "<group>";
+		};
 		918CA1A41667519700659EC7 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
@@ -848,6 +859,7 @@
 				91D700F11521D9700013AAAD /* Supporting Files */,
 				911D53D115E7999400E8C4FB /* Utils */,
 				91D7013F1521E14E0013AAAD /* Icons */,
+				9149BC73166E444C00837576 /* Sounds */,
 				91CB59AF1606F53100F17FBD /* sip-linphone-gpl */,
 				91D700E91521D9700013AAAD /* Frameworks */,
 				91D700E71521D9700013AAAD /* Products */,
@@ -1144,6 +1156,7 @@
 				918CA2101667583100659EC7 /* MergeCallEnable.png in Resources */,
 				918CA212166761F600659EC7 /* TransferCallEnable.png in Resources */,
 				91488A911667959900E41C99 /* Background2.png in Resources */,
+				9149BC7A166E452300837576 /* HaidyNotification.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

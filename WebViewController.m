@@ -21,6 +21,9 @@
  *  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
  */
 
+
+#define timeToTick 15
+
 #import "WebViewController.h"
 #import "DetailViewController.h"
 #import "PopupViewController.h"
@@ -28,6 +31,8 @@
 #import "WaitingViewController.h"
 #import "AboutViewController.h"
 #import "LinphoneManager.h"
+#import "JsonService.h"
+#include <AudioToolbox/AudioToolbox.h>
 
 @interface WebViewController()
 {
@@ -106,6 +111,8 @@
                                              selector:@selector(defaultsChanged:)
                                                  name:NSUserDefaultsDidChangeNotification
                                                object:nil];
+    
+    fNotificationTimer = [NSTimer scheduledTimerWithTimeInterval:timeToTick target:self selector:@selector(timerTick:) userInfo:nil repeats:YES];
 }
 
 - (void)viewDidUnload
@@ -219,11 +226,11 @@
 
     //pro iPad upravíme velikost okna, pokud má být zobrazen jako FormSheet
     if ([ExUtils runningOnIpad] && fDetailViewController.modalPresentationStyle == UIModalPresentationFormSheet) {
-        [self presentViewController:fDetailViewController animated:NO completion:handler];
+        [self.navigationController presentViewController:fDetailViewController animated:NO completion:handler];
 
     }
     else
-        [self presentViewController:fDetailViewController animated:NO completion:nil];
+        [self.navigationController presentViewController:fDetailViewController animated:NO completion:nil];
 }
 
 //Getter fPhoneViewControlleru, který zajištuje incializaci dle zařízení
@@ -301,9 +308,28 @@
     //else: není potřeba, jde o zbytek kódu
     
     // Normal error handling…
-    UIAlertView *allert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Server url", @"") message:NSLocalizedString(@"Bad connect", @"Nepodařilo se připojit") delegate:self cancelButtonTitle:NSLocalizedString(@"Button Home", @"") 
+    UIAlertView *mAllertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Server url", @"") message:NSLocalizedString(@"Bad connect", @"Nepodařilo se připojit") delegate:self cancelButtonTitle:NSLocalizedString(@"Button Home", @"")
         otherButtonTitles:NSLocalizedString(@"Button Remotely", @""), NSLocalizedString(@"Button Cancel", nil), nil ];
-    [allert show];
+    [mAllertView setTag:0];
+    [mAllertView show];
+}
+
+-(void) imHomeAllertView:(UIAlertView*)aAllertView clickedButtonAtIndex:(NSInteger)aButtonIndex{
+    // the user clicked one of the OK/Cancel buttons
+    if (aButtonIndex == 0)
+    {
+        NSLog(@"Potvrzeno jsem doma");
+        [ExUtils setInHome:YES];
+    }
+    else if (aButtonIndex == 1)
+    {
+        NSLog(@"Nastaveno jsem vzdáleně");
+        [ExUtils setInHome:NO];
+    }
+    else
+        return;
+    
+    [self configureView:YES];
 }
 
 - (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)aRequest navigationType:(UIWebViewNavigationType)navigationType
@@ -365,23 +391,13 @@
 }
      
 #pragma mark - UIAllertViewDelegate
-- (void)alertView:(UIAlertView *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)aAlertView clickedButtonAtIndex:(NSInteger)aButtonIndex {
     
-    // the user clicked one of the OK/Cancel buttons
-    if (buttonIndex == 0)
-    {
-        NSLog(@"Potvrzeno jsem doma");
-        [ExUtils setInHome:YES];
-    }
-    else if (buttonIndex == 1)
-    {
-        NSLog(@"Nastaveno jsem vzdáleně");
-        [ExUtils setInHome:NO];
-    }
-    else 
-        return;
-    
-    [self configureView:YES];
+    if (aAlertView.tag == 0)
+        [self imHomeAllertView:aAlertView clickedButtonAtIndex:aButtonIndex];
+    else if (aAlertView.tag == 1)
+        [self notificationAllertView:aAlertView clickedButtonAtIndex:aButtonIndex];
+    //else - pokud přijde něco co neznáme, tak to má smůlu
 }
 
 #pragma mark - Swipe Gesture
@@ -476,7 +492,77 @@
     [self.fPhoneViewController firstVideoFrameDecoded:call];
 }
 
-#pragma mark - Implememnt Notification
+#pragma mark - Implement Notification from HAIDY webserver
+
+-(void)timerTick:(NSTimer*)aTimer{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        //očekáváme, že přijde pole, proto proměnná typu array
+        NSArray* mNotifications = [JsonService getNotifications];
+        
+        if (mNotifications != nil && mNotifications.count != 0)
+            [self performSelectorOnMainThread:@selector(fetchedNofitications:) withObject:mNotifications waitUntilDone:NO];
+    });
+}
+
+-(void) fetchedNofitications:(NSArray*)aNotifications
+{
+    for (NSDictionary *mNotification in aNotifications) {
+        if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]
+            && [UIApplication sharedApplication].applicationState ==  UIApplicationStateBackground)
+        {
+            //nejsme v aktivním stavu a tak vyhodíme lokální notifikaci
+            UILocalNotification *mLocalNotification = [[UILocalNotification alloc] init];
+            if (mLocalNotification != nil)
+            {
+                mLocalNotification.repeatInterval = 0;
+                mLocalNotification.alertBody =[mNotification objectForKey:@"Text"];
+                mLocalNotification.alertAction = NSLocalizedString(@"Show", nil);
+                mLocalNotification.soundName = UILocalNotificationDefaultSoundName;
+                mLocalNotification.userInfo = [NSDictionary dictionaryWithObject:@"haidy" forKey:@"haidyNotification"];
+                [[UIApplication sharedApplication]  presentLocalNotificationNow:mLocalNotification];
+            }
+        }
+        else
+        {
+            if (fNotificationAllertView != nil)
+                [fNotificationAllertView dismissWithClickedButtonIndex:fNotificationAllertView.cancelButtonIndex animated:NO];
+            // jsme v aktivním stavu a tak vyhodíme alertview
+            fNotificationAllertView = [[UIAlertView alloc] initWithTitle:[mNotification objectForKey:@"Kind"] message:[mNotification objectForKey:@"Text"] delegate:self cancelButtonTitle:NSLocalizedString(@"Ignore", "Ignorovat notifikaci") otherButtonTitles:NSLocalizedString(@"Show", nil), nil];
+            [fNotificationAllertView setTag:1];
+                [fNotificationAllertView show];
+            
+            //sound efetekt udělat podle toho co přijde v notifickaci
+            NSLog(@"%@", UILocalNotificationDefaultSoundName);
+            SystemSoundID audioEffect;
+            NSString* path = [[NSBundle mainBundle]
+                              pathForResource:@"HaidyNotification" ofType:@"wav"];
+            NSURL *pathURL = [NSURL fileURLWithPath : path];
+            AudioServicesCreateSystemSoundID((__bridge CFURLRef) pathURL, &audioEffect);
+            AudioServicesPlaySystemSound(audioEffect);
+        }
+    }
+}
+
+-(void) notificationAllertView:(UIAlertView*)aAllertView clickedButtonAtIndex:(NSInteger)aButtonIndex{
+   if (aButtonIndex == aAllertView.cancelButtonIndex)
+       return;
+    // else není potřeba, pokračujeme dále
+    
+    //zobrazíme stránku s notifikacemi
+    NSMutableURLRequest *mNotificationRequest = [NSMutableURLRequest requestWithURL:[ExUtils constructUrlFromPage:@"default.aspx"]];
+    [mNotificationRequest setHTTPMethod:@"POST"];
+    [mNotificationRequest setHTTPBody:[@"SelectedMenuNodeId=Notifications" dataUsingEncoding:NSUTF8StringEncoding]];
+    [self.fWebView loadRequest:mNotificationRequest];
+    if (self.navigationController.visibleViewController != nil && self.navigationController.visibleViewController != self)
+    {
+        [self.navigationController.visibleViewController dismissViewControllerAnimated:YES completion:nil];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+    //else - nic schovávat nechceme
+}
+
+#pragma mark - Implememnt Notification change
 
 static NSDictionary *fOldDefaults;
 

@@ -244,11 +244,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "AppDelegate.m"
-         timestampString = "375893319.195868"
+         timestampString = "376326793.607543"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "246"
-         endingLineNumber = "246"
+         startingLineNumber = "259"
+         endingLineNumber = "259"
          landmarkName = "-registerDefaultsFromSettingsBundle"
          landmarkType = "5">
       </FileBreakpoint>
@@ -331,30 +331,43 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
+         shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "375896421.972192"
+         filePath = "AppDelegate.m"
+         timestampString = "376326869.516598"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1206"
-         endingLineNumber = "1206"
-         landmarkName = "-setupGSMInteraction"
+         startingLineNumber = "139"
+         endingLineNumber = "139"
+         landmarkName = "-applicationDidEnterBackground:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "375896421.972192"
+         filePath = "sip/LinphoneGUI/PhoneViewController.m"
+         timestampString = "376328863.888856"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1217"
-         endingLineNumber = "1217"
-         landmarkName = "@implementation LinphoneManager"
-         landmarkType = "3">
+         startingLineNumber = "428"
+         endingLineNumber = "428"
+         landmarkName = "-actionSheet:clickedButtonAtIndex:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "DetailViewController.m"
+         timestampString = "376328966.750164"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "115"
+         endingLineNumber = "115"
+         landmarkName = "-webView:didFailLoadWithError:"
+         landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

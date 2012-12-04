@@ -29,20 +29,18 @@
 #include "ExUtils.h"
 #include "JsonService.h"
 
-#if __clang__ && __arm__
-extern int __divsi3(int a, int b);
-int __aeabi_idiv(int a, int b);
-int __aeabi_idiv(int a, int b) {
-	return __divsi3(a,b);
-}
-#endif
-
 ///doimplementovat delegáta skončil jsem někde u applicationDidBecomeActive
 
 @implementation AppDelegate
 
 @synthesize window = _window;
 @synthesize fNavigationController, fWebViewController;
+
+///
+/// Založit timer, po ticku zavolat asynchroně o data notifikací. Až přijdou data, tak je zpracuju a ev vyhodím lokální notifikaci (vše ve zvláštním threadu). Důležité je volat invalidate při přichodu do backgroundu . Zajistit dotazy i v backgroundu.
+///
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -125,10 +123,31 @@ int __aeabi_idiv(int a, int b) {
      If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
      */
     
+    BOOL registerCustomKeepAllive = false;
     if ([ExUtils useSip])
+    {
         if (![[LinphoneManager instance] enterBackgroundMode]) {
-
+            registerCustomKeepAllive = true;
         }
+        //else - backgroud mód je pro SIP povolen, nepotřebuj
+    }
+    else //není povolený
+        registerCustomKeepAllive = true;
+
+    //není povolený sip nebo není povolený backgroud mód, zkusíme si zaregistrovat vlastní keepallive
+    //register keepalive
+    if ([[UIApplication sharedApplication] setKeepAliveTimeout:600
+                                                       handler:^{
+                                                           NSLog(@"keepalive handler");
+                                                           //tělo je úmyslně prázdné, stačí vejít a Timer ve WebView hodí tick a stáhne noticikace.
+                                                       }
+         ]) {
+        
+        
+        NSLog(@"keepalive handler succesfully registered");
+    } else {
+        NSLog(@"keepalive handler cannot be registered");
+    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
