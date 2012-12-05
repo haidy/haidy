@@ -32,6 +32,11 @@
 
 @synthesize delegate, navigationArray;
 
+- (void)setNavigationArray:(NSMutableArray *)aNavigationArray
+{
+    navigationArray = aNavigationArray;
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad
 {

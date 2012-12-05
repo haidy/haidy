@@ -32,7 +32,6 @@
 
 @interface NavigationRoomViewController : UITableViewController
 {
-
 }
 
 @property (nonatomic, assign) id <NavigationRoomViewControllerDelegate> delegate;
