@@ -243,6 +243,7 @@ static ExNavigationData *fSipNavigationData;
             //získáme třídu, ze které si vytáhneme potřebné informace
             mControlClass = (ExNavigationData*)[mSectionArray objectAtIndex:indexPath.row];
             cell.textLabel.text = [mControlClass title];
+            cell.accessoryType = UITableViewCellAccessoryNone;
         
             if (indexPath.row == 2)
             {
@@ -256,6 +257,7 @@ static ExNavigationData *fSipNavigationData;
             
             if (cell == nil){
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+                cell.accessoryType = UITableViewCellAccessoryNone;
             }
             
             //získáme pole sekce
