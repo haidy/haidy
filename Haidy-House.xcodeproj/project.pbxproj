@@ -155,7 +155,6 @@
 		91B48BBB161C14E900865881 /* status_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B97161C14E900865881 /* status_red.png */; };
 		91B48BBC161C14E900865881 /* unverified.png in Resources */ = {isa = PBXBuildFile; fileRef = 91B48B98161C14E900865881 /* unverified.png */; };
 		91B48BBF161C15EC00865881 /* PhoneMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B48BBE161C15EC00865881 /* PhoneMainView.xib */; };
-		91B53B6A1625A924001D6588 /* ContactPickerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B25D94161B13D7005777CF /* ContactPickerDelegate.m */; };
 		91B53B701625B7D9001D6588 /* ContactTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91B53B6F1625B7D9001D6588 /* ContactTableViewController.m */; };
 		91CB598C1606E59B00F17FBD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB598B1606E59B00F17FBD /* CoreTelephony.framework */; };
 		91CB598E1606E5A800F17FBD /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91CB598D1606E5A800F17FBD /* QuartzCore.framework */; };
@@ -371,8 +370,6 @@
 		91B25D90161B13D7005777CF /* ConsoleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConsoleViewController.h; sourceTree = "<group>"; };
 		91B25D91161B13D7005777CF /* ConsoleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConsoleViewController.m; sourceTree = "<group>"; };
 		91B25D92161B13D7005777CF /* ConsoleViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ConsoleViewController.xib; sourceTree = "<group>"; };
-		91B25D93161B13D7005777CF /* ContactPickerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactPickerDelegate.h; sourceTree = "<group>"; };
-		91B25D94161B13D7005777CF /* ContactPickerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactPickerDelegate.m; sourceTree = "<group>"; };
 		91B25D95161B13D7005777CF /* FirstLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstLoginViewController.h; sourceTree = "<group>"; };
 		91B25D96161B13D7005777CF /* FirstLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirstLoginViewController.m; sourceTree = "<group>"; };
 		91B25D97161B13D7005777CF /* FirstLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirstLoginViewController.xib; sourceTree = "<group>"; };
@@ -738,8 +735,6 @@
 				91B25D97161B13D7005777CF /* FirstLoginViewController.xib */,
 				91B53B6E1625B7D9001D6588 /* ContactTableViewController.h */,
 				91B53B6F1625B7D9001D6588 /* ContactTableViewController.m */,
-				91B25D93161B13D7005777CF /* ContactPickerDelegate.h */,
-				91B25D94161B13D7005777CF /* ContactPickerDelegate.m */,
 				91B53B6816256CE5001D6588 /* Derefered */,
 			);
 			name = LinphoneGUI;
@@ -1225,7 +1220,6 @@
 				91B25DC7161B13D8005777CF /* PhoneViewController.m in Sources */,
 				91B25DC9161B13D8005777CF /* StatusSubViewController.m in Sources */,
 				91B25DCC161B13D8005777CF /* VideoViewController.m in Sources */,
-				91B53B6A1625A924001D6588 /* ContactPickerDelegate.m in Sources */,
 				91B53B701625B7D9001D6588 /* ContactTableViewController.m in Sources */,
 				91EAFD88164AFD1D00C56AB7 /* SwitchCell.m in Sources */,
 				917A1FB2165AB3D0001E67AD /* AboutViewController.m in Sources */,
@@ -1327,6 +1321,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
+					"\"$(SRCROOT)/../../Desktop/adt-bundle-mac/sdk/tools/Jet/JetCreator\"",
+					"\"$(SRCROOT)/../../Desktop/adt-bundle-mac/sdk/tools/lib\"",
 				);
 				PRODUCT_NAME = HAIDY;
 				PROVISIONING_PROFILE = "38FA8FE4-8840-4E82-A250-C2BE8808E028";
@@ -1440,6 +1436,8 @@
 					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib",
 					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib/mediastreamer/plugins",
 					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
+					"\"$(SRCROOT)/../../Desktop/adt-bundle-mac/sdk/tools/Jet/JetCreator\"",
+					"\"$(SRCROOT)/../../Desktop/adt-bundle-mac/sdk/tools/lib\"",
 				);
 				PRODUCT_NAME = HAIDY;
 				PROVISIONING_PROFILE = "EC064810-D687-45DD-8596-9D07C4358150";
@@ -1490,6 +1488,8 @@
 					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib/",
 					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib/mediastreamer/plugins",
 					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
+					"\"$(SRCROOT)/../../Desktop/adt-bundle-mac/sdk/tools/Jet/JetCreator\"",
+					"\"$(SRCROOT)/../../Desktop/adt-bundle-mac/sdk/tools/lib\"",
 				);
 				PRODUCT_NAME = HAIDY;
 				PROVISIONING_PROFILE = "2ADA436E-13AC-4AF4-B682-D39F904770A6";

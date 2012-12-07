@@ -23,7 +23,6 @@
 #import "linphonecore.h"
 #include "LinphoneManager.h"
 #include "private.h"
-#import "ContactPickerDelegate.h"
 #import <QuartzCore/CAAnimation.h>
 #import <QuartzCore/QuartzCore.h>
 #import <OpenGLES/EAGL.h>
@@ -412,15 +411,6 @@ void addAnimationFadeTransition(UIView* view, float duration) {
     [self updateUIFromLinphoneState: NO]; 
 }
 
--(void) awakeFromNib
-{
-   
-}
-
--(void) displayStatus:(NSString*) message; {
-
-}
-
 -(void) displayPad:(bool) enable {
     if (videoView.hidden)
         [LinphoneManager set:callTableView hidden:enable withName:"CALL_TABLE view" andReason:AT];
@@ -428,53 +418,7 @@ void addAnimationFadeTransition(UIView* view, float duration) {
     [LinphoneManager set:controlSubView hidden:enable withName:"CONTROL view" andReason:AT];
     [LinphoneManager set:padSubView hidden:!enable withName:"PAD view" andReason:AT];
 }
--(void) displayCall:(LinphoneCall*) call InProgressFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-	//restore view
-	[self displayPad:false];
-	dismissed = false;
-	UIDevice *device = [UIDevice currentDevice];
-    device.proximityMonitoringEnabled = YES;
-	//if ([speaker isOn]) 
-	//	[speaker toggle];
-    [self updateUIFromLinphoneState: YES]; 
-}
 
--(void) displayIncomingCall:(LinphoneCall *)call NotificationFromUI:(UIViewController *)viewCtrl forUser:(NSString *)username withDisplayName:(NSString *)displayName {
-    
-}
-
--(void) displayInCall:(LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-    dismissed = false;
-	UIDevice *device = [UIDevice currentDevice];
-    device.proximityMonitoringEnabled = YES;
-	if (call !=nil  && linphone_call_get_dir(call)==LinphoneCallIncoming) {
-		//if ([speaker isOn]) [speaker toggle];
-	}
-    [self updateUIFromLinphoneState: YES];
-    
-    [self disableVideoDisplay];
-}
--(void) displayDialerFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-    [self disableVideoDisplay];
-	UIViewController* modalVC = self.presentedViewController;
-	UIDevice *device = [UIDevice currentDevice];
-    device.proximityMonitoringEnabled = NO;
-    dismissed = true;
-    if (modalVC != nil) {
-        mVideoIsPending=FALSE;
-        // clear previous native window ids
-        if (modalVC == mVideoViewController) {
-            mVideoShown=FALSE;
-            linphone_core_set_native_video_window_id([LinphoneManager getLc],0);	
-            linphone_core_set_native_preview_window_id([LinphoneManager getLc],0);
-        }
-		[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone]; 
-		[self dismissViewControllerAnimated:FALSE completion:nil];//just in case
-    }
-
-	[self dismissViewControllerAnimated:FALSE completion:nil]; //disable animation to avoid blanc bar just below status bar*/
-    [self updateUIFromLinphoneState: YES]; 
-}
 
 static void hideSpinner(LinphoneCall* lc, void* user_data);
 
@@ -491,69 +435,12 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
     [thiz hideSpinnerIndicator:call];
 }
 
--(void) displayVideoCall:(LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName { 
-    
-    [self enableVideoDisplay];
-
-    [self updateUIFromLinphoneState: YES];
-    videoWaitingForFirstImage.hidden = NO;
-    [videoWaitingForFirstImage startAnimating];
-    
-    if (call->videostream) {
-        linphone_call_set_next_video_frame_decoded_callback(call, hideSpinner, (__bridge void *)(self));
-    }
-    return;
-    
-	if (mIncallViewIsReady) {
-        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
-        mVideoShown=TRUE;
-        if (self.presentedViewController != mVideoViewController)
-            [self presentViewController:mVideoViewController animated:true completion:nil];
-        else
-            ms_message("Do not present again videoViewController");
-	} else {
-		//postpone presentation
-		mVideoIsPending=TRUE;
-	}
-}
 
 -(void) dismissActionSheet: (id)o {
     if (visibleActionSheet != nil) {
         [visibleActionSheet dismissWithClickedButtonIndex:visibleActionSheet.cancelButtonIndex animated:TRUE];
         visibleActionSheet = nil;
     }
-}
-
--(void) displayAskToEnableVideoCall:(LinphoneCall*) call forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-    if (linphone_core_get_video_policy([LinphoneManager getLc])->automatically_accept)
-        return;
-    
-    // ask the user if he agrees
-    CallDelegate* cd = [[CallDelegate alloc] init];
-    cd.eventType = CD_VIDEO_UPDATE;
-    cd.delegate = self;
-    cd.call = call;
-    
-    if (visibleActionSheet != nil) {
-        [visibleActionSheet dismissWithClickedButtonIndex:visibleActionSheet.cancelButtonIndex animated:TRUE];
-    }
-    NSString* title = [NSString stringWithFormat : NSLocalizedString(@"'%@' would like to enable video",nil), ([displayName length] > 0) ?displayName:username];
-    visibleActionSheet = [[UIActionSheet alloc] initWithTitle:title
-                                                    delegate:cd 
-                                           cancelButtonTitle:NSLocalizedString(@"Decline",nil) 
-                                      destructiveButtonTitle:NSLocalizedString(@"Accept",nil) 
-                                           otherButtonTitles:nil];
-    
-    visibleActionSheet.actionSheetStyle = UIActionSheetStyleDefault;
-    [visibleActionSheet showInView:self.view];
-    
-    /* start cancel timer */
-    cd.timeout = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(dismissActionSheet:) userInfo:nil repeats:NO];
-}
-
--(void) firstVideoFrameDecoded: (LinphoneCall*) call {
-    // hide video in progress view indicator
-    videoWaitingForFirstImage.hidden = TRUE;
 }
 
 - (IBAction)doAction:(id)sender {
@@ -564,7 +451,7 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
 	} else if (sender == contacts) {
 		// start people picker
 		myPeoplePickerController = [[ABPeoplePickerNavigationController alloc] init];
-		[myPeoplePickerController setPeoplePickerDelegate:[[ContactPickerDelegate alloc] init] ];
+		[myPeoplePickerController setPeoplePickerDelegate:nil];
 		
 		[self presentViewController: myPeoplePickerController animated:true completion:nil];
 	} else if (sender == close) {
@@ -1243,6 +1130,136 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
     }
 }
 
+#pragma mark - Implementation LinphoneCallDelegate
 
+-(void) displayIncomingCall:(LinphoneCall *)call NotificationFromUI:(UIViewController *)viewCtrl forUser:(NSString *)username withDisplayName:(NSString *)displayName {
+    
+}
+
+-(void) displayCall:(LinphoneCall*) call InProgressFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
+	//restore view
+	[self displayPad:false];
+	dismissed = false;
+	UIDevice *device = [UIDevice currentDevice];
+    device.proximityMonitoringEnabled = YES;
+	//if ([speaker isOn])
+	//	[speaker toggle];
+    [self updateUIFromLinphoneState: YES];
+}
+
+-(void) displayInCall:(LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
+    dismissed = false;
+	UIDevice *device = [UIDevice currentDevice];
+    device.proximityMonitoringEnabled = YES;
+	if (call !=nil  && linphone_call_get_dir(call)==LinphoneCallIncoming) {
+		//if ([speaker isOn]) [speaker toggle];
+	}
+    [self updateUIFromLinphoneState: YES];
+    
+    [self disableVideoDisplay];
+}
+-(void) displayDialer:(UIViewController*) viewCtrl{
+    [self disableVideoDisplay];
+	UIViewController* modalVC = self.presentedViewController;
+	UIDevice *device = [UIDevice currentDevice];
+    device.proximityMonitoringEnabled = NO;
+    dismissed = true;
+    if (modalVC != nil) {
+        mVideoIsPending=FALSE;
+        // clear previous native window ids
+        if (modalVC == mVideoViewController) {
+            mVideoShown=FALSE;
+            linphone_core_set_native_video_window_id([LinphoneManager getLc],0);
+            linphone_core_set_native_preview_window_id([LinphoneManager getLc],0);
+        }
+		[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+		[self dismissViewControllerAnimated:FALSE completion:nil];//just in case
+    }
+    
+	[self dismissViewControllerAnimated:FALSE completion:nil]; //disable animation to avoid blanc bar just below status bar*/
+    [self updateUIFromLinphoneState: YES];
+}
+
+-(void) callEnd:(UIViewController *)viewCtrl{
+    [self disableVideoDisplay];
+	UIViewController* modalVC = self.presentedViewController;
+	UIDevice *device = [UIDevice currentDevice];
+    device.proximityMonitoringEnabled = NO;
+    dismissed = true;
+    if (modalVC != nil) {
+        mVideoIsPending=FALSE;
+        // clear previous native window ids
+        if (modalVC == mVideoViewController) {
+            mVideoShown=FALSE;
+            linphone_core_set_native_video_window_id([LinphoneManager getLc],0);
+            linphone_core_set_native_preview_window_id([LinphoneManager getLc],0);
+        }
+		[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone];
+		[self dismissViewControllerAnimated:FALSE completion:nil];//just in case
+    }
+    
+	[self dismissViewControllerAnimated:FALSE completion:nil]; //disable animation to avoid blanc bar just below status bar*/
+    [self updateUIFromLinphoneState: YES];
+}
+
+-(void) displayVideoCall:(LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
+    
+    [self enableVideoDisplay];
+    
+    [self updateUIFromLinphoneState: YES];
+    videoWaitingForFirstImage.hidden = NO;
+    [videoWaitingForFirstImage startAnimating];
+    
+    if (call->videostream) {
+        linphone_call_set_next_video_frame_decoded_callback(call, hideSpinner, (__bridge void *)(self));
+    }
+    return;
+    
+	if (mIncallViewIsReady) {
+        [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+        mVideoShown=TRUE;
+        if (self.presentedViewController != mVideoViewController)
+            [self presentViewController:mVideoViewController animated:true completion:nil];
+        else
+            ms_message("Do not present again videoViewController");
+	} else {
+		//postpone presentation
+		mVideoIsPending=TRUE;
+	}
+}
+
+//status reporting
+
+-(void) displayAskToEnableVideoCall:(LinphoneCall*) call forUser:(NSString*) username withDisplayName:(NSString*) displayName {
+    if (linphone_core_get_video_policy([LinphoneManager getLc])->automatically_accept)
+        return;
+    
+    // ask the user if he agrees
+    CallDelegate* cd = [[CallDelegate alloc] init];
+    cd.eventType = CD_VIDEO_UPDATE;
+    cd.delegate = self;
+    cd.call = call;
+    
+    if (visibleActionSheet != nil) {
+        [visibleActionSheet dismissWithClickedButtonIndex:visibleActionSheet.cancelButtonIndex animated:TRUE];
+    }
+    NSString* title = [NSString stringWithFormat : NSLocalizedString(@"'%@' would like to enable video",nil), ([displayName length] > 0) ?displayName:username];
+    visibleActionSheet = [[UIActionSheet alloc] initWithTitle:title
+                                                     delegate:cd
+                                            cancelButtonTitle:NSLocalizedString(@"Decline",nil)
+                                       destructiveButtonTitle:NSLocalizedString(@"Accept",nil)
+                                            otherButtonTitles:nil];
+    
+    visibleActionSheet.actionSheetStyle = UIActionSheetStyleDefault;
+    [visibleActionSheet showInView:self.view];
+    
+    /* start cancel timer */
+    cd.timeout = [NSTimer scheduledTimerWithTimeInterval:30 target:self selector:@selector(dismissActionSheet:) userInfo:nil repeats:NO];
+}
+
+-(void) firstVideoFrameDecoded: (LinphoneCall*) call {
+    // hide video in progress view indicator
+    videoWaitingForFirstImage.hidden = TRUE;
+}
 
 @end

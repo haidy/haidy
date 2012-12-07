@@ -170,7 +170,6 @@
     
     [self setTitle:NSLocalizedString(@"SIP", @"Popisek sipu")];
     
-	mDisplayName = [UILabel alloc];
 	[callShort initWithAddress:address];
 	[callLarge initWithAddress:address];
 	[erase initWithAddressField:address];
@@ -207,7 +206,6 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
     if (theTextField == address) {
         [address resignFirstResponder];
-		[mDisplayName setText:@""]; //display name only relefvant 
 		[callLarge touchUp:callLarge];
     } 
     return YES;
@@ -237,25 +235,24 @@
 
 #pragma mark - Implementation LinphoneUICallDelegate
 
--(void) displayDialerFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-	
-	//cancel local notification, just in case
-	if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]
-		&& [UIApplication sharedApplication].applicationState ==  UIApplicationStateBackground ) {
-		// cancel local notif if needed
-		[[UIApplication sharedApplication] cancelAllLocalNotifications];
-	} else {
-		if (fIncomingCallActionSheet) {
+-(void) displayDialer:(UIViewController*) viewCtrl {	
+    [self updateCallAndBackButtons];
+    
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"firstlogindone_preference" ] == true) {
+		//first login case, dismmis first login view
+		[self dismissViewControllerAnimated:true completion:nil];
+	};
+    
+	[mIncallViewController displayDialer:viewCtrl];
+    [fVideoPreviewController showPreview:YES];
+}
+
+-(void) callEnd:(UIViewController *)viewCtrl
+{
+	if (fIncomingCallActionSheet) {
 			[fIncomingCallActionSheet dismissWithClickedButtonIndex:1 animated:true];
 			fIncomingCallActionSheet=nil;
-		}
-	}
-	
-	if (username) {
-		[address setText:username];
-	} //else keep previous
-	
-	[mDisplayName setText:displayName];
+    }
     
     [self updateCallAndBackButtons];
     
@@ -263,13 +260,8 @@
 		//first login case, dismmis first login view
 		[self dismissViewControllerAnimated:true completion:nil];
 	};
-	[mIncallViewController displayDialerFromUI:viewCtrl
-									   forUser:username
-							   withDisplayName:displayName];
-	
-    //Zakomentováno do doby, dokud nebudeme zase chtít používat tabBarController
-	//[myTabBarController setSelectedIndex:DIALER_TAB_INDEX];
     
+	[mIncallViewController callEnd:viewCtrl];
     [fVideoPreviewController showPreview:YES];
 }
 
@@ -344,11 +336,8 @@
     [self updateCallAndBackButtons];
 }
 
-//status reporting
--(void) displayStatus:(NSString*) message {
-	[mIncallViewController displayStatus:message];
-}
 
+//status reporting
 -(void) displayAskToEnableVideoCall:(LinphoneCall*) call forUser:(NSString*) username withDisplayName:(NSString*) displayName {
 	[mIncallViewController  displayAskToEnableVideoCall:call forUser:username withDisplayName:displayName];
 }

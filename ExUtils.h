@@ -33,6 +33,7 @@
 +(void) setInHome:(BOOL)aInHome;
 +(BOOL) useSip;
 +(void) setUseSip:(BOOL)aUseSip;
++(NSMutableArray*) notificationArray;
 +(NSURL*) blankPage;
 +(BOOL) setRequiredRequestParams:(NSURLRequest*)aRequest;
 +(void) setRequiredCookies:(NSURLRequest*)aRequest;

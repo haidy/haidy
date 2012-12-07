@@ -27,6 +27,7 @@
     UIButton* back;
     UIButton* hangup;
     UITableView* table;
+    UIImageView* imageView;
     
     __unsafe_unretained UITableViewCell*  conferenceDetailCell;
 }
@@ -37,6 +38,7 @@
 @property (nonatomic, retain) IBOutlet UIButton* back;
 @property (nonatomic, retain) IBOutlet UIButton* hangup;
 @property (nonatomic, retain) IBOutlet UITableView* table;
+@property (nonatomic, retain) IBOutlet UIImageView* imageView;
 
 @property (nonatomic, assign) IBOutlet UITableViewCell* conferenceDetailCell;
 

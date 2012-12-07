@@ -179,7 +179,6 @@
 		
 	}
 	const char* username = linphone_address_get_username(partyToCall)!=0?linphone_address_get_username(partyToCall):"";
-	const char* displayName = linphone_address_get_display_name(partyToCall)!=0?linphone_address_get_display_name(partyToCall):"";
 	const char* domain = linphone_address_get_domain(partyToCall);
 	
 	LinphoneProxyConfig* proxyCfg;
@@ -193,11 +192,9 @@
 		phoneNumber = [[NSString alloc] initWithCString:linphone_address_as_string_uri_only(partyToCall) encoding:[NSString defaultCStringEncoding]];
 	}
     
-    NSString* dispName = [[NSString alloc] initWithCString:displayName encoding:[NSString defaultCStringEncoding]];
-    
-	[[LinphoneManager instance].callDelegate displayDialerFromUI:self 
-														 forUser:phoneNumber 
-												 withDisplayName:dispName];
+    LinphoneCallParams* lcallParams = linphone_core_create_default_call_parameters([LinphoneManager getLc]);
+
+	linphone_core_invite_with_params([LinphoneManager getLc],[phoneNumber cStringUsingEncoding:[NSString defaultCStringEncoding]],lcallParams);
 }
 
 

@@ -28,9 +28,12 @@
 #include <sys/sysctl.h>
 #include <SystemConfiguration/SystemConfiguration.h>
 #import "CoreTelephony/CTCall.h"
+#import "ExUtils.h"
 
 static LinphoneCore* theLinphoneCore=nil;
 static LinphoneManager* theLinphoneManager=nil;
+
+static NSString *const linphoneCallConst = @"LinphoneCall";
 
 extern void libmsilbc_init();
 #ifdef HAVE_AMR
@@ -171,20 +174,7 @@ extern  void libmsbcg729_init();
 
             if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]
                 && [UIApplication sharedApplication].applicationState !=  UIApplicationStateActive) {
-                // Create a new notification
-                UILocalNotification* notif = [[UILocalNotification alloc] init];
-                if (notif)
-                {
-                    LinphoneCallLog* callLog=linphone_call_get_call_log(call);
-                    NSString* callId=[NSString stringWithUTF8String:callLog->call_id];
-                    notif.repeatInterval = 0;
-                    notif.alertBody =[NSString  stringWithFormat:NSLocalizedString(@" %@ is calling you",nil),[lDisplayName length]>0?lDisplayName:lUserName];
-                    notif.alertAction = NSLocalizedString(@"Answer", nil);
-                    notif.soundName = @"oldphone-mono-30s.caf";
-                    notif.userInfo = [NSDictionary dictionaryWithObject:callId forKey:@"callId"];
-                    
-                    [[UIApplication sharedApplication]  presentLocalNotificationNow:notif];
-                }
+                [self showLocalNotificationForCall:call withDisplayName:[lDisplayName length]>0?lDisplayName:lUserName];
             }
             else
                 [callDelegate	displayIncomingCall:call  NotificationFromUI:mCurrentViewController forUser:lUserName  withDisplayName:lDisplayName];
@@ -231,10 +221,8 @@ extern  void libmsbcg729_init();
             
         }
 		case LinphoneCallError: { 
-			/*
-			 NSString* lTitle= state->message!=nil?[NSString stringWithCString:state->message length:strlen(state->message)]: @"Error";
-			 NSString* lMessage=lTitle;
-			 */
+			[self cancelLocalNotificationForCall:call];
+            
 			NSString* lMessage;
 			NSString* lTitle;
 			LinphoneProxyConfig* proxyCfg;	
@@ -262,9 +250,7 @@ extern  void libmsbcg729_init();
 												  otherButtonTitles:nil];
 			[error show];
             if (canHideInCallView) {
-                [callDelegate	displayDialerFromUI:mCurrentViewController
-									  forUser:@"" 
-							  withDisplayName:@""];
+                [callDelegate callEnd:mCurrentViewController];
             } else {
                 call = linphone_core_get_current_call([LinphoneManager getLc]);
                 if(call) {
@@ -284,10 +270,11 @@ extern  void libmsbcg729_init();
 			break;
 		}
 		case LinphoneCallEnd:
+        {
+            [self cancelLocalNotificationForCall:call];
+            
             if (canHideInCallView) {
-                [callDelegate	displayDialerFromUI:mCurrentViewController
-									  forUser:@"" 
-							  withDisplayName:@""];
+                [callDelegate	callEnd:mCurrentViewController];
             } else {
                 //asi kdyby končil jeden hovor a ihned 
                 call = linphone_core_get_current_call([LinphoneManager getLc]);
@@ -306,6 +293,7 @@ extern  void libmsbcg729_init();
                 }
 			}
 			break;
+        }
 		case LinphoneCallStreamsRunning:
 			//check video
 			if (linphone_call_params_video_enabled(linphone_call_get_current_params(call))) {
@@ -322,10 +310,28 @@ extern  void libmsbcg729_init();
 	
 }
 
+-(void) displayCallFromBackground:(LinphoneCall *)aCall
+{
+    //řeší oživení hovoru, pokud v aktivním hovoru shodím aplikaci do pozadí, například jdu li hledat číslo do kontaktů
+    if (aCall == self->currentCallContextBeforeGoingBackground.call) {
+        const LinphoneCallParams* params = linphone_call_get_current_params(aCall);
+        if (linphone_call_params_video_enabled(params)) {
+            linphone_call_enable_camera(
+                                        aCall,
+                                        self->currentCallContextBeforeGoingBackground.cameraIsEnabled);
+        }
+        self->currentCallContextBeforeGoingBackground.call = 0;
+        [callDelegate displayCall:aCall InProgressFromUI:nil forUser:nil withDisplayName:nil];
+    }
+    else if (linphone_call_get_state(aCall) == LinphoneCallIncomingReceived)
+        [self onCall:aCall StateChanged:LinphoneCallIncomingReceived withMessage:nil];
+    //else - ostatní neřešíme, již je hovor přijatý, napřiklad pomocí notifikace
+    
+    
+}
+
 -(void) displayDialer {
-    [callDelegate	displayDialerFromUI:mCurrentViewController
-                              forUser:@"" 
-                      withDisplayName:@""];
+    [callDelegate	displayDialer:mCurrentViewController];
 }
 
 - (void) displayScenes{
@@ -347,7 +353,8 @@ extern  void libmsbcg729_init();
 	[mLogView addLog:log];
 }
 -(void)displayStatus:(NSString*) message {
-	[callDelegate displayStatus:message];
+    if ([((NSObject*)callDelegate) respondsToSelector:@selector(displayStatus:)])
+        [callDelegate displayStatus:message];
 }
 //generic log handler for debug version
 static void linphone_iphone_log_handler(int lev, const char *fmt, va_list args){
@@ -366,6 +373,7 @@ static void linphone_iphone_log(struct _LinphoneCore * lc, const char * message)
 //status 
 static void linphone_iphone_display_status(struct _LinphoneCore * lc, const char * message) {
     NSString* status = [[NSString alloc] initWithCString:message encoding:[NSString defaultCStringEncoding]];
+    NSLog(@"Linphone status: %@", status);
 	[(__bridge LinphoneManager*)linphone_core_get_user_data(lc)  displayStatus:status];
 }
 
@@ -1224,5 +1232,52 @@ static int comp_call_id(const LinphoneCall* call , const char *callid) {
 		linphone_core_set_presence_info(theLinphoneCore, 0, nil, LinphoneStatusAltService);
 }
 */
+
+#pragma mark - User Notification through UILocalNotification
+
+-(void) showLocalNotificationForCall:(LinphoneCall*)aCall withDisplayName:(NSString*)aDisplayName{
+    LinphoneCallLog* callLog=linphone_call_get_call_log(aCall);
+    NSString* callId=[NSString stringWithUTF8String:callLog->call_id];
+    
+    // Create a new notification
+    UILocalNotification* mCallNotification = [[UILocalNotification alloc] init];
+    if (mCallNotification)
+    {
+        
+        mCallNotification.repeatInterval = 0;
+        mCallNotification.alertBody =[NSString  stringWithFormat:NSLocalizedString(@" %@ is calling you",nil), aDisplayName];
+        mCallNotification.alertAction = NSLocalizedString(@"Answer", nil);
+        mCallNotification.soundName = @"oldphone-mono-30s.caf";
+        mCallNotification.userInfo = [NSDictionary dictionaryWithObject:callId forKey:@"callId"];
+        
+        [[UIApplication sharedApplication]  presentLocalNotificationNow:mCallNotification];
+    }
+    NSDictionary *mCallNotificationDictionary = [[NSDictionary alloc] initWithObjectsAndKeys:callId, @"callId",  mCallNotification, @"callNotification", nil];
+    
+    NSMutableArray *mNotificationArray = [ExUtils notificationArray];
+    [mNotificationArray addObject:mCallNotificationDictionary];
+}
+
+-(void) cancelLocalNotificationForCall:(LinphoneCall*)aCall{
+    LinphoneCallLog* callLog=linphone_call_get_call_log(aCall);
+    NSString* callId=[NSString stringWithUTF8String:callLog->call_id];
+    NSMutableArray *mNotificationArray = [ExUtils notificationArray];
+    for (NSDictionary *mCallDictionary in mNotificationArray) {
+        if ([mCallDictionary objectForKey:@"callId"] != nil)
+        {
+            NSString *mCallId = [mCallDictionary objectForKey:@"callId"];
+            //máme notificaki týkající se hovoru
+            if([mCallId compare:callId] == NSOrderedSame)
+            {
+                UILocalNotification *mCallNotification = [mCallDictionary objectForKey:@"callNotification"];
+                [[UIApplication sharedApplication] cancelLocalNotification:mCallNotification];
+                [mNotificationArray removeObject:mCallDictionary];
+                break;
+            }
+        }
+        
+        
+    }
+}
 
 @end

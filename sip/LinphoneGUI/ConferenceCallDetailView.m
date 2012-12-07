@@ -21,6 +21,7 @@
 #import "linphonecore.h"
 #import "LinphoneManager.h"
 #import "IncallViewController.h"
+#import "ExUtils.h"
 
 @implementation ConferenceCallDetailView
 
@@ -29,7 +30,7 @@
 @synthesize back;
 @synthesize hangup;
 @synthesize table;
-@synthesize addCall;
+@synthesize addCall, imageView;
 
 @synthesize conferenceDetailCell;
 
@@ -62,8 +63,19 @@ NSTimer *callQualityRefresher;
     
     table.rowHeight = 80;
     
-    [mute initWithOnImage:[UIImage imageNamed:@"micro_inverse.png"]  offImage:[UIImage imageNamed:@"micro.png"] debugName:"MUTE button"];
-    [speaker initWithOnImage:[UIImage imageNamed:@"HP_inverse.png"]  offImage:[UIImage imageNamed:@"HP.png"] debugName:"SPEAKER button"];
+    //oříznutí pozadí o okraje pro iPhone
+    if (![ExUtils runningOnIpad])
+    {
+        UIImage *mResourceImage = [UIImage imageNamed:@"Background.png"];
+        CGRect mRect = CGRectMake(15, 0, mResourceImage.size.width-30, mResourceImage.size.height);
+        CGImageRef mCroptedImage = CGImageCreateWithImageInRect([mResourceImage CGImage], mRect);
+        
+        imageView.image= [UIImage imageWithCGImage:mCroptedImage];
+        CGImageRelease(mCroptedImage);
+    }
+    
+    [mute initWithOnImage:[UIImage imageNamed:@"MicrophoneHighlight.png"]  offImage:[UIImage imageNamed:@"MicrophoneEnable.png"] debugName:"MUTE button"];
+    [speaker initWithOnImage:[UIImage imageNamed:@"SpeakerEnable.png"]  offImage:[UIImage imageNamed:@"SpeakerHighlight.png"] debugName:"SPEAKER button"];
 }
 
 -(void) backButtonPressed {

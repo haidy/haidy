@@ -35,7 +35,6 @@
 	//UI definition
 	UIView* dialerView;
 	UITextField* address;
-	UILabel* mDisplayName;
 	UIEraseButton* erase;
 	UICallButton* callShort;
 	UICallButton* callLarge;

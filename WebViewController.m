@@ -451,9 +451,14 @@
 
 #pragma mark - Implement LinphoneUICallDelegate - most methods only recal to fPhoneViewController
 
--(void) displayDialerFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
-	[self.fPhoneViewController displayDialerFromUI:viewCtrl forUser:username withDisplayName:displayName];
+-(void) displayDialer:(UIViewController*) viewCtrl {
+	[self.fPhoneViewController displayDialer:viewCtrl];
+}
+
+-(void) callEnd:(UIViewController *)viewCtrl{
+    [self.fPhoneViewController callEnd:viewCtrl];
     
+    //tohle tu je kvůli tomu, aby se po ukončení hovoru schoval SIP, pokud předtím nebyl zobrazen
     if (fIsVisibleSipForIncommingCall)
         [self hideSipController];
     //else - pokud je zobrazený SIP kvůli příchozímu hovoru, tak ho zavřeme. Pokud by tomu tak nebylo, tak se zobrazí záložka Dialer a my zde v else nemusíme nic dělat.
@@ -480,10 +485,6 @@
 }
 
 //status reporting
--(void) displayStatus:(NSString*) message {
-	[self.fPhoneViewController displayStatus:message];
-}
-
 -(void) displayAskToEnableVideoCall:(LinphoneCall*) call forUser:(NSString*) username withDisplayName:(NSString*) displayName {
 	[self.fPhoneViewController  displayAskToEnableVideoCall:call forUser:username withDisplayName:displayName];
 }
@@ -533,7 +534,6 @@
                 [fNotificationAllertView show];
             
             //sound efetekt udělat podle toho co přijde v notifickaci
-            NSLog(@"%@", UILocalNotificationDefaultSoundName);
             SystemSoundID audioEffect;
             NSString* path = [[NSBundle mainBundle]
                               pathForResource:@"HaidyNotification" ofType:@"wav"];

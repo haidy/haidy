@@ -98,8 +98,6 @@
     VideoZoomHandler* videoZoomHandler;
 }
 
--(void)displayStatus:(NSString*) message;
-
 - (IBAction)doAction:(id)sender;
 
 +(LinphoneCall*) retrieveCallAtIndex: (NSInteger) index inConference:(bool) conf;

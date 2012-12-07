@@ -22,17 +22,20 @@
 /* Delegát pro příjmání hovorů a reportování o stavu hovoru */
 @protocol LinphoneUICallDelegate
 // UI changes
-//má zobrazit záložku Dialer - volá se při chybě komunikace nebo při opravdovém ukončení hovoru
--(void) displayDialerFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName;
+//ma zobrazit Dialer - volá se při přesměrování nebo přidání hovoru
+-(void) displayDialer:(UIViewController*) viewCtrl;
+//má zobrazit dialer - volá se při chybě komunikace nebo při opravdovém ukončení hovoru
+-(void) callEnd:(UIViewController*) viewCtrl;
 -(void) displayCall: (LinphoneCall*) call InProgressFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName;
 //má zobrazit příchozí hovor
 -(void) displayIncomingCall: (LinphoneCall*) call NotificationFromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName;
 -(void) displayInCall: (LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName;
 -(void) displayVideoCall:(LinphoneCall*) call  FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName;
 //status reporting
--(void) displayStatus:(NSString*) message; 
 -(void) displayAskToEnableVideoCall:(LinphoneCall*) call forUser:(NSString*) username withDisplayName:(NSString*) displayName;
 -(void) firstVideoFrameDecoded:(LinphoneCall*) call;
+
+@optional  -(void) displayStatus:(NSString*) message; 
 @end
 
 /* Reportování informací o stavu registrace SIP */

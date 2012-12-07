@@ -181,21 +181,7 @@
         LinphoneCore* lc = [LinphoneManager getLc];
         LinphoneCall* call = linphone_core_get_current_call(lc);
         if (call != NULL)
-        {
-        
-            LinphoneManager* instance = [LinphoneManager instance];
-            if (call == instance->currentCallContextBeforeGoingBackground.call) {
-                const LinphoneCallParams* params = linphone_call_get_current_params(call);
-                if (linphone_call_params_video_enabled(params)) {
-                    linphone_call_enable_camera(
-                                                call,
-                                                instance->currentCallContextBeforeGoingBackground.cameraIsEnabled);
-                }
-                instance->currentCallContextBeforeGoingBackground.call = 0;
-                [fWebViewController displayCall:call InProgressFromUI:nil forUser:nil withDisplayName:nil];
-
-            }
-        }
+            [[LinphoneManager instance] displayCallFromBackground:call];
         //else -- nemáme aktivní hovor, tak nic neděláme
         
     }
@@ -204,9 +190,6 @@
         //SIP se nemá používat, ale může být použitý z dřívějška. Pokud tomu tak je, tak sip deaktivujeme
         [self endSipApplication];
     }
-    
-    //Prozatím nechceme řešit nevyzvednuté notifikace, tak je všechny cancelnem
-    [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
@@ -217,7 +200,6 @@
      See also applicationDidEnterBackground:.
      */
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:@"UseSIP"];
-
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {

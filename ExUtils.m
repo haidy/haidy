@@ -90,6 +90,30 @@ static NSArray* fRemoteServerSessions;
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"SelectedRemoteServerSession"];
 }
 
++(void) setNotificationArray:(NSMutableArray*)aArray{
+    [[NSUserDefaults standardUserDefaults] setValue:aArray forKey:@"NotificationArray"];
+}
+
+static NSLock *fLock = nil;
+
++(NSMutableArray*) notificationArray{
+    if (fLock == nil)
+        fLock = [[NSLock alloc] init];
+    
+    [fLock lock];
+    
+    NSMutableArray* mNotificationArray = (NSMutableArray*)[[NSUserDefaults standardUserDefaults] arrayForKey:@"NotificationArray"];
+    if (mNotificationArray == nil)
+    {
+        mNotificationArray = [[NSMutableArray alloc] initWithObjects: nil];
+        [self setNotificationArray:mNotificationArray];
+    }
+    //else dictionary je nic nemusíme dělat
+    
+    [fLock unlock];
+    return mNotificationArray;
+}
+
 +(NSURL*) constructUrlFromPage:(NSString*)aPage{
     
     //Pokud příchozí stránka obsahuje HTTP, tak ji zkusím naparsovat a ev. rovnou vrátit
