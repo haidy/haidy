@@ -1317,7 +1317,7 @@
 				GCC_PREFIX_HEADER = "Haidy-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "Haidy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../linphone-iphone/liblinphone-sdk/apple-darwin/lib\"",
@@ -1430,7 +1430,7 @@
 					"/Users/jankoranda/svn/linphone-iphone/submodules/externals/exosip/include",
 				);
 				INFOPLIST_FILE = "Haidy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(BUILT_PRODUCTS_DIR)",
 					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib",
@@ -1482,7 +1482,7 @@
 					"/Users/jankoranda/svn/linphone-iphone/submodules/externals/exosip/include",
 				);
 				INFOPLIST_FILE = "Haidy-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(BUILT_PRODUCTS_DIR)",
 					"/Users/jankoranda/svn/linphone-iphone/liblinphone-sdk/$(CURRENT_ARCH)-apple-darwin/lib/",

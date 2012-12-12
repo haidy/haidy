@@ -501,6 +501,11 @@
         //očekáváme, že přijde pole, proto proměnná typu array
         NSArray* mNotifications = [JsonService getNotifications];
         
+        while ([LinphoneManager instance] != nil && [[LinphoneManager instance] existCall]) {
+            //pokud přichází hovor, nebo je vytočený, tak zde počkáme a notifikujeme až po hovoru
+            sleep(10);
+        }
+        
         if (mNotifications != nil && mNotifications.count != 0)
             [self performSelectorOnMainThread:@selector(fetchedNofitications:) withObject:mNotifications waitUntilDone:NO];
     });

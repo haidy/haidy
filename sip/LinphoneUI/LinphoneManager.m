@@ -1280,4 +1280,9 @@ static int comp_call_id(const LinphoneCall* call , const char *callid) {
     }
 }
 
+- (BOOL) existCall
+{
+    return linphone_core_get_current_call([LinphoneManager getLc]) != nil;
+}
+
 @end

@@ -163,7 +163,7 @@
 								<bool key="IBUIDelaysContentTouches">NO</bool>
 								<bool key="IBUICanCancelContentTouches">NO</bool>
 								<bool key="IBUIBouncesZoom">NO</bool>
-								<string key="IBUIText">Linphone 1.3 SIP (rfc3261) compatible phone under GNU General Public License V2 </string>
+								<string key="IBUIText">Linphone core 3.5.99 SIP (rfc3261) compatible phone under GNU General Public License V2 </string>
 								<int key="IBUITextAlignment">1</int>
 								<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 									<int key="IBUIAutocapitalizationType">2</int>

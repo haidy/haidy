@@ -99,7 +99,7 @@ typedef struct _LinphoneCallAppData {
 -(BOOL) reconfigureLinphoneIfNeeded:(NSDictionary *)oldSettings;
 -(void) setupNetworkReachabilityCallback;
 -(void) refreshRegisters;
-
+- (BOOL) existCall;
 - (void)acceptCallForCallId:(NSString*)aCallId;
 
 
