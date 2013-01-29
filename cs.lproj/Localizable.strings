@@ -33,6 +33,8 @@
 "Ignore" = "Ignorovat";
 "Show" = "Ukázat";
 "Scenes" = "Spustitelné scény";
+"ExistCountNotification" = "Máte %d nepřetených notofikací";
+
 /*
  
  About dialog

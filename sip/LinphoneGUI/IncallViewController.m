@@ -21,6 +21,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <AddressBook/AddressBook.h>
 #import "linphonecore.h"
+#import "mediastream.h"
 #include "LinphoneManager.h"
 #include "private.h"
 #import <QuartzCore/CAAnimation.h>
@@ -173,7 +174,7 @@ void addAnimationFadeTransition(UIView* view, float duration) {
 }
 #endif
 
--(void) enableVideoDisplay {
+-(void) enableVideoDisplay:(BOOL)aShowPreview {
     [self orientationChanged:nil];
     
     [videoZoomHandler resetZoom];
@@ -189,8 +190,16 @@ void addAnimationFadeTransition(UIView* view, float duration) {
     videoView.alpha = 1.0;
     videoView.hidden = FALSE;
     
-    linphone_core_set_native_video_window_id([LinphoneManager getLc],(unsigned long)videoView);	
+    if (aShowPreview)
+        videoPreview.hidden = NO;
+    else
+        videoPreview.hidden = YES;
+    
+    linphone_core_set_device_rotation([LinphoneManager getLc], [self getCurrentRotation]);
+    linphone_core_set_native_video_window_id([LinphoneManager getLc],(unsigned long)videoView);
     linphone_core_set_native_preview_window_id([LinphoneManager getLc],(unsigned long)videoPreview);
+    LinphoneCall* call = linphone_core_get_current_call([LinphoneManager getLc]);
+    linphone_core_update_call([LinphoneManager getLc], call, NULL);
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     
@@ -399,13 +408,24 @@ void addAnimationFadeTransition(UIView* view, float duration) {
                 
                 const LinphoneCallParams* p = linphone_call_get_current_params(c);
                 if (linphone_call_params_video_enabled(p)) {
-                    [self enableVideoDisplay];
+                    [self enableVideoDisplay:[self showVideoPreview:currentCall]];
                 }
             }
         }
     }
 }
 
+///
+/// Vrací, zda má být zobrazení View s náhledem lokálně snímaného videa
+///
+/// aCall - hovor, pro který se má či nemá zobrazit náhled
+/// remarks
+///
+/// Ještě by to bylo možné testovat přes videopreview.layers.sublayers.count > 0
+-(BOOL)showVideoPreview:(LinphoneCall*)aCall
+{
+    return aCall->videostream->dir == VideoStreamRecvOnly ? NO : YES;
+}
 
 -(void)updateCallsDurations {
     [self updateUIFromLinphoneState: NO]; 
@@ -1044,19 +1064,9 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
 #pragma mark - Observing implementation
 
 -(void) orientationChanged: (NSNotification*) notif {
+    UIDeviceOrientation mCurrentDeviceOrientation = [UIDevice currentDevice].orientation;
     int oldLinphoneOrientation = linphone_core_get_device_rotation([LinphoneManager getLc]);
-    UIDeviceOrientation orientation = [UIDevice currentDevice].orientation;
-    int newRotation = 0;
-    switch (orientation) {
-        case UIInterfaceOrientationLandscapeRight:
-            newRotation = 270;
-            break;
-        case UIInterfaceOrientationLandscapeLeft:
-            newRotation = 90;
-            break;
-        default:
-            newRotation = 0;
-    }
+    int newRotation = [self getCurrentRotation];
     if (oldLinphoneOrientation != newRotation) {
         linphone_core_set_device_rotation([LinphoneManager getLc], newRotation);
         linphone_core_set_native_video_window_id([LinphoneManager getLc],(unsigned long)videoView);
@@ -1066,6 +1076,14 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
             //Orientation has changed, must call update call
             linphone_core_update_call([LinphoneManager getLc], call, NULL);
             
+        CGFloat mWidth = videoPreview.frame.size.height;
+        CGFloat mHeight = videoPreview.frame.size.width;
+            
+        if (UIDeviceOrientationIsLandscape(mCurrentDeviceOrientation))
+            videoPreview.frame = CGRectMake(self.view.bounds.size.width-mWidth-10, self.view.bounds.size.height-mHeight-10, mWidth, mHeight);
+        else if (UIDeviceOrientationIsPortrait(mCurrentDeviceOrientation))
+            videoPreview.frame = CGRectMake(self.view.bounds.size.width-mWidth-10, self.view.bounds.size.height-mHeight-10, mWidth, mHeight);
+        //else - vodorovně položené zařízení nás nezajímá
             
             /* animate button images rotation 
 #define degreesToRadians(x) (M_PI * x / 180.0)
@@ -1096,6 +1114,36 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
             [UIView commitAnimations];*/
         }
     }
+}
+
+-(int) getCurrentRotation
+{
+    UIDeviceOrientation mOrientation = [UIDevice currentDevice].orientation;
+    int mCurrentRotation = 0;
+    switch (mOrientation) {
+        case UIInterfaceOrientationLandscapeRight:
+            mCurrentRotation = 270;
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+            mCurrentRotation = 90;
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            mCurrentRotation = 360;
+            break;
+        case UIDeviceOrientationPortrait:
+            mCurrentRotation = 0;
+            break;
+        case UIDeviceOrientationFaceDown:
+        case UIDeviceOrientationFaceUp:
+            //pokud je zařízení položené vodorovně, tak vracíme aktuální rotaci
+            //nechceme nic měnit
+            mCurrentRotation = linphone_core_get_device_rotation([LinphoneManager getLc]);
+            break;
+        default:
+            mCurrentRotation = 0;
+            break;
+    }
+    return mCurrentRotation;
 }
 
 -(void) batteryLevelChanged: (NSNotification*) notif {
@@ -1204,7 +1252,7 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
 
 -(void) displayVideoCall:(LinphoneCall*) call FromUI:(UIViewController*) viewCtrl forUser:(NSString*) username withDisplayName:(NSString*) displayName {
     
-    [self enableVideoDisplay];
+    [self enableVideoDisplay:[self showVideoPreview:call]];
     
     [self updateUIFromLinphoneState: YES];
     videoWaitingForFirstImage.hidden = NO;
@@ -1260,6 +1308,8 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
 -(void) firstVideoFrameDecoded: (LinphoneCall*) call {
     // hide video in progress view indicator
     videoWaitingForFirstImage.hidden = TRUE;
+    
+    
 }
 
 @end

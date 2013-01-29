@@ -146,9 +146,11 @@
     [self configureView:NO];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)aNewInterfaceOrientation
 {
-    return YES;
+    return aNewInterfaceOrientation == UIInterfaceOrientationPortrait
+    || aNewInterfaceOrientation == UIInterfaceOrientationLandscapeRight
+    || aNewInterfaceOrientation == UIInterfaceOrientationLandscapeLeft;
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration{
@@ -205,7 +207,7 @@
     [fDetailViewController setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
     
     //pokud se nejedná o vybraný detail, tak otevřeme jen FormSheet o vybrané velikosti, jinak otvíráme okno přes FullScreen
-    if ([request.URL.absoluteString rangeOfString:@"ConsumptionMeterDetail" options:NSCaseInsensitiveSearch].location == NSNotFound && [request.URL.absoluteString rangeOfString:@"OnOffCameraDetail" options:NSCaseInsensitiveSearch].location == NSNotFound  )
+    if ([request.URL.absoluteString rangeOfString:@"MeterDetail" options:NSCaseInsensitiveSearch].location == NSNotFound && [request.URL.absoluteString rangeOfString:@"OnOffCameraDetail" options:NSCaseInsensitiveSearch].location == NSNotFound  )
         fDetailViewController.modalPresentationStyle = UIModalPresentationFormSheet;
     else
         fDetailViewController.modalPresentationStyle = UIModalPresentationFullScreen;
@@ -513,7 +515,12 @@
 
 -(void) fetchedNofitications:(NSArray*)aNotifications
 {
+    int o = 0;
     for (NSDictionary *mNotification in aNotifications) {
+        NSString *mNotificationText = [mNotification objectForKey:@"Text"];
+        if (o == 2)
+            mNotificationText = [NSString stringWithFormat:NSLocalizedString(@"ExistCountNotification",@"Šablona pro text"), [aNotifications count] ];
+        //else existují ještě další nevyzvednuté notifikace, ale ty nás již nezajímají na konci foru bude cyklus ukončen
         if ([[UIDevice currentDevice] respondsToSelector:@selector(isMultitaskingSupported)]
             && [UIApplication sharedApplication].applicationState ==  UIApplicationStateBackground)
         {
@@ -522,7 +529,7 @@
             if (mLocalNotification != nil)
             {
                 mLocalNotification.repeatInterval = 0;
-                mLocalNotification.alertBody =[mNotification objectForKey:@"Text"];
+                mLocalNotification.alertBody = mNotificationText ;
                 mLocalNotification.alertAction = NSLocalizedString(@"Show", nil);
                 mLocalNotification.soundName = UILocalNotificationDefaultSoundName;
                 mLocalNotification.userInfo = [NSDictionary dictionaryWithObject:@"haidy" forKey:@"haidyNotification"];
@@ -534,7 +541,7 @@
             if (fNotificationAllertView != nil)
                 [fNotificationAllertView dismissWithClickedButtonIndex:fNotificationAllertView.cancelButtonIndex animated:NO];
             // jsme v aktivním stavu a tak vyhodíme alertview
-            fNotificationAllertView = [[UIAlertView alloc] initWithTitle:[mNotification objectForKey:@"Kind"] message:[mNotification objectForKey:@"Text"] delegate:self cancelButtonTitle:NSLocalizedString(@"Ignore", "Ignorovat notifikaci") otherButtonTitles:NSLocalizedString(@"Show", nil), nil];
+            fNotificationAllertView = [[UIAlertView alloc] initWithTitle:[mNotification objectForKey:@"Kind"] message:mNotificationText delegate:self cancelButtonTitle:NSLocalizedString(@"Ignore", "Ignorovat notifikaci") otherButtonTitles:NSLocalizedString(@"Show", nil), nil];
             [fNotificationAllertView setTag:1];
                 [fNotificationAllertView show];
             
@@ -546,6 +553,11 @@
             AudioServicesCreateSystemSoundID((__bridge CFURLRef) pathURL, &audioEffect);
             AudioServicesPlaySystemSound(audioEffect);
         }
+        
+        if (o < 2)
+            o += 1;
+        else
+            break;
     }
 }
 
