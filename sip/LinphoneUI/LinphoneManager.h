@@ -101,6 +101,7 @@ typedef struct _LinphoneCallAppData {
 -(void) refreshRegisters;
 - (BOOL) existCall;
 - (void)acceptCallForCallId:(NSString*)aCallId;
+- (void) changeOrientation:(UIInterfaceOrientation)aCurrentInterfaceOrientation andVideoView:(UIView*)aVideoView;
 
 
 @property (nonatomic, retain) id<LinphoneUICallDelegate> callDelegate;

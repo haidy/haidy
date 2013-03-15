@@ -110,7 +110,7 @@
     [fWaitingViewController stopWaiting];
     [self closeDetailWithError:[NSNumber numberWithBool:NO]];
     
-    UIAlertView *allert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Server url", @"") message:NSLocalizedString(@"Bad connect", @"Nepodařilo se připojit") delegate:self cancelButtonTitle:NSLocalizedString(@"Button Home", @"")
+    UIAlertView *allert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bad connect", @"Nepodařilo se připojit") message:NSLocalizedString(@"Connect request", @"Chcete se připojit vzdáleně nebo jste doma?") delegate:self cancelButtonTitle:NSLocalizedString(@"Button Home", @"")
                                            otherButtonTitles:NSLocalizedString(@"Button Remotely", @""), NSLocalizedString(@"Button Cancel", nil), nil ];
     [allert show];
     

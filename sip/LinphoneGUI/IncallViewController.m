@@ -195,11 +195,8 @@ void addAnimationFadeTransition(UIView* view, float duration) {
     else
         videoPreview.hidden = YES;
     
-    linphone_core_set_device_rotation([LinphoneManager getLc], [self getCurrentRotation]);
     linphone_core_set_native_video_window_id([LinphoneManager getLc],(unsigned long)videoView);
     linphone_core_set_native_preview_window_id([LinphoneManager getLc],(unsigned long)videoPreview);
-    LinphoneCall* call = linphone_core_get_current_call([LinphoneManager getLc]);
-    linphone_core_update_call([LinphoneManager getLc], call, NULL);
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
     
@@ -821,6 +818,11 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    fVideoPrevieWidth = videoPreview.frame.size.width;
+    fVideoPreviewHeight = videoPreview.frame.size.height;
+
+    
 	//Controls
 	[mute initWithOnImage:[UIImage imageNamed:@"MicrophoneHighlight.png"]  offImage:[UIImage imageNamed:@"MicrophoneEnable.png"] debugName:"MUTE button"];
     [speaker initWithOnImage:[UIImage imageNamed:@"SpeakerEnable.png"]  offImage:[UIImage imageNamed:@"SpeakerHighlight.png"] debugName:"SPEAKER button"];
@@ -878,7 +880,6 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
     
     callTableView.rowHeight = 80;
     
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(batteryLevelChanged:) name:UIDeviceBatteryLevelDidChangeNotification object:nil];
     
@@ -891,7 +892,6 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
 
 - (void)viewDidUnload{
     //uklidíme po sobě
-    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceBatteryLevelDidChangeNotification object:nil];
 }
@@ -1064,86 +1064,14 @@ static void hideSpinner(LinphoneCall* call, void* user_data) {
 #pragma mark - Observing implementation
 
 -(void) orientationChanged: (NSNotification*) notif {
-    UIDeviceOrientation mCurrentDeviceOrientation = [UIDevice currentDevice].orientation;
-    int oldLinphoneOrientation = linphone_core_get_device_rotation([LinphoneManager getLc]);
-    int newRotation = [self getCurrentRotation];
-    if (oldLinphoneOrientation != newRotation) {
-        linphone_core_set_device_rotation([LinphoneManager getLc], newRotation);
-        linphone_core_set_native_video_window_id([LinphoneManager getLc],(unsigned long)videoView);
+    UIInterfaceOrientation mCurrentDeviceOrientation = [UIApplication sharedApplication].statusBarOrientation;
+    
+    [[LinphoneManager instance] changeOrientation:mCurrentDeviceOrientation andVideoView:videoView];
         
-        LinphoneCall* call = linphone_core_get_current_call([LinphoneManager getLc]);
-        if (call && linphone_call_params_video_enabled(linphone_call_get_current_params(call))) {
-            //Orientation has changed, must call update call
-            linphone_core_update_call([LinphoneManager getLc], call, NULL);
-            
-        CGFloat mWidth = videoPreview.frame.size.height;
-        CGFloat mHeight = videoPreview.frame.size.width;
-            
-        if (UIDeviceOrientationIsLandscape(mCurrentDeviceOrientation))
-            videoPreview.frame = CGRectMake(self.view.bounds.size.width-mWidth-10, self.view.bounds.size.height-mHeight-10, mWidth, mHeight);
-        else if (UIDeviceOrientationIsPortrait(mCurrentDeviceOrientation))
-            videoPreview.frame = CGRectMake(self.view.bounds.size.width-mWidth-10, self.view.bounds.size.height-mHeight-10, mWidth, mHeight);
-        //else - vodorovně položené zařízení nás nezajímá
-            
-            /* animate button images rotation 
-#define degreesToRadians(x) (M_PI * x / 180.0)
-            CGAffineTransform transform = CGAffineTransformIdentity;
-            switch (orientation) {
-                case UIInterfaceOrientationLandscapeRight:
-                    transform = CGAffineTransformMakeRotation(degreesToRadians(90));
-                    break;
-                case UIInterfaceOrientationLandscapeLeft:
-                    transform = CGAffineTransformMakeRotation(degreesToRadians(-90));
-                    break;
-                default:
-                    transform = CGAffineTransformIdentity;
-                    break;
-            }
-            
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:0.2f];
-            endCtrl.imageView.transform = transform;
-            mute.imageView.transform = transform;
-            speaker.imageView.transform = transform;
-            pause.imageView.transform = transform;
-            contacts.imageView.transform = transform;
-            addCall.imageView.transform = transform;
-            addVideo.imageView.transform = transform;
-            dialer.imageView.transform = transform;
-            videoCallQuality.transform = transform;
-            [UIView commitAnimations];*/
-        }
-    }
-}
-
--(int) getCurrentRotation
-{
-    UIDeviceOrientation mOrientation = [UIDevice currentDevice].orientation;
-    int mCurrentRotation = 0;
-    switch (mOrientation) {
-        case UIInterfaceOrientationLandscapeRight:
-            mCurrentRotation = 270;
-            break;
-        case UIInterfaceOrientationLandscapeLeft:
-            mCurrentRotation = 90;
-            break;
-        case UIInterfaceOrientationPortraitUpsideDown:
-            mCurrentRotation = 360;
-            break;
-        case UIDeviceOrientationPortrait:
-            mCurrentRotation = 0;
-            break;
-        case UIDeviceOrientationFaceDown:
-        case UIDeviceOrientationFaceUp:
-            //pokud je zařízení položené vodorovně, tak vracíme aktuální rotaci
-            //nechceme nic měnit
-            mCurrentRotation = linphone_core_get_device_rotation([LinphoneManager getLc]);
-            break;
-        default:
-            mCurrentRotation = 0;
-            break;
-    }
-    return mCurrentRotation;
+    if (UIInterfaceOrientationIsLandscape(mCurrentDeviceOrientation))
+        videoPreview.frame = CGRectMake(self.view.bounds.size.width-fVideoPreviewHeight-10, self.view.bounds.size.height-fVideoPrevieWidth-10, fVideoPreviewHeight, fVideoPrevieWidth);
+    else
+        videoPreview.frame = CGRectMake(self.view.bounds.size.width-fVideoPrevieWidth-10, self.view.bounds.size.height-fVideoPreviewHeight-10, fVideoPrevieWidth, fVideoPreviewHeight);
 }
 
 -(void) batteryLevelChanged: (NSNotification*) notif {

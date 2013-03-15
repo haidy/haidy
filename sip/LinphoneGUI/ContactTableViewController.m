@@ -72,8 +72,6 @@
     fAdressField = aAdressField;
 }
 
-static NSString* fPageForSipData = @"GetInformationForMobile.aspx?Method=GetSipInformation";
-
 - (void)loadContacts{
     dispatch_async(kBgQueue, ^{
         

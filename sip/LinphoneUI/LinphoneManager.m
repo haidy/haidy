@@ -1162,6 +1162,53 @@ static int comp_call_id(const LinphoneCall* call , const char *callid) {
 	}
 }
 
+#pragma mark - Orientation changed implementation
+- (void) changeOrientation:(UIInterfaceOrientation)aCurrentInterfaceOrientation andVideoView:(UIView*)aVideoView
+{
+    if (aCurrentInterfaceOrientation == UIDeviceOrientationFaceDown || aCurrentInterfaceOrientation == UIDeviceOrientationFaceUp)
+        return;
+    
+    int oldLinphoneOrientation = linphone_core_get_device_rotation([LinphoneManager getLc]);
+    int newRotation = [self getCurrentRotationFromInterfaceOrientation:aCurrentInterfaceOrientation];
+    if (oldLinphoneOrientation != newRotation) {
+        linphone_core_set_device_rotation([LinphoneManager getLc], newRotation);
+        if (aVideoView != nil)
+            linphone_core_set_native_video_window_id([LinphoneManager getLc],(uint)aVideoView);
+        //else - neznáme view, tak nic nenastavujeme
+        
+        LinphoneCall* call = linphone_core_get_current_call([LinphoneManager getLc]);
+        if (call && linphone_call_params_video_enabled(linphone_call_get_current_params(call))) {
+            //Orientation has changed, must call update call
+            linphone_core_update_call([LinphoneManager getLc], call, NULL);
+        }
+        //else - není hovor není co updatovat
+    }
+
+}
+
+-(int) getCurrentRotationFromInterfaceOrientation:(UIInterfaceOrientation)aInterfaceOrientation
+{
+    int mCurrentRotation = 0;
+    switch (aInterfaceOrientation) {
+        case UIInterfaceOrientationLandscapeRight:
+            mCurrentRotation = 270;
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+            mCurrentRotation = 90;
+            break;
+        case UIInterfaceOrientationPortraitUpsideDown:
+            mCurrentRotation = 180;
+            break;
+        case UIInterfaceOrientationPortrait:
+            mCurrentRotation = 0;
+            break;
+        default:
+            mCurrentRotation = 0;
+            break;
+    }
+    return mCurrentRotation;
+}
+
 
 #pragma mark - AVAudioSession Notification implemented
 
@@ -1282,7 +1329,10 @@ static int comp_call_id(const LinphoneCall* call , const char *callid) {
 
 - (BOOL) existCall
 {
-    return linphone_core_get_current_call([LinphoneManager getLc]) != nil;
+    if ([LinphoneManager isLcReady])
+        return linphone_core_get_current_call([LinphoneManager getLc]) != nil;
+    else
+        return NO;
 }
 
 @end

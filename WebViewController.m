@@ -310,7 +310,7 @@
     //else: není potřeba, jde o zbytek kódu
     
     // Normal error handling…
-    UIAlertView *mAllertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Server url", @"") message:NSLocalizedString(@"Bad connect", @"Nepodařilo se připojit") delegate:self cancelButtonTitle:NSLocalizedString(@"Button Home", @"")
+    UIAlertView *mAllertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Bad connect", @"Nepodařilo se připojit") message:NSLocalizedString(@"Connect request", @"Chcete se připojit vzdáleně nebo jste doma?") delegate:self cancelButtonTitle:NSLocalizedString(@"Button Home", @"")
         otherButtonTitles:NSLocalizedString(@"Button Remotely", @""), NSLocalizedString(@"Button Cancel", nil), nil ];
     [mAllertView setTag:0];
     [mAllertView show];
@@ -503,7 +503,7 @@
         //očekáváme, že přijde pole, proto proměnná typu array
         NSArray* mNotifications = [JsonService getNotifications];
         
-        while ([LinphoneManager instance] != nil && [[LinphoneManager instance] existCall]) {
+        while ([LinphoneManager instance] != nil && [LinphoneManager isLcReady] && [[LinphoneManager instance] existCall]) {
             //pokud přichází hovor, nebo je vytočený, tak zde počkáme a notifikujeme až po hovoru
             sleep(10);
         }

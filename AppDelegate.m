@@ -48,6 +48,9 @@
     
     //Povolení push
 	[[UIApplication sharedApplication] registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound];
+    //zachytávání změny orientace zařízení
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
     
     //notifikuje o změně stavu baterií ... můžeme na to nějak reagovat
     //asi by bylo fajn, kdyby to vyhodilo hlášku nebo by to odpojilo třeba SIP, když ně
@@ -200,6 +203,8 @@
      See also applicationDidEnterBackground:.
      */
     [[NSUserDefaults standardUserDefaults] removeObserver:self forKeyPath:@"UseSIP"];
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIDeviceOrientationDidChangeNotification object:nil];
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
@@ -318,6 +323,13 @@
         else
             [self endSipApplication];
     }
+}
+
+#pragma mark - Implementation observing orientation
+
+-(void) orientationChanged: (NSNotification*) notif {
+    if (ExUtils.useSip)
+        [[LinphoneManager instance] changeOrientation:[[UIApplication sharedApplication] statusBarOrientation] andVideoView:nil];
 }
 
 #pragma mark - Implementation SIP methods

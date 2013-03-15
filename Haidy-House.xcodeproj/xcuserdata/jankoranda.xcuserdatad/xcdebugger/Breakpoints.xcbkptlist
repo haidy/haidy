@@ -270,11 +270,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "sip/LinphoneUI/LinphoneManager.m"
-         timestampString = "376580741.072968"
+         timestampString = "381676498.646595"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1200"
-         endingLineNumber = "1200"
+         startingLineNumber = "1247"
+         endingLineNumber = "1247"
          landmarkName = "-setupGSMInteraction"
          landmarkType = "5">
       </FileBreakpoint>
@@ -292,32 +292,6 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "sip/LinphoneGUI/IncallViewController.m"
-         timestampString = "381148094.766832"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1082"
-         endingLineNumber = "1082"
-         landmarkName = "-orientationChanged:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "sip/LinphoneGUI/IncallViewController.m"
-         timestampString = "381148094.766832"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1123"
-         endingLineNumber = "1123"
-         landmarkName = "-getCurrentRotation"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
@@ -329,6 +303,45 @@
          endingLineNumber = "118"
          landmarkName = "-configureOrientation:"
          landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "/Users/jankoranda/svn/linphone-iphone/submodules/build/..//linphone/mediastreamer2/src/ioscapture.m"
+         timestampString = "381405376.821873"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "563"
+         endingLineNumber = "563"
+         landmarkName = "ioscapture_set_device_orientation()"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "/Users/jankoranda/svn/linphone-iphone/submodules/build/..//linphone/mediastreamer2/src/ioscapture.m"
+         timestampString = "381405472.723966"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "360"
+         endingLineNumber = "360"
+         landmarkName = "-setSize:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "/Users/jankoranda/svn/linphone-iphone/submodules/build/..//linphone/mediastreamer2/src/ioscapture.m"
+         timestampString = "381406697.315066"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "580"
+         endingLineNumber = "580"
+         landmarkName = "ioscapture_set_device_orientation_display()"
+         landmarkType = "7">
       </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

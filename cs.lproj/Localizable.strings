@@ -8,6 +8,8 @@
 
 "Server URL" = "URL serveru";
 "Bad URL" = "Chybné URL serveru, prosím zkontrolujte nastavení";
+"Connect request" = "Chcete se připojit vzdáleně nebo jste doma?";
+"Bad connect" = "Nepodařilo se připojit";
 "Button Close" = "Zavřít";
 "House" = "Dům";
 "House Map" = "Mapa domu";

@@ -96,6 +96,9 @@
 
     NSTimer* hideControlsTimer;
     VideoZoomHandler* videoZoomHandler;
+    
+    float fVideoPrevieWidth;
+    float fVideoPreviewHeight;
 }
 
 - (IBAction)doAction:(id)sender;

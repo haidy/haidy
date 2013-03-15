@@ -8,6 +8,8 @@
 
 "Server URL" = "Server URL";
 "Bad URL" = "Bad URL, please check the settings";
+"Connect request" = "Connect remotely or at home?";
+"Bad connect" = "Bad connect to server";
 "Button Close" = "Close";
 "House" = "House";
 "House Map" = "House Map";
