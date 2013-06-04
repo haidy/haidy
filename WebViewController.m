@@ -279,8 +279,12 @@
     if ([self.navigationController.viewControllers containsObject:self.fPhoneViewController] == NO)
     {
         if(withCall)
+        {
             fIsVisibleSipForIncommingCall = YES;
-        [self.navigationController pushViewController:self.fPhoneViewController animated:YES];
+            [self.navigationController pushViewController:self.fPhoneViewController animated:NO];
+        }
+        else
+           [self.navigationController pushViewController:self.fPhoneViewController animated:YES];
         [self.navigationController setNavigationBarHidden:NO];
     }
     //else není potřeba, fPhoneViewController je již zobrazen
@@ -288,7 +292,9 @@
 
 - (void)hideSipController{
     fIsVisibleSipForIncommingCall = false;
+    
     [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController setNavigationBarHidden:YES];
     //[self dismissViewControllerAnimated:YES completion:nil];
 }
 

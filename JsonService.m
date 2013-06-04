@@ -59,11 +59,11 @@
         NSLog(@"Error loading data from method getJsonDataFromPage: %@", error);
     
     if (mResponseData.length == 0){
-        NSLog(@"Služba %@ nevrátila data", mPage);
+        NSLog(@"Služba %@ nevrátila data", mRequest.URL.absoluteString);
         return nil;
     }
     else
-        NSLog(@"Služba %@ vrátila JSON data: %@", mPage, [[NSString alloc] initWithData:mResponseData encoding:NSUTF8StringEncoding]);
+        NSLog(@"Služba %@ vrátila JSON data: %@", mRequest.URL.absoluteString, [[NSString alloc] initWithData:mResponseData encoding:NSUTF8StringEncoding]);
     
     
     //JSON data naparsujeme

@@ -328,7 +328,7 @@
 #pragma mark - Implementation observing orientation
 
 -(void) orientationChanged: (NSNotification*) notif {
-    if (ExUtils.useSip)
+    if (ExUtils.useSip && [LinphoneManager isLcReady])
         [[LinphoneManager instance] changeOrientation:[[UIApplication sharedApplication] statusBarOrientation] andVideoView:nil];
 }
 
